@@ -1,0 +1,113 @@
+/* Floating Action Button (Chat assistant mockup) */
+.floating-chat-btn {
+  position: fixed;
+  bottom: 25px;
+  left: 25px;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background-color: var(--color-green);
+  color: var(--color-sand);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-premium);
+  cursor: pointer;
+  z-index: 800;
+  border: none;
+  transition: var(--transition-smooth);
+}
+
+.floating-chat-btn:hover {
+  transform: scale(1.1) rotate(5deg);
+  background-color: var(--color-green-hover);
+}
+
+.chat-box-card {
+  position: fixed;
+  bottom: 95px;
+  left: 25px;
+  width: 320px;
+  height: 400px;
+  background-color: var(--color-sand);
+  border-radius: var(--border-radius-md);
+  box-shadow: var(--shadow-premium);
+  z-index: 850;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  animation: scaleUp 0.25s forwards;
+}
+
+.chat-header {
+  background-color: var(--color-green);
+  color: var(--color-sand);
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.chat-title {
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+.chat-messages {
+  flex-grow: 1;
+  padding: 1rem;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.chat-msg {
+  max-width: 80%;
+  padding: 0.6rem 0.8rem;
+  border-radius: 12px;
+  font-size: 0.85rem;
+}
+
+.chat-msg.bot {
+  background-color: var(--color-sand-dark);
+  align-self: flex-start;
+  border-bottom-left-radius: 2px;
+}
+
+.chat-msg.user {
+  background-color: var(--color-green);
+  color: var(--color-sand);
+  align-self: flex-end;
+  border-bottom-right-radius: 2px;
+}
+
+.chat-input-area {
+  padding: 0.8rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+  display: flex;
+  gap: 0.5rem;
+}
+
+.chat-input {
+  flex-grow: 1;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 0.5rem 0.8rem;
+  border-radius: 20px;
+  outline: none;
+  font-size: 0.85rem;
+  font-family: var(--font-body);
+}
+
+.chat-send-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: var(--color-green);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+

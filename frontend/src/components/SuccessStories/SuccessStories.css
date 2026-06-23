@@ -1,0 +1,240 @@
+/* Success Stories Section */
+.success-stories-section {
+  background-color: #EBF4F5; /* Soft pastel mint/blue background */
+  padding: 100px 0;
+  overflow: hidden;
+  position: relative;
+}
+
+.success-stories-section .section-container {
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+/* Header */
+.success-header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.success-header .section-title {
+  font-size: 2.8rem;
+  color: var(--color-navy);
+  font-family: var(--font-heading);
+  margin-bottom: 0.8rem;
+  font-weight: 700;
+}
+
+.success-header .section-subtitle {
+  font-size: 1.15rem;
+  color: var(--color-text-secondary);
+  font-family: var(--font-body);
+}
+
+/* Slider Track & Wrapper */
+.success-slider-outer {
+  width: 100%;
+  overflow: hidden; /* Prevent horizontal scrollbars on page */
+  padding: 15px 0 35px 0; /* Add top/bottom padding to prevent clipping of card shadows/bottoms */
+  margin-bottom: 2.5rem;
+}
+
+.success-slider-track {
+  display: flex;
+  gap: 2.5rem;
+  transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+  width: max-content;
+}
+
+/* Success Card */
+.success-card {
+  width: 360px; /* Fixed desktop card width */
+  flex-shrink: 0;
+  background: #FFFFFF;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.03);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1),
+              box-shadow 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.success-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 45px rgba(44, 82, 52, 0.08);
+}
+
+/* Image Container */
+.success-card-img-container {
+  width: 100%;
+  height: 240px;
+  overflow: hidden;
+  background-color: #F7FAF7;
+}
+
+.success-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.success-card:hover .success-card-img {
+  transform: scale(1.05);
+}
+
+/* Card Body */
+.success-card-body {
+  padding: 1.8rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  flex-grow: 1; /* Stretch body to push the links to the bottom */
+}
+
+.success-card-title {
+  font-size: 1.12rem;
+  font-weight: 700;
+  color: var(--color-navy);
+  line-height: 1.45;
+  margin-bottom: 0.8rem;
+  font-family: var(--font-body);
+  height: 50px; /* Aligns description height across cards */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.success-card-meta {
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+  margin-bottom: 1.2rem;
+  font-family: var(--font-body);
+  font-weight: 600;
+}
+
+.meta-separator {
+  margin: 0 4px;
+  color: rgba(0, 0, 0, 0.15);
+}
+
+.success-card-link {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #B07D62; /* Terracotta link */
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  margin-top: auto; /* Push the link to the bottom of the card body */
+  transition: var(--transition-smooth);
+}
+
+.success-card-link .arrow-icon {
+  font-size: 1.2rem;
+  line-height: 1;
+  margin-left: 4px;
+  transition: transform 0.2s ease;
+  display: inline-block;
+}
+
+.success-card-link:hover {
+  color: #9C6853;
+}
+
+.success-card-link:hover .arrow-icon {
+  transform: translateX(4px);
+}
+
+/* Slider Dots */
+.success-slider-dots {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 3rem;
+  gap: 12px;
+}
+
+.success-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: none;
+  background-color: #B4C4C2;
+  cursor: pointer;
+  padding: 0;
+  transition: all 0.3s ease;
+}
+
+.success-dot:hover {
+  background-color: #93A6A4;
+  transform: scale(1.1);
+}
+
+.success-dot.active {
+  background-color: #B07D62;
+  width: 24px;
+  border-radius: 10px;
+}
+
+/* Bottom Terracotta Action Button */
+.success-actions {
+  display: flex;
+  justify-content: center;
+}
+
+.btn-terracotta {
+  background-color: #B07D62;
+  color: #FFFFFF;
+  border: none;
+  padding: 1.1rem 2.8rem;
+  border-radius: 50px;
+  font-size: 1rem;
+  font-weight: 700;
+  font-family: var(--font-body);
+  cursor: pointer;
+  transition: var(--transition-smooth);
+  box-shadow: 0 4px 12px rgba(176, 125, 98, 0.15);
+}
+
+.btn-terracotta:hover {
+  background-color: #9C6853;
+  box-shadow: 0 8px 20px rgba(176, 125, 98, 0.3);
+  transform: translateY(-2px);
+}
+
+/* Responsive Rules */
+@media (max-width: 1200px) {
+  .success-slider-outer {
+    overflow: hidden;
+    padding: 15px 0 35px 0; /* Preserve shadow/bottom padding on tablet */
+  }
+}
+
+@media (max-width: 768px) {
+  .success-stories-section {
+    padding: 70px 0;
+  }
+  
+  .success-header .section-title {
+    font-size: 2.2rem;
+  }
+  
+  .success-card {
+    width: calc(100vw - 4rem); /* Full viewport width minus container padding */
+  }
+  
+  .success-slider-track {
+    gap: 0; /* Align side-by-side cleanly for mobile slider */
+  }
+  
+  .success-card-body {
+    padding: 1.5rem;
+  }
+  
+  .success-card-title {
+    height: auto;
+  }
+}
