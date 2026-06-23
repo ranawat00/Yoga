@@ -17,7 +17,6 @@ export default function Navbar() {
   const { totalCartCount, setIsCartOpen, setView, user, setIsAuthOpen, handleLogout, setIsProfileOpen } = useApp();
   const [activeLink, setActiveLink] = useState('home');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [profileDropdownOpen, setProfileDropdownOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
