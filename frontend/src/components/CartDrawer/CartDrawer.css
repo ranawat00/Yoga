@@ -89,7 +89,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--color-green);
+  color: var(--color-blue);
 }
 
 .cart-item-info {
@@ -108,7 +108,7 @@
 .cart-item-price {
   font-size: 0.95rem;
   font-weight: 700;
-  color: var(--color-green);
+  color: var(--color-blue);
 }
 
 .cart-item-actions {

@@ -20,7 +20,7 @@
 .careers-tag {
   font-size: 0.85rem;
   font-weight: 700;
-  color: var(--color-green);
+  color: var(--color-blue);
   text-transform: uppercase;
   letter-spacing: 1.5px;
   display: block;
@@ -130,7 +130,7 @@
 .job-dept {
   font-size: 0.8rem;
   font-weight: 700;
-  color: var(--color-green);
+  color: var(--color-blue);
   text-transform: uppercase;
   letter-spacing: 0.8px;
   display: block;
@@ -147,7 +147,7 @@
   font-size: 0.8rem;
   font-weight: 700;
   background-color: var(--color-sage-bg);
-  color: var(--color-green);
+  color: var(--color-blue);
   padding: 0.4rem 0.8rem;
   border-radius: 50px;
   white-space: nowrap;
@@ -208,7 +208,7 @@
 }
 
 .selected-job-indicator strong {
-  color: var(--color-green);
+  color: var(--color-blue);
 }
 
 .application-form {

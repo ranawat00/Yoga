@@ -49,7 +49,7 @@ export default function CartDrawer() {
                 <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
               </svg>
               <p>Your shopping cart is empty</p>
-              <button className="btn btn-green" onClick={onClose} style={{ padding: '0.6rem 1.2rem', fontSize: '0.9rem' }}>
+              <button className="btn btn-blue" onClick={onClose} style={{ padding: '0.6rem 1.2rem', fontSize: '0.9rem' }}>
                 Start Shopping
               </button>
             </div>
@@ -120,7 +120,7 @@ export default function CartDrawer() {
                 <span>{deliveryFee === 0 ? 'FREE' : `₹${deliveryFee}`}</span>
               </div>
               {deliveryFee > 0 && (
-                <div style={{ fontSize: '0.75rem', color: 'var(--color-green)', fontStyle: 'italic', textAlign: 'right' }}>
+                <div style={{ fontSize: '0.75rem', color: 'var(--color-blue)', fontStyle: 'italic', textAlign: 'right' }}>
                   Add ₹{500 - subtotal} more for FREE delivery!
                 </div>
               )}
@@ -131,7 +131,7 @@ export default function CartDrawer() {
             </div>
 
             <button 
-              className="btn btn-green" 
+              className="btn btn-blue" 
               onClick={onProceedToCheckout}
               style={{ width: '100%', padding: '1rem', marginTop: '0.5rem', display: 'flex', justifyContent: 'center', gap: '0.5rem' }}
             >

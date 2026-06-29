@@ -24,13 +24,13 @@
   display: flex;
   align-items: center;
   cursor: pointer;
-  color: var(--color-green);
+  color: var(--color-blue);
 }
 
 .logo-icon {
   width: 38px;
   height: 38px;
-  stroke: var(--color-green);
+  stroke: var(--color-blue);
   margin-right: 8px;
 }
 
@@ -47,7 +47,7 @@
   font-size: 1.05rem;
   letter-spacing: 0.5px;
   text-transform: lowercase;
-  color: var(--color-green);
+  color: var(--color-blue);
 }
 
 .logo-brand-light {
@@ -56,7 +56,7 @@
   font-size: 1.05rem;
   letter-spacing: 0.5px;
   text-transform: lowercase;
-  color: var(--color-green);
+  color: var(--color-blue);
 }
 
 .nav-links {
@@ -80,7 +80,7 @@
 
 .nav-links a:hover,
 .nav-links a.active {
-  color: var(--color-green);
+  color: var(--color-blue);
 }
 
 .nav-chevron {
@@ -105,19 +105,19 @@
   justify-content: center;
   padding: 0.5rem;
   border-radius: 50%;
-  color: var(--color-green);
+  color: var(--color-blue);
   transition: background-color 0.2s ease;
 }
 
 .cart-icon-btn:hover {
-  background-color: rgba(44, 82, 52, 0.08);
+  background-color: rgba(31, 58, 82, 0.08);
 }
 
 .cart-badge {
   position: absolute;
   top: -2px;
   right: -2px;
-  background-color: var(--color-green);
+  background-color: var(--color-blue);
   color: #FFFFFF;
   font-size: 0.75rem;
   font-weight: bold;
@@ -131,7 +131,7 @@
 }
 
 .contact-btn {
-  background-color: var(--color-green);
+  background-color: var(--color-blue);
   color: #FFFFFF;
   border: 1.5px solid transparent;
   padding: 0.55rem 1.4rem;
@@ -145,8 +145,8 @@
 
 .contact-btn:hover {
   background-color: transparent;
-  border-color: var(--color-green);
-  color: var(--color-green);
+  border-color: var(--color-blue);
+  color: var(--color-blue);
 }
 
 .mobile-menu-btn {
@@ -154,7 +154,7 @@
   background: transparent;
   border: none;
   cursor: pointer;
-  color: var(--color-green);
+  color: var(--color-blue);
 }
 
 
@@ -162,26 +162,26 @@
 @media (max-width: 992px) {
   .navbar {
     background-color: #e3d9ca !important;
-    border-bottom: 1px solid rgba(44, 82, 52, 0.08) !important;
+    border-bottom: 1px solid rgba(31, 58, 82, 0.08) !important;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02) !important;
   }
   .logo-container {
-    color: var(--color-green) !important;
+    color: var(--color-blue) !important;
   }
   .logo-icon {
-    stroke: var(--color-green) !important;
+    stroke: var(--color-blue) !important;
   }
   .logo-brand-bold, .logo-brand-light {
-    color: var(--color-green) !important;
+    color: var(--color-blue) !important;
   }
   .cart-icon-btn {
-    color: var(--color-green) !important;
+    color: var(--color-blue) !important;
   }
   .cart-icon-btn:hover {
-    background-color: rgba(44, 82, 52, 0.05);
+    background-color: rgba(31, 58, 82, 0.05);
   }
   .mobile-menu-btn {
-    color: var(--color-green) !important;
+    color: var(--color-blue) !important;
   }
   .nav-links {
     display: none;
@@ -225,7 +225,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid rgba(44, 82, 52, 0.12);
+    border-bottom: 1px solid rgba(31, 58, 82, 0.12);
     padding-bottom: 1.2rem;
   }
 
@@ -233,14 +233,14 @@
     display: flex;
     align-items: center;
     gap: 0.6rem;
-    color: var(--color-green);
+    color: var(--color-blue);
     cursor: pointer;
   }
 
   .mobile-drawer-logo-icon {
     width: 32px;
     height: 32px;
-    stroke: var(--color-green);
+    stroke: var(--color-blue);
   }
 
   .mobile-drawer-logo-text {
@@ -250,12 +250,12 @@
   }
 
   .mobile-drawer-logo-text .logo-brand-bold {
-    color: var(--color-green) !important;
+    color: var(--color-blue) !important;
     font-weight: 800;
   }
 
   .mobile-drawer-logo-text .logo-brand-light {
-    color: var(--color-green) !important;
+    color: var(--color-blue) !important;
     font-weight: 300;
   }
 
@@ -263,7 +263,7 @@
     background: transparent;
     border: none;
     cursor: pointer;
-    color: var(--color-green);
+    color: var(--color-blue);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -295,13 +295,13 @@
 
   .mobile-drawer-links a:hover,
   .mobile-drawer-links a.active-pill {
-    background-color: rgba(44, 82, 52, 0.08);
-    color: var(--color-green);
+    background-color: rgba(31, 58, 82, 0.08);
+    color: var(--color-blue);
   }
 
   .mobile-drawer-divider {
     height: 1px;
-    background-color: rgba(44, 82, 52, 0.12);
+    background-color: rgba(31, 58, 82, 0.12);
     margin: 0.5rem 0;
   }
 }
@@ -426,7 +426,7 @@
   font-family: var(--font-body);
   font-weight: 700;
   font-size: 0.88rem;
-  color: var(--color-green);
+  color: var(--color-blue);
   line-height: 1.2;
 }
 
@@ -458,12 +458,12 @@
 }
 
 .auth-trigger-btn:hover {
-  color: var(--color-green);
-  background-color: rgba(44, 82, 52, 0.05);
+  color: var(--color-blue);
+  background-color: rgba(31, 58, 82, 0.05);
 }
 
 .profile-btn {
-  border: 1.5px solid rgba(44, 82, 52, 0.15);
+  border: 1.5px solid rgba(31, 58, 82, 0.15);
   padding: 4px;
   border-radius: 50%;
   display: flex;
@@ -472,14 +472,14 @@
 }
 
 .profile-btn:hover {
-  border-color: var(--color-green);
-  background-color: rgba(44, 82, 52, 0.03);
+  border-color: var(--color-blue);
+  background-color: rgba(31, 58, 82, 0.03);
 }
 
 .profile-name-bubble {
   width: 22px;
   height: 22px;
-  background-color: var(--color-green);
+  background-color: var(--color-blue);
   color: #FFFFFF;
   border-radius: 50%;
   font-size: 0.78rem;
@@ -487,7 +487,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 2px 4px rgba(44, 82, 52, 0.15);
+  box-shadow: 0 2px 4px rgba(31, 58, 82, 0.15);
 }
 
 /* Profile Dropdown Menu */
@@ -498,7 +498,7 @@
   background-color: #FFFFFF;
   border-radius: var(--border-radius-md);
   box-shadow: 0 10px 25px rgba(9, 16, 31, 0.1);
-  border: 1px solid rgba(44, 82, 52, 0.08);
+  border: 1px solid rgba(31, 58, 82, 0.08);
   min-width: 200px;
   z-index: 1000;
   padding: 0.8rem 0;
@@ -537,7 +537,7 @@
 
 .profile-dropdown-menu .dropdown-divider {
   height: 1px;
-  background-color: rgba(44, 82, 52, 0.06);
+  background-color: rgba(31, 58, 82, 0.06);
   margin: 0.6rem 0;
 }
 
@@ -557,8 +557,8 @@
 }
 
 .profile-dropdown-menu .dropdown-item:hover {
-  background-color: rgba(44, 82, 52, 0.04);
-  color: var(--color-green);
+  background-color: rgba(31, 58, 82, 0.04);
+  color: var(--color-blue);
 }
 
 .profile-dropdown-menu .logout-item:hover {

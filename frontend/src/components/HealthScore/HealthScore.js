@@ -226,8 +226,8 @@ export default function HealthScore({ isStandalone = false }) {
       {/* Decorative Animated Wavy Hill Background */}
       <div className="health-score-bottom-wave">
         <svg viewBox="0 0 1440 160" preserveAspectRatio="none" className="wave-svg-container">
-          <path className="wave-bg-path wave-back" d="M0,60 C120,100 240,100 360,60 C480,20 600,20 720,60 C840,100 960,100 1080,60 C1200,20 1320,20 1440,60 L1440,160 L0,160 Z" fill="#b5cc9b" opacity="0.55" />
-          <path className="wave-bg-path wave-front" d="M0,80 C120,120 240,120 360,80 C480,40 600,40 720,80 C840,120 960,120 1080,80 C1200,40 1320,40 1440,80 L1440,160 L0,160 Z" fill="#c4dbb3" />
+          <path className="wave-bg-path wave-back" d="M0,60 C120,100 240,100 360,60 C480,20 600,20 720,60 C840,100 960,100 1080,60 C1200,20 1320,20 1440,60 L1440,160 L0,160 Z" fill="rgba(31, 58, 82, 0.15)" opacity="0.55" />
+          <path className="wave-bg-path wave-front" d="M0,80 C120,120 240,120 360,80 C480,40 600,40 720,80 C840,120 960,120 1080,80 C1200,40 1320,40 1440,80 L1440,160 L0,160 Z" fill="rgba(31, 58, 82, 0.25)" />
         </svg>
       </div>
 
@@ -329,7 +329,7 @@ export default function HealthScore({ isStandalone = false }) {
                   <button className="btn btn-outline" onClick={handleStartQuiz} style={{ flex: 1, padding: '0.9rem' }}>
                     Retake Test
                   </button>
-                  <button className="btn btn-green" onClick={handleScrollToWorkshops} style={{ flex: 1.3, padding: '0.9rem' }}>
+                  <button className="btn btn-blue" onClick={handleScrollToWorkshops} style={{ flex: 1.3, padding: '0.9rem' }}>
                     Explore Workshops
                   </button>
                 </div>

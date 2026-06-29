@@ -112,13 +112,13 @@
   position: absolute;
   top: 1.2rem;
   left: 1.2rem;
-  background-color: var(--color-green);
+  background-color: var(--color-blue);
   color: var(--color-sand);
   font-size: 0.75rem;
   font-weight: 600;
   padding: 0.35rem 0.9rem;
   border-radius: 50px;
-  box-shadow: 0 4px 6px rgba(44, 82, 52, 0.2);
+  box-shadow: 0 4px 6px rgba(31, 58, 82, 0.2);
 }
 
 .book-page-info {
@@ -179,8 +179,8 @@
 
 .format-opt-btn {
   background: transparent;
-  border: 1px solid rgba(44, 82, 52, 0.2);
-  color: var(--color-green);
+  border: 1px solid rgba(31, 58, 82, 0.2);
+  color: var(--color-blue);
   padding: 0.35rem 1rem;
   font-size: 0.85rem;
   font-weight: 600;
@@ -190,14 +190,14 @@
 }
 
 .format-opt-btn:hover {
-  background-color: rgba(44, 82, 52, 0.05);
-  border-color: var(--color-green);
+  background-color: rgba(31, 58, 82, 0.05);
+  border-color: var(--color-blue);
 }
 
 .format-opt-btn.active {
-  background-color: var(--color-green);
+  background-color: var(--color-blue);
   color: var(--color-sand);
-  border-color: var(--color-green);
+  border-color: var(--color-blue);
 }
 
 /* Price & Action Row */
@@ -224,10 +224,10 @@
 .price-amt {
   font-size: 1.6rem;
   font-weight: 800;
-  color: var(--color-green);
+  color: var(--color-blue);
 }
 
-.book-page-price-action .btn-green {
+.book-page-price-action .btn-blue {
   padding: 0.8rem 1.8rem;
   font-size: 0.95rem;
   font-weight: 600;

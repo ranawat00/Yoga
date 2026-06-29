@@ -115,7 +115,7 @@ export default function ProductsPage() {
                       <span className="price-amt">₹{p.price}</span>
                     </div>
                     
-                    <button className="btn btn-green" onClick={() => handleAddToCart(p)}>
+                    <button className="btn btn-blue" onClick={() => handleAddToCart(p)}>
                       Add to Cart
                     </button>
                   </div>

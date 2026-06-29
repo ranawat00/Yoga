@@ -18,7 +18,7 @@
   transition: var(--transition-smooth);
   display: flex;
   flex-direction: column;
-  border: 1px solid rgba(44, 82, 52, 0.05);
+  border: 1px solid rgba(31, 58, 82, 0.05);
 }
 
 .product-card:hover {
@@ -28,7 +28,7 @@
 
 .product-image-container {
   height: 220px;
-  background-color: rgba(44, 82, 52, 0.03);
+  background-color: rgba(31, 58, 82, 0.03);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -38,7 +38,7 @@
 .product-image-container svg {
   width: 80px;
   height: 80px;
-  color: var(--color-green);
+  color: var(--color-blue);
   opacity: 0.85;
 }
 
@@ -85,19 +85,19 @@
 .product-price {
   font-size: 1.3rem;
   font-weight: 700;
-  color: var(--color-green);
+  color: var(--color-blue);
 }
 
 .btn-cart {
   padding: 0.6rem 1rem;
   font-size: 0.85rem;
   border-radius: var(--border-radius-sm);
-  background-color: var(--color-green);
+  background-color: var(--color-blue);
   color: var(--color-sand);
 }
 
 .btn-cart:hover {
-  background-color: var(--color-green-hover);
+  background-color: var(--color-blue-hover);
 }
 
 /* View More Section */
@@ -111,20 +111,20 @@
   display: flex;
   align-items: center;
   gap: 0.6rem;
-  background-color: var(--color-green);
+  background-color: var(--color-blue);
   color: var(--color-sand);
   padding: 0.9rem 2.2rem;
   font-size: 1rem;
   font-weight: 600;
   border-radius: 50px;
-  box-shadow: 0 4px 10px rgba(44, 82, 52, 0.15);
+  box-shadow: 0 4px 10px rgba(31, 58, 82, 0.15);
   transition: var(--transition-smooth);
 }
 
 .btn-view-more:hover {
-  background-color: var(--color-green-hover);
+  background-color: var(--color-blue-hover);
   transform: translateY(-2px);
-  box-shadow: 0 6px 14px rgba(44, 82, 52, 0.25);
+  box-shadow: 0 6px 14px rgba(31, 58, 82, 0.25);
 }
 
 .btn-view-more svg {

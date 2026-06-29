@@ -55,13 +55,13 @@
   position: absolute;
   top: 1rem;
   left: 1rem;
-  background-color: var(--color-green);
+  background-color: var(--color-blue);
   color: var(--color-sand);
   font-size: 0.75rem;
   font-weight: 600;
   padding: 0.3rem 0.8rem;
   border-radius: 50px;
-  box-shadow: 0 4px 6px rgba(44, 82, 52, 0.2);
+  box-shadow: 0 4px 6px rgba(31, 58, 82, 0.2);
   z-index: 2;
 }
 
@@ -88,8 +88,8 @@
 
 .book-format-tag {
   font-size: 0.75rem;
-  background-color: rgba(44, 82, 52, 0.06);
-  color: var(--color-green);
+  background-color: rgba(31, 58, 82, 0.06);
+  color: var(--color-blue);
   padding: 0.15rem 0.5rem;
   border-radius: 4px;
   font-weight: 500;
@@ -129,21 +129,21 @@
 .book-price {
   font-size: 1.25rem;
   font-weight: 700;
-  color: var(--color-green);
+  color: var(--color-blue);
 }
 
-.btn-green-outline {
+.btn-blue-outline {
   padding: 0.5rem 0.9rem;
   font-size: 0.8rem;
   border-radius: var(--border-radius-sm);
   background-color: transparent;
-  color: var(--color-green);
-  border: 1px solid var(--color-green);
+  color: var(--color-blue);
+  border: 1px solid var(--color-blue);
   font-weight: 600;
 }
 
-.btn-green-outline:hover {
-  background-color: var(--color-green);
+.btn-blue-outline:hover {
+  background-color: var(--color-blue);
   color: var(--color-sand);
 }
 
@@ -158,20 +158,20 @@
   display: flex;
   align-items: center;
   gap: 0.6rem;
-  background-color: var(--color-green);
+  background-color: var(--color-blue);
   color: var(--color-sand);
   padding: 0.9rem 2.2rem;
   font-size: 1rem;
   font-weight: 600;
   border-radius: 50px;
-  box-shadow: 0 4px 10px rgba(44, 82, 52, 0.15);
+  box-shadow: 0 4px 10px rgba(31, 58, 82, 0.15);
   transition: var(--transition-smooth);
 }
 
 .btn-view-more:hover {
-  background-color: var(--color-green-hover);
+  background-color: var(--color-blue-hover);
   transform: translateY(-2px);
-  box-shadow: 0 6px 14px rgba(44, 82, 52, 0.25);
+  box-shadow: 0 6px 14px rgba(31, 58, 82, 0.25);
 }
 
 .btn-view-more svg {

@@ -132,7 +132,7 @@ export default function Contact() {
                 ></textarea>
               </div>
 
-              <button type="submit" className="btn btn-green btn-submit-contact" disabled={isSubmitting}>
+              <button type="submit" className="btn btn-blue btn-submit-contact" disabled={isSubmitting}>
                 {isSubmitting ? 'Sending Message...' : 'Send Message'}
               </button>
             </form>

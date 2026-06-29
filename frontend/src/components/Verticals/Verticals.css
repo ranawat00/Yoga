@@ -129,7 +129,7 @@
 }
 
 .vertical-card-btn {
-  background-color: #B07D62; /* Terracotta brown from reference image */
+  background-color: var(--color-blue);
   color: #FFFFFF;
   border: none;
   padding: 0.75rem 3.5rem;
@@ -143,9 +143,9 @@
 }
 
 .vertical-card-btn:hover {
-  background-color: #9C6853;
+  background-color: var(--color-blue-hover);
   transform: translateY(-2px);
-  box-shadow: 0 6px 15px rgba(176, 125, 98, 0.4);
+  box-shadow: 0 6px 15px rgba(31, 58, 82, 0.4);
 }
 
 /* Detail Modals for Verticals */
@@ -246,7 +246,7 @@
 }
 
 .vertical-modal-body h4 {
-  color: var(--color-green);
+  color: var(--color-blue);
   font-family: var(--font-body);
   font-size: 1.05rem;
   font-weight: 700;
@@ -274,7 +274,7 @@
   font-style: italic;
   font-size: 0.88rem;
   color: var(--color-text-muted);
-  border-left: 3px solid var(--color-green);
+  border-left: 3px solid var(--color-blue);
   padding-left: 0.8rem;
   margin-top: 1.2rem;
 }

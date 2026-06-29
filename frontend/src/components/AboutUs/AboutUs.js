@@ -122,7 +122,7 @@ export default function AboutUs() {
         <div className="about-container">
           <h2>Take Your First Step Towards Healing</h2>
           <p>Join our upcoming 7-Day Heal Yourself Challenge to experience the power of natural detoxification.</p>
-          <button className="btn btn-green btn-cta-about" onClick={() => { setView('home'); setTimeout(() => { document.getElementById('workshops')?.scrollIntoView({ behavior: 'smooth' }); }, 200); }}>
+          <button className="btn btn-blue btn-cta-about" onClick={() => { setView('home'); setTimeout(() => { document.getElementById('workshops')?.scrollIntoView({ behavior: 'smooth' }); }, 200); }}>
             Explore Workshops
           </button>
         </div>

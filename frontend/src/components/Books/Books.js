@@ -101,7 +101,7 @@ export default function Books() {
 
                 <div className="book-price-action">
                   <span className="book-price">₹{book.price}</span>
-                  <button className="btn btn-green-outline" onClick={() => setView('books')}>
+                  <button className="btn btn-blue-outline" onClick={() => setView('books')}>
                     View Details
                   </button>
                 </div>

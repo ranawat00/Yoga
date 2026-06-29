@@ -191,7 +191,7 @@ export default function OrdersPage() {
               <div className="empty-icon-large">📦</div>
               <h2>No Orders Found</h2>
               <p>You haven't placed any orders yet. Explore our Satvic shop to begin your healing journey.</p>
-              <button className="btn btn-green btn-large" onClick={() => {
+              <button className="btn btn-blue btn-large" onClick={() => {
                 setView('products');
                 window.scrollTo({ top: 0, behavior: 'smooth' });
               }}>

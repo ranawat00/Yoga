@@ -29,7 +29,7 @@
 
 .health-score-title {
   font-size: 3rem;
-  color: var(--color-green);
+  color: var(--color-blue);
   font-family: var(--font-heading);
   margin-bottom: 1.5rem;
   line-height: 1.25;
@@ -112,10 +112,10 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
-  border: 1px solid rgba(44, 82, 52, 0.1);
+  border: 1px solid rgba(31, 58, 82, 0.1);
   border-radius: var(--border-radius-md);
   padding: 1.1rem;
-  background-color: rgba(44, 82, 52, 0.015);
+  background-color: rgba(31, 58, 82, 0.015);
   margin-bottom: 1.5rem;
 }
 
@@ -146,12 +146,12 @@
 .info-divider {
   width: 1px;
   height: 40px;
-  background-color: rgba(44, 82, 52, 0.1);
+  background-color: rgba(31, 58, 82, 0.1);
 }
 
 .card-btn {
   width: 100%;
-  background-color: #B07D62; /* Terracotta brown */
+  background-color: var(--color-blue);
   color: #FFFFFF;
   border: none;
   padding: 1.1rem;
@@ -164,8 +164,8 @@
 }
 
 .card-btn:hover {
-  background-color: #9C6853;
-  box-shadow: 0 8px 16px rgba(176, 125, 98, 0.3);
+  background-color: var(--color-blue-hover);
+  box-shadow: 0 8px 16px rgba(31, 58, 82, 0.3);
   transform: translateY(-1px);
 }
 
@@ -273,14 +273,14 @@
 
 .quiz-progress-fill {
   height: 100%;
-  background: var(--color-green);
+  background: var(--color-blue);
   transition: width 0.3s ease;
   border-radius: 3px;
 }
 
 .quiz-step-indicator {
   font-size: 0.8rem;
-  color: var(--color-green);
+  color: var(--color-blue);
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 1px;
@@ -319,8 +319,8 @@
 }
 
 .quiz-option-btn:hover {
-  background: rgba(44, 82, 52, 0.04);
-  border-color: var(--color-green);
+  background: rgba(31, 58, 82, 0.04);
+  border-color: var(--color-blue);
 }
 
 .quiz-back-btn {
@@ -337,7 +337,7 @@
 }
 
 .quiz-back-btn:hover {
-  color: var(--color-green);
+  color: var(--color-blue);
   transform: translateX(-2px);
 }
 
@@ -385,7 +385,7 @@
 }
 
 .score-circle-fill.vitality-excellent {
-  stroke: var(--color-green);
+  stroke: var(--color-blue);
 }
 
 .score-circle-fill.vitality-good {
@@ -429,8 +429,8 @@
 }
 
 .result-vitality-badge.vitality-excellent {
-  background-color: rgba(44, 82, 52, 0.08);
-  color: var(--color-green);
+  background-color: rgba(31, 58, 82, 0.08);
+  color: var(--color-blue);
 }
 
 .result-vitality-badge.vitality-good {

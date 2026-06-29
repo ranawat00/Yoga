@@ -12,7 +12,7 @@
 
 .contact-title {
   font-size: 3rem;
-  color: var(--color-green);
+  color: var(--color-blue);
   margin-bottom: 1rem;
 }
 
@@ -100,7 +100,7 @@
 
 .compact-icon {
   background-color: var(--color-sage-bg);
-  color: var(--color-green);
+  color: var(--color-blue);
   width: 40px;
   height: 40px;
   border-radius: 50%;
@@ -125,12 +125,12 @@
 }
 
 .compact-details a {
-  color: var(--color-green);
+  color: var(--color-blue);
   transition: var(--transition-smooth);
 }
 
 .compact-details a:hover {
-  color: var(--color-green-hover);
+  color: var(--color-blue-hover);
   text-decoration: underline;
 }
 

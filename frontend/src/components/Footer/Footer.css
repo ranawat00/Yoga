@@ -1,6 +1,5 @@
-/* Footer Section (Forest Teal/Green Background with Parallax Waves) */
 .footer {
-  background-color: #2F5943;
+  background-color: var(--color-blue);
   color: var(--color-sand);
   padding: 4rem 2rem 2.5rem;
   position: relative;
@@ -141,7 +140,7 @@
 }
 
 .social-btn:hover svg {
-  fill: #2F5943;
+  fill: var(--color-blue);
 }
 
 /* Link Columns */
@@ -272,7 +271,7 @@
 .btn-newsletter-submit {
   padding: 0.7rem 1.8rem;
   background-color: #ffffff;
-  color: #2F5943;
+  color: var(--color-blue);
   border: none;
   border-radius: 25px;
   font-weight: 600;

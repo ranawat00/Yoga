@@ -63,7 +63,7 @@
 
 .success-card:hover {
   transform: translateY(-8px);
-  box-shadow: 0 20px 45px rgba(44, 82, 52, 0.08);
+  box-shadow: 0 20px 45px rgba(31, 58, 82, 0.08);
 }
 
 /* Image Container */
@@ -124,7 +124,7 @@
 .success-card-link {
   font-size: 0.95rem;
   font-weight: 700;
-  color: #B07D62; /* Terracotta link */
+  color: var(--color-blue); /* Blue link */
   text-decoration: none;
   display: inline-flex;
   align-items: center;
@@ -141,7 +141,7 @@
 }
 
 .success-card-link:hover {
-  color: #9C6853;
+  color: var(--color-blue-hover);
 }
 
 .success-card-link:hover .arrow-icon {
@@ -174,7 +174,7 @@
 }
 
 .success-dot.active {
-  background-color: #B07D62;
+  background-color: var(--color-blue);
   width: 24px;
   border-radius: 10px;
 }
@@ -186,7 +186,7 @@
 }
 
 .btn-terracotta {
-  background-color: #B07D62;
+  background-color: var(--color-blue);
   color: #FFFFFF;
   border: none;
   padding: 1.1rem 2.8rem;
@@ -196,12 +196,12 @@
   font-family: var(--font-body);
   cursor: pointer;
   transition: var(--transition-smooth);
-  box-shadow: 0 4px 12px rgba(176, 125, 98, 0.15);
+  box-shadow: 0 4px 12px rgba(31, 58, 82, 0.15);
 }
 
 .btn-terracotta:hover {
-  background-color: #9C6853;
-  box-shadow: 0 8px 20px rgba(176, 125, 98, 0.3);
+  background-color: var(--color-blue-hover);
+  box-shadow: 0 8px 20px rgba(31, 58, 82, 0.3);
   transform: translateY(-2px);
 }
 

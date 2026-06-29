@@ -116,7 +116,7 @@ export default function Verticals() {
 
             {/* Modal Footer */}
             <div className="vertical-modal-footer">
-              <button className="btn btn-green" onClick={() => setSelectedVertical(null)}>
+              <button className="btn btn-blue" onClick={() => setSelectedVertical(null)}>
                 Got it, Thanks!
               </button>
             </div>

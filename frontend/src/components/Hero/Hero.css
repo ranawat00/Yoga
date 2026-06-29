@@ -88,7 +88,7 @@
 .hero-logo-icon {
   width: 46px;
   height: 46px;
-  stroke: var(--color-green);
+  stroke: var(--color-blue);
 }
 
 .hero-logo-text-stacked {
@@ -103,7 +103,7 @@
   font-size: 1.7rem;
   letter-spacing: 0.5px;
   text-transform: lowercase;
-  color: var(--color-green);
+  color: var(--color-blue);
 }
 
 .hero-logo-brand-light {
@@ -112,21 +112,21 @@
   font-size: 1.7rem;
   letter-spacing: 0.5px;
   text-transform: lowercase;
-  color: var(--color-green);
+  color: var(--color-blue);
 }
 
 .hero-tagline {
   font-family: var(--font-body);
   font-size: 1.15rem;
   line-height: 1.5;
-  color: var(--color-green);
+  color: var(--color-blue);
   font-weight: 550;
   max-width: 480px;
   margin-bottom: 1.5rem;
 }
 
 .btn-explore {
-  background-color: var(--color-green);
+  background-color: var(--color-blue);
   color: #FFFFFF;
   border: 1.5px solid transparent;
   padding: 0.75rem 2.2rem;
@@ -139,8 +139,8 @@
 
 .btn-explore:hover {
   background-color: transparent;
-  border-color: var(--color-green);
-  color: var(--color-green);
+  border-color: var(--color-blue);
+  color: var(--color-blue);
 }
 
 .hero-stats-row {
@@ -313,12 +313,12 @@
   }
 
   .hero-logo-icon {
-    color: #2F5943;
+    color: var(--color-blue);
   }
 
   .hero-logo-brand-bold,
   .hero-logo-brand-light {
-    color: #2F5943;
+    color: var(--color-blue);
   }
 
   .hero-tagline {
@@ -326,7 +326,7 @@
     line-height: 1.65;
     margin-bottom: 2rem;
     text-align: center;
-    color: #2F5943;
+    color: var(--color-blue);
     max-width: 460px;
   }
 
@@ -344,14 +344,14 @@
     font-size: 0.95rem;
     font-weight: 600;
     border-radius: 50px;
-    background-color: #2F5943;
+    background-color: var(--color-blue);
     color: #FFFFFF;
     border: none;
-    box-shadow: 0 4px 15px rgba(47, 89, 67, 0.15);
+    box-shadow: 0 4px 15px rgba(31, 58, 82, 0.15);
   }
 
   .btn-explore:hover {
-    background-color: #244433;
+    background-color: var(--color-blue-hover);
   }
 
   /* Stats cards slider layout */
@@ -408,7 +408,7 @@
     font-size: 1.15rem;
     /* Reduced counting number size */
     font-weight: 700;
-    color: #2F5943;
+    color: var(--color-blue);
     margin-bottom: 0.15rem;
   }
 

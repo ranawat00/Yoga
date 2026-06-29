@@ -170,7 +170,7 @@ export default function Workshops({ isStandalone = false }) {
                   </div>
                 </div>
                 
-                <button className="btn btn-green btn-register-horizontal" onClick={() => handleOpenModal(w)}>
+                <button className="btn btn-blue btn-register-horizontal" onClick={() => handleOpenModal(w)}>
                   Register Now ₹{w.price}
                 </button>
               </div>
@@ -283,7 +283,7 @@ export default function Workshops({ isStandalone = false }) {
                 <button type="button" className="btn btn-outline" onClick={handleCloseModal} style={{ padding: '0.6rem 1.2rem' }}>
                   Cancel
                 </button>
-                <button type="submit" className="btn btn-green" disabled={isSubmitting} style={{ padding: '0.6rem 1.5rem' }}>
+                <button type="submit" className="btn btn-blue" disabled={isSubmitting} style={{ padding: '0.6rem 1.5rem' }}>
                   {isSubmitting ? 'Registering...' : `Pay & Register (₹${selectedWorkshop.price})`}
                 </button>
               </div>

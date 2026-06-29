@@ -210,7 +210,7 @@ export default function CheckoutModal() {
             address: `${formData.address}, ${formData.city} - ${formData.pincode}`,
           },
           theme: {
-            color: '#10b981',
+            color: '#1f3a52',
           },
           modal: {
             ondismiss: function () {

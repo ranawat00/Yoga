@@ -161,7 +161,7 @@
 }
 
 .btn-register-horizontal {
-  background-color: #3C8D73;
+  background-color: var(--color-blue);
   color: #FFFFFF;
   border-radius: 50px;
   padding: 0.6rem 1.8rem;
@@ -174,9 +174,9 @@
 }
 
 .btn-register-horizontal:hover {
-  background-color: #2F725C;
+  background-color: var(--color-blue-hover);
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(60, 141, 115, 0.3);
+  box-shadow: 0 4px 12px rgba(31, 58, 82, 0.3);
 }
 
 /* Tablet & Mobile Responsiveness */

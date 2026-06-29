@@ -42,7 +42,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(to bottom, rgba(47, 89, 67, 0.8), rgba(28, 36, 30, 0.9));
+  background: linear-gradient(to bottom, rgba(31, 58, 82, 0.8), rgba(28, 36, 30, 0.9));
   z-index: 2;
 }
 
@@ -102,15 +102,15 @@
 
 .pillar-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 12px 30px rgba(47, 89, 67, 0.08);
+  box-shadow: 0 12px 30px rgba(31, 58, 82, 0.08);
 }
 
 .pillar-icon-wrapper {
   width: 60px;
   height: 60px;
   border-radius: 50%;
-  background-color: rgba(47, 89, 67, 0.1);
-  color: var(--color-green);
+  background-color: rgba(31, 58, 82, 0.1);
+  color: var(--color-blue);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -125,7 +125,7 @@
 .pillar-card h3 {
   font-size: 1.25rem;
   font-weight: 700;
-  color: var(--color-green);
+  color: var(--color-blue);
   margin-bottom: 1rem;
 }
 
@@ -172,7 +172,7 @@
 .story-tag {
   font-size: 0.85rem;
   font-weight: 700;
-  color: var(--color-green);
+  color: var(--color-blue);
   letter-spacing: 1.5px;
   margin-bottom: 0.5rem;
 }
@@ -180,7 +180,7 @@
 .story-content h2 {
   font-size: 2.25rem;
   font-weight: 800;
-  color: var(--color-green);
+  color: var(--color-blue);
   margin-bottom: 1.5rem;
 }
 
@@ -206,7 +206,7 @@
 .stat-num {
   font-size: 2rem;
   font-weight: 800;
-  color: var(--color-green);
+  color: var(--color-blue);
   line-height: 1;
   margin-bottom: 0.3rem;
 }
@@ -235,7 +235,7 @@
 .value-item h4 {
   font-size: 1.15rem;
   font-weight: 700;
-  color: var(--color-green);
+  color: var(--color-blue);
   margin-bottom: 0.8rem;
 }
 
@@ -248,7 +248,7 @@
 /* CTA Section */
 .about-cta {
   padding: 6rem 0;
-  background-color: var(--color-green);
+  background-color: var(--color-blue);
   color: #ffffff;
   text-align: center;
 }
@@ -269,7 +269,7 @@
 
 .btn-cta-about {
   background-color: #ffffff !important;
-  color: var(--color-green) !important;
+  color: var(--color-blue) !important;
   padding: 0.9rem 2.5rem;
   font-size: 1rem;
   font-weight: 700;

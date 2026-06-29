@@ -195,7 +195,7 @@ export default function BooksPage() {
                         <span className="price-amt">₹{currentPrice}</span>
                       </div>
                       
-                      <button className="btn btn-green" onClick={() => onAddBookToCart(book)}>
+                      <button className="btn btn-blue" onClick={() => onAddBookToCart(book)}>
                         Add to Cart
                       </button>
                     </div>

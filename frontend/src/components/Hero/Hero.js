@@ -78,7 +78,7 @@ export default function Hero() {
           </p>
 
           <div className="hero-buttons">
-            <button className="btn btn-green btn-explore" onClick={() => handleScrollTo('workshops')}>
+            <button className="btn btn-blue btn-explore" onClick={() => handleScrollTo('workshops')}>
               Explore Workshops
             </button>
           </div>

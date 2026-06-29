@@ -159,7 +159,7 @@ export default function Careers() {
                 <p className="job-desc">{job.description}</p>
                 
                 <button 
-                  className={`btn ${selectedJob?.id === job.id ? 'btn-green' : 'btn-outline'} btn-apply`}
+                  className={`btn ${selectedJob?.id === job.id ? 'btn-blue' : 'btn-outline'} btn-apply`}
                   onClick={() => handleApplyClick(job)}
                 >
                   {selectedJob?.id === job.id ? 'Apply Below' : 'Apply Now'}
@@ -255,7 +255,7 @@ export default function Careers() {
                 <button type="button" className="btn btn-outline" onClick={() => setSelectedJob(null)}>
                   Cancel
                 </button>
-                <button type="submit" className="btn btn-green" disabled={isSubmitting}>
+                <button type="submit" className="btn btn-blue" disabled={isSubmitting}>
                   {isSubmitting ? 'Submitting Application...' : 'Submit Application'}
                 </button>
               </div>

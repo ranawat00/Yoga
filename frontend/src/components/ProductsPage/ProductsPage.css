@@ -169,18 +169,18 @@
 .price-amt {
   font-size: 1.6rem;
   font-weight: 800;
-  color: var(--color-green);
+  color: var(--color-blue);
 }
 
-.product-page-price-action .btn-green {
+.product-page-price-action .btn-blue {
   padding: 0.8rem 1.8rem;
   font-size: 0.95rem;
   font-weight: 600;
   border-radius: var(--border-radius-sm);
-  background-color: var(--color-green);
+  background-color: var(--color-blue);
   color: var(--color-sand);
 }
 
-.product-page-price-action .btn-green:hover {
-  background-color: var(--color-green-hover);
+.product-page-price-action .btn-blue:hover {
+  background-color: var(--color-blue-hover);
 }
