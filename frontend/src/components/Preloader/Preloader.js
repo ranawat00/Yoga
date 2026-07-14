@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './Preloader.css';
+import Logo from '../Logo/Logo';
 
 export default function Preloader() {
   const [visible, setVisible] = useState(true);
@@ -40,37 +41,8 @@ export default function Preloader() {
         <div className="preloader-ring ring-3"></div>
       </div>
 
-      <div className="preloader-content">
-        {/* Animated Yoga Healers Brand SVG */}
-        <div className="preloader-logo-wrapper">
-          <svg 
-            className="preloader-logo-svg" 
-            viewBox="0 0 100 100" 
-            fill="none" 
-            stroke="currentColor" 
-            strokeWidth="3.5"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            {/* The infinite flow loop representing balance & healing */}
-            <path 
-              className="logo-path-draw" 
-              d="M50 15 C32 15, 32 50, 50 50 C68 50, 68 85, 50 85 C32 85, 32 50, 50 50 C68 50, 68 15, 50 15 Z" 
-            />
-            {/* Pulsing circles representing energy centers */}
-            <circle className="logo-dot top-dot" cx="50" cy="15" r="4.5" />
-            <circle className="logo-dot bottom-dot" cx="50" cy="85" r="4.5" />
-          </svg>
-        </div>
-
-        {/* Ethereal Brand Name */}
-        <div className="preloader-brand">
-          <span className="brand-bold">yoga</span>
-          <span className="brand-light">healers</span>
-        </div>
-        
-        {/* Subtitle / Mantra */}
-        <div className="preloader-subtitle">Heal Yourself • Live Satvic</div>
+      <div className="preloader-content preloader-brand-animate">
+        <Logo variant="full" size={50} />
       </div>
     </div>
   );

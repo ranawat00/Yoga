@@ -1,0 +1,71 @@
+.brand-logo-container {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background-color: #001a9c;
+  color: #ffffff !important;
+  padding: 4px 10px;
+  border-radius: 4px;
+  text-decoration: none;
+  cursor: pointer;
+  user-select: none;
+  box-shadow: 0 3px 6px rgba(0, 26, 156, 0.12);
+}
+
+.brand-logo-svg {
+  transition: transform 0.3s ease;
+}
+
+.brand-logo-container:hover .brand-logo-svg {
+  transform: scale(1.05) rotate(2deg);
+}
+
+.brand-logo-text-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: left;
+  line-height: 1.1;
+}
+
+.brand-logo-title {
+  font-family: var(--font-body);
+  font-weight: 800;
+  font-size: 0.78rem;
+  letter-spacing: 0.5px;
+  color: inherit;
+  margin: 0;
+}
+
+.brand-logo-subtitle {
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 0.62rem;
+  letter-spacing: 0.8px;
+  color: inherit;
+  margin: 1px 0 0 0;
+  opacity: 0.95;
+}
+
+.brand-logo-tagline {
+  font-family: var(--font-script);
+  font-size: 0.76rem;
+  color: inherit;
+  margin: 1px 0 0 0;
+  opacity: 0.9;
+  letter-spacing: 0.1px;
+}
+
+/* Small variation for space-constrained areas like navigation headers */
+.navbar .brand-logo-tagline {
+  font-size: 0.7rem;
+}
+
+.navbar .brand-logo-title {
+  font-size: 0.74rem;
+}
+
+.navbar .brand-logo-subtitle {
+  font-size: 0.58rem;
+}
+

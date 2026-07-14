@@ -246,3 +246,8 @@
     transform: translateY(0);
   }
 }
+
+.preloader-brand-animate {
+  animation: fadeIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+

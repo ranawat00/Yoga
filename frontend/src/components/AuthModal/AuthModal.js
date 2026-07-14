@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useApp } from '../../context/AppContext';
+import Logo from '../Logo/Logo';
 import './AuthModal.css';
 
 export default function AuthModal() {
@@ -65,15 +66,7 @@ export default function AuthModal() {
         {/* Modal Header */}
         <div className="auth-modal-header">
           <div className="logo-brand">
-            <svg className="logo-icon" viewBox="0 0 100 100" fill="none" stroke="currentColor" strokeWidth="6">
-              <path d="M50 15 C32 15, 32 50, 50 50 C68 50, 68 85, 50 85 C32 85, 32 50, 50 50 C68 50, 68 15, 50 15 Z" />
-              <circle cx="50" cy="15" r="4" fill="currentColor" />
-              <circle cx="50" cy="85" r="4" fill="currentColor" />
-            </svg>
-            <div className="logo-text">
-              <span className="logo-bold">yoga</span>
-              <span className="logo-light">healers</span>
-            </div>
+            <Logo variant="full" size={26} />
           </div>
           <h2 className="auth-title">{getHeaderTitle()}</h2>
           <p className="auth-subtitle">{getHeaderSubtitle()}</p>

@@ -1,5 +1,6 @@
 import './CheckoutModal.css';
 import React, { useState } from 'react';
+import Logo from '../Logo/Logo';
 import { useApp } from '../../context/AppContext';
 import { createOrder, verifyPayment } from '../../api/payment';
 import { createOrderRecord } from '../../api/orders';
@@ -524,12 +525,7 @@ export default function CheckoutModal() {
                 <div className="invoice-receipt-wrapper">
                   <div className="receipt-header">
                     <div className="receipt-brand">
-                      <svg className="receipt-logo-icon" viewBox="0 0 100 100" fill="none" stroke="currentColor" strokeWidth="6">
-                        <path d="M50 15 C32 15, 32 50, 50 50 C68 50, 68 85, 50 85 C32 85, 32 50, 50 50 C68 50, 68 15, 50 15 Z" fill="none" />
-                        <circle cx="50" cy="15" r="4" fill="currentColor" />
-                        <circle cx="50" cy="85" r="4" fill="currentColor" />
-                      </svg>
-                      <span className="receipt-brand-text">yogahealers</span>
+                      <Logo variant="full" size={22} />
                     </div>
                     <div className="receipt-meta">
                       <span className="receipt-title">ORDER INVOICE</span>

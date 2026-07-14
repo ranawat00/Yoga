@@ -1,5 +1,6 @@
 import './Footer.css';
 import React, { useState } from 'react';
+import Logo from '../Logo/Logo';
 import { useApp } from '../../context/AppContext';
 
 export default function Footer() {
@@ -58,15 +59,7 @@ export default function Footer() {
         {/* Brand Column */}
         <div className="footer-col brand-col">
           <div className="footer-logo-block">
-            <svg className="footer-logo-icon" viewBox="0 0 100 100" fill="none" stroke="currentColor" strokeWidth="6">
-              <path d="M50 15 C32 15, 32 50, 50 50 C68 50, 68 85, 50 85 C32 85, 32 50, 50 50 C68 50, 68 15, 50 15 Z" />
-              <circle cx="50" cy="15" r="4" fill="currentColor" />
-              <circle cx="50" cy="85" r="4" fill="currentColor" />
-            </svg>
-            <div className="footer-logo-text">
-              <span className="logo-bold">yoga</span>
-              <span className="logo-light">healers</span>
-            </div>
+            <Logo variant="full" size={30} />
           </div>
           <div className="footer-divider-line"></div>
           <div className="social-links">
