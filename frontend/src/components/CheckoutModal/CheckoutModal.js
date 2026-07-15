@@ -642,7 +642,7 @@ export default function CheckoutModal() {
                   <div key={item.product.id} className="summary-item-row">
                     <div className="summary-item-img-wrapper">
                       {item.product.image ? (
-                        <img src={item.product.image} alt={item.product.title} />
+                        <img loading="lazy" src={item.product.image} alt={item.product.title} />
                       ) : (
                         <div className="summary-item-icon-fallback">🌿</div>
                       )}

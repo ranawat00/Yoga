@@ -58,7 +58,7 @@ export default function CartDrawer() {
               <div key={item.product.id} className="cart-item">
                 <div className="cart-item-icon">
                   {item.product.image ? (
-                    <img src={item.product.image} alt={item.product.title} style={{ width: '40px', height: '40px', objectFit: 'cover', borderRadius: '4px' }} />
+                    <img loading="lazy" src={item.product.image} alt={item.product.title} style={{ width: '40px', height: '40px', objectFit: 'cover', borderRadius: '4px' }} />
                   ) : (
                     <div style={{ width: '40px', height: '40px' }}>
                       {item.product.icon}

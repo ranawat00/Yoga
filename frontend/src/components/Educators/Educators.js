@@ -1,11 +1,11 @@
 import React from 'react';
 import './Educators.css';
-import imgSubah from '../../assets/educator_subah_1781260620713.png';
-import imgHarsh from '../../assets/educator_harsh_1781260639265.png';
-import imgRadhika from '../../assets/educator_radhika_1781260661670.png';
-import imgAkshay from '../../assets/educator_akshay_1781260683443.png';
-import imgRajat from '../../assets/educator_rajat_1781260812515.png';
-import imgHimadri from '../../assets/educator_himadri_1781260833983.png';
+import imgSubah from '../../assets/educator_subah_1781260620713.webp';
+import imgHarsh from '../../assets/educator_harsh_1781260639265.webp';
+import imgRadhika from '../../assets/educator_radhika_1781260661670.webp';
+import imgAkshay from '../../assets/educator_akshay_1781260683443.webp';
+import imgRajat from '../../assets/educator_rajat_1781260812515.webp';
+import imgHimadri from '../../assets/educator_himadri_1781260833983.webp';
 
 const EDUCATOR_DATA = [
   {
@@ -63,7 +63,7 @@ export default function Educators() {
             <div key={ed.id} className="educator-card">
               {/* Image with rounded background card */}
               <div className="educator-img-container">
-                <img src={ed.image} alt={ed.name} className="educator-img" />
+                <img loading="lazy" src={ed.image} alt={ed.name} className="educator-img" />
               </div>
               
               {/* Info */}

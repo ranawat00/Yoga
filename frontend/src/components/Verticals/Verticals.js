@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './Verticals.css';
-import yogaBg from '../../assets/vertical_yoga.png';
-import youthBg from '../../assets/vertical_youth.png';
+import yogaBg from '../../assets/vertical_yoga.webp';
+import youthBg from '../../assets/vertical_youth.webp';
 
 const VERTICALS_DATA = [
   {
@@ -69,7 +69,7 @@ export default function Verticals() {
             >
               {/* Background Image with Zoom Effect */}
               <div className="vertical-card-bg-wrapper">
-                <img src={item.image} alt={item.title} className="vertical-card-bg" />
+                <img loading="lazy" src={item.image} alt={item.title} className="vertical-card-bg" />
               </div>
               
               {/* Dark Gradient Overlay */}
@@ -104,7 +104,7 @@ export default function Verticals() {
 
             {/* Modal Header Image */}
             <div className="vertical-modal-image-container">
-              <img src={selectedVertical.image} alt={selectedVertical.title} className="vertical-modal-image" />
+              <img loading="lazy" src={selectedVertical.image} alt={selectedVertical.title} className="vertical-modal-image" />
               <div className="vertical-modal-img-overlay"></div>
               <h2 className="vertical-modal-header-title">{selectedVertical.title}</h2>
             </div>

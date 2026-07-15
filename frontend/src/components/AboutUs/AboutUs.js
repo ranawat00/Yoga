@@ -1,8 +1,8 @@
 import React from 'react';
 import { useApp } from '../../context/AppContext';
 import './AboutUs.css';
-import aboutHeroImg from '../../assets/yoga-hero.png';
-import storyImg from '../../assets/daily_yoga_banner.png';
+import aboutHeroImg from '../../assets/yoga-hero.webp';
+import storyImg from '../../assets/daily_yoga_banner.webp';
 
 export default function AboutUs() {
   const { setView } = useApp();
@@ -12,7 +12,7 @@ export default function AboutUs() {
       {/* Hero Banner Section */}
       <section className="about-hero">
         <div className="about-hero-overlay"></div>
-        <img src={aboutHeroImg} alt="Serene Yoga Practice" className="about-hero-bg" />
+        <img loading="lazy" src={aboutHeroImg} alt="Serene Yoga Practice" className="about-hero-bg" />
         <div className="about-hero-content">
           <span className="about-tagline">OUR MISSION</span>
           <h1 className="about-title">Building a Drug-Free World</h1>
@@ -67,7 +67,7 @@ export default function AboutUs() {
       <section className="about-story">
         <div className="about-container story-flex">
           <div className="story-img-container">
-            <img src={storyImg} alt="Spreading Satvic Wellness" className="story-img" />
+            <img loading="lazy" src={storyImg} alt="Spreading Satvic Wellness" className="story-img" />
           </div>
           <div className="story-content">
             <span className="story-tag">HOW WE STARTED</span>

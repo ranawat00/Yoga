@@ -3,18 +3,18 @@ import React, { useState, useEffect } from 'react';
 import { useApp } from '../../context/AppContext';
 import { fetchMyOrders } from '../../api/orders';
 
-import detoxImg from '../../assets/workshop_detox.png';
-import meditationImg from '../../assets/workshop_meditation.png';
-import cookingImg from '../../assets/workshop_cooking.png';
-import bookQuickEasyImg from '../../assets/book_quick_easy.png';
-import bookCombo4Img from '../../assets/book_combo_4.png';
-import bookCombo3Img from '../../assets/book_combo_3.png';
-import bookSatvic1Img from '../../assets/book_satvic_1.png';
-import enemaImg from '../../assets/product_enema.png';
-import sproutImg from '../../assets/product_sprout.png';
-import neemCombImg from '../../assets/product_neem_comb.png';
-import copperBottleImg from '../../assets/product_copper_bottle.png';
-import teaImg from '../../assets/product_tea.png';
+import detoxImg from '../../assets/workshop_detox.webp';
+import meditationImg from '../../assets/workshop_meditation.webp';
+import cookingImg from '../../assets/workshop_cooking.webp';
+import bookQuickEasyImg from '../../assets/book_quick_easy.webp';
+import bookCombo4Img from '../../assets/book_combo_4.webp';
+import bookCombo3Img from '../../assets/book_combo_3.webp';
+import bookSatvic1Img from '../../assets/book_satvic_1.webp';
+import enemaImg from '../../assets/product_enema.webp';
+import sproutImg from '../../assets/product_sprout.webp';
+import neemCombImg from '../../assets/product_neem_comb.webp';
+import copperBottleImg from '../../assets/product_copper_bottle.webp';
+import teaImg from '../../assets/product_tea.webp';
 
 const getProductImage = (productId) => {
   switch (productId) {
@@ -127,7 +127,7 @@ export default function OrdersPage() {
                             <div key={idx} className="order-item-detail-row">
                               <div className="item-img-wrapper">
                                 {img ? (
-                                  <img src={img} alt={product.title || 'Product'} />
+                                  <img loading="lazy" src={img} alt={product.title || 'Product'} />
                                 ) : (
                                   <div className="item-img-placeholder">🌱</div>
                                 )}

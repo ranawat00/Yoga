@@ -1,11 +1,11 @@
 import './Products.css';
 import React from 'react';
 import { useApp } from '../../context/AppContext';
-import enemaImg from '../../assets/product_enema.png';
-import sproutImg from '../../assets/product_sprout.png';
-import neemCombImg from '../../assets/product_neem_comb.png';
-import copperBottleImg from '../../assets/product_copper_bottle.png';
-import teaImg from '../../assets/product_tea.png';
+import enemaImg from '../../assets/product_enema.webp';
+import sproutImg from '../../assets/product_sprout.webp';
+import neemCombImg from '../../assets/product_neem_comb.webp';
+import copperBottleImg from '../../assets/product_copper_bottle.webp';
+import teaImg from '../../assets/product_tea.webp';
 
 const PRODUCTS_DATA = [
   {
@@ -137,7 +137,7 @@ export default function Products() {
             <div key={p.id} className="product-card">
               <div className="product-image-container">
                 {p.image ? (
-                  <img src={p.image} alt={p.title} className="product-img" />
+                  <img loading="lazy" src={p.image} alt={p.title} className="product-img" />
                 ) : (
                   p.icon
                 )}

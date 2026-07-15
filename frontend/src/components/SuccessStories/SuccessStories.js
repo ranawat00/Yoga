@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import './SuccessStories.css';
-import imgSleeplessness from '../../assets/success_sleeplessness_1781259684918.png';
-import imgEczema from '../../assets/success_eczema_1781259707181.png';
-import imgDebjani from '../../assets/success_debjani_1781259727411.png';
-import imgSangeeta from '../../assets/success_sangeeta_1781259751051.png';
-import imgVedant from '../../assets/success_vedant_1781259770410.png';
+import imgSleeplessness from '../../assets/success_sleeplessness_1781259684918.webp';
+import imgEczema from '../../assets/success_eczema_1781259707181.webp';
+import imgDebjani from '../../assets/success_debjani_1781259727411.webp';
+import imgSangeeta from '../../assets/success_sangeeta_1781259751051.webp';
+import imgVedant from '../../assets/success_vedant_1781259770410.webp';
 
 const SUCCESS_DATA = [
   {
@@ -91,7 +91,7 @@ export default function SuccessStories() {
               <div key={item.id} className="success-card">
                 {/* Image Wrapper */}
                 <div className="success-card-img-container">
-                  <img src={item.image} alt={item.title} className="success-card-img" />
+                  <img loading="lazy" src={item.image} alt={item.title} className="success-card-img" />
                 </div>
                 
                 {/* Card Info Content */}

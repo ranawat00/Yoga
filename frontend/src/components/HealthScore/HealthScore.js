@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './HealthScore.css';
-import healthIllustration from '../../assets/health_score_illustration.png';
+import healthIllustration from '../../assets/health_score_illustration.webp';
 import { useApp } from '../../context/AppContext';
 
 const QUIZ_QUESTIONS = [
@@ -194,7 +194,7 @@ export default function HealthScore({ isStandalone = false }) {
             
             {/* Illustration */}
             <div className="card-image-container">
-              <img src={healthIllustration} alt="Health Activities Illustration" className="card-image" />
+              <img loading="lazy" src={healthIllustration} alt="Health Activities Illustration" className="card-image" />
             </div>
 
             {/* Sub-text */}

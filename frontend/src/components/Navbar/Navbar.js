@@ -2,17 +2,17 @@ import './Navbar.css';
 import React, { useState, useEffect } from 'react';
 import Logo from '../Logo/Logo';
 import { useApp } from '../../context/AppContext';
-import detoxImg from '../../assets/workshop_detox.png';
-import meditationImg from '../../assets/workshop_meditation.png';
-import cookingImg from '../../assets/workshop_cooking.png';
-import bookQuickEasyImg from '../../assets/book_quick_easy.png';
-import bookCombo4Img from '../../assets/book_combo_4.png';
-import bookCombo3Img from '../../assets/book_combo_3.png';
-import bookSatvic1Img from '../../assets/book_satvic_1.png';
-import enemaImg from '../../assets/product_enema.png';
-import sproutImg from '../../assets/product_sprout.png';
-import neemCombImg from '../../assets/product_neem_comb.png';
-import copperBottleImg from '../../assets/product_copper_bottle.png';
+import detoxImg from '../../assets/workshop_detox.webp';
+import meditationImg from '../../assets/workshop_meditation.webp';
+import cookingImg from '../../assets/workshop_cooking.webp';
+import bookQuickEasyImg from '../../assets/book_quick_easy.webp';
+import bookCombo4Img from '../../assets/book_combo_4.webp';
+import bookCombo3Img from '../../assets/book_combo_3.webp';
+import bookSatvic1Img from '../../assets/book_satvic_1.webp';
+import enemaImg from '../../assets/product_enema.webp';
+import sproutImg from '../../assets/product_sprout.webp';
+import neemCombImg from '../../assets/product_neem_comb.webp';
+import copperBottleImg from '../../assets/product_copper_bottle.webp';
 
 export default function Navbar() {
   const { totalCartCount, setIsCartOpen, setView, user, setIsAuthOpen, handleLogout, setIsProfileOpen } = useApp();
@@ -167,7 +167,7 @@ export default function Navbar() {
             <div className="nav-dropdown workshops-mega">
               <div className="mega-dropdown-card" onClick={(e) => handleDropdownClick('workshops', 'detox-21', e)}>
                 <div className="mega-card-img-wrapper">
-                  <img src={detoxImg} alt="Heal Yourself Challenge" className="mega-card-img" />
+                  <img loading="lazy" src={detoxImg} alt="Heal Yourself Challenge" className="mega-card-img" />
                 </div>
                 <div className="mega-card-body">
                   <span className="mega-card-title">Heal Yourself Challenge</span>
@@ -176,7 +176,7 @@ export default function Navbar() {
               </div>
               <div className="mega-dropdown-card" onClick={(e) => handleDropdownClick('workshops', 'mind-7', e)}>
                 <div className="mega-card-img-wrapper">
-                  <img src={meditationImg} alt="Yoga Sadhana Beginner" className="mega-card-img" />
+                  <img loading="lazy" src={meditationImg} alt="Yoga Sadhana Beginner" className="mega-card-img" />
                 </div>
                 <div className="mega-card-body">
                   <span className="mega-card-title">Yoga Sadhana Beginner</span>
@@ -185,7 +185,7 @@ export default function Navbar() {
               </div>
               <div className="mega-dropdown-card" onClick={(e) => handleDropdownClick('workshops', 'cook-3', e)}>
                 <div className="mega-card-img-wrapper">
-                  <img src={cookingImg} alt="Cooking Masterclass" className="mega-card-img" />
+                  <img loading="lazy" src={cookingImg} alt="Cooking Masterclass" className="mega-card-img" />
                 </div>
                 <div className="mega-card-body">
                   <span className="mega-card-title">Cooking Masterclass</span>
@@ -201,7 +201,7 @@ export default function Navbar() {
             <div className="nav-dropdown books-mega">
               <div className="mega-dropdown-card" onClick={(e) => handleDropdownClick('books', 'book-quick-easy', e)}>
                 <div className="mega-card-img-wrapper">
-                  <img src={bookQuickEasyImg} alt="Quick & Easy Food Book" className="mega-card-img" />
+                  <img loading="lazy" src={bookQuickEasyImg} alt="Quick & Easy Food Book" className="mega-card-img" />
                 </div>
                 <div className="mega-card-body">
                   <span className="mega-card-title">Quick & Easy Food Book</span>
@@ -210,7 +210,7 @@ export default function Navbar() {
               </div>
               <div className="mega-dropdown-card" onClick={(e) => handleDropdownClick('books', 'book-combo-4', e)}>
                 <div className="mega-card-img-wrapper">
-                  <img src={bookCombo4Img} alt="Combo Pack of 4" className="mega-card-img" />
+                  <img loading="lazy" src={bookCombo4Img} alt="Combo Pack of 4" className="mega-card-img" />
                 </div>
                 <div className="mega-card-body">
                   <span className="mega-card-title">Combo Pack of 4</span>
@@ -219,7 +219,7 @@ export default function Navbar() {
               </div>
               <div className="mega-dropdown-card" onClick={(e) => handleDropdownClick('books', 'book-combo-3', e)}>
                 <div className="mega-card-img-wrapper">
-                  <img src={bookCombo3Img} alt="Combo Pack of 3" className="mega-card-img" />
+                  <img loading="lazy" src={bookCombo3Img} alt="Combo Pack of 3" className="mega-card-img" />
                 </div>
                 <div className="mega-card-body">
                   <span className="mega-card-title">Combo Pack of 3</span>
@@ -228,7 +228,7 @@ export default function Navbar() {
               </div>
               <div className="mega-dropdown-card" onClick={(e) => handleDropdownClick('books', 'book-satvic-1', e)}>
                 <div className="mega-card-img-wrapper">
-                  <img src={bookSatvic1Img} alt="Satvic Food Book 1" className="mega-card-img" />
+                  <img loading="lazy" src={bookSatvic1Img} alt="Satvic Food Book 1" className="mega-card-img" />
                 </div>
                 <div className="mega-card-body">
                   <span className="mega-card-title">Satvic Food Book 1</span>
@@ -244,7 +244,7 @@ export default function Navbar() {
             <div className="nav-dropdown products-mega">
               <div className="mega-dropdown-card" onClick={(e) => handleDropdownClick('products', 'enema-kit', e)}>
                 <div className="mega-card-img-wrapper">
-                  <img src={enemaImg} alt="Premium Organic Enema Kit" className="mega-card-img" />
+                  <img loading="lazy" src={enemaImg} alt="Premium Organic Enema Kit" className="mega-card-img" />
                 </div>
                 <div className="mega-card-body">
                   <span className="mega-card-title">Organic Enema Kit</span>
@@ -253,7 +253,7 @@ export default function Navbar() {
               </div>
               <div className="mega-dropdown-card" onClick={(e) => handleDropdownClick('products', 'sprout-kit', e)}>
                 <div className="mega-card-img-wrapper">
-                  <img src={sproutImg} alt="Sprouted Moong Sprouting Kit" className="mega-card-img" />
+                  <img loading="lazy" src={sproutImg} alt="Sprouted Moong Sprouting Kit" className="mega-card-img" />
                 </div>
                 <div className="mega-card-body">
                   <span className="mega-card-title">Terracotta Sprouting Kit</span>
@@ -262,7 +262,7 @@ export default function Navbar() {
               </div>
               <div className="mega-dropdown-card" onClick={(e) => handleDropdownClick('products', 'neem-comb', e)}>
                 <div className="mega-card-img-wrapper">
-                  <img src={neemCombImg} alt="Handcrafted Neem Wood Comb" className="mega-card-img" />
+                  <img loading="lazy" src={neemCombImg} alt="Handcrafted Neem Wood Comb" className="mega-card-img" />
                 </div>
                 <div className="mega-card-body">
                   <span className="mega-card-title">Neem Wood Comb</span>
@@ -271,7 +271,7 @@ export default function Navbar() {
               </div>
               <div className="mega-dropdown-card" onClick={(e) => handleDropdownClick('products', 'copper-bottle', e)}>
                 <div className="mega-card-img-wrapper">
-                  <img src={copperBottleImg} alt="Holistic Copper Water Bottle" className="mega-card-img" />
+                  <img loading="lazy" src={copperBottleImg} alt="Holistic Copper Water Bottle" className="mega-card-img" />
                 </div>
                 <div className="mega-card-body">
                   <span className="mega-card-title">Copper Water Bottle</span>

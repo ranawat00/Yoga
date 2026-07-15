@@ -1,7 +1,7 @@
 import './DailyYogaBanner.css';
 import React from 'react';
 import Logo from '../Logo/Logo';
-import dailyYogaBannerImg from '../../assets/daily_yoga_banner.png';
+import dailyYogaBannerImg from '../../assets/daily_yoga_banner.webp';
 
 export default function DailyYogaBanner() {
   const handleScrollTo = (id) => {
@@ -38,7 +38,7 @@ export default function DailyYogaBanner() {
 
           {/* Right Column: Image */}
           <div className="daily-yoga-image-container">
-            <img 
+            <img loading="lazy" 
               src={dailyYogaBannerImg} 
               alt="Daily Yoga Classes" 
               className="daily-yoga-img"

@@ -1,10 +1,10 @@
 import './Books.css';
 import React from 'react';
 import { useApp } from '../../context/AppContext';
-import bookQuickEasyImg from '../../assets/book_quick_easy.png';
-import bookCombo4Img from '../../assets/book_combo_4.png';
-import bookCombo3Img from '../../assets/book_combo_3.png';
-import bookSatvic1Img from '../../assets/book_satvic_1.png';
+import bookQuickEasyImg from '../../assets/book_quick_easy.webp';
+import bookCombo4Img from '../../assets/book_combo_4.webp';
+import bookCombo3Img from '../../assets/book_combo_3.webp';
+import bookSatvic1Img from '../../assets/book_satvic_1.webp';
 
 export const BOOKS_PREVIEW = [
   {
@@ -81,7 +81,7 @@ export default function Books() {
             <div key={book.id} className="book-card">
               <div className="book-image-container">
                 {book.badge && <span className="book-badge">{book.badge}</span>}
-                <img src={book.image} alt={book.title} className="book-img" />
+                <img loading="lazy" src={book.image} alt={book.title} className="book-img" />
               </div>
               <div className="book-details">
                 <h3 className="book-title">{book.title}</h3>

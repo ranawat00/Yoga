@@ -1,11 +1,11 @@
 import './BooksPage.css';
 import React, { useState } from 'react';
 import { useApp } from '../../context/AppContext';
-import bookQuickEasyImg from '../../assets/book_quick_easy.png';
-import bookCombo4Img from '../../assets/book_combo_4.png';
-import bookCombo3Img from '../../assets/book_combo_3.png';
-import bookSatvic1Img from '../../assets/book_satvic_1.png';
-import bookSatvic2Img from '../../assets/book_satvic_2.png';
+import bookQuickEasyImg from '../../assets/book_quick_easy.webp';
+import bookCombo4Img from '../../assets/book_combo_4.webp';
+import bookCombo3Img from '../../assets/book_combo_3.webp';
+import bookSatvic1Img from '../../assets/book_satvic_1.webp';
+import bookSatvic2Img from '../../assets/book_satvic_2.webp';
 
 const ALL_BOOKS = [
   {
@@ -157,7 +157,7 @@ export default function BooksPage() {
                 <div key={book.id} className="book-page-card">
                   <div className="book-page-img-container">
                     {book.badge && <span className="book-page-badge">{book.badge}</span>}
-                    <img src={book.image} alt={book.title} className="book-page-img" />
+                    <img loading="lazy" src={book.image} alt={book.title} className="book-page-img" />
                   </div>
 
                   <div className="book-page-info">

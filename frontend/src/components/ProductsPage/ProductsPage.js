@@ -1,11 +1,11 @@
 import './ProductsPage.css';
 import React from 'react';
 import { useApp } from '../../context/AppContext';
-import enemaImg from '../../assets/product_enema.png';
-import sproutImg from '../../assets/product_sprout.png';
-import neemCombImg from '../../assets/product_neem_comb.png';
-import copperBottleImg from '../../assets/product_copper_bottle.png';
-import teaImg from '../../assets/product_tea.png';
+import enemaImg from '../../assets/product_enema.webp';
+import sproutImg from '../../assets/product_sprout.webp';
+import neemCombImg from '../../assets/product_neem_comb.webp';
+import copperBottleImg from '../../assets/product_copper_bottle.webp';
+import teaImg from '../../assets/product_tea.webp';
 
 const PRODUCTS_DATA = [
   {
@@ -96,7 +96,7 @@ export default function ProductsPage() {
             {PRODUCTS_DATA.map((p) => (
               <div key={p.id} className="product-page-card">
                 <div className="product-page-img-container">
-                  <img src={p.image} alt={p.title} className="product-page-img" />
+                  <img loading="lazy" src={p.image} alt={p.title} className="product-page-img" />
                 </div>
 
                 <div className="product-page-info">

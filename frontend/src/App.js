@@ -1,31 +1,39 @@
-import React from 'react';
+import React, { lazy, Suspense } from 'react';
 import { AppProvider, useApp } from './context/AppContext';
 import Navbar from './components/Navbar/Navbar';
 import Hero from './components/Hero/Hero';
-import DailyYogaBanner from './components/DailyYogaBanner/DailyYogaBanner';
-import Workshops from './components/Workshops/Workshops';
-import Products from './components/Products/Products';
-import ProductsPage from './components/ProductsPage/ProductsPage';
-import Books from './components/Books/Books';
-import BooksPage from './components/BooksPage/BooksPage';
-import HealthScore from './components/HealthScore/HealthScore';
-import Verticals from './components/Verticals/Verticals';
-import SuccessStories from './components/SuccessStories/SuccessStories';
-import Educators from './components/Educators/Educators';
-import FAQ from './components/FAQ/FAQ';
-import AboutUs from './components/AboutUs/AboutUs';
-import Contact from './components/Contact/Contact';
-import Careers from './components/Careers/Careers';
 import Footer from './components/Footer/Footer';
-import CartDrawer from './components/CartDrawer/CartDrawer';
-import CheckoutModal from './components/CheckoutModal/CheckoutModal';
 import Notification from './components/Notification/Notification';
-import ChatAssistant from './components/ChatAssistant/ChatAssistant';
-import AuthModal from './components/AuthModal/AuthModal';
 import Preloader from './components/Preloader/Preloader';
-import ProfileDrawer from './components/ProfileDrawer/ProfileDrawer';
-import OrdersPage from './components/OrdersPage/OrdersPage';
+import Loader from './components/Loader/Loader';
 import './App.css';
+
+// Lazy load non-critical sections below the fold
+const DailyYogaBanner = lazy(() => import('./components/DailyYogaBanner/DailyYogaBanner'));
+const Workshops = lazy(() => import('./components/Workshops/Workshops'));
+const Products = lazy(() => import('./components/Products/Products'));
+const Books = lazy(() => import('./components/Books/Books'));
+const HealthScore = lazy(() => import('./components/HealthScore/HealthScore'));
+const Verticals = lazy(() => import('./components/Verticals/Verticals'));
+const SuccessStories = lazy(() => import('./components/SuccessStories/SuccessStories'));
+const Educators = lazy(() => import('./components/Educators/Educators'));
+const FAQ = lazy(() => import('./components/FAQ/FAQ'));
+
+// Lazy load full page views
+const BooksPage = lazy(() => import('./components/BooksPage/BooksPage'));
+const ProductsPage = lazy(() => import('./components/ProductsPage/ProductsPage'));
+const AboutUs = lazy(() => import('./components/AboutUs/AboutUs'));
+const Contact = lazy(() => import('./components/Contact/Contact'));
+const Careers = lazy(() => import('./components/Careers/Careers'));
+const OrdersPage = lazy(() => import('./components/OrdersPage/OrdersPage'));
+
+// Lazy load modals/drawers
+const CartDrawer = lazy(() => import('./components/CartDrawer/CartDrawer'));
+const CheckoutModal = lazy(() => import('./components/CheckoutModal/CheckoutModal'));
+const AuthModal = lazy(() => import('./components/AuthModal/AuthModal'));
+const ProfileDrawer = lazy(() => import('./components/ProfileDrawer/ProfileDrawer'));
+const ChatAssistant = lazy(() => import('./components/ChatAssistant/ChatAssistant'));
+
 
 function AppContent() {
   const { isCartOpen, isCheckoutOpen, view } = useApp();
@@ -43,63 +51,67 @@ function AppContent() {
 
       {/* Conditionally Render Home View, Bookstore View, or Shop View */}
       {view === 'books' ? (
-        <BooksPage />
+        <Suspense fallback={<Loader />}><BooksPage /></Suspense>
       ) : view === 'products' ? (
-        <ProductsPage />
+        <Suspense fallback={<Loader />}><ProductsPage /></Suspense>
       ) : view === 'about' ? (
-        <AboutUs />
+        <Suspense fallback={<Loader />}><AboutUs /></Suspense>
       ) : view === 'contact' ? (
-        <Contact />
+        <Suspense fallback={<Loader />}><Contact /></Suspense>
       ) : view === 'careers' ? (
-        <Careers />
+        <Suspense fallback={<Loader />}><Careers /></Suspense>
       ) : view === 'workshops' ? (
-        <Workshops isStandalone={true} />
+        <Suspense fallback={<Loader />}><Workshops isStandalone={true} /></Suspense>
       ) : view === 'health-score' ? (
-        <HealthScore isStandalone={true} />
+        <Suspense fallback={<Loader />}><HealthScore isStandalone={true} /></Suspense>
       ) : view === 'orders' ? (
-        <OrdersPage />
+        <Suspense fallback={<Loader />}><OrdersPage /></Suspense>
       ) : (
         <>
           {/* Main Page Sections */}
           <Hero />
 
-          <DailyYogaBanner />
-
-          <Workshops />
-
-          <Products />
-
-          <Books />
-
-          <HealthScore />
-
-          <Verticals />
-
-          <SuccessStories />
-
-          <Educators />
-
-          <FAQ />
+          <Suspense fallback={<Loader />}>
+            <DailyYogaBanner />
+            <Workshops />
+            <Products />
+            <Books />
+            <HealthScore />
+            <Verticals />
+            <SuccessStories />
+            <Educators />
+            <FAQ />
+          </Suspense>
         </>
       )}
 
       {/* Floating AI Chat Guide */}
-      <ChatAssistant />
+      <Suspense fallback={null}>
+        <ChatAssistant />
+      </Suspense>
 
       {/* Footer (Dark Navy) */}
       <Footer />
 
       {/* Shopping Cart Drawer Slider */}
-      {isCartOpen && <CartDrawer />}
+      <Suspense fallback={null}>
+        {isCartOpen && <CartDrawer />}
+      </Suspense>
 
       {/* Checkout Steps Modal */}
-      {isCheckoutOpen && <CheckoutModal />}
+      <Suspense fallback={null}>
+        {isCheckoutOpen && <CheckoutModal />}
+      </Suspense>
 
       {/* Authentication Modal */}
-      <AuthModal />
+      <Suspense fallback={null}>
+        <AuthModal />
+      </Suspense>
 
       {/* User Profile Drawer */}
-      <ProfileDrawer />
+      <Suspense fallback={null}>
+        <ProfileDrawer />
+      </Suspense>
     </div>
   );
 }

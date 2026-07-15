@@ -1,9 +1,9 @@
 import './Workshops.css';
 import React, { useState } from 'react';
 import { useApp } from '../../context/AppContext';
-import detoxImg from '../../assets/workshop_detox.png';
-import meditationImg from '../../assets/workshop_meditation.png';
-import cookingImg from '../../assets/workshop_cooking.png';
+import detoxImg from '../../assets/workshop_detox.webp';
+import meditationImg from '../../assets/workshop_meditation.webp';
+import cookingImg from '../../assets/workshop_cooking.webp';
 
 const WORKSHOPS_DATA = [
   {
@@ -122,7 +122,7 @@ export default function Workshops({ isStandalone = false }) {
           {displayedWorkshops.map((w) => (
             <div key={w.id} className="workshop-card-horizontal">
               <div className="workshop-img-container">
-                <img src={w.image} alt={w.title} className="workshop-img" />
+                <img loading="lazy" src={w.image} alt={w.title} className="workshop-img" />
                 <div className="workshop-starts-badge">
                   <span className="starts-label">Starts in</span>
                   <span className="starts-value">{w.startInDays}</span>
