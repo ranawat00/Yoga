@@ -4,6 +4,23 @@ import { useApp } from '../../context/AppContext';
 import detoxImg from '../../assets/workshop_detox.webp';
 import meditationImg from '../../assets/workshop_meditation.webp';
 import cookingImg from '../../assets/workshop_cooking.webp';
+import { createOrder, verifyPayment } from '../../api/payment';
+import { createOrderRecord } from '../../api/orders';
+
+// Dynamic script loader for Razorpay Checkout
+const loadRazorpayScript = () => {
+  return new Promise((resolve) => {
+    if (window.Razorpay) {
+      resolve(true);
+      return;
+    }
+    const script = document.createElement('script');
+    script.src = 'https://checkout.razorpay.com/v1/checkout.js';
+    script.onload = () => resolve(true);
+    script.onerror = () => resolve(false);
+    document.body.appendChild(script);
+  });
+};
 
 const WORKSHOPS_DATA = [
   {
@@ -48,6 +65,17 @@ const WORKSHOPS_DATA = [
   }
 ];
 
+const getMeetLink = (batchName) => {
+  if (batchName.includes('Morning Batch') || batchName.includes('6:00 AM')) {
+    return 'https://meet.google.com/yga-morn-slot';
+  } else if (batchName.includes('Evening Batch') || batchName.includes('6:00 PM')) {
+    return 'https://meet.google.com/yga-even-slot';
+  } else if (batchName.includes('Morning Live') || batchName.includes('10:30 AM')) {
+    return 'https://meet.google.com/yga-cook-slot';
+  }
+  return 'https://meet.google.com/yga-healers-live';
+};
+
 export default function Workshops({ isStandalone = false }) {
   const { addNotification, setView } = useApp();
   const [selectedWorkshop, setSelectedWorkshop] = useState(null);
@@ -59,6 +87,7 @@ export default function Workshops({ isStandalone = false }) {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showAll, setShowAll] = useState(false);
+  const [successData, setSuccessData] = useState(null);
 
   const displayedWorkshops = (isStandalone || showAll) ? WORKSHOPS_DATA : WORKSHOPS_DATA.slice(0, 2);
 
@@ -75,6 +104,7 @@ export default function Workshops({ isStandalone = false }) {
 
   const handleCloseModal = () => {
     setSelectedWorkshop(null);
+    setSuccessData(null);
   };
 
   const handleInputChange = (e) => {
@@ -82,7 +112,7 @@ export default function Workshops({ isStandalone = false }) {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!formData.name || !formData.email || !formData.phone) {
       addNotification('Please fill in all details.', 'error');
@@ -90,12 +120,114 @@ export default function Workshops({ isStandalone = false }) {
     }
     setIsSubmitting(true);
 
-    // Simulate API registration
-    setTimeout(() => {
+    const price = selectedWorkshop.price;
+    const orderPayload = {
+      name: formData.name,
+      email: formData.email,
+      phone: formData.phone,
+      address: 'Online Class / Live Workshop',
+      city: 'Virtual',
+      pincode: '000000',
+      items: [
+        {
+          product: {
+            id: selectedWorkshop.id,
+            title: `${selectedWorkshop.title} (${formData.batch})`,
+            price: selectedWorkshop.price,
+            image: ''
+          },
+          quantity: 1
+        }
+      ],
+      subtotal: price,
+      shipping: 0,
+      gst: 0,
+      total: price
+    };
+
+    try {
+      const res = await createOrder(price);
+      if (!res.success) {
+        addNotification(res.message || 'Failed to create payment order', 'error');
+        setIsSubmitting(false);
+        return;
+      }
+
+      const scriptLoaded = await loadRazorpayScript();
+      if (!scriptLoaded) {
+        addNotification('Failed to load payment gateway. Please check your internet connection.', 'error');
+        setIsSubmitting(false);
+        return;
+      }
+
+      const options = {
+        key: 'rzp_test_T4Zv42O4gEwCJD',
+        amount: res.amount,
+        currency: res.currency,
+        name: 'Yoga Healers',
+        description: `Register for ${selectedWorkshop.title}`,
+        order_id: res.orderId,
+        handler: async function (response) {
+          try {
+            // Verify payment on the backend
+            const verification = await verifyPayment({
+              razorpay_order_id: response.razorpay_order_id,
+              razorpay_payment_id: response.razorpay_payment_id,
+              razorpay_signature: response.razorpay_signature
+            });
+
+            if (verification.success) {
+              const orderRes = await createOrderRecord({
+                ...orderPayload,
+                paymentMethod: 'CARD', // Mark card/online payments as CARD/UPI
+                paymentId: response.razorpay_payment_id
+              });
+
+              if (orderRes.success) {
+                const link = getMeetLink(formData.batch);
+                setSuccessData({
+                  workshopTitle: selectedWorkshop.title,
+                  batch: formData.batch,
+                  meetLink: link,
+                  email: formData.email
+                });
+                addNotification(`Successfully registered for ${selectedWorkshop.title}!`, 'success');
+              } else {
+                addNotification(orderRes.message || 'Payment verified but failed to save registration details.', 'error');
+              }
+            } else {
+              addNotification(verification.message || 'Payment verification failed. Please contact support.', 'error');
+            }
+          } catch (err) {
+            console.error(err);
+            addNotification(err.message || 'Error verifying payment.', 'error');
+          } finally {
+            setIsSubmitting(false);
+          }
+        },
+        prefill: {
+          name: formData.name,
+          email: formData.email,
+          contact: formData.phone,
+        },
+        theme: {
+          color: '#001a9c', // official brand deep blue
+        },
+        modal: {
+          ondismiss: function () {
+            setIsSubmitting(false);
+            addNotification('Registration payment cancelled.', 'info');
+          }
+        }
+      };
+
+      const rzp = new window.Razorpay(options);
+      rzp.open();
+    } catch (error) {
+      console.error('Payment initialization failed:', error);
+      addNotification('Could not initialize payment gateway. Please try again.', 'error');
       setIsSubmitting(false);
-      addNotification(`Successfully registered for ${selectedWorkshop.title}! Batch: ${formData.batch}`, 'success');
-      handleCloseModal();
-    }, 1200);
+    }
   };
 
   return (
@@ -197,97 +329,162 @@ export default function Workshops({ isStandalone = false }) {
                 <line x1="6" y1="6" x2="18" y2="18"></line>
               </svg>
             </button>
-            <div className="modal-header">
-              <h2>Register for Workshop</h2>
-              <p style={{ color: 'var(--color-green)', fontWeight: 'bold' }}>{selectedWorkshop.title}</p>
-            </div>
-            
-            <form onSubmit={handleSubmit}>
-              <div className="modal-body">
-                <div className="form-group">
-                  <label className="form-label" htmlFor="reg-name">Full Name</label>
-                  <input
-                    id="reg-name"
-                    type="text"
-                    name="name"
-                    className="form-control"
-                    placeholder="Enter your full name"
-                    value={formData.name}
-                    onChange={handleInputChange}
-                    required
-                  />
+            {successData ? (
+              <div className="modal-body success-view" style={{ textAlign: 'center', padding: '2rem 1.5rem' }}>
+                <div className="success-icon-wrapper" style={{ marginBottom: '1.5rem' }}>
+                  <svg width="64" height="64" viewBox="0 0 64 64" fill="none">
+                    <circle cx="32" cy="32" r="30" fill="var(--color-blue)" opacity="0.1" />
+                    <circle cx="32" cy="32" r="26" fill="var(--color-blue)" opacity="0.2" />
+                    <path d="M22 32 L29 39 L44 24" stroke="var(--color-blue)" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
                 </div>
+                <h2 style={{ color: 'var(--color-text)', marginBottom: '0.5rem', fontFamily: 'var(--font-display)', fontSize: '1.8rem' }}>Registration Confirmed!</h2>
+                <p style={{ color: 'var(--color-text-secondary)', fontSize: '0.95rem', marginBottom: '1.5rem' }}>
+                  You are successfully registered for <strong>{successData.workshopTitle}</strong>.
+                </p>
 
-                <div className="form-group">
-                  <label className="form-label" htmlFor="reg-email">Email Address</label>
-                  <input
-                    id="reg-email"
-                    type="email"
-                    name="email"
-                    className="form-control"
-                    placeholder="Enter your email address"
-                    value={formData.email}
-                    onChange={handleInputChange}
-                    required
-                  />
-                </div>
-
-                <div className="form-group">
-                  <label className="form-label" htmlFor="reg-phone">Phone Number</label>
-                  <input
-                    id="reg-phone"
-                    type="tel"
-                    name="phone"
-                    className="form-control"
-                    placeholder="Enter 10-digit mobile number"
-                    value={formData.phone}
-                    onChange={handleInputChange}
-                    required
-                  />
-                </div>
-
-                {selectedWorkshop.id !== 'cook-3' ? (
-                  <div className="form-group">
-                    <label className="form-label" htmlFor="reg-batch">Preferred Live Batch</label>
-                    <select
-                      id="reg-batch"
-                      name="batch"
-                      className="form-control"
-                      value={formData.batch}
-                      onChange={handleInputChange}
-                    >
-                      <option value="Morning Batch (6:00 AM)">Morning Batch (6:00 AM - 7:30 AM IST)</option>
-                      <option value="Evening Batch (6:00 PM)">Evening Batch (6:00 PM - 7:30 PM IST)</option>
-                    </select>
+                <div style={{ backgroundColor: 'var(--color-sand-dark)', padding: '1.25rem', borderRadius: 'var(--border-radius-md)', textAlign: 'left', marginBottom: '1.5rem', border: '1px solid var(--color-border)' }}>
+                  <div style={{ marginBottom: '0.75rem', fontSize: '0.9rem' }}>
+                    <strong>Selected Batch:</strong> <span style={{ color: 'var(--color-blue)', fontWeight: '600' }}>{successData.batch}</span>
                   </div>
-                ) : (
-                  <div className="form-group">
-                    <label className="form-label" htmlFor="reg-time">Batch Time</label>
-                    <input
-                      id="reg-time"
-                      type="text"
-                      name="batch"
-                      className="form-control"
-                      value={formData.batch}
-                      disabled
+                  <div style={{ fontSize: '0.9rem', marginBottom: '0.5rem' }}>
+                    <strong>Google Meet Link:</strong>
+                  </div>
+                  <div style={{ display: 'flex', gap: '0.5rem' }}>
+                    <input 
+                      type="text" 
+                      className="form-control" 
+                      value={successData.meetLink} 
+                      readOnly 
+                      style={{ flex: 1, fontFamily: 'monospace', fontSize: '0.85rem', backgroundColor: 'var(--color-sand)', border: '1px solid var(--color-border)', borderRadius: 'var(--border-radius-sm)', padding: '0.5rem' }}
                     />
+                    <button 
+                      type="button" 
+                      className="btn btn-blue" 
+                      style={{ padding: '0.5rem 1rem', fontSize: '0.85rem' }}
+                      onClick={() => {
+                        navigator.clipboard.writeText(successData.meetLink);
+                        addNotification('Link copied to clipboard!', 'success');
+                      }}
+                    >
+                      Copy
+                    </button>
                   </div>
-                )}
-                
-                <div style={{ marginTop: '1rem', padding: '1rem', backgroundColor: 'var(--color-sand-dark)', borderRadius: 'var(--border-radius-sm)', fontSize: '0.85rem' }}>
-                  <strong>Important:</strong> Zoom link and daily recipe sheets will be shared on your registered Email and WhatsApp number 24 hours before the program starts.
                 </div>
-              </div>
-              
-              <div className="modal-footer">
-                <button type="button" className="btn btn-outline" onClick={handleCloseModal} style={{ padding: '0.6rem 1.2rem' }}>
-                  Cancel
+
+                <p style={{ fontSize: '0.85rem', color: 'var(--color-text-muted)', marginBottom: '1.5rem' }}>
+                  We have also sent the Google Meet details and calendar invite to <strong>{successData.email}</strong>.
+                </p>
+
+                <button className="btn btn-blue" onClick={handleCloseModal} style={{ width: '100%', padding: '0.8rem', borderRadius: 'var(--border-radius-sm)' }}>
+                  Got it, Thanks!
                 </button>
-                <button type="submit" className="btn btn-blue" disabled={isSubmitting} style={{ padding: '0.6rem 1.5rem' }}>
-                  {isSubmitting ? 'Registering...' : `Pay & Register (₹${selectedWorkshop.price})`}
-                </button>
               </div>
-            </form>
+            ) : (
+              <>
+                <div className="modal-header">
+                  <h2>Register for Workshop</h2>
+                  <p style={{ color: 'var(--color-green)', fontWeight: 'bold' }}>{selectedWorkshop.title}</p>
+                </div>
+                
+                <form onSubmit={handleSubmit}>
+                  <div className="modal-body">
+                    <div className="form-group">
+                      <label className="form-label" htmlFor="reg-name">Full Name</label>
+                      <input
+                        id="reg-name"
+                        type="text"
+                        name="name"
+                        className="form-control"
+                        placeholder="Enter your full name"
+                        value={formData.name}
+                        onChange={handleInputChange}
+                        required
+                      />
+                    </div>
+
+                    <div className="form-group">
+                      <label className="form-label" htmlFor="reg-email">Email Address</label>
+                      <input
+                        id="reg-email"
+                        type="email"
+                        name="email"
+                        className="form-control"
+                        placeholder="Enter your email address"
+                        value={formData.email}
+                        onChange={handleInputChange}
+                        required
+                      />
+                    </div>
+
+                    <div className="form-group">
+                      <label className="form-label" htmlFor="reg-phone">Phone Number</label>
+                      <input
+                        id="reg-phone"
+                        type="tel"
+                        name="phone"
+                        className="form-control"
+                        placeholder="Enter 10-digit mobile number"
+                        value={formData.phone}
+                        onChange={handleInputChange}
+                        required
+                      />
+                    </div>
+
+                    {selectedWorkshop.id !== 'cook-3' ? (
+                      <div className="form-group">
+                        <label className="form-label" htmlFor="reg-batch">Preferred Live Batch</label>
+                        <select
+                          id="reg-batch"
+                          name="batch"
+                          className="form-control"
+                          value={formData.batch}
+                          onChange={handleInputChange}
+                        >
+                          <option value="Morning Batch (6:00 AM)">Morning Batch (6:00 AM - 7:30 AM IST)</option>
+                          <option value="Evening Batch (6:00 PM)">Evening Batch (6:00 PM - 7:30 PM IST)</option>
+                        </select>
+                      </div>
+                    ) : (
+                      <div className="form-group">
+                        <label className="form-label" htmlFor="reg-time">Batch Time</label>
+                        <input
+                          id="reg-time"
+                          type="text"
+                          name="batch"
+                          className="form-control"
+                          value={formData.batch}
+                          disabled
+                        />
+                      </div>
+                    )}
+                    
+                    {formData.batch && (
+                      <div style={{ marginTop: '1rem', padding: '1rem', backgroundColor: 'var(--color-sand-dark)', borderRadius: 'var(--border-radius-sm)', fontSize: '0.85rem', border: '1px dashed var(--color-blue)' }}>
+                        <div style={{ fontWeight: 'bold', color: 'var(--color-blue)', marginBottom: '0.25rem' }}>
+                          Assigned Google Meet Link:
+                        </div>
+                        <div style={{ fontFamily: 'monospace', color: 'var(--color-text)', wordBreak: 'break-all' }}>
+                          {getMeetLink(formData.batch)}
+                        </div>
+                        <div style={{ fontSize: '0.75rem', color: 'var(--color-text-secondary)', marginTop: '0.4rem' }}>
+                          * The Meet link will activate automatically at class time and has been synced with this batch.
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                  
+                  <div className="modal-footer">
+                    <button type="button" className="btn btn-outline" onClick={handleCloseModal} style={{ padding: '0.6rem 1.2rem' }}>
+                      Cancel
+                    </button>
+                    <button type="submit" className="btn btn-blue" disabled={isSubmitting} style={{ padding: '0.6rem 1.5rem' }}>
+                      {isSubmitting ? 'Registering...' : `Pay & Register (₹${selectedWorkshop.price})`}
+                    </button>
+                  </div>
+                </form>
+              </>
+            )}
           </div>
         </div>
       )}
