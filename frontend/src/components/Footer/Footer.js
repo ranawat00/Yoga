@@ -145,11 +145,8 @@ export default function Footer() {
       </div>
 
       <div className="footer-bottom">
-        <div className="footer-disclaimer">
-          <strong>Medical Disclaimer:</strong> The information, recipes, workshops, and products provided on this website are for educational and lifestyle purposes only and do not constitute professional medical advice, diagnosis, or treatment. Always seek the advice of your physician or other qualified health provider before starting a detox routine, yoga program, or changing your diet.
-        </div>
         <div>
-          &copy; {new Date().getFullYear()} Yoga Healers. All rights reserved. Made in harmony with Nature.
+          &copy; {new Date().getFullYear()} Yoga Healers Organisation (YHO). All Rights Reserved.
         </div>
       </div>
     </footer>
