@@ -1,7 +1,7 @@
 import './DailyYogaBanner.css';
 import React from 'react';
 import Logo from '../Logo/Logo';
-import dailyYogaBannerImg from '../../assets/daily_yoga_banner.webp';
+import awakenBannerImg from '../../assets/awaken_program_banner.jpg';
 
 export default function DailyYogaBanner() {
   const handleScrollTo = (id) => {
@@ -24,7 +24,7 @@ export default function DailyYogaBanner() {
           {/* Left Column: Text & Content */}
           <div className="daily-yoga-content">
             <div className="satvic-brand">
-              <Logo variant="full" size={24} />
+              <Logo size={46} />
             </div>
 
             <h2 className="daily-yoga-title">Practice Yoga Daily with us!</h2>
@@ -32,15 +32,15 @@ export default function DailyYogaBanner() {
               Practice anytime for your physical & mental health from the comfort of your home!
             </p>
             <button className="btn btn-join-now" onClick={() => handleScrollTo('workshops')}>
-              Join Now
+              Become a Member
             </button>
           </div>
 
           {/* Right Column: Image */}
           <div className="daily-yoga-image-container">
-            <img loading="lazy" 
-              src={dailyYogaBannerImg} 
-              alt="Daily Yoga Classes" 
+            <img loading="lazy"
+              src={awakenBannerImg}
+              alt="Awaken+ Program - 3 Day Mind-body-spirit Transformation"
               className="daily-yoga-img"
             />
           </div>

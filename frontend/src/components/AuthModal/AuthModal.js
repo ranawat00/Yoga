@@ -66,7 +66,7 @@ export default function AuthModal() {
         {/* Modal Header */}
         <div className="auth-modal-header">
           <div className="logo-brand">
-            <Logo variant="full" size={26} />
+            <Logo size={50} />
           </div>
           <h2 className="auth-title">{getHeaderTitle()}</h2>
           <p className="auth-subtitle">{getHeaderSubtitle()}</p>

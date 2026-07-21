@@ -59,7 +59,7 @@ export default function Footer() {
         {/* Brand Column */}
         <div className="footer-col brand-col">
           <div className="footer-logo-block">
-            <Logo variant="full" size={30} />
+            <Logo size={58} />
           </div>
           <div className="footer-divider-line"></div>
           <div className="social-links">

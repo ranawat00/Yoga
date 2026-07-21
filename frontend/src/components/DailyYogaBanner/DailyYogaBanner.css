@@ -95,7 +95,7 @@
 }
 
 .btn-join-now {
-  background-color: #CA7D56;
+  background-color: #2C4E37;
   color: #FFFFFF;
   border-radius: 50px;
   padding: 0.8rem 2.4rem;
@@ -107,9 +107,9 @@
 }
 
 .btn-join-now:hover {
-  background-color: #B36842;
+  background-color: #1e3626;
   transform: translateY(-2px);
-  box-shadow: 0 8px 16px rgba(202, 125, 86, 0.25);
+  box-shadow: 0 8px 16px rgba(44, 78, 55, 0.28);
 }
 
 .daily-yoga-image-container {
@@ -140,9 +140,12 @@
 /* Tablet Responsiveness */
 @media (max-width: 992px) {
   .daily-yoga-section {
-    margin-top: -59px; /* Overlap Hero bottom by wave height */
-    padding: 0 1.5rem 3rem 1.5rem; /* Set padding, wave sits at the top */
-    background: linear-gradient(to bottom, transparent 60px, var(--color-sand) 60px); /* Transparent behind the wave */
+    margin-top: -59px;
+    /* Overlap Hero bottom by wave height */
+    padding: 0 1.5rem 3rem 1.5rem;
+    /* Set padding, wave sits at the top */
+    background: linear-gradient(to bottom, transparent 60px, var(--color-sand) 60px);
+    /* Transparent behind the wave */
     position: relative;
     z-index: 12;
   }
@@ -152,7 +155,8 @@
     width: calc(100% + 3rem);
     margin-left: -1.5rem;
     margin-right: -1.5rem;
-    height: 60px; /* Increased wave height */
+    height: 60px;
+    /* Increased wave height */
     line-height: 0;
     margin-bottom: 2rem;
   }
@@ -179,9 +183,10 @@
     transform: none;
     box-shadow: none;
   }
-  
+
   .daily-yoga-content {
-    order: 2; /* Text content at the bottom */
+    order: 2;
+    /* Text content at the bottom */
     align-items: center;
     text-align: center;
     width: 100%;
@@ -189,38 +194,42 @@
   }
 
   .satvic-brand {
-    display: none; /* Hide branding text above the header on mobile to match reference image */
+    display: none;
+    /* Hide branding text above the header on mobile to match reference image */
   }
-  
+
   .daily-yoga-title {
     font-size: 2.2rem;
     text-align: center;
     margin-bottom: 0.8rem;
-    color: #5D3E35; /* Matching the deep brown color from the reference image */
+    color: #5D3E35;
+    /* Matching the deep brown color from the reference image */
     font-weight: 700;
   }
 
   .daily-yoga-tagline {
-    display: none; /* Hide secondary description to match reference image title-only layout */
+    display: none;
+    /* Hide secondary description to match reference image title-only layout */
   }
 
   .btn-join-now {
     width: auto;
     min-width: 160px;
     padding: 0.8rem 2.2rem;
-    background: linear-gradient(135deg, #D5835C 0%, #C16E47 100%);
+    background: #2C4E37;
     border: none;
-    border-radius: 30px; /* Pill shape */
+    border-radius: 30px;
     color: #ffffff;
     font-size: 1.05rem;
     font-weight: 600;
-    box-shadow: 0 4px 15px rgba(213, 131, 92, 0.2);
+    box-shadow: 0 4px 15px rgba(44, 78, 55, 0.25);
     margin: 0.5rem auto 1.5rem auto;
     text-align: center;
   }
-  
+
   .daily-yoga-image-container {
-    order: 1; /* Image container at the top */
+    order: 1;
+    /* Image container at the top */
     width: 100%;
   }
 
@@ -228,7 +237,8 @@
     width: 100%;
     max-width: 100%;
     height: auto;
-    aspect-ratio: 1.25 / 1; /* Taller crop to show more of the couple */
+    aspect-ratio: 1.25 / 1;
+    /* Taller crop to show more of the couple */
     border-radius: 16px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
   }
@@ -241,25 +251,28 @@
 /* Mobile Responsiveness */
 @media (max-width: 576px) {
   .daily-yoga-section {
-    margin-top: -44px; /* Overlap Hero bottom by wave height */
+    margin-top: -44px;
+    /* Overlap Hero bottom by wave height */
     padding: 0 1rem 2rem 1rem;
-    background: linear-gradient(to bottom, transparent 45px, var(--color-sand) 45px); /* Transparent behind the wave */
+    background: linear-gradient(to bottom, transparent 45px, var(--color-sand) 45px);
+    /* Transparent behind the wave */
   }
 
   .daily-yoga-wave-divider {
     width: calc(100% + 2rem);
     margin-left: -1rem;
     margin-right: -1rem;
-    height: 45px; /* Increased wave height */
+    height: 45px;
+    /* Increased wave height */
     margin-bottom: 1.5rem;
   }
-  
+
   .daily-yoga-title {
     font-size: 1.85rem;
     line-height: 1.3;
   }
-  
+
   .daily-yoga-img {
-    aspect-ratio: 1.15 / 1;
+    aspect-ratio: 1.50 / 1;
   }
 }

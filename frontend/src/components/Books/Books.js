@@ -85,7 +85,7 @@ export default function Books() {
               </div>
               <div className="book-details">
                 <h3 className="book-title">{book.title}</h3>
-                
+
                 <div className="book-formats">
                   {book.formats.map((f, i) => (
                     <span key={i} className="book-format-tag">{f}</span>

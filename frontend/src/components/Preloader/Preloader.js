@@ -42,7 +42,7 @@ export default function Preloader() {
       </div>
 
       <div className="preloader-content preloader-brand-animate">
-        <Logo variant="full" size={50} />
+        <Logo size={90} />
       </div>
     </div>
   );

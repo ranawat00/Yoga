@@ -525,7 +525,7 @@ export default function CheckoutModal() {
                 <div className="invoice-receipt-wrapper">
                   <div className="receipt-header">
                     <div className="receipt-brand">
-                      <Logo variant="full" size={22} />
+                      <Logo size={44} />
                     </div>
                     <div className="receipt-meta">
                       <span className="receipt-title">ORDER INVOICE</span>

@@ -1,71 +1,17 @@
-.brand-logo-container {
+.brand-logo-wrapper {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  background-color: #001a9c;
-  color: #ffffff !important;
-  padding: 4px 10px;
-  border-radius: 4px;
-  text-decoration: none;
-  cursor: pointer;
+  justify-content: center;
   user-select: none;
-  box-shadow: 0 3px 6px rgba(0, 26, 156, 0.12);
+  cursor: pointer;
 }
 
 .brand-logo-svg {
-  transition: transform 0.3s ease;
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), filter 0.3s ease;
+  filter: drop-shadow(0 4px 10px rgba(0, 1, 156, 0.3));
 }
 
-.brand-logo-container:hover .brand-logo-svg {
-  transform: scale(1.05) rotate(2deg);
+.brand-logo-wrapper:hover .brand-logo-svg {
+  transform: scale(1.08) rotate(1deg);
+  filter: drop-shadow(0 6px 16px rgba(0, 1, 156, 0.45));
 }
-
-.brand-logo-text-wrapper {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: left;
-  line-height: 1.1;
-}
-
-.brand-logo-title {
-  font-family: var(--font-body);
-  font-weight: 800;
-  font-size: 0.78rem;
-  letter-spacing: 0.5px;
-  color: inherit;
-  margin: 0;
-}
-
-.brand-logo-subtitle {
-  font-family: var(--font-body);
-  font-weight: 700;
-  font-size: 0.62rem;
-  letter-spacing: 0.8px;
-  color: inherit;
-  margin: 1px 0 0 0;
-  opacity: 0.95;
-}
-
-.brand-logo-tagline {
-  font-family: var(--font-script);
-  font-size: 0.76rem;
-  color: inherit;
-  margin: 1px 0 0 0;
-  opacity: 0.9;
-  letter-spacing: 0.1px;
-}
-
-/* Small variation for space-constrained areas like navigation headers */
-.navbar .brand-logo-tagline {
-  font-size: 0.7rem;
-}
-
-.navbar .brand-logo-title {
-  font-size: 0.74rem;
-}
-
-.navbar .brand-logo-subtitle {
-  font-size: 0.58rem;
-}
-

@@ -5,7 +5,9 @@ import Hero from './components/Hero/Hero';
 import Footer from './components/Footer/Footer';
 import Notification from './components/Notification/Notification';
 import Preloader from './components/Preloader/Preloader';
+import Celebration from './components/Celebration/Celebration';
 import Loader from './components/Loader/Loader';
+import MediaLogos from './components/MediaLogos/MediaLogos';
 import './App.css';
 
 // Lazy load non-critical sections below the fold
@@ -43,6 +45,9 @@ function AppContent() {
       {/* Premium Load Preloader */}
       <Preloader />
 
+      {/* Website Refresh / Load Celebration Cannons */}
+      <Celebration />
+
       {/* Global Toast Notifications */}
       <Notification />
 
@@ -70,6 +75,9 @@ function AppContent() {
         <>
           {/* Main Page Sections */}
           <Hero />
+
+          {/* Featured In: Newspaper Logos Marquee */}
+          <MediaLogos />
 
           <Suspense fallback={<Loader />}>
             <DailyYogaBanner />
