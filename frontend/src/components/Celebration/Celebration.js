@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback } from 'react';
+import { useEffect, useCallback } from 'react';
 import confetti from 'canvas-confetti';
 import './Celebration.css';
 
