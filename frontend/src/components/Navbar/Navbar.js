@@ -44,7 +44,7 @@ export default function Navbar() {
   const handleLinkClick = (id, e) => {
     e.preventDefault();
     setMobileMenuOpen(false);
-    
+
     if (id === 'books') {
       setView('books');
       setActiveLink('books');
@@ -96,7 +96,7 @@ export default function Navbar() {
 
     setView('home');
     setActiveLink(id);
-    
+
     setTimeout(() => {
       const element = document.getElementById(id);
       if (element) {
@@ -108,7 +108,7 @@ export default function Navbar() {
   const handleDropdownClick = (sectionId, itemId, e) => {
     e.preventDefault();
     e.stopPropagation();
-    
+
     if (sectionId === 'books') {
       setView('books');
       setActiveLink('books');
@@ -125,7 +125,7 @@ export default function Navbar() {
 
     setView('home');
     setActiveLink(sectionId);
-    
+
     setTimeout(() => {
       const element = document.getElementById(sectionId);
       if (element) {
@@ -136,7 +136,7 @@ export default function Navbar() {
 
   const renderChevron = () => (
     <svg className="nav-chevron" width="10" height="6" viewBox="0 0 10 6" fill="none" stroke="currentColor" strokeWidth="2.5" style={{ marginLeft: '6px', transition: 'transform 0.2s', display: 'inline-block', verticalAlign: 'middle' }}>
-      <path d="M1 1L5 5L9 1" strokeLinecap="round" strokeLinejoin="round"/>
+      <path d="M1 1L5 5L9 1" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
   );
 
@@ -145,7 +145,7 @@ export default function Navbar() {
       <div className="navbar-container">
         {/* Logo Section */}
         <div className="logo-container" onClick={(e) => handleLinkClick('home', e)}>
-          <Logo size={54} />
+          <Logo size={52} />
         </div>
 
         {/* Desktop Navigation Links */}
@@ -347,7 +347,7 @@ export default function Navbar() {
           <div className="mobile-drawer-header">
             {/* Logo */}
             <div className="mobile-drawer-logo" onClick={(e) => handleLinkClick('home', e)}>
-              <Logo size={48} />
+              <Logo size={45} />
             </div>
             {/* Close button */}
             <button className="mobile-drawer-close" onClick={() => setMobileMenuOpen(false)} aria-label="Close Menu">
