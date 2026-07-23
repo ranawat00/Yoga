@@ -347,7 +347,7 @@ export default function Navbar() {
           <div className="mobile-drawer-header">
             {/* Logo */}
             <div className="mobile-drawer-logo" onClick={(e) => handleLinkClick('home', e)}>
-              <Logo size={64} />
+              <Logo size={58} />
             </div>
             {/* Close button */}
             <button className="mobile-drawer-close" onClick={() => setMobileMenuOpen(false)} aria-label="Close Menu">
