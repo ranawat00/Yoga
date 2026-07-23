@@ -7,19 +7,19 @@ export default function Preloader() {
   const [fade, setFade] = useState(false);
 
   useEffect(() => {
-    // Disable scrolling while loading
+    // Lock scrolling while preloader is active
     document.body.style.overflow = 'hidden';
 
-    // Start fade out animation
+    // Start smooth fade out animation
     const fadeTimer = setTimeout(() => {
       setFade(true);
-    }, 2200);
+    }, 600);
 
-    // Completely remove from DOM
+    // Remove preloader overlay and restore scroll
     const removeTimer = setTimeout(() => {
       setVisible(false);
       document.body.style.overflow = '';
-    }, 3000);
+    }, 950);
 
     return () => {
       clearTimeout(fadeTimer);

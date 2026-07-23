@@ -1,6 +1,6 @@
 /* Hero Sage Theme & Layout */
 .hero-sage {
-  background-color: #CFEAE3;
+  background: linear-gradient(135deg, #CFEAE3 0%, #b8e2d7 50%, #d8f0ea 100%);
   padding: 3.5rem 2rem 4.5rem 2rem;
   display: flex;
   flex-direction: column;
@@ -19,6 +19,224 @@
   gap: 3rem;
   align-items: center;
   text-align: left;
+  position: relative;
+  z-index: 2;
+}
+
+/* ==========================================================================
+   MEDITATION AURA ANIMATION STYLES
+   ========================================================================== */
+
+.hero-meditation-aura-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+}
+
+/* Glowing Ambient Aura Center Core */
+.aura-glowing-core {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) translateZ(0);
+  width: 700px;
+  height: 700px;
+  background: radial-gradient(circle, rgba(255, 245, 210, 0.45) 0%, rgba(207, 234, 227, 0.6) 35%, rgba(0, 1, 156, 0.08) 60%, transparent 80%);
+  filter: blur(30px);
+  will-change: transform, opacity;
+  animation: auraPulseCore 8s ease-in-out infinite alternate;
+}
+
+/* Concentric Meditation Aura Rings */
+.aura-ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border-radius: 50%;
+  border: 1.5px solid rgba(44, 78, 55, 0.12);
+  box-shadow: inset 0 0 30px rgba(255, 255, 255, 0.4), 0 0 20px rgba(0, 1, 156, 0.05);
+  pointer-events: none;
+  transform: translate(-50%, -50%) scale(0.8) translateZ(0);
+  will-change: transform, opacity;
+  animation: auraRingBreathing 12s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+.aura-ring-1 {
+  width: 320px;
+  height: 320px;
+  animation-delay: 0s;
+  border-color: rgba(44, 78, 55, 0.2);
+}
+
+.aura-ring-2 {
+  width: 520px;
+  height: 520px;
+  animation-delay: 3s;
+  border-color: rgba(0, 1, 156, 0.12);
+}
+
+.aura-ring-3 {
+  width: 750px;
+  height: 750px;
+  animation-delay: 6s;
+  border-color: rgba(44, 78, 55, 0.15);
+}
+
+.aura-ring-4 {
+  width: 980px;
+  height: 980px;
+  animation-delay: 9s;
+  border-color: rgba(0, 1, 156, 0.08);
+}
+
+/* Floating Celestial Sparkles */
+.aura-sparkle {
+  position: absolute;
+  font-size: 1.3rem;
+  user-select: none;
+  pointer-events: none;
+  filter: drop-shadow(0 2px 8px rgba(255, 215, 0, 0.6));
+  animation: auraSparkleFloat 5s ease-in-out infinite;
+}
+
+.sparkle-1 { top: 18%; left: 8%; animation-delay: 0s; }
+.sparkle-2 { top: 75%; left: 45%; animation-delay: 1.5s; font-size: 1.5rem; }
+.sparkle-3 { top: 22%; right: 12%; animation-delay: 2.8s; }
+.sparkle-4 { bottom: 15%; left: 12%; animation-delay: 0.8s; }
+.sparkle-5 { top: 58%; right: 6%; animation-delay: 3.5s; font-size: 1.4rem; }
+
+/* Meditation Aura Active Badge */
+.meditation-aura-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(44, 78, 55, 0.18);
+  padding: 6px 16px;
+  border-radius: 30px;
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  font-weight: 700;
+  font-size: 0.82rem;
+  color: #2C4E37;
+  letter-spacing: 0.3px;
+  box-shadow: 0 4px 16px rgba(44, 78, 55, 0.08);
+  margin-bottom: 0.4rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.meditation-aura-pill:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(44, 78, 55, 0.14);
+}
+
+.aura-dot {
+  width: 9px;
+  height: 9px;
+  background-color: #2C4E37;
+  border-radius: 50%;
+  position: relative;
+  display: inline-block;
+  box-shadow: 0 0 0 0 rgba(44, 78, 55, 0.6);
+  animation: auraDotPulse 2s infinite;
+}
+
+/* Video Card Aura Wrapper & Halo */
+.hero-video-aura-wrapper {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero-video-aura-halo {
+  position: absolute;
+  inset: -16px;
+  border-radius: 38px;
+  background: linear-gradient(135deg, rgba(0, 1, 156, 0.25), rgba(44, 78, 55, 0.35), rgba(255, 215, 0, 0.3));
+  filter: blur(18px);
+  opacity: 0.85;
+  z-index: 0;
+  will-change: transform, opacity;
+  transform: translateZ(0);
+  animation: auraHaloRotate 10s ease-in-out infinite alternate;
+}
+
+/* Keyframes */
+@keyframes auraPulseCore {
+  0% {
+    transform: translate(-50%, -50%) scale(0.85);
+    opacity: 0.5;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1.15);
+    opacity: 0.9;
+  }
+}
+
+@keyframes auraRingBreathing {
+  0% {
+    transform: translate(-50%, -50%) scale(0.85);
+    opacity: 0.3;
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.08);
+    opacity: 0.7;
+    border-color: rgba(255, 215, 0, 0.35);
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(0.85);
+    opacity: 0.3;
+  }
+}
+
+@keyframes auraSparkleFloat {
+  0%, 100% {
+    transform: translateY(0) scale(1) rotate(0deg);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translateY(-16px) scale(1.25) rotate(15deg);
+    opacity: 1;
+    filter: drop-shadow(0 4px 14px rgba(255, 215, 0, 0.9));
+  }
+}
+
+@keyframes auraDotPulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(44, 78, 55, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(44, 78, 55, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(44, 78, 55, 0);
+  }
+}
+
+@keyframes auraHaloRotate {
+  0% {
+    transform: scale(0.98) rotate(0deg);
+    filter: blur(20px);
+    opacity: 0.7;
+  }
+  50% {
+    transform: scale(1.04) rotate(4deg);
+    filter: blur(28px);
+    opacity: 0.95;
+  }
+  100% {
+    transform: scale(0.98) rotate(-4deg);
+    filter: blur(20px);
+    opacity: 0.7;
+  }
 }
 
 .hero-sage-header-block {
@@ -166,6 +384,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
+  z-index: 2;
 }
 
 .hero-sage-video-card {
@@ -175,6 +395,8 @@
   padding: 12px;
   box-shadow: 0 16px 40px rgba(44, 78, 55, 0.14);
   overflow: hidden;
+  position: relative;
+  z-index: 1;
   transition: transform 0.3s ease;
 }
 

@@ -47,6 +47,22 @@ export default function Hero() {
 
   return (
     <header id="home" className="hero-sage">
+      {/* Meditation Aura Animated Background Elements */}
+      <div className="hero-meditation-aura-bg" aria-hidden="true">
+        <div className="aura-glowing-core"></div>
+        <div className="aura-ring aura-ring-1"></div>
+        <div className="aura-ring aura-ring-2"></div>
+        <div className="aura-ring aura-ring-3"></div>
+        <div className="aura-ring aura-ring-4"></div>
+        
+        {/* Floating Celestial Sparkles */}
+        <span className="aura-sparkle sparkle-1">✨</span>
+        <span className="aura-sparkle sparkle-2">✨</span>
+        <span className="aura-sparkle sparkle-3">💫</span>
+        <span className="aura-sparkle sparkle-4">✨</span>
+        <span className="aura-sparkle sparkle-5">🌟</span>
+      </div>
+
       <div className="hero-sage-container">
         {/* Header Text Block */}
         <div className="hero-sage-header-block">
@@ -101,18 +117,22 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* Video Content Container AFTER / BELOW Text & Metrics */}
+        {/* Video Content Container with Aura Halo */}
         <div className="hero-sage-video-container">
-          <div className="hero-sage-video-card">
-            <video 
-              src={heroVideo} 
-              autoPlay 
-              loop 
-              muted 
-              playsInline
-              controls
-              className="hero-sage-video-el"
-            />
+          <div className="hero-video-aura-wrapper">
+            <div className="hero-video-aura-halo"></div>
+            <div className="hero-sage-video-card">
+              <video 
+                src={heroVideo} 
+                autoPlay 
+                loop 
+                muted 
+                playsInline
+                controls
+                preload="metadata"
+                className="hero-sage-video-el"
+              />
+            </div>
           </div>
         </div>
       </div>
