@@ -9,7 +9,7 @@ export default function Logo({ size = 54 }) {
         src={logoImg}
         alt="Yoga Healers Logo"
         className="brand-logo-img brand-logo-svg"
-        style={{ width: size, height: 'auto', maxHeight: size, objectFit: 'contain' }}
+        style={{ width: size, height: size, objectFit: 'contain' }}
       />
     </div>
   );
