@@ -15,9 +15,11 @@ import neemCombImg from '../../assets/product_neem_comb.webp';
 import copperBottleImg from '../../assets/product_copper_bottle.webp';
 
 export default function Navbar() {
-  const { totalCartCount, setIsCartOpen, setView, user, setIsAuthOpen, handleLogout, setIsProfileOpen } = useApp();
+  const { totalCartCount, setIsCartOpen, setView, user, setIsAuthOpen, handleLogout, setIsProfileOpen, view } = useApp();
   const [activeLink, setActiveLink] = useState('home');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
 
   useEffect(() => {
     const handleScroll = () => {
@@ -35,8 +37,15 @@ export default function Navbar() {
           }
         }
       }
+
+      if (window.scrollY > 20) {
+        setScrolled(true);
+      } else {
+        setScrolled(false);
+      }
     };
 
+    handleScroll();
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -141,7 +150,7 @@ export default function Navbar() {
   );
 
   return (
-    <nav className="navbar">
+    <nav className={`navbar ${scrolled ? 'scrolled' : ''} ${view !== 'home' ? 'not-home' : ''}`}>
       <div className="navbar-container">
         {/* Logo Section */}
         <div className="logo-container" onClick={(e) => handleLinkClick('home', e)}>

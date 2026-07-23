@@ -47,20 +47,13 @@ export default function Hero() {
 
   return (
     <header id="home" className="hero-sage">
-      {/* Meditation Aura Animated Background Elements */}
-      <div className="hero-meditation-aura-bg" aria-hidden="true">
-        <div className="aura-glowing-core"></div>
-        <div className="aura-ring aura-ring-1"></div>
-        <div className="aura-ring aura-ring-2"></div>
-        <div className="aura-ring aura-ring-3"></div>
-        <div className="aura-ring aura-ring-4"></div>
-        
-        {/* Floating Celestial Sparkles */}
-        <span className="aura-sparkle sparkle-1">✨</span>
-        <span className="aura-sparkle sparkle-2">✨</span>
-        <span className="aura-sparkle sparkle-3">💫</span>
-        <span className="aura-sparkle sparkle-4">✨</span>
-        <span className="aura-sparkle sparkle-5">🌟</span>
+      {/* Bold Diagonal Liquid Silk Wave Background */}
+      <div className="hero-liquid-wave-bg" aria-hidden="true">
+        <div className="liquid-wave liquid-wave-1"></div>
+        <div className="liquid-wave liquid-wave-2"></div>
+        <div className="liquid-wave liquid-wave-3"></div>
+        <div className="liquid-wave liquid-wave-4"></div>
+        <div className="liquid-wave liquid-wave-highlight"></div>
       </div>
 
       <div className="hero-sage-container">

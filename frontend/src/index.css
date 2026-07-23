@@ -13,6 +13,23 @@
   --color-blue: #1F3A52;
   --color-blue-hover: #132738;
   
+  /* Vibrant Green Theme & Branding */
+  --color-vibrant-green: #0da106;
+  --color-vibrant-green-light: #15c21c;
+  --color-vibrant-green-dark: #057e09;
+  --color-purple-accent: #5e17eb;
+
+  /* Organic Liquid Green Hero Palette */
+  --color-liquid-deep-forest: #296615;
+  --color-liquid-dark: #3A771E;
+  --color-liquid-mid-dark: #498426;
+  --color-liquid-mid: #558F2C;
+  --color-liquid-mid-bright: #629B32;
+  --color-liquid-bright: #6FA838;
+  --color-liquid-brighter: #7BB33E;
+  --color-liquid-lime-highlight: #86BD43;
+  --color-liquid-white-accent: #FCFCFB;
+  
   /* Text colors */
   --color-text-primary: #1C241E;
   --color-text-secondary: #4A564D;
