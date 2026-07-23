@@ -6,6 +6,7 @@ export default function Hero() {
   const [views, setViews] = useState(0);
   const [followers, setFollowers] = useState(0);
   const [graduates, setGraduates] = useState(0);
+  const [searchQuery, setSearchQuery] = useState('');
 
   const handleScrollTo = (id) => {
     const el = document.getElementById(id);
@@ -42,7 +43,7 @@ export default function Hero() {
     { text: "20+ Million", label: "connects" },
     { text: `${views} Billion+`, label: "Total Views" },
     { text: `${followers} Million+`, label: "Total Followers" },
-    { text: `${graduates} k+`, label: "Workshop Graduates" },
+    { text: `${graduates} k+`, label: "Graduates" },
   ];
 
   return (
@@ -71,15 +72,24 @@ export default function Hero() {
             Breathe - Thrive - Heal
           </p>
 
-          {/* Call-to-Action Pill Button with Arrow Circle */}
-          <div className="hero-sage-cta-wrapper">
-            <button className="hero-sage-btn" onClick={() => handleScrollTo('workshops')}>
-              <span>Start your Journey</span>
-              <span className="hero-sage-btn-arrow">➔</span>
+          {/* Search / CTA Pill Bar as shown in reference design */}
+          <form className="hero-sage-search-pill" onSubmit={(e) => { e.preventDefault(); handleScrollTo('workshops'); }}>
+            <input 
+              type="text" 
+              className="hero-sage-search-input" 
+              placeholder="Start your journey" 
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+            />
+            <button type="submit" className="hero-sage-search-btn" aria-label="Start your journey">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
             </button>
-          </div>
+          </form>
 
-          {/* Automatic Continuous Infinite Slider for Metric Chips */}
+          {/* Automatic Continuous Infinite Slider for Metric Chips (Restored) */}
           <div className="hero-sage-metrics-marquee-wrapper">
             <div className="hero-sage-metrics-marquee-track">
               {/* Group 1 */}
