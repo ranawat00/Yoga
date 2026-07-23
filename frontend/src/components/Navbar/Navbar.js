@@ -145,7 +145,7 @@ export default function Navbar() {
       <div className="navbar-container">
         {/* Logo Section */}
         <div className="logo-container" onClick={(e) => handleLinkClick('home', e)}>
-          <Logo size={65} />
+          <Logo size={80} />
         </div>
 
         {/* Desktop Navigation Links */}
@@ -347,7 +347,7 @@ export default function Navbar() {
           <div className="mobile-drawer-header">
             {/* Logo */}
             <div className="mobile-drawer-logo" onClick={(e) => handleLinkClick('home', e)}>
-              <Logo size={48} />
+              <Logo size={64} />
             </div>
             {/* Close button */}
             <button className="mobile-drawer-close" onClick={() => setMobileMenuOpen(false)} aria-label="Close Menu">
