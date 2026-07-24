@@ -1,5 +1,5 @@
 import './Hero.css';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import heroVideo from '../../assets/yoga-healers-video.mp4';
 
 export default function Hero() {
@@ -7,6 +7,8 @@ export default function Hero() {
   const [followers, setFollowers] = useState(0);
   const [graduates, setGraduates] = useState(0);
   const [searchQuery, setSearchQuery] = useState('');
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef(null);
 
   const handleScrollTo = (id) => {
     const el = document.getElementById(id);
@@ -14,6 +16,28 @@ export default function Hero() {
       el.scrollIntoView({ behavior: 'smooth' });
     }
   };
+
+  useEffect(() => {
+    // Section scroll transition triggered at 20% viewport visibility
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      { threshold: 0.2 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => {
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current);
+      }
+    };
+  }, []);
 
   useEffect(() => {
     let startTimestamp = null;
@@ -47,8 +71,12 @@ export default function Hero() {
   ];
 
   return (
-    <header id="home" className="hero-sage">
-      {/* Bold Diagonal Liquid Silk Wave Background */}
+    <header 
+      id="home" 
+      ref={sectionRef} 
+      className={`hero-sage ${isVisible ? 'in-view' : ''}`}
+    >
+      {/* Forest Green (#186000) to Lime Green (#78a830) Background Liquid Waves */}
       <div className="hero-liquid-wave-bg" aria-hidden="true">
         <div className="liquid-wave liquid-wave-1"></div>
         <div className="liquid-wave liquid-wave-2"></div>
@@ -60,20 +88,20 @@ export default function Hero() {
       <div className="hero-sage-container">
         {/* Header Text Block */}
         <div className="hero-sage-header-block">
-          <h1 className="hero-sage-title">
+          <h1 className="hero-sage-title hero-animate-item stagger-1">
             Awaken your<br />True Potential
           </h1>
 
-          <p className="hero-sage-subtitle">
+          <p className="hero-sage-subtitle hero-animate-item stagger-2">
             Your powerhouse for the real-world Transformation
           </p>
 
-          <p className="hero-sage-tagline">
+          <p className="hero-sage-tagline hero-animate-item stagger-3">
             Breathe - Thrive - Heal
           </p>
 
-          {/* Search / CTA Pill Bar as shown in reference design */}
-          <form className="hero-sage-search-pill" onSubmit={(e) => { e.preventDefault(); handleScrollTo('workshops'); }}>
+          {/* Search Pill Bar (Cream Card #f5f0e8, Warm Orange #f0812e CTA Button) */}
+          <form className="hero-sage-search-pill hero-animate-item stagger-4" onSubmit={(e) => { e.preventDefault(); handleScrollTo('workshops'); }}>
             <input 
               type="text" 
               className="hero-sage-search-input" 
@@ -89,8 +117,8 @@ export default function Hero() {
             </button>
           </form>
 
-          {/* Automatic Continuous Infinite Slider for Metric Chips (Restored) */}
-          <div className="hero-sage-metrics-marquee-wrapper">
+          {/* Metric Chips Marquee Slider (Cream #f5f0e8 Cards, Dark Green #134400 Text) */}
+          <div className="hero-sage-metrics-marquee-wrapper hero-animate-item stagger-5">
             <div className="hero-sage-metrics-marquee-track">
               {/* Group 1 */}
               <div className="hero-sage-metrics-group">
@@ -120,8 +148,8 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* Video Content Container with Aura Halo */}
-        <div className="hero-sage-video-container">
+        {/* Video Content Container in Cream (#f5f0e8) Card Frame */}
+        <div className="hero-sage-video-container hero-animate-item stagger-6">
           <div className="hero-video-aura-wrapper">
             <div className="hero-video-aura-halo"></div>
             <div className="hero-sage-video-card">
