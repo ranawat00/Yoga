@@ -71,9 +71,9 @@ export default function Hero() {
   ];
 
   return (
-    <header 
-      id="home" 
-      ref={sectionRef} 
+    <header
+      id="home"
+      ref={sectionRef}
       className={`hero-sage ${isVisible ? 'in-view' : ''}`}
     >
       {/* Forest Green (#186000) to Lime Green (#78a830) Background Liquid Waves */}
@@ -102,10 +102,10 @@ export default function Hero() {
 
           {/* Search Pill Bar (Cream Card #f5f0e8, Warm Orange #f0812e CTA Button) */}
           <form className="hero-sage-search-pill hero-animate-item stagger-4" onSubmit={(e) => { e.preventDefault(); handleScrollTo('workshops'); }}>
-            <input 
-              type="text" 
-              className="hero-sage-search-input" 
-              placeholder="Start your journey" 
+            <input
+              type="text"
+              className="hero-sage-search-input"
+              placeholder="Start your journey"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
             />
@@ -153,11 +153,11 @@ export default function Hero() {
           <div className="hero-video-aura-wrapper">
             <div className="hero-video-aura-halo"></div>
             <div className="hero-sage-video-card">
-              <video 
-                src={heroVideo} 
-                autoPlay 
-                loop 
-                muted 
+              <video
+                src={heroVideo}
+                autoPlay
+                loop
+                muted
                 playsInline
                 controls
                 preload="metadata"
