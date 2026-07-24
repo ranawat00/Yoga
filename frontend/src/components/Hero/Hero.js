@@ -18,6 +18,7 @@ export default function Hero() {
   };
 
   useEffect(() => {
+    const node = sectionRef.current;
     // Section scroll transition triggered at 20% viewport visibility
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -28,13 +29,13 @@ export default function Hero() {
       { threshold: 0.2 }
     );
 
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
+    if (node) {
+      observer.observe(node);
     }
 
     return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current);
+      if (node) {
+        observer.unobserve(node);
       }
     };
   }, []);
