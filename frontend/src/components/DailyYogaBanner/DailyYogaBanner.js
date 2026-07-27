@@ -1,6 +1,6 @@
 import './DailyYogaBanner.css';
 import React from 'react';
-import Logo from '../Logo/Logo';
+import Logo from '../common/Logo/Logo';
 import awakenBannerImg from '../../assets/awaken_program_banner.jpg';
 
 export default function DailyYogaBanner() {

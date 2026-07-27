@@ -1,6 +1,6 @@
 import './Books.css';
 import React from 'react';
-import { useApp } from '../../context/AppContext';
+import { useApp } from '../../hooks/useApp';
 import bookQuickEasyImg from '../../assets/book_quick_easy.webp';
 import bookCombo4Img from '../../assets/book_combo_4.webp';
 import bookCombo3Img from '../../assets/book_combo_3.webp';

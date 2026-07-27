@@ -1,12 +1,19 @@
 import React, { lazy, Suspense } from 'react';
-import { AppProvider, useApp } from './context/AppContext';
-import Navbar from './components/Navbar/Navbar';
+import { AppProvider } from './redux/AppProvider';
+import { useApp } from './hooks/useApp';
+
+// Layout Components
+import Navbar from './layout/Navbar/Navbar';
+import Footer from './layout/Footer/Footer';
+
+// Common Components
+import Notification from './components/common/Notification/Notification';
+import Preloader from './components/common/Preloader/Preloader';
+import Celebration from './components/common/Celebration/Celebration';
+import Loader from './components/common/Loader/Loader';
+
+// Main / Feature Section Components
 import Hero from './components/Hero/Hero';
-import Footer from './components/Footer/Footer';
-import Notification from './components/Notification/Notification';
-import Preloader from './components/Preloader/Preloader';
-import Celebration from './components/Celebration/Celebration';
-import Loader from './components/Loader/Loader';
 import MediaLogos from './components/MediaLogos/MediaLogos';
 import './App.css';
 
@@ -22,20 +29,19 @@ const Educators = lazy(() => import('./components/Educators/Educators'));
 const FAQ = lazy(() => import('./components/FAQ/FAQ'));
 
 // Lazy load full page views
-const BooksPage = lazy(() => import('./components/BooksPage/BooksPage'));
-const ProductsPage = lazy(() => import('./components/ProductsPage/ProductsPage'));
-const AboutUs = lazy(() => import('./components/AboutUs/AboutUs'));
-const Contact = lazy(() => import('./components/Contact/Contact'));
-const Careers = lazy(() => import('./components/Careers/Careers'));
-const OrdersPage = lazy(() => import('./components/OrdersPage/OrdersPage'));
+const BooksPage = lazy(() => import('./pages/BooksPage/BooksPage'));
+const ProductsPage = lazy(() => import('./pages/ProductsPage/ProductsPage'));
+const AboutUs = lazy(() => import('./pages/AboutUsPage/AboutUsPage'));
+const Contact = lazy(() => import('./pages/ContactPage/ContactPage'));
+const Careers = lazy(() => import('./pages/CareersPage/CareersPage'));
+const OrdersPage = lazy(() => import('./pages/OrdersPage/OrdersPage'));
 
 // Lazy load modals/drawers
-const CartDrawer = lazy(() => import('./components/CartDrawer/CartDrawer'));
-const CheckoutModal = lazy(() => import('./components/CheckoutModal/CheckoutModal'));
-const AuthModal = lazy(() => import('./components/AuthModal/AuthModal'));
-const ProfileDrawer = lazy(() => import('./components/ProfileDrawer/ProfileDrawer'));
+const CartDrawer = lazy(() => import('./layout/CartDrawer/CartDrawer'));
+const CheckoutModal = lazy(() => import('./layout/CheckoutModal/CheckoutModal'));
+const AuthModal = lazy(() => import('./layout/AuthModal/AuthModal'));
+const ProfileDrawer = lazy(() => import('./layout/ProfileDrawer/ProfileDrawer'));
 const ChatAssistant = lazy(() => import('./components/ChatAssistant/ChatAssistant'));
-
 
 function AppContent() {
   const { isCartOpen, isCheckoutOpen, view } = useApp();

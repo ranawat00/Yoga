@@ -1,6 +1,6 @@
 import './Workshops.css';
 import React, { useState } from 'react';
-import { useApp } from '../../context/AppContext';
+import { useApp } from '../../hooks/useApp';
 import detoxImg from '../../assets/workshop_detox.webp';
 import meditationImg from '../../assets/workshop_meditation.webp';
 import cookingImg from '../../assets/workshop_cooking.webp';

@@ -64,7 +64,8 @@
   pointer-events: none;
   will-change: transform;
   transform-style: preserve-3d;
-  filter: blur(24px);
+  transform: translateZ(0);
+  filter: blur(16px);
 }
 
 .liquid-wave-1 {

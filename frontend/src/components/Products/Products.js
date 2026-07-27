@@ -1,6 +1,6 @@
 import './Products.css';
 import React from 'react';
-import { useApp } from '../../context/AppContext';
+import { useApp } from '../../hooks/useApp';
 import enemaImg from '../../assets/product_enema.webp';
 import sproutImg from '../../assets/product_sprout.webp';
 import neemCombImg from '../../assets/product_neem_comb.webp';
