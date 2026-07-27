@@ -7,19 +7,19 @@ export default function Preloader() {
   const [fade, setFade] = useState(false);
 
   useEffect(() => {
-    // Lock scrolling briefly while preloader starts
+    // Lock scrolling while preloader is active
     document.body.style.overflow = 'hidden';
 
-    // Start smooth fade out animation fast (150ms)
+    // Show preloader animation, then start smooth fade out at 650ms
     const fadeTimer = setTimeout(() => {
       setFade(true);
-    }, 150);
+    }, 650);
 
-    // Remove preloader overlay and restore scroll at 300ms
+    // Remove preloader overlay and restore scroll at 1100ms (1.1s total)
     const removeTimer = setTimeout(() => {
       setVisible(false);
       document.body.style.overflow = '';
-    }, 300);
+    }, 1100);
 
     return () => {
       clearTimeout(fadeTimer);
@@ -42,7 +42,7 @@ export default function Preloader() {
       </div>
 
       <div className="preloader-content preloader-brand-animate">
-        <Logo size={90} />
+        <Logo size={100} />
       </div>
     </div>
   );

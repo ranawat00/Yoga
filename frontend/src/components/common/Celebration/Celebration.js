@@ -34,11 +34,11 @@ export default function Celebration() {
       });
     };
 
-    // Synchronized cannon burst (~300ms after load)
+    // Synchronized cannon burst right as preloader dissolves (~1100ms)
     const timer1 = setTimeout(() => {
       fireLeft();
       fireRight();
-    }, 300);
+    }, 1100);
 
     return () => {
       clearTimeout(timer1);
