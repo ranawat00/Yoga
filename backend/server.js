@@ -33,14 +33,17 @@ app.use('/api/auth', require('./routes/authRoutes'));
 app.use('/api/payment', require('./routes/paymentRoutes'));
 app.use('/api/orders', require('./routes/orderRoutes'));
 
-// Global error handler middleware
-app.use((err, req, res, next) => {
-  console.error(err.stack);
-  res.status(err.status || 500).json({
-    success: false,
-    message: err.message || 'Internal Server Error'
-  });
+const errorHandler = require('./middleware/errorMiddleware');
+const ErrorResponse = require('./utils/ErrorResponse');
+
+// 404 Catch-all handler for undefined routes
+app.use((req, res, next) => {
+  next(new ErrorResponse(`Route not found - ${req.originalUrl}`, 404));
 });
+
+// Global error handler middleware
+app.use(errorHandler);
+
 
 const PORT = process.env.PORT || 5000;
 
