@@ -886,65 +886,140 @@
   }
 }
 
+/* Mobile Collapsible Summary Toggle Button */
+.mobile-summary-toggle-btn {
+  display: none;
+  width: 100%;
+  padding: 0.75rem 1rem;
+  margin-top: 1rem;
+  background-color: rgba(31, 58, 82, 0.05);
+  border: 1px dashed rgba(31, 58, 82, 0.2);
+  border-radius: var(--border-radius-sm);
+  color: var(--color-navy);
+  font-weight: 600;
+  font-size: 0.88rem;
+  cursor: pointer;
+  justify-content: space-between;
+  align-items: center;
+  transition: var(--transition-smooth);
+}
+
+.mobile-summary-left {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.summary-chevron {
+  font-size: 0.75rem;
+  color: var(--color-blue);
+}
+
+.mobile-summary-amount {
+  font-weight: 700;
+  color: var(--color-green);
+}
+
 /* Mobile Responsive Checkout Modal Adjustments */
 @media (max-width: 767px) {
+  .mobile-summary-toggle-btn {
+    display: flex;
+  }
+
+  /* Overlay container adjustment for mobile bottom sheet modal */
+  .modal-overlay {
+    padding: 0 !important;
+    align-items: flex-end !important;
+    justify-content: center !important;
+    background-color: rgba(9, 16, 31, 0.75) !important;
+    z-index: 1200 !important;
+  }
+
   .checkout-modal-content {
-    width: 96%;
-    max-height: 92vh;
-    border-radius: 18px;
-    margin: 0 auto;
+    width: 100vw !important;
+    height: 94vh !important;
+    max-height: 94vh !important;
+    border-radius: 20px 20px 0 0 !important;
+    margin: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    overflow: hidden !important;
+    box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.2) !important;
+  }
+
+  .modal-close-btn {
+    top: 1.25rem !important;
+    right: 1.25rem !important;
+    background-color: rgba(0, 0, 0, 0.05) !important;
+    border-radius: 50% !important;
+    padding: 0.4rem !important;
+    z-index: 10 !important;
+  }
+
+  .checkout-layout-grid {
+    display: flex !important;
+    flex-direction: column !important;
+    height: 100% !important;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch !important;
   }
 
   .checkout-form-pane {
-    padding: 1.5rem 1.15rem;
+    padding: 1.25rem 1.15rem 2rem !important;
+    flex: 1 0 auto !important;
   }
 
   .checkout-summary-pane {
-    padding: 1.5rem 1.15rem;
-    border-radius: 0 0 18px 18px;
+    display: none;
+    padding: 1.25rem 1.15rem 2rem !important;
+    border-left: none !important;
+    border-top: 1px solid rgba(0, 0, 0, 0.08) !important;
+    background-color: var(--color-sand-dark) !important;
+  }
+
+  .checkout-summary-pane.mobile-summary-expanded {
+    display: flex !important;
   }
 
   .checkout-header {
-    padding-right: 2.2rem;
+    padding-right: 2.5rem !important;
   }
 
   .checkout-header h2 {
-    font-size: 1.5rem;
+    font-size: 1.5rem !important;
   }
 
   .checkout-steps-container {
-    margin: 1.2rem 0 0.4rem;
+    margin: 1rem 0 0.4rem !important;
   }
 
   .checkout-steps-labels {
-    padding: 0 2%;
-    font-size: 0.72rem;
-  }
-
-  .checkout-steps-labels span {
-    width: auto;
+    padding: 0 2% !important;
+    font-size: 0.72rem !important;
   }
 
   .checkout-pane-actions {
-    margin-top: 1.5rem;
-    padding-top: 1.2rem;
-    gap: 0.75rem;
-    display: flex;
-    width: 100%;
+    margin-top: 1.5rem !important;
+    padding-top: 1.2rem !important;
+    gap: 0.75rem !important;
+    display: flex !important;
+    width: 100% !important;
   }
 
   .checkout-btn-back,
   .checkout-btn-next {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0.8rem 1rem;
-    font-size: 0.9rem;
-    min-height: 44px;
-    text-align: center;
+    flex: 1 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 0.85rem 1rem !important;
+    font-size: 0.95rem !important;
+    min-height: 46px !important;
+    text-align: center !important;
+    border-radius: var(--border-radius-sm) !important;
   }
 }
+
 
 @media (max-width: 480px) {
   .checkout-modal-content {

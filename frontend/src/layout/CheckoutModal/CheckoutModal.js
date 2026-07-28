@@ -43,6 +43,8 @@ export default function CheckoutModal() {
 
   const [orderRef, setOrderRef] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isMobileSummaryOpen, setIsMobileSummaryOpen] = useState(false);
+
 
   // Receipt/Success states
   const [orderedItems, setOrderedItems] = useState([]);
@@ -272,7 +274,28 @@ export default function CheckoutModal() {
                 <span className={step === 2 ? 'label-active' : ''}>Payment</span>
                 <span className={step === 3 ? 'label-active' : ''}>Confirmation</span>
               </div>
+
+              {/* Mobile Collapsible Summary Toggle */}
+              {step !== 3 && (
+                <button 
+                  type="button" 
+                  className="mobile-summary-toggle-btn"
+                  onClick={() => setIsMobileSummaryOpen(!isMobileSummaryOpen)}
+                >
+                  <div className="mobile-summary-left">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+                      <line x1="3" y1="6" x2="21" y2="6"></line>
+                      <path d="M16 10a4 4 0 0 1-8 0"></path>
+                    </svg>
+                    <span>{isMobileSummaryOpen ? 'Hide Order Summary' : 'Show Order Summary'}</span>
+                    <span className="summary-chevron">{isMobileSummaryOpen ? '▲' : '▼'}</span>
+                  </div>
+                  <span className="mobile-summary-amount">₹{total.toLocaleString()}</span>
+                </button>
+              )}
             </div>
+
 
             {/* Step 1: Address Details */}
             {step === 1 && (
@@ -634,8 +657,9 @@ export default function CheckoutModal() {
 
           {/* Right Pane: Order Summary */}
           {step !== 3 && (
-            <div className="checkout-summary-pane">
+            <div className={`checkout-summary-pane ${isMobileSummaryOpen ? 'mobile-summary-expanded' : ''}`}>
               <h3 className="summary-pane-title">Order Summary</h3>
+
               
               <div className="summary-items-list">
                 {cartItems.map((item) => (
