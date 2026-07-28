@@ -484,25 +484,43 @@
 
 @media (max-width: 480px) {
   .health-score-title {
-    font-size: 2.3rem;
+    font-size: 2.1rem;
   }
   
   .health-score-card {
     padding: 16px;
   }
+
+  .quiz-modal-overlay {
+    padding: 0.75rem;
+  }
   
   .quiz-modal-content {
-    padding: 2rem 1.5rem 1.5rem 1.5rem;
+    padding: 1.75rem 1.1rem 1.25rem 1.1rem;
+    border-radius: 18px;
   }
   
   .quiz-question-text {
-    font-size: 1.25rem;
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .quiz-option-btn {
+    padding: 0.9rem 1.1rem;
+    font-size: 0.9rem;
   }
   
   .result-actions {
     flex-direction: column;
+    gap: 0.65rem;
+    width: 100%;
+  }
+
+  .result-actions .btn {
+    width: 100%;
   }
 }
+
 
 /* Standalone Health Score Page Styling */
 .health-score-page {

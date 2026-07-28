@@ -338,3 +338,40 @@
   border-color: #f87171;
   box-shadow: 0 4px 10px rgba(239, 68, 68, 0.08);
 }
+
+/* Mobile Responsive Profile Drawer Adjustments */
+@media (max-width: 480px) {
+  .profile-drawer {
+    width: 100vw;
+  }
+
+  .profile-drawer-header {
+    padding: 1.1rem 1.25rem;
+  }
+
+  .profile-drawer-body {
+    padding: 1.25rem;
+  }
+
+  .profile-user-card {
+    padding: 1.2rem 1rem;
+  }
+
+  .profile-avatar-gradient {
+    width: 68px;
+    height: 68px;
+    font-size: 1.8rem;
+  }
+
+  .edit-profile-actions {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .btn-cancel-edit,
+  .btn-save-profile {
+    width: 100%;
+    padding: 0.75rem;
+  }
+}
+

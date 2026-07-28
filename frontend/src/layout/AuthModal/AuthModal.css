@@ -203,6 +203,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
+  gap: 0.6rem;
   font-size: 0.85rem;
 }
 
@@ -217,8 +219,8 @@
 
 .checkbox-label input {
   accent-color: var(--color-blue);
-  width: 15px;
-  height: 15px;
+  width: 16px;
+  height: 16px;
   cursor: pointer;
 }
 
@@ -238,7 +240,7 @@
   background-color: var(--color-blue);
   color: #FFFFFF;
   border: none;
-  padding: 1rem;
+  padding: 0.9rem 1rem;
   border-radius: 50px;
   font-size: 1rem;
   font-weight: 700;
@@ -246,6 +248,7 @@
   transition: var(--transition-smooth);
   margin-top: 0.5rem;
   box-shadow: 0 4px 12px rgba(31, 58, 82, 0.15);
+  width: 100%;
 }
 
 .auth-submit-btn:hover {
@@ -261,8 +264,8 @@
 /* Footer Toggle Text */
 .auth-modal-footer {
   text-align: center;
-  margin-top: 2rem;
-  padding-top: 1.5rem;
+  margin-top: 1.75rem;
+  padding-top: 1.25rem;
   border-top: 1px solid rgba(31, 58, 82, 0.06);
   font-size: 0.9rem;
   color: var(--color-text-secondary);
@@ -280,7 +283,45 @@
 }
 
 @media (max-width: 480px) {
+  .auth-modal-overlay {
+    padding: 0.75rem;
+  }
+  
   .auth-modal-card {
-    padding: 2.5rem 1.5rem;
+    padding: 2rem 1.25rem 1.5rem;
+    border-radius: 18px;
+  }
+
+  .auth-modal-close {
+    top: 1rem;
+    right: 1rem;
+    padding: 0.35rem;
+  }
+
+  .auth-title {
+    font-size: 1.6rem;
+  }
+
+  .auth-subtitle {
+    font-size: 0.88rem;
+  }
+
+  .auth-modal-header {
+    margin-bottom: 1.5rem;
+  }
+
+  .auth-tabs {
+    margin-bottom: 1.5rem;
+  }
+
+  .auth-tab-btn {
+    padding: 0.6rem;
+    font-size: 0.88rem;
+  }
+
+  .input-wrapper input {
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
   }
 }
+
