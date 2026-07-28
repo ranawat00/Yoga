@@ -7,10 +7,10 @@ import Navbar from './layout/Navbar/Navbar';
 import Footer from './layout/Footer/Footer';
 
 // Common Components
-import Notification from './components/common/Notification/Notification';
-import Preloader from './components/common/Preloader/Preloader';
-import Celebration from './components/common/Celebration/Celebration';
-import Loader from './components/common/Loader/Loader';
+import Notification from './common/Notification/Notification';
+import Preloader from './common/Preloader/Preloader';
+import Celebration from './common/Celebration/Celebration';
+import Loader from './common/Loader/Loader';
 
 // Main / Feature Section Components
 import Hero from './components/Hero/Hero';

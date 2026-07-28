@@ -1,6 +1,6 @@
 import './CheckoutModal.css';
 import React, { useState } from 'react';
-import Logo from '../../components/common/Logo/Logo';
+import Logo from '../../common/Logo/Logo';
 import { useApp } from '../../hooks/useApp';
 import { createOrder, verifyPayment } from '../../api/payment';
 import { createOrderRecord } from '../../api/orders';

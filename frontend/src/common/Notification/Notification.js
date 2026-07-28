@@ -1,6 +1,6 @@
 import './Notification.css';
 import React, { useEffect } from 'react';
-import { useApp } from '../../../hooks/useApp';
+import { useApp } from '../../hooks/useApp';
 
 export default function Notification() {
   const { notifications, removeNotification } = useApp();

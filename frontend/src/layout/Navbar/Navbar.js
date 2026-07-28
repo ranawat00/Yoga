@@ -1,6 +1,6 @@
 import './Navbar.css';
 import React, { useState, useEffect } from 'react';
-import Logo from '../../components/common/Logo/Logo';
+import Logo from '../../common/Logo/Logo';
 import { useApp } from '../../hooks/useApp';
 import detoxImg from '../../assets/workshop_detox.webp';
 import meditationImg from '../../assets/workshop_meditation.webp';

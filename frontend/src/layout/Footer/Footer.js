@@ -1,6 +1,6 @@
 import './Footer.css';
 import React, { useState } from 'react';
-import Logo from '../../components/common/Logo/Logo';
+import Logo from '../../common/Logo/Logo';
 import { useApp } from '../../hooks/useApp';
 
 export default function Footer() {

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useApp } from '../../hooks/useApp';
-import Logo from '../../components/common/Logo/Logo';
+import Logo from '../../common/Logo/Logo';
 import './AuthModal.css';
 
 export default function AuthModal() {
