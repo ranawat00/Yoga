@@ -1,6 +1,5 @@
 import './DailyYogaBanner.css';
 import React from 'react';
-import Logo from '../../common/Logo/Logo';
 import yogaBannerImg from '../../assets/banner_yoga.jpg';
 
 export default function DailyYogaBanner() {
