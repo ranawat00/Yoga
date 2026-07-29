@@ -125,14 +125,14 @@
 .pillar-card h3 {
   font-size: 1.25rem;
   font-weight: 700;
-  color: var(--color-blue);
+  color: var(--color-headline-primary);
   margin-bottom: 1rem;
 }
 
 .pillar-card p {
   font-size: 0.95rem;
   line-height: 1.6;
-  color: var(--color-text-muted);
+  color: var(--color-text-primary);
 }
 
 /* Our Story Section */
@@ -172,7 +172,7 @@
 .story-tag {
   font-size: 0.85rem;
   font-weight: 700;
-  color: var(--color-blue);
+  color: var(--color-headline-primary);
   letter-spacing: 1.5px;
   margin-bottom: 0.5rem;
 }
@@ -180,14 +180,14 @@
 .story-content h2 {
   font-size: 2.25rem;
   font-weight: 800;
-  color: var(--color-blue);
+  color: var(--color-headline-primary);
   margin-bottom: 1.5rem;
 }
 
 .story-content p {
   font-size: 1.05rem;
   line-height: 1.7;
-  color: var(--color-text-muted);
+  color: var(--color-text-primary);
   margin-bottom: 1.5rem;
 }
 
@@ -206,7 +206,7 @@
 .stat-num {
   font-size: 2rem;
   font-weight: 800;
-  color: var(--color-blue);
+  color: var(--color-headline-primary);
   line-height: 1;
   margin-bottom: 0.3rem;
 }
@@ -214,7 +214,7 @@
 .stat-label {
   font-size: 0.85rem;
   font-weight: 600;
-  color: var(--color-text-muted);
+  color: var(--color-text-primary);
 }
 
 /* Values Section */
@@ -235,14 +235,14 @@
 .value-item h4 {
   font-size: 1.15rem;
   font-weight: 700;
-  color: var(--color-blue);
+  color: var(--color-headline-primary);
   margin-bottom: 0.8rem;
 }
 
 .value-item p {
   font-size: 0.95rem;
   line-height: 1.6;
-  color: var(--color-text-muted);
+  color: var(--color-text-primary);
 }
 
 /* CTA Section */

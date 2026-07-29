@@ -27,7 +27,7 @@
   align-items: center;
   cursor: pointer;
   font-weight: 600;
-  color: var(--color-navy);
+  color: var(--color-headline-primary);
   font-size: 1.1rem;
 }
 
@@ -44,7 +44,7 @@
   overflow: hidden;
   transition: max-height 0.4s ease-out, padding 0.4s ease-out;
   padding: 0 1.5rem;
-  color: var(--color-text-secondary);
+  color: var(--color-text-primary);
   font-size: 0.95rem;
   border-top: 1px solid transparent;
 }

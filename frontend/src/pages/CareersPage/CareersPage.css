@@ -20,7 +20,7 @@
 .careers-tag {
   font-size: 0.85rem;
   font-weight: 700;
-  color: var(--color-blue);
+  color: var(--color-headline-primary);
   text-transform: uppercase;
   letter-spacing: 1.5px;
   display: block;
@@ -29,14 +29,14 @@
 
 .careers-title {
   font-size: 3rem;
-  color: var(--color-navy);
+  color: var(--color-headline-primary);
   margin-bottom: 1.5rem;
 }
 
 .careers-subtitle {
   font-size: 1.15rem;
   line-height: 1.6;
-  color: var(--color-text-secondary);
+  color: var(--color-text-primary);
 }
 
 .careers-container {
@@ -80,13 +80,13 @@
 
 .culture-card h3 {
   font-size: 1.3rem;
-  color: var(--color-blue);
+  color: var(--color-headline-primary);
   margin-bottom: 0.8rem;
 }
 
 .culture-card p {
   font-size: 0.95rem;
-  color: var(--color-text-secondary);
+  color: var(--color-text-primary);
   line-height: 1.5;
 }
 
@@ -130,7 +130,7 @@
 .job-dept {
   font-size: 0.8rem;
   font-weight: 700;
-  color: var(--color-blue);
+  color: var(--color-headline-primary);
   text-transform: uppercase;
   letter-spacing: 0.8px;
   display: block;
@@ -139,7 +139,7 @@
 
 .job-title-text {
   font-size: 1.5rem;
-  color: var(--color-navy);
+  color: var(--color-headline-primary);
   margin: 0;
 }
 
@@ -147,7 +147,7 @@
   font-size: 0.8rem;
   font-weight: 700;
   background-color: var(--color-sage-bg);
-  color: var(--color-blue);
+  color: var(--color-headline-primary);
   padding: 0.4rem 0.8rem;
   border-radius: 50px;
   white-space: nowrap;
@@ -158,13 +158,13 @@
   gap: 1.5rem;
   margin-bottom: 1.2rem;
   font-size: 0.9rem;
-  color: var(--color-text-secondary);
+  color: var(--color-text-primary);
   font-weight: 500;
 }
 
 .job-desc {
   font-size: 0.95rem;
-  color: var(--color-text-secondary);
+  color: var(--color-text-primary);
   line-height: 1.6;
   margin-bottom: 1.5rem;
 }
@@ -198,7 +198,7 @@
 
 .form-header-box h2 {
   font-size: 2rem;
-  color: var(--color-navy);
+  color: var(--color-headline-primary);
   margin-bottom: 0.5rem;
 }
 

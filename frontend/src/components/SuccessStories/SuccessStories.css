@@ -20,7 +20,7 @@
 
 .success-header .section-title {
   font-size: 2.8rem;
-  color: var(--color-navy);
+  color: var(--color-headline-primary);
   font-family: var(--font-heading);
   margin-bottom: 0.8rem;
   font-weight: 700;
@@ -28,7 +28,7 @@
 
 .success-header .section-subtitle {
   font-size: 1.15rem;
-  color: var(--color-text-secondary);
+  color: var(--color-text-primary);
   font-family: var(--font-body);
 }
 
@@ -97,7 +97,7 @@
 .success-card-title {
   font-size: 1.12rem;
   font-weight: 700;
-  color: var(--color-navy);
+  color: var(--color-headline-primary);
   line-height: 1.45;
   margin-bottom: 0.8rem;
   font-family: var(--font-body);
