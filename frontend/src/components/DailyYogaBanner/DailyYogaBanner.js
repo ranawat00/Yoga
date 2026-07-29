@@ -1,7 +1,7 @@
 import './DailyYogaBanner.css';
 import React from 'react';
 import Logo from '../../common/Logo/Logo';
-import awakenBannerImg from '../../assets/awaken_program_banner.jpg';
+import yogaBannerImg from '../../assets/banner_yoga.jpg';
 
 export default function DailyYogaBanner() {
   const handleScrollTo = (id) => {
@@ -20,29 +20,35 @@ export default function DailyYogaBanner() {
         </svg>
       </div>
       <div className="daily-yoga-container">
+        {/* Top Header Content */}
+        <div className="daily-yoga-top-content">
+          <h2 className="top-banner-title">Step into a Better Tomorrow, Starting Today</h2>
+          <div className="top-banner-sub">Breath — Science — Awakening</div>
+          <p className="top-banner-desc">
+            Master your potential. From raising your consciousness and climbing the professional ladder to making powerful relationships and increasing your well being, your path to holistic growth begins now. Define your goals, and let us help you become an even better version of yourself
+          </p>
+        </div>
+
         <div className="daily-yoga-card">
-          {/* Left Column: Text & Content */}
-          <div className="daily-yoga-content">
-            <div className="satvic-brand">
-              <Logo size={46} />
-            </div>
-
-            <h2 className="daily-yoga-title">Practice Yoga Daily with us!</h2>
-            <p className="daily-yoga-tagline">
-              Practice anytime for your physical & mental health from the comfort of your home!
-            </p>
-            <button className="btn btn-join-now" onClick={() => handleScrollTo('workshops')}>
-              Become a Member
-            </button>
-          </div>
-
-          {/* Right Column: Image */}
-          <div className="daily-yoga-image-container">
+          <div className="daily-yoga-image-wrapper">
             <img loading="lazy"
-              src={awakenBannerImg}
-              alt="Awaken+ Program - 3 Day Mind-body-spirit Transformation"
+              src={yogaBannerImg}
+              alt="Start Your 5 Days Online Free Yoga"
               className="daily-yoga-img"
             />
+
+            {/* Register for Free Pill Button Overlay on Image */}
+            <div className="daily-yoga-overlay-content">
+              <button className="btn-register-free" onClick={() => handleScrollTo('workshops')}>
+                <span className="btn-text">Register for Free</span>
+                <span className="btn-arrow-circle">
+                  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#FFFFFF" strokeWidth="2.8" strokeLinecap="round" strokeLinejoin="round">
+                    <polyline points="7 17 12 12 7 7" />
+                    <polyline points="13 17 18 12 13 7" />
+                  </svg>
+                </span>
+              </button>
+            </div>
           </div>
         </div>
       </div>

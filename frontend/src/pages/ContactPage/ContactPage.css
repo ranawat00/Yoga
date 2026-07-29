@@ -12,13 +12,13 @@
 
 .contact-title {
   font-size: 3rem;
-  color: var(--color-blue);
+  color: var(--color-headline-primary);
   margin-bottom: 1rem;
 }
 
 .contact-subtitle {
   font-size: 1.1rem;
-  color: var(--color-text-secondary);
+  color: var(--color-text-primary);
 }
 
 .contact-container {
@@ -43,14 +43,14 @@
 
 .info-title {
   font-size: 2.2rem;
-  color: var(--color-blue);
+  color: var(--color-headline-primary);
   margin-bottom: 1rem;
 }
 
 .info-intro {
   font-size: 1rem;
   line-height: 1.6;
-  color: var(--color-text-secondary);
+  color: var(--color-text-primary);
   margin-bottom: 2rem;
 }
 
@@ -100,7 +100,7 @@
 
 .compact-icon {
   background-color: var(--color-sage-bg);
-  color: var(--color-blue);
+  color: var(--color-headline-primary);
   width: 40px;
   height: 40px;
   border-radius: 50%;
@@ -111,7 +111,7 @@
 
 .compact-details h4 {
   font-size: 0.95rem;
-  color: var(--color-text-primary);
+  color: var(--color-headline-primary);
   margin-bottom: 0.2rem;
   font-weight: 700;
 }
@@ -119,13 +119,13 @@
 .compact-details a,
 .compact-details span {
   font-size: 0.85rem;
-  color: var(--color-text-secondary);
+  color: var(--color-text-primary);
   font-weight: 500;
   word-break: break-all;
 }
 
 .compact-details a {
-  color: var(--color-blue);
+  color: var(--color-headline-primary);
   transition: var(--transition-smooth);
 }
 

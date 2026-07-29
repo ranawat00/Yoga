@@ -30,11 +30,13 @@
   --color-liquid-lime-highlight: #86BD43;
   --color-liquid-white-accent: #FCFCFB;
   
-  /* Text colors */
-  --color-text-primary: #1C241E;
-  --color-text-secondary: #4A564D;
+  /* Headline & Text Color Palette */
+  --color-headline-primary: #748B6F;
+  --color-headline-secondary: #5C7257;
+  --color-text-primary: #3A3B3B;
+  --color-text-secondary: #3A3B3B;
   --color-text-light: #F5F2EB;
-  --color-text-muted: #849086;
+  --color-text-muted: #646868;
   
   /* UI variables */
   --font-heading: 'Playfair Display', Georgia, serif;
@@ -89,10 +91,11 @@ h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-heading);
   font-weight: 700;
   line-height: 1.25;
+  color: var(--color-headline-primary);
 }
 
 p {
-  color: var(--color-text-secondary);
+  color: var(--color-text-primary);
 }
 
 a {

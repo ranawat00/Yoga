@@ -75,7 +75,7 @@
 
 .book-title {
   font-size: 1.2rem;
-  color: var(--color-navy);
+  color: var(--color-headline-primary);
   font-weight: 700;
   margin: 0;
 }

@@ -29,7 +29,7 @@
 
 .health-score-title {
   font-size: 3rem;
-  color: var(--color-blue);
+  color: var(--color-headline-primary);
   font-family: var(--font-heading);
   margin-bottom: 1.5rem;
   line-height: 1.25;
@@ -37,7 +37,7 @@
 
 .health-score-desc {
   font-size: 1.15rem;
-  color: var(--color-text-secondary);
+  color: var(--color-text-primary);
   line-height: 1.7;
   max-width: 520px;
 }
@@ -102,7 +102,7 @@
 .card-title {
   font-size: 1.2rem;
   font-weight: 700;
-  color: var(--color-navy);
+  color: var(--color-headline-primary);
   margin: 1.2rem 0 1.2rem 0;
   line-height: 1.45;
   font-family: var(--font-body);
@@ -129,7 +129,7 @@
 .info-num {
   font-size: 2.2rem;
   font-weight: 800;
-  color: var(--color-navy);
+  color: var(--color-headline-primary);
   line-height: 1;
   margin-bottom: 4px;
   font-family: var(--font-body);

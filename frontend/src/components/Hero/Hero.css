@@ -448,6 +448,11 @@
 @media (max-width: 992px) {
   .hero-sage {
     padding: 7.5rem 1.2rem 3.5rem 1.2rem;
+    background: linear-gradient(180deg, rgba(20, 5, 25, 0.35) 0%, rgba(15, 3, 20, 0.65) 100%), url('../../assets/hero_mobile_sunset.jpg') no-repeat center bottom / cover;
+  }
+
+  .hero-liquid-wave-bg {
+    display: none;
   }
 
   .hero-sage-container {

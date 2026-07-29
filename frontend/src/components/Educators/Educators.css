@@ -22,7 +22,7 @@
 
 .educators-header .section-title {
   font-size: 2.8rem;
-  color: var(--color-navy);
+  color: var(--color-headline-primary);
   font-family: var(--font-heading);
   margin-bottom: 0.8rem;
   font-weight: 700;
@@ -30,7 +30,7 @@
 
 .educators-header .section-subtitle {
   font-size: 1.15rem;
-  color: var(--color-text-secondary);
+  color: var(--color-text-primary);
   font-family: var(--font-body);
 }
 
@@ -88,7 +88,7 @@
 .educator-name {
   font-size: 1.08rem;
   font-weight: 700;
-  color: var(--color-navy);
+  color: var(--color-headline-primary);
   font-family: var(--font-body);
   margin: 0;
   line-height: 1.3;
