@@ -1,6 +1,7 @@
-import React, { lazy, Suspense } from 'react';
+import React, { lazy, Suspense, useEffect } from 'react';
 import { AppProvider } from './redux/AppProvider';
 import { useApp } from './hooks/useApp';
+import { VIEW_TO_PATH, PATH_TO_VIEW } from './redux/slices/uiSlice';
 
 // Layout Components
 import Navbar from './layout/Navbar/Navbar';
@@ -43,8 +44,43 @@ const AuthModal = lazy(() => import('./layout/AuthModal/AuthModal'));
 const ProfileDrawer = lazy(() => import('./layout/ProfileDrawer/ProfileDrawer'));
 const ChatAssistant = lazy(() => import('./components/ChatAssistant/ChatAssistant'));
 
+const VIEW_TITLES = {
+  home: 'Yoga Healers | Holistic Health & Satvic Wellness',
+  about: 'About Us | Yoga Healers',
+  careers: 'Careers | Yoga Healers',
+  books: 'Books & Recipe Guides | Yoga Healers',
+  products: 'Shop Organic Products | Yoga Healers',
+  contact: 'Contact Us | Yoga Healers',
+  workshops: 'Holistic Workshops | Yoga Healers',
+  'health-score': 'Health Score Assessment | Yoga Healers',
+  orders: 'My Orders | Yoga Healers',
+};
+
 function AppContent() {
-  const { isCartOpen, isCheckoutOpen, view } = useApp();
+  const { isCartOpen, isCheckoutOpen, view, setView } = useApp();
+
+  // Listen for browser Back / Forward navigation events
+  useEffect(() => {
+    const handlePopState = () => {
+      const path = window.location.pathname.toLowerCase().replace(/\/+$/, '') || '/';
+      const matchedView = PATH_TO_VIEW[path] || 'home';
+      setView(matchedView);
+    };
+
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, [setView]);
+
+  // Synchronize browser address bar URL and page title when `view` changes
+  useEffect(() => {
+    const targetPath = VIEW_TO_PATH[view] || '/';
+    if (window.location.pathname !== targetPath) {
+      window.history.pushState({ view }, '', targetPath);
+    }
+    if (VIEW_TITLES[view]) {
+      document.title = VIEW_TITLES[view];
+    }
+  }, [view]);
 
   return (
     <div className="App">

@@ -22,7 +22,12 @@ export default function Navbar() {
 
 
   useEffect(() => {
+    setActiveLink(view);
+  }, [view]);
+
+  useEffect(() => {
     const handleScroll = () => {
+      if (view !== 'home') return;
       const sections = ['home', 'workshops', 'products', 'health-score', 'verticals', 'success-stories', 'educators', 'faq'];
       const scrollPosition = window.scrollY + 200;
 
@@ -48,7 +53,7 @@ export default function Navbar() {
     handleScroll();
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [view]);
 
   const handleLinkClick = (id, e) => {
     e.preventDefault();
@@ -160,17 +165,17 @@ export default function Navbar() {
         {/* Desktop Navigation Links */}
         <ul className="nav-links">
           <li>
-            <a href="#home" className={activeLink === 'home' ? 'active' : ''} onClick={(e) => handleLinkClick('home', e)}>
+            <a href="/" className={activeLink === 'home' ? 'active' : ''} onClick={(e) => handleLinkClick('home', e)}>
               Home
             </a>
           </li>
           <li>
-            <a href="#about" className={activeLink === 'about' ? 'active' : ''} onClick={(e) => handleLinkClick('about', e)}>
+            <a href="/about" className={activeLink === 'about' ? 'active' : ''} onClick={(e) => handleLinkClick('about', e)}>
               About Us
             </a>
           </li>
           <li className="has-dropdown">
-            <a href="#workshops" className={activeLink === 'workshops' ? 'active' : ''} onClick={(e) => handleLinkClick('workshops', e)}>
+            <a href="/workshops" className={activeLink === 'workshops' ? 'active' : ''} onClick={(e) => handleLinkClick('workshops', e)}>
               Workshops {renderChevron()}
             </a>
             <div className="nav-dropdown workshops-mega">
@@ -204,7 +209,7 @@ export default function Navbar() {
             </div>
           </li>
           <li className="has-dropdown">
-            <a href="#books" className={activeLink === 'books' ? 'active' : ''} onClick={(e) => handleLinkClick('books', e)}>
+            <a href="/books" className={activeLink === 'books' ? 'active' : ''} onClick={(e) => handleLinkClick('books', e)}>
               Books {renderChevron()}
             </a>
             <div className="nav-dropdown books-mega">
@@ -247,7 +252,7 @@ export default function Navbar() {
             </div>
           </li>
           <li className="has-dropdown">
-            <a href="#products" className={activeLink === 'products' ? 'active' : ''} onClick={(e) => handleLinkClick('products', e)}>
+            <a href="/products" className={activeLink === 'products' ? 'active' : ''} onClick={(e) => handleLinkClick('products', e)}>
               Shop {renderChevron()}
             </a>
             <div className="nav-dropdown products-mega">
@@ -290,12 +295,12 @@ export default function Navbar() {
             </div>
           </li>
           <li>
-            <a href="#health-score" className={activeLink === 'health-score' ? 'active' : ''} onClick={(e) => handleLinkClick('health-score', e)}>
+            <a href="/health-score" className={activeLink === 'health-score' ? 'active' : ''} onClick={(e) => handleLinkClick('health-score', e)}>
               Health Score
             </a>
           </li>
           <li>
-            <a href="#careers" className={activeLink === 'careers' ? 'active' : ''} onClick={(e) => handleLinkClick('careers', e)}>
+            <a href="/careers" className={activeLink === 'careers' ? 'active' : ''} onClick={(e) => handleLinkClick('careers', e)}>
               Careers
             </a>
           </li>
@@ -370,42 +375,42 @@ export default function Navbar() {
           {/* Drawer Menu Items */}
           <ul className="mobile-drawer-links">
             <li>
-              <a href="#home" className={activeLink === 'home' ? 'active-pill' : ''} onClick={(e) => handleLinkClick('home', e)}>
+              <a href="/" className={activeLink === 'home' ? 'active-pill' : ''} onClick={(e) => handleLinkClick('home', e)}>
                 Home
               </a>
             </li>
             <li>
-              <a href="#about" className={activeLink === 'about' ? 'active-pill' : ''} onClick={(e) => handleLinkClick('about', e)}>
+              <a href="/about" className={activeLink === 'about' ? 'active-pill' : ''} onClick={(e) => handleLinkClick('about', e)}>
                 About Us
               </a>
             </li>
             <li>
-              <a href="#workshops" className={activeLink === 'workshops' ? 'active-pill' : ''} onClick={(e) => handleLinkClick('workshops', e)}>
+              <a href="/workshops" className={activeLink === 'workshops' ? 'active-pill' : ''} onClick={(e) => handleLinkClick('workshops', e)}>
                 Workshops
               </a>
             </li>
             <li>
-              <a href="#books" className={activeLink === 'books' ? 'active-pill' : ''} onClick={(e) => handleLinkClick('books', e)}>
+              <a href="/books" className={activeLink === 'books' ? 'active-pill' : ''} onClick={(e) => handleLinkClick('books', e)}>
                 Books
               </a>
             </li>
             <li>
-              <a href="#products" className={activeLink === 'products' ? 'active-pill' : ''} onClick={(e) => handleLinkClick('products', e)}>
+              <a href="/products" className={activeLink === 'products' ? 'active-pill' : ''} onClick={(e) => handleLinkClick('products', e)}>
                 Shop
               </a>
             </li>
             <li>
-              <a href="#health-score" onClick={(e) => handleLinkClick('health-score', e)}>
+              <a href="/health-score" onClick={(e) => handleLinkClick('health-score', e)}>
                 Health Score
               </a>
             </li>
             <li>
-              <a href="#careers" className={activeLink === 'careers' ? 'active-pill' : ''} onClick={(e) => handleLinkClick('careers', e)}>
+              <a href="/careers" className={activeLink === 'careers' ? 'active-pill' : ''} onClick={(e) => handleLinkClick('careers', e)}>
                 Careers
               </a>
             </li>
             <li>
-              <a href="#contact" className={activeLink === 'contact' ? 'active-pill' : ''} onClick={(e) => handleLinkClick('contact', e)}>
+              <a href="/contact" className={activeLink === 'contact' ? 'active-pill' : ''} onClick={(e) => handleLinkClick('contact', e)}>
                 Contact Us
               </a>
             </li>

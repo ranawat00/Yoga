@@ -78,22 +78,22 @@ export default function Footer() {
         {/* Column 2: Quick Links */}
         <div className="footer-col link-col">
           <ul className="footer-links">
-            <li><a href="#about" onClick={(e) => { e.preventDefault(); setView('about'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}>About Us</a></li>
-            <li><a href="#workshops" onClick={(e) => { e.preventDefault(); setView('workshops'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}>Workshops</a></li>
-            <li><a href="#books" onClick={(e) => { e.preventDefault(); setView('books'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}>Books</a></li>
-            <li><a href="#products" onClick={(e) => { e.preventDefault(); setView('products'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}>Shop</a></li>
-            <li><a href="#yoga" onClick={(e) => { e.preventDefault(); setView('home'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}>Satvic Yoga</a></li>
+            <li><a href="/about" onClick={(e) => { e.preventDefault(); setView('about'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}>About Us</a></li>
+            <li><a href="/workshops" onClick={(e) => { e.preventDefault(); setView('workshops'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}>Workshops</a></li>
+            <li><a href="/books" onClick={(e) => { e.preventDefault(); setView('books'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}>Books</a></li>
+            <li><a href="/products" onClick={(e) => { e.preventDefault(); setView('products'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}>Shop</a></li>
+            <li><a href="/" onClick={(e) => { e.preventDefault(); setView('home'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}>Satvic Yoga</a></li>
           </ul>
         </div>
 
         {/* Column 3: Secondary Links */}
         <div className="footer-col link-col">
           <ul className="footer-links">
-            <li><a href="#youth" onClick={(e) => { e.preventDefault(); handleScrollTo('home'); }}>Satvic Youth</a></li>
-            <li><a href="#team" onClick={(e) => { e.preventDefault(); handleScrollTo('home'); }}>Meet The Team</a></li>
-            <li><a href="#stories" onClick={(e) => { e.preventDefault(); handleScrollTo('success-stories'); }}>Satvic Stories</a></li>
-            <li><a href="#blogs" onClick={(e) => { e.preventDefault(); handleScrollTo('home'); }}>Blogs</a></li>
-            <li><a href="#contact" onClick={(e) => { e.preventDefault(); setView('contact'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}>Contact Us</a></li>
+            <li><a href="/" onClick={(e) => { e.preventDefault(); handleScrollTo('home'); }}>Satvic Youth</a></li>
+            <li><a href="/" onClick={(e) => { e.preventDefault(); handleScrollTo('home'); }}>Meet The Team</a></li>
+            <li><a href="/" onClick={(e) => { e.preventDefault(); handleScrollTo('success-stories'); }}>Satvic Stories</a></li>
+            <li><a href="/" onClick={(e) => { e.preventDefault(); handleScrollTo('home'); }}>Blogs</a></li>
+            <li><a href="/contact" onClick={(e) => { e.preventDefault(); setView('contact'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}>Contact Us</a></li>
           </ul>
         </div>
 
