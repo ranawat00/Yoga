@@ -36,6 +36,7 @@ const AboutUs = lazy(() => import('./pages/AboutUsPage/AboutUsPage'));
 const Contact = lazy(() => import('./pages/ContactPage/ContactPage'));
 const Careers = lazy(() => import('./pages/CareersPage/CareersPage'));
 const OrdersPage = lazy(() => import('./pages/OrdersPage/OrdersPage'));
+const RegisterFreePage = lazy(() => import('./pages/RegisterFreePage/RegisterFreePage'));
 
 // Lazy load modals/drawers
 const CartDrawer = lazy(() => import('./layout/CartDrawer/CartDrawer'));
@@ -54,6 +55,7 @@ const VIEW_TITLES = {
   workshops: 'Holistic Workshops | Yoga Healers',
   'health-score': 'Health Score Assessment | Yoga Healers',
   orders: 'My Orders | Yoga Healers',
+  'register-free': 'Register for 5 Days Free Yoga Sessions | Yoga Healers',
 };
 
 function AppContent() {
@@ -113,6 +115,8 @@ function AppContent() {
         <Suspense fallback={<Loader />}><HealthScore isStandalone={true} /></Suspense>
       ) : view === 'orders' ? (
         <Suspense fallback={<Loader />}><OrdersPage /></Suspense>
+      ) : view === 'register-free' ? (
+        <Suspense fallback={<Loader />}><RegisterFreePage /></Suspense>
       ) : (
         <>
           {/* Main Page Sections */}
