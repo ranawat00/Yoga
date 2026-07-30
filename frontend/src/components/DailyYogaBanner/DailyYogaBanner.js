@@ -1,14 +1,10 @@
 import './DailyYogaBanner.css';
 import React from 'react';
 import yogaBannerImg from '../../assets/banner_yoga.jpg';
+import { useApp } from '../../hooks/useApp';
 
 export default function DailyYogaBanner() {
-  const handleScrollTo = (id) => {
-    const el = document.getElementById(id);
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
+  const { setView } = useApp();
 
   return (
     <section className="daily-yoga-section">
@@ -41,7 +37,7 @@ export default function DailyYogaBanner() {
 
               {/* Register for Free Pill Button Overlay on Image */}
               <div className="daily-yoga-overlay-content">
-                <button className="btn-register-free" onClick={() => handleScrollTo('workshops')}>
+                <button className="btn-register-free" onClick={() => setView('register-free')}>
                   <span className="btn-text">Register for Free</span>
                   <span className="btn-arrow-circle">
                     <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#FFFFFF" strokeWidth="2.8" strokeLinecap="round" strokeLinejoin="round">

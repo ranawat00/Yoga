@@ -10,6 +10,7 @@ export const VIEW_TO_PATH = {
   workshops: '/workshops',
   'health-score': '/health-score',
   orders: '/orders',
+  'register-free': '/register-free',
 };
 
 export const PATH_TO_VIEW = {
@@ -26,6 +27,7 @@ export const PATH_TO_VIEW = {
   '/workshops': 'workshops',
   '/health-score': 'health-score',
   '/orders': 'orders',
+  '/register-free': 'register-free',
 };
 
 const getInitialView = () => {

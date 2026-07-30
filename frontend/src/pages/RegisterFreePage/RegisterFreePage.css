@@ -1,0 +1,1040 @@
+/* ═══════════════════════════════════════════════════════════
+   Register Free Page — Text & Compact Button Exact Match
+   ═══════════════════════════════════════════════════════════ */
+/* Roboto is loaded globally from index.css */
+
+/* ── Keyframes ─────────────────────────────────────────────── */
+@keyframes rfFadeUp {
+  from { opacity: 0; transform: translateY(15px); }
+  to   { opacity: 1; transform: translateY(0);    }
+}
+
+/* ── Page shell ────────────────────────────────────────────── */
+.register-free-page {
+  width: 100%;
+  font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   HERO SECTION (Split Card Desktop Design matching reference)
+   ══════════════════════════════════════════════════════════════ */
+.register-hero-section {
+  width: 100%;
+  background-color: #ede8de;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.register-hero-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
+.register-hero-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  padding: 2rem 1.5rem 2.5rem 2rem;
+  gap: 0.6rem;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   MEDIA LOGOS SECTION
+   ══════════════════════════════════════════════════════════════ */
+.register-logos-section {
+  width: 100%;
+  background-color: #ede8de; /* Matches the hero section beige background */
+}
+
+/* ══════════════════════════════════════════════════════════════
+   WELCOME SECTION
+   ══════════════════════════════════════════════════════════════ */
+.register-welcome-section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
+  padding-top: 0;       /* no gap above the image */
+  padding-bottom: 4rem;
+  overflow: hidden;
+  margin-top: 0;
+}
+
+.register-welcome-img {
+  /* Full bleed — stretch edge-to-edge on every screen size */
+  width: 100vw;
+  max-width: 100vw;
+  height: 380px;
+  object-fit: cover;
+  object-position: center 30%;
+  display: block;
+  margin-left: calc(-50vw + 50%);
+  margin-right: calc(-50vw + 50%);
+}
+
+.register-welcome-content {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.register-welcome-title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.15rem;
+  margin-bottom: 1.25rem;
+}
+
+.register-welcome-title-top {
+  color: #6b9376;
+  font-size: 1.65rem;
+  font-weight: 800;
+}
+
+.register-welcome-title-bottom {
+  color: #6b9376;
+  font-size: 2rem;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.register-welcome-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.25rem;
+}
+
+.register-welcome-logo {
+  width: 90px;
+  height: 90px;
+  object-fit: contain;
+  display: block;
+}
+
+.register-welcome-subtitle {
+  color: #6b9376;
+  font-size: 1.2rem;
+  font-weight: 500;
+  line-height: 1.45;
+  margin-bottom: 1.2rem;
+}
+
+.register-welcome-desc {
+  color: #444444;
+  font-size: 0.95rem;
+  line-height: 1.7;
+  max-width: 580px;
+}
+
+
+/* ══════════════════════════════════════════════════════════════
+   STATS SECTION — Animated counting numbers
+   ══════════════════════════════════════════════════════════════ */
+
+@keyframes statsSlideUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0);    }
+}
+
+@keyframes starPop {
+  0%   { transform: scale(0) rotate(-20deg); opacity: 0; }
+  70%  { transform: scale(1.3) rotate(5deg); }
+  100% { transform: scale(1) rotate(0deg); opacity: 1; }
+}
+
+.register-stats-section {
+  width: 100%;
+  background-color: #ffffff;
+  padding: 1.5rem 1.25rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  box-sizing: border-box;
+}
+
+/* Card base */
+.stats-card {
+  background-color: #f2f2f2;
+  border-radius: 16px;
+  padding: 1.5rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+
+/* Triggered when section is visible */
+.stats-card.stats-visible {
+  animation: statsSlideUp 0.65s cubic-bezier(0.22, 1, 0.36, 1) both;
+  opacity: 1;
+}
+
+/* Full-width top card */
+.stats-card--wide {
+  width: 100%;
+}
+
+/* Bottom row */
+.stats-row {
+  display: flex;
+  gap: 0.75rem;
+  width: 100%;
+}
+
+/* Half-width bottom cards */
+.stats-card--half {
+  flex: 1;
+}
+
+/* Highlight card (Globally Recognised) */
+.stats-card--highlight {
+  background-color: #f2f2f2;
+}
+
+/* Number display */
+.stats-number {
+  display: flex;
+  align-items: baseline;
+  gap: 0.1rem;
+  margin-bottom: 0.35rem;
+  justify-content: center;
+}
+
+.stats-count {
+  font-family: 'Roboto', sans-serif;
+  font-size: 2.6rem;
+  font-weight: 800;
+  color: #2c2c2c;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+.stats-card--half .stats-count {
+  font-size: 2rem;
+}
+
+.stats-plus {
+  font-family: 'Roboto', sans-serif;
+  font-size: 2rem;
+  font-weight: 800;
+  color: #2c2c2c;
+  line-height: 1;
+}
+
+.stats-card--half .stats-plus {
+  font-size: 1.6rem;
+}
+
+.stats-unit {
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #2c2c2c;
+  margin-left: 0.25rem;
+}
+
+/* Label */
+.stats-label {
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #888888;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  line-height: 1.4;
+  margin: 0;
+}
+
+/* Globally Recognised text */
+.stats-recognised {
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: #1a1a1a;
+  line-height: 1.25;
+  margin: 0 0 0.65rem;
+}
+
+.stats-stars {
+  display: flex;
+  gap: 3px;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   BENEFITS SECTION (Image)
+   ══════════════════════════════════════════════════════════════ */
+.register-benefits-section {
+  width: 100%;
+  background-color: #ffffff;
+  padding: 3rem 1.25rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.register-benefits-img {
+  width: 100%;
+  max-width: 860px; /* same max-width as the cards on desktop */
+  height: auto;
+  display: block;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   MID CTA SECTION (Gradient Text)
+   ══════════════════════════════════════════════════════════════ */
+.register-mid-cta-section {
+  width: 100%;
+  background-color: #ede8de; /* beige background */
+  padding: 3.5rem 1.5rem;
+  display: flex;
+  justify-content: center;
+}
+
+.register-mid-cta-container {
+  width: 100%;
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+}
+
+.register-mid-cta-overline {
+  font-family: 'Roboto', sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #73927c; /* sage green */
+  margin-bottom: 0.3rem;
+  letter-spacing: 0.02em;
+}
+
+.register-mid-cta-title {
+  font-family: 'Roboto', sans-serif;
+  font-size: 2.2rem;
+  font-weight: 800;
+  line-height: 1.1;
+  margin: 0 0 0.8rem 0;
+  letter-spacing: -0.02em;
+  background: linear-gradient(90deg, #ff2a4b, #ffa15d);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.register-mid-cta-subtitle {
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #73927c;
+  line-height: 1.3;
+  margin: 0 0 2rem 0;
+}
+
+.register-mid-cta-btn {
+  background-color: #73927c;
+  color: #ffffff;
+  border: none;
+  border-radius: 50px;
+  padding: 0.85rem 0;
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(115, 146, 124, 0.3);
+  transition: background 0.25s, transform 0.2s, box-shadow 0.25s;
+  width: 100%;
+  max-width: 380px;
+  align-self: center; /* Center the button in the container */
+}
+
+.register-mid-cta-btn:hover {
+  background-color: #617f69;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(115, 146, 124, 0.4);
+}
+
+/* ══════════════════════════════════════════════════════════════
+   SUCCESS STORIES SECTION
+   ══════════════════════════════════════════════════════════════ */
+.register-success-section {
+  width: 100%;
+  background-color: #ffffff;
+  padding: 4rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+}
+
+.register-success-title {
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: #73927c;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin: 0 0 2rem 0;
+  text-align: center;
+}
+
+.register-faq-title {
+  margin: 3.5rem 0 0 0;
+}
+
+.register-success-slider {
+  display: flex;
+  gap: 1.5rem;
+  overflow-x: auto;
+  padding: 1rem 1.5rem 2rem 1.5rem;
+  width: 100%;
+  max-width: 1600px;
+  margin: 0 auto;
+  box-sizing: border-box;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none; /* Firefox */
+}
+
+@media (min-width: 1500px) {
+  .register-success-slider {
+    justify-content: center;
+  }
+}
+
+.register-success-slider::-webkit-scrollbar {
+  display: none; /* Chrome/Safari */
+}
+
+.register-success-card {
+  flex: 0 0 340px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  padding: 1.5rem;
+  scroll-snap-align: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.register-success-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.register-success-img {
+  width: 65px;
+  height: 65px;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.register-success-info {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.register-success-name {
+  font-family: 'Roboto', sans-serif;
+  font-size: 1rem;
+  font-weight: 800;
+  color: #1a1a1a;
+  margin: 0 0 0.25rem 0;
+}
+
+.register-success-subtitle {
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.8rem;
+  color: #6b7280;
+  margin: 0 0 0.4rem 0;
+}
+
+.register-success-rating-row {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.register-success-rating {
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 800;
+  color: #1a1a1a;
+}
+
+.register-success-google {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+}
+
+.register-success-divider {
+  border: none;
+  border-top: 1px solid #f3f4f6;
+  margin: 0 0 1.25rem 0;
+  width: 100%;
+}
+
+.register-success-text {
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: #374151;
+  margin: 0;
+}
+
+.star-icon {
+  opacity: 0;
+}
+
+.star-icon.star-pop {
+  animation: starPop 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   SECOND IMAGE SECTION (after Stats)
+   ══════════════════════════════════════════════════════════════ */
+.register-second-section {
+  width: 100%;
+  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 0 3rem 0; /* 3rem space before footer */
+  margin: 0;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.register-second-img {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 0;
+  opacity: 0;
+  animation: rfFadeUp 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation-delay: 0.1s;
+}
+
+@media (max-width: 480px) {
+  .register-second-img {
+    max-width: 100%;        /* full width on small phones */
+    border-radius: 12px;
+  }
+}
+
+/* ══════════════════════════════════════════════════════════════
+   BOTTOM CTA SECTION
+   ══════════════════════════════════════════════════════════════ */
+.register-cta-bottom {
+  width: 100%;
+  background-color: #ede8de; /* cream/beige matching the screenshot */
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 3.5rem 1.5rem 25rem; /* large bottom padding to show the woman at the bottom on mobile */
+  box-sizing: border-box;
+  gap: 0.6rem;
+  /* Fade in when scrolled into view */
+  animation: rfFadeUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: 0.1s;
+}
+
+.register-cta-overline {
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #4a3b32; /* Warm dark brown */
+  letter-spacing: 0.02em;
+  margin-bottom: 0.2rem;
+}
+
+.register-cta-title {
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #4e2a1e; /* Deep reddish brown */
+  line-height: 1.15;
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+
+.register-cta-subtitle {
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #4a3b32; /* Warm dark brown */
+  line-height: 1.35;
+  margin: 0;
+  max-width: 90%;
+  letter-spacing: -0.01em;
+}
+
+.register-submit-btn {
+  background-color: #73927c; /* Sage green from screenshot */
+  color: #ffffff;
+  border: none;
+  border-radius: 50px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 0.35rem 1.6rem 0.35rem 0.35rem; /* exact spacing for circle and text */
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(115, 146, 124, 0.3);
+  transition: background 0.25s, transform 0.2s, box-shadow 0.25s;
+  width: fit-content;
+  align-self: center;
+  margin: 0 auto;
+}
+
+.register-submit-btn:hover {
+  background-color: #617f69;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(115, 146, 124, 0.4);
+}
+
+.register-arrow-circle {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: transform 0.3s ease;
+}
+
+.register-submit-btn:hover .register-arrow-circle {
+  transform: scale(1.05);
+}
+
+.register-chevron-svg {
+  width: 10px;
+  height: 10px;
+}
+
+.register-highlight-banner {
+  font-family: 'Roboto', sans-serif;
+  color: #4e2a1e; /* Deep reddish brown */
+  font-size: 0.95rem;
+  font-weight: 700;
+  text-align: left;
+  margin-top: 1rem;
+  margin-bottom: 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.register-highlight-divider {
+  color: #4e2a1e;
+  font-weight: 700;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   MENTOR SLIDER SECTION
+   ══════════════════════════════════════════════════════════════ */
+.mentor-slider-section {
+  width: 100%;
+  background-color: transparent;
+  padding: 2rem 0 2.5rem;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.mentor-slider-title {
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: #6b9376;          /* sage green matching design */
+  text-align: center;
+  letter-spacing: 0.06em;
+  margin: 0 0 1.75rem;
+}
+
+/* Track: shows 3 cards at once — prev (peek), active, next (peek) */
+.mentor-track {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 0 1rem;
+  user-select: none;
+  touch-action: pan-y;
+}
+
+/* Base card */
+.mentor-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 0 0 28%;
+  max-width: 130px;
+  opacity: 0.5;
+  transform: scale(0.88);
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+              opacity  0.4s ease;
+}
+
+/* Active (centre) card */
+.mentor-card--active {
+  flex: 0 0 36%;
+  max-width: 160px;
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Image container — sage green square */
+.mentor-img-wrap {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background-color: #c9e4d6;   /* mint sage matching screenshot */
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  margin-bottom: 0.65rem;
+}
+
+.mentor-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  display: block;
+}
+
+/* Name */
+.mentor-name {
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 800;
+  color: #1a1a1a;
+  text-align: center;
+  letter-spacing: 0.03em;
+  margin: 0 0 0.2rem;
+  line-height: 1.2;
+}
+
+/* Role */
+.mentor-role {
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 400;
+  color: #777777;
+  text-align: center;
+  margin: 0;
+  line-height: 1.3;
+}
+
+/* Dot indicators */
+.mentor-dots {
+  display: flex;
+  justify-content: center;
+  gap: 0.45rem;
+  margin-top: 1.5rem;
+}
+
+.mentor-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #d0d0d0;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: background 0.3s, transform 0.3s;
+  width: 8px;
+}
+
+.mentor-dot--active {
+  background-color: #6b9376;
+  transform: scale(1.3);
+}
+
+/* ══════════════════════════════════════════════════════════════
+   RESPONSIVE BREAKPOINTS
+   ══════════════════════════════════════════════════════════════ */
+
+/* ── TABLET & DESKTOP (768px+) ───────────────────────────────── */
+@media (min-width: 768px) {
+  /* Hero Section */
+  .register-hero-section {
+    flex-direction: row;
+    align-items: center;
+    max-width: 1400px;
+    margin: 3rem auto;
+    border-radius: 24px;
+    box-shadow: 0 12px 36px rgba(0, 0, 0, 0.04);
+    overflow: hidden;
+  }
+
+  .register-hero-img {
+    width: 50%;
+    height: 100%;
+    min-height: 500px;
+    object-fit: cover;
+  }
+
+  .register-hero-content {
+    width: 50%;
+    padding: 4rem 3rem;
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .register-highlight-banner {
+    font-size: 1.05rem;
+    margin-top: 1.25rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .register-submit-btn {
+    align-self: center;
+    font-size: 1.05rem;
+    padding: 0.45rem 2rem 0.45rem 0.45rem;
+  }
+
+  .register-arrow-circle {
+    height: 34px;
+    width: 34px;
+  }
+
+  /* Stats Section — 3 Card Desktop Grid Layout */
+  .register-stats-section {
+    align-items: stretch;
+    flex-direction: row;
+    justify-content: center;
+    gap: 1.25rem;
+    padding: 2.5rem 2rem;
+    max-width: none;
+    margin: 0;
+  }
+
+  .stats-card--wide {
+    flex: 1.2;
+    max-width: 450px;
+    padding: 2rem 1.5rem;
+  }
+
+  .stats-row {
+    flex: 2;
+    max-width: 610px;
+    gap: 1.25rem;
+  }
+
+  .stats-card--half {
+    padding: 2rem 1.5rem;
+  }
+
+  .stats-count {
+    font-size: 3rem;
+  }
+
+  .stats-card--half .stats-count {
+    font-size: 2.4rem;
+  }
+
+  .stats-label {
+    font-size: 0.8rem;
+  }
+
+  .stats-recognised {
+    font-size: 1.2rem;
+  }
+
+  /* Welcome Section */
+  .register-welcome-section {
+    flex-direction: row-reverse;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5rem 3rem;
+    max-width: 1400px;
+    margin: 0 auto;
+    gap: 3rem;
+  }
+
+  .register-welcome-img {
+    width: 48%;
+    height: auto;
+    max-width: 600px;
+    border-radius: 20px;
+    margin: 0;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+  }
+
+  .register-welcome-content {
+    width: 48%;
+    max-width: none;
+    margin: 0;
+    padding: 0;
+    align-items: flex-start;
+    text-align: left;
+  }
+  
+  .register-welcome-title {
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .register-welcome-title-top {
+    font-size: 1.8rem;
+  }
+
+  .register-welcome-title-bottom {
+    font-size: 2.2rem;
+  }
+
+  .register-welcome-logo {
+    height: 110px;
+    width: 110px;
+  }
+
+  .register-welcome-subtitle {
+    font-size: 1.45rem;
+  }
+
+  .register-welcome-desc {
+    font-size: 1.05rem;
+    line-height: 1.7;
+  }
+
+  /* Bottom CTA Section — Centered Card Layout on Desktop */
+  .register-cta-bottom {
+    align-items: center;
+    border-radius: 24px;
+    box-shadow: 0 12px 36px rgba(0, 0, 0, 0.04);
+    margin: 3rem auto;
+    max-width: 860px;
+    padding: 4.5rem 2.5rem 36rem; /* Large bottom padding to show the background image graphics on desktop */
+    text-align: center;
+    background-size: cover;
+    background-position: center top;
+  }
+
+  .register-cta-overline {
+    font-size: 0.85rem;
+  }
+
+  .register-cta-title {
+    font-size: 1.75rem;
+  }
+
+  .register-cta-subtitle {
+    font-size: 1rem;
+    margin: 0.4rem 0 1.25rem;
+  }
+
+  .register-cta-btn {
+    font-size: 1rem;
+    min-width: 280px;
+    padding: 0.85rem 2.5rem;
+    width: auto;
+  }
+
+  /* Mentor Slider — Expanded Desktop Cards */
+  .mentor-slider-section {
+    margin: 0 auto;
+    max-width: 1100px;
+    padding: 3rem 2rem 3.5rem;
+  }
+
+  .mentor-slider-title {
+    font-size: 1.8rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .mentor-track {
+    gap: 1.75rem;
+  }
+
+  .mentor-card {
+    flex: 0 0 200px;
+    max-width: 200px;
+    opacity: 0.65;
+  }
+
+  .mentor-card--active {
+    flex: 0 0 240px;
+    max-width: 240px;
+    opacity: 1;
+  }
+
+  .mentor-img-wrap {
+    border-radius: 16px;
+    margin-bottom: 0.85rem;
+  }
+
+  .mentor-name {
+    font-size: 0.88rem;
+  }
+
+  .mentor-role {
+    font-size: 0.78rem;
+  }
+}
+
+
+
+/* ── MOBILE BREAKPOINTS ──────────────────────────────────────── */
+@media (max-width: 768px) {
+  .register-highlight-banner { flex-wrap: wrap; font-size: 0.92rem; gap: 0.3rem; margin-bottom: 0.75rem; }
+  .register-submit-btn       { font-size: 0.78rem; padding: 0.22rem 1rem 0.22rem 0.22rem; }
+
+  .register-welcome-img { height: 300px; }
+  .register-welcome-title-top    { font-size: 1.4rem; }
+  .register-welcome-title-bottom { font-size: 1.7rem; }
+  .register-welcome-subtitle     { font-size: 1.1rem; }
+  .register-welcome-desc         { font-size: 0.9rem; }
+}
+
+@media (max-width: 480px) {
+  .register-highlight-banner { font-size: 0.82rem; gap: 0.25rem; margin-bottom: 0.65rem; }
+  .register-highlight-divider { font-size: 1em; }
+  .register-submit-btn     { font-size: 0.75rem; gap: 0.4rem; padding: 0.2rem 0.95rem 0.2rem 0.2rem; }
+  .register-arrow-circle   { width: 20px; height: 20px; }
+  .register-chevron-svg   { width: 10px; height: 10px; }
+
+  .register-welcome-img { height: 240px; object-position: center 20%; }
+  .register-welcome-title-top    { font-size: 1.25rem; }
+  .register-welcome-title-bottom { font-size: 1.5rem; }
+  .register-welcome-subtitle     { font-size: 1rem; }
+}
+
+@media (max-width: 360px) {
+  .register-highlight-banner { font-size: 0.76rem; }
+  .register-submit-btn     { font-size: 0.72rem; padding: 0.18rem 0.85rem 0.18rem 0.18rem; }
+}
