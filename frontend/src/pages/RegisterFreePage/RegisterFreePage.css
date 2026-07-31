@@ -115,10 +115,11 @@
 
 .register-welcome-title-bottom {
   color: #6b9376;
-  font-size: clamp(1.2rem, 5vw, 2rem);
+  font-size: clamp(1.15rem, 4.8vw, 2rem);
   font-weight: 800;
   line-height: 1.2;
-  white-space: nowrap;
+  text-align: center;
+  max-width: 100%;
 }
 
 .register-welcome-badge {
@@ -137,17 +138,21 @@
 
 .register-welcome-subtitle {
   color: #6b9376;
-  font-size: 1.2rem;
+  font-size: clamp(0.95rem, 3.8vw, 1.2rem);
   font-weight: 500;
   line-height: 1.45;
   margin-bottom: 1.2rem;
+  max-width: 100%;
 }
 
 .register-welcome-desc {
   color: #444444;
-  font-size: 0.95rem;
+  font-size: clamp(0.85rem, 3.2vw, 0.95rem);
   line-height: 1.7;
   max-width: 580px;
+  width: 100%;
+  padding: 0 0.5rem;
+  box-sizing: border-box;
 }
 
 
@@ -1149,11 +1154,7 @@
   .register-highlight-banner { flex-wrap: wrap; font-size: 0.92rem; gap: 0.3rem; margin-bottom: 0.75rem; }
   .register-submit-btn       { font-size: 0.78rem; padding: 0.22rem 1rem 0.22rem 0.22rem; }
 
-  .register-welcome-img { height: 300px; }
-  .register-welcome-title-top    { font-size: 1.4rem; }
-  .register-welcome-title-bottom { font-size: 1.7rem; }
-  .register-welcome-subtitle     { font-size: 1.1rem; }
-  .register-welcome-desc         { font-size: 0.9rem; }
+  .register-welcome-img { height: 280px; }
 }
 
 @media (max-width: 480px) {
@@ -1164,10 +1165,7 @@
   .register-arrow-circle   { width: 20px; height: 20px; }
   .register-chevron-svg   { width: 10px; height: 10px; }
 
-  .register-welcome-img { height: 240px; object-position: center 20%; }
-  .register-welcome-title-top    { font-size: 1.25rem; }
-  .register-welcome-title-bottom { font-size: 1.5rem; }
-  .register-welcome-subtitle     { font-size: 1rem; }
+  .register-welcome-img { height: 220px; object-position: center 20%; }
 }
 
 @media (max-width: 360px) {
