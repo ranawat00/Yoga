@@ -106,8 +106,8 @@ function StatsSection() {
 /* ── Mentor data ──────────────────────────────────────────── */
 const MENTORS = [
   { img: mentor_1, name: 'DR.RIYA BARLA', role: 'Gynaecologist & Life Coach' },
-  { img: mentor_2, name: 'GAYATHRI BL', role: 'Wellness coach' },
-  { img: mentor_3, name: 'VIKRAM CHATURVEDI', role: 'Wellness coach' },
+  { img: mentor_2, name: 'VIKRAM CHATURVEDI', role: 'Wellness coach' },
+  { img: mentor_3, name: 'GAYATHRI BL', role: 'Wellness coach' },
   { img: mentor_4, name: 'DAVID JOHN', role: 'HR Head ' },
   { img: mentor_5, name: 'KANCHAN MEHTA', role: 'Life Coach & Nutritionist ' },
   { img: mentor_6, name: 'BENSON JOHNSON', role: 'Relationship Manager' },
@@ -306,27 +306,22 @@ export default function RegisterFreePage() {
       <section className="register-hero-section">
         <img src={yogaWomanImg} alt="Yoga pose" className="register-hero-img reveal-on-load stagger-1" />
         <div className="register-hero-content">
-          <span className="register-cta-overline reveal-on-load stagger-1">Start Your Wellness Journey</span>
-          <h2 className="register-cta-title reveal-on-load stagger-2">Your Transformation<br />Starts Here</h2>
-          <p className="register-cta-subtitle reveal-on-load stagger-3">Take the first step towards a healthier, balanced you</p>
+          <span className="register-cta-overline reveal-on-load stagger-1">START YOUR WELLNESS JOURNEY</span>
+          <h2 className="register-cta-title reveal-on-load stagger-2">Your Transformation<br />Starts here</h2>
+          <p className="register-cta-subtitle reveal-on-load stagger-3">Take the first step towards<br />a healthier, balanced you</p>
+
+          <p className="register-commitment-text reveal-on-load stagger-3">
+            We are committed to guiding you on a transformative journey towards self-discovery, empowerment, and holistic well-being
+          </p>
 
           <div className="register-highlight-banner reveal-on-load stagger-4">
-            Start your 5 Days online <span className="register-highlight-divider">|</span> Free Yoga sessions
+            <span className="register-highlight-start">Start your</span>
+            <div className="register-highlight-boxes">
+              <span className="register-green-box">5 Days Online</span>
+              <span className="register-highlight-divider">|</span>
+              <span className="register-green-box">Free Yoga Workshop</span>
+            </div>
           </div>
-
-          <button
-            className={`register-submit-btn reveal-on-load stagger-5${isBtnHovered ? ' btn-shaking' : ''}`}
-            onMouseEnter={() => setIsBtnHovered(true)}
-            onMouseLeave={() => setIsBtnHovered(false)}
-            onClick={() => setIsAuthOpen(true)}
-          >
-            <span className="register-arrow-circle">
-              <svg viewBox="0 0 24 24" className="register-chevron-svg">
-                <polyline points="9 18 15 12 9 6" stroke="#e65c00" strokeWidth="4" fill="none" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-            </span>
-            <span className="register-submit-text">Register for Free</span>
-          </button>
         </div>
       </section>
 
