@@ -2,6 +2,7 @@ import './Hero.css';
 import React, { useState, useEffect, useRef } from 'react';
 import heroVideo from '../../assets/yoga-healers-video.mp4';
 import { useApp } from '../../hooks/useApp';
+// Trigger fresh Vercel build
 
 export default function Hero() {
   const { setView } = useApp();
