@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { useApp } from '../../hooks/useApp';
 import yogaWomanImg from '../../assets/register_hero.jpg';
 import sunsetImg from '../../assets/register_free_second.jpg';
 import logoImg from '../../assets/logo.png';
@@ -292,9 +291,6 @@ function MentorSlider() {
 
 /* ── Main Page ────────────────────────────────────────────── */
 export default function RegisterFreePage() {
-  const { setIsAuthOpen } = useApp();
-  const [isBtnHovered, setIsBtnHovered] = useState(false);
-
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
