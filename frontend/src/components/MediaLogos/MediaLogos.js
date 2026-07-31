@@ -114,7 +114,7 @@ export default function MediaLogos() {
 
   return (
     <section className="media-logos-section">
-      <p className="media-logos-label">As Featured In</p>
+      <p className="media-logos-label">As Featured On</p>
 
       <div className="media-logos-marquee-outer">
         <div className="media-logos-marquee-track">

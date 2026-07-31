@@ -54,11 +54,15 @@
   z-index: 2;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  text-align: left;
-  padding: 15rem 1.5rem 2.5rem;
+  align-items: center;
+  text-align: center;
+  padding: clamp(11.5rem, 22vw, 19.5rem) 0.5rem 0.1rem;
   /* generous spacing under hero header circles */
   gap: 0.4rem;
+  width: 100%;
+  max-width: 850px;
+  margin: 0 auto;
+  box-sizing: border-box;
 }
 
 /* (Staggered animations applied via unified selectors below) */
@@ -68,8 +72,12 @@
    ══════════════════════════════════════════════════════════════ */
 .register-logos-section {
   width: 100%;
-  background-color: #ede8de;
+  background-color: #ffffff;
   /* Matches the hero section beige background */
+}
+
+.register-logos-section .media-logos-section {
+  padding-top: 0.1rem;
 }
 
 /* ══════════════════════════════════════════════════════════════
@@ -99,13 +107,15 @@
 }
 
 .register-welcome-content {
-  max-width: 720px;
+  width: 100%;
+  max-width: 100%;
   margin: 0 auto;
-  padding: 1.5rem 1.5rem 0.5rem;
+  padding: 1.5rem 0.5rem 0.5rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
+  box-sizing: border-box;
 }
 
 .register-welcome-title {
@@ -114,6 +124,7 @@
   align-items: center;
   gap: 0.15rem;
   margin-bottom: 1.25rem;
+  width: 100%;
 }
 
 .register-welcome-title-top {
@@ -129,6 +140,7 @@
   line-height: 1.2;
   text-align: center;
   max-width: 100%;
+  width: 100%;
 }
 
 .register-welcome-badge {
@@ -152,15 +164,16 @@
   line-height: 1.45;
   margin-bottom: 1.2rem;
   max-width: 100%;
+  width: 100%;
 }
 
 .register-welcome-desc {
   color: #444444;
   font-size: clamp(0.85rem, 3.2vw, 0.95rem);
   line-height: 1.7;
-  max-width: 580px;
+  max-width: 100%;
   width: 100%;
-  padding: 0 0.5rem;
+  padding: 0;
   box-sizing: border-box;
 }
 
@@ -700,9 +713,9 @@
 /* (Button entrance and hover state defined in button styles) */
 
 .register-hero-content .register-cta-overline {
-  color: #f3e8ff;
-  /* Soft lavender glow for overline */
-  font-weight: 500;
+  color: #ffffff;
+  opacity: 0.9;
+  font-weight: 700;
 }
 
 .register-hero-content .register-cta-title {
@@ -712,8 +725,8 @@
 }
 
 .register-hero-content .register-cta-subtitle {
-  color: #f3e8ff;
-  /* Light readable subtitle */
+  color: #ffffff;
+  opacity: 0.95;
 }
 
 .register-hero-content .register-highlight-banner {
@@ -726,44 +739,54 @@
 
 .register-cta-overline {
   font-family: var(--font-body);
-  font-size: 0.95rem;
-  font-weight: 700;
-  color: #ffeb3b;
+  font-size: clamp(0.85rem, 3.5vw, 1.05rem);
+  font-weight: 600;
+  color: #ffffff;
   letter-spacing: 0.05em;
   margin-bottom: 0.2rem;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+  text-align: center;
+  width: 100%;
 }
 
 .register-cta-title {
   font-family: var(--font-heading);
   font-weight: 800;
-  font-size: clamp(1.4rem, 6.5vw, 2.4rem);
-  line-height: 1.12;
+  font-size: clamp(1.8rem, 7.5vw, 2.8rem);
+  line-height: 1.15;
   color: #FFFFFF;
   letter-spacing: -0.8px;
   margin: 0;
   text-shadow: 0 4px 16px rgba(15, 45, 0, 0.3);
-  white-space: nowrap;
+  white-space: normal;
+  text-align: center;
+  width: 100%;
 }
 
 .register-cta-subtitle {
   font-family: var(--font-body);
-  font-weight: 600;
-  font-size: 1.1rem;
+  font-weight: 500;
+  font-size: clamp(1.05rem, 4.2vw, 1.3rem);
   color: rgba(245, 240, 232, 0.95);
-  margin: 0.2rem 0 0 0;
+  margin: 0.2rem auto 0 auto;
+  max-width: 100%;
+  width: 100%;
   opacity: 0.95;
+  text-align: center;
+  line-height: 1.4;
 }
 
 .register-commitment-text {
   font-family: var(--font-body);
-  font-weight: 500;
-  font-size: 0.98rem;
+  font-weight: 400;
+  font-size: clamp(0.88rem, 3.4vw, 1.02rem);
   line-height: 1.45;
-  color: rgba(255, 255, 255, 0.92);
-  margin: 0.4rem 0 0.6rem 0;
-  max-width: 92%;
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0.4rem auto 0.15rem auto;
+  max-width: 100%;
+  width: 100%;
   text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+  text-align: center;
 }
 
 .register-highlight-banner {
@@ -772,17 +795,19 @@
   font-size: 1.05rem;
   font-weight: 700;
   text-align: left;
-  margin-top: 0.5rem;
-  margin-bottom: 1.25rem;
+  margin: 0.15rem auto 0.1rem auto;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 0.4rem;
-  width: 100%;
+  width: max-content;
+  max-width: 100%;
+  position: relative;
+  left: -35px;
 }
 
 .register-highlight-start {
-  background: linear-gradient(180deg, #fff176 0%, #ffb74d 100%);
+  background: linear-gradient(90deg, #fff176 0%, #ffb74d 50%, #e040fb 100%);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -795,19 +820,22 @@
 .register-highlight-boxes {
   display: inline-flex;
   align-items: center;
+  justify-content: flex-start;
   gap: clamp(0.2rem, 1vw, 0.35rem);
   flex-wrap: nowrap;
   white-space: nowrap;
   max-width: 100%;
+  border-bottom: 1.5px solid rgba(255, 255, 255, 0.4);
+  padding-bottom: 3px;
 }
 
 .register-green-box {
   background-color: #748B6f;
   /* Exact color code #748B6f */
   color: #ffffff;
-  padding: 0.2rem clamp(0.3rem, 1.8vw, 0.6rem);
+  padding: 0.25rem clamp(0.4rem, 2.2vw, 0.8rem);
   border-radius: 3px;
-  font-size: clamp(0.7rem, 2.7vw, 0.95rem);
+  font-size: clamp(0.82rem, 3.1vw, 1.05rem);
   font-weight: 700;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
   white-space: nowrap;
@@ -1067,7 +1095,7 @@
 
   /* Hero Section */
   .register-hero-section {
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
     max-width: 1400px;
     margin: 3rem auto;
@@ -1078,19 +1106,25 @@
   }
 
   .register-hero-img {
-    position: relative;
-    width: 50%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
     height: 100%;
-    min-height: 500px;
     object-fit: cover;
+    object-position: center top;
+    z-index: 1;
   }
 
   .register-hero-content {
     position: relative;
-    width: 50%;
-    padding: 4rem 3rem;
-    align-items: flex-start;
-    text-align: left;
+    z-index: 2;
+    width: 100%;
+    max-width: 850px;
+    margin: 0 auto;
+    padding: clamp(11.5rem, 22vw, 19.5rem) 3rem 0.1rem;
+    align-items: center;
+    text-align: center;
   }
 
   .register-highlight-banner {
@@ -1301,7 +1335,7 @@
 /* ── MOBILE BREAKPOINTS ──────────────────────────────────────── */
 @media (max-width: 768px) {
   .register-hero-content {
-    padding-top: 17rem;
+    padding-top: 13rem;
   }
 
   .register-highlight-banner {
@@ -1317,7 +1351,7 @@
 
 @media (max-width: 480px) {
   .register-hero-content {
-    padding-top: 15.5rem;
+    padding-top: 11.5rem;
   }
 
   .register-highlight-banner {
@@ -1348,7 +1382,7 @@
 
 @media (max-width: 360px) {
   .register-hero-content {
-    padding-top: 14rem;
+    padding-top: 10.5rem;
   }
 
   .register-highlight-banner {

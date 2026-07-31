@@ -300,7 +300,7 @@ export default function RegisterFreePage() {
 
       {/* Hero Section (First View) */}
       <section className="register-hero-section">
-        <img src={yogaWomanImg} alt="Yoga pose" className="register-hero-img reveal-on-load stagger-1" />
+        <img src={yogaWomanImg} alt="Yoga pose" className="register-hero-img" />
         <div className="register-hero-content">
           <span className="register-cta-overline reveal-on-load stagger-1">START YOUR WELLNESS JOURNEY</span>
           <h2 className="register-cta-title reveal-on-load stagger-2">Your Transformation<br />Starts here</h2>

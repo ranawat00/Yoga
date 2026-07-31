@@ -1,8 +1,10 @@
 import './Hero.css';
 import React, { useState, useEffect, useRef } from 'react';
 import heroVideo from '../../assets/yoga-healers-video.mp4';
+import { useApp } from '../../hooks/useApp';
 
 export default function Hero() {
+  const { setView } = useApp();
   const [views, setViews] = useState(0);
   const [followers, setFollowers] = useState(0);
   const [graduates, setGraduates] = useState(0);
@@ -91,7 +93,8 @@ export default function Hero() {
         {/* Header Text Block */}
         <div className="hero-sage-header-block">
           <h1 className="hero-sage-title hero-animate-item stagger-1">
-            AWAKEN<br />YOUR TRUE POTENTIAL
+            <span className="hero-title-top">AWAKEN</span>
+            <span className="hero-title-bottom">YOUR TRUE POTENTIAL</span>
           </h1>
 
           <p className="hero-sage-subtitle hero-animate-item stagger-2">
@@ -115,7 +118,7 @@ export default function Hero() {
             className={`hero-sage-register-btn hero-animate-item stagger-5${isBtnHovered ? ' btn-shaking' : ''}`}
             onMouseEnter={() => setIsBtnHovered(true)}
             onMouseLeave={() => setIsBtnHovered(false)}
-            onClick={() => handleScrollTo('workshops')}
+            onClick={() => setView('register-free')}
           >
             <span>Register for Free</span>
             <span className="hero-sage-arrow-circle">
