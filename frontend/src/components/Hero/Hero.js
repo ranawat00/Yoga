@@ -13,13 +13,6 @@ export default function Hero() {
 
   const [isBtnHovered, setIsBtnHovered] = useState(false);
 
-  const handleScrollTo = (id) => {
-    const el = document.getElementById(id);
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
   useEffect(() => {
     const node = sectionRef.current;
     // Section scroll transition triggered at 20% viewport visibility
