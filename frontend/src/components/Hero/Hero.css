@@ -594,34 +594,44 @@
   }
 
   .hero-sage-header-block {
-    align-items: center;
-    text-align: center;
+    align-items: flex-start;
+    text-align: left;
   }
 
   .hero-sage-title {
-    font-size: 2.4rem;
+    font-size: clamp(1.4rem, 6.5vw, 2.4rem);
+    white-space: nowrap;
   }
 
   .hero-sage-subtitle {
     font-size: 1.1rem;
+    text-align: left;
   }
 
   .hero-sage-tagline {
     font-size: 0.98rem;
+    text-align: left;
   }
 
   .hero-sage-highlight-banner {
-    align-items: center;
+    align-items: flex-start;
+    text-align: left;
     width: 100%;
+  }
+
+  .hero-sage-highlight-start {
+    text-align: left;
   }
 
   .hero-sage-highlight-boxes {
-    justify-content: center;
+    justify-content: flex-start;
     width: 100%;
+    flex-wrap: nowrap;
+    white-space: nowrap;
   }
 
   .hero-sage-register-btn {
-    margin-left: auto;
+    margin-left: 0;
     margin-right: auto;
     width: 90%;
     max-width: 340px;
@@ -640,14 +650,21 @@
 
 @media (max-width: 576px) {
   .hero-sage-title {
-    font-size: 1.9rem;
+    font-size: clamp(1.15rem, 5.8vw, 1.9rem);
+    white-space: nowrap;
+  }
+
+  .hero-sage-green-box {
+    font-size: clamp(0.68rem, 2.8vw, 0.9rem);
+    padding: 0.2rem 0.4rem;
+    white-space: nowrap;
   }
 
   .hero-sage-register-btn {
-    width: 94%;
+    width: 96%;
     max-width: 320px;
-    padding: 0.35rem 0.5rem 0.35rem 1.4rem;
-    font-size: 0.95rem;
+    padding: 0.35rem 0.5rem 0.35rem 1.2rem;
+    font-size: 0.9rem;
   }
 
   .hero-sage-arrow-circle {
