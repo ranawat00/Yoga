@@ -3,7 +3,6 @@ import { useApp } from '../../hooks/useApp';
 import yogaWomanImg from '../../assets/register_hero.jpg';
 import sunsetImg from '../../assets/register_free_second.jpg';
 import logoImg from '../../assets/logo.png';
-import registerSecondImg from '../../assets/register_third.png';
 import registerBenefitsImg from '../../assets/register_2.png';
 
 // Mentor images from educators
@@ -295,7 +294,6 @@ function MentorSlider() {
 export default function RegisterFreePage() {
   const { setIsAuthOpen } = useApp();
   const [isBtnHovered, setIsBtnHovered] = useState(false);
-  const [isBottomBtnHovered, setIsBottomBtnHovered] = useState(false);
 
   useEffect(() => {
     window.scrollTo(0, 0);
