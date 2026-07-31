@@ -61,6 +61,14 @@ const VIEW_TITLES = {
 function AppContent() {
   const { isCartOpen, isCheckoutOpen, view, setView } = useApp();
 
+  // Reset scroll to top on initial page load / refresh
+  useEffect(() => {
+    if ('scrollRestoration' in window.history) {
+      window.history.scrollRestoration = 'manual';
+    }
+    window.scrollTo(0, 0);
+  }, []);
+
   // Listen for browser Back / Forward navigation events
   useEffect(() => {
     const handlePopState = () => {
@@ -82,6 +90,7 @@ function AppContent() {
     if (VIEW_TITLES[view]) {
       document.title = VIEW_TITLES[view];
     }
+    window.scrollTo(0, 0);
   }, [view]);
 
   return (
@@ -89,8 +98,8 @@ function AppContent() {
       {/* Premium Load Preloader */}
       <Preloader />
 
-      {/* Website Refresh / Load Celebration Cannons */}
-      <Celebration />
+      {/* Website Refresh / Load Celebration Cannons — Home page only */}
+      {view === 'home' && <Celebration />}
 
       {/* Global Toast Notifications */}
       <Notification />

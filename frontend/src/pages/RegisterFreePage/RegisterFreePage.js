@@ -1,9 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useApp } from '../../hooks/useApp';
-import yogaWomanImg from '../../assets/register_first.jpg';
+import yogaWomanImg from '../../assets/register_hero.jpg';
 import sunsetImg from '../../assets/register_free_second.jpg';
 import logoImg from '../../assets/logo.png';
 import registerSecondImg from '../../assets/register_third.png';
+import registerBenefitsImg from '../../assets/register_2.png';
 
 // Mentor images from educators
 import mentor_1 from '../../assets/mentor_1.png';
@@ -158,7 +159,7 @@ function SuccessStories() {
     if (!slider) return;
 
     let isDown = false;
-    
+
     const interval = setInterval(() => {
       if (slider.matches(':hover') || isDown) return; // Pause on hover or touch
       if (slider.scrollLeft + slider.clientWidth >= slider.scrollWidth - 20) {
@@ -174,8 +175,8 @@ function SuccessStories() {
   return (
     <section className="register-success-section">
       <h2 className="register-success-title">OUR SUCCESS STORIES</h2>
-      <div 
-        className="register-success-slider" 
+      <div
+        className="register-success-slider"
         ref={sliderRef}
       >
         {STORIES.map(story => (
@@ -192,10 +193,10 @@ function SuccessStories() {
                   </svg>
                   <div className="register-success-google">
                     <svg viewBox="0 0 24 24" width="16" height="16">
-                      <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
-                      <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
-                      <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
-                      <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+                      <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4" />
+                      <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853" />
+                      <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05" />
+                      <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335" />
                     </svg>
                   </div>
                 </div>
@@ -293,23 +294,34 @@ function MentorSlider() {
 /* ── Main Page ────────────────────────────────────────────── */
 export default function RegisterFreePage() {
   const { setIsAuthOpen } = useApp();
+  const [isBtnHovered, setIsBtnHovered] = useState(false);
+  const [isBottomBtnHovered, setIsBottomBtnHovered] = useState(false);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <div className="register-free-page">
 
       {/* Hero Section (First View) */}
       <section className="register-hero-section">
-        <img src={yogaWomanImg} alt="Yoga pose" className="register-hero-img" />
+        <img src={yogaWomanImg} alt="Yoga pose" className="register-hero-img reveal-on-load stagger-1" />
         <div className="register-hero-content">
-          <span className="register-cta-overline">Start Your Wellness Journey</span>
-          <h2 className="register-cta-title">Your Transformation<br />Starts Here</h2>
-          <p className="register-cta-subtitle">Take the first step towards a healthier, balanced you</p>
+          <span className="register-cta-overline reveal-on-load stagger-1">Start Your Wellness Journey</span>
+          <h2 className="register-cta-title reveal-on-load stagger-2">Your Transformation<br />Starts Here</h2>
+          <p className="register-cta-subtitle reveal-on-load stagger-3">Take the first step towards a healthier, balanced you</p>
 
-          <div className="register-highlight-banner">
+          <div className="register-highlight-banner reveal-on-load stagger-4">
             Start your 5 Days online <span className="register-highlight-divider">|</span> Free Yoga sessions
           </div>
 
-          <button className="register-submit-btn" onClick={() => setIsAuthOpen(true)}>
+          <button
+            className={`register-submit-btn reveal-on-load stagger-5${isBtnHovered ? ' btn-shaking' : ''}`}
+            onMouseEnter={() => setIsBtnHovered(true)}
+            onMouseLeave={() => setIsBtnHovered(false)}
+            onClick={() => setIsAuthOpen(true)}
+          >
             <span className="register-arrow-circle">
               <svg viewBox="0 0 24 24" className="register-chevron-svg">
                 <polyline points="9 18 15 12 9 6" stroke="#e65c00" strokeWidth="4" fill="none" strokeLinecap="round" strokeLinejoin="round" />
@@ -321,25 +333,25 @@ export default function RegisterFreePage() {
       </section>
 
       {/* Media Logos */}
-      <section className="register-logos-section">
+      <section className="register-logos-section reveal-on-load stagger-2">
         <MediaLogos />
       </section>
 
       {/* Welcome Section */}
       <section className="register-welcome-section">
-        <img src={sunsetImg} alt="Welcome to Yoga Healers Organisation" className="register-welcome-img" />
+        <img src={sunsetImg} alt="Welcome to Yoga Healers Organisation" className="register-welcome-img reveal-on-load stagger-2" />
         <div className="register-welcome-content">
-          <h2 className="register-welcome-title">
+          <h2 className="register-welcome-title reveal-on-load stagger-3">
             <span className="register-welcome-title-top">Welcome to</span>
             <span className="register-welcome-title-bottom">Yoga Healers Organisation</span>
           </h2>
-          <div className="register-welcome-badge">
+          <div className="register-welcome-badge reveal-on-load stagger-4">
             <img src={logoImg} alt="Yoga Healers Organisation Logo" className="register-welcome-logo" />
           </div>
-          <h3 className="register-welcome-subtitle">
+          <h3 className="register-welcome-subtitle reveal-on-load stagger-4">
             Connecting a Global Family of<br />Wellness Seekers
           </h3>
-          <p className="register-welcome-desc">
+          <p className="register-welcome-desc reveal-on-load stagger-5">
             Rooted in the ancient wisdom of India—the world capital of yoga—our wellness
             experts nurture your health from its foundation. By blending time-tested
             traditions with personalized guidance, they cultivate deep inner balance,
@@ -352,28 +364,17 @@ export default function RegisterFreePage() {
       {/* Stats Section */}
       <StatsSection />
 
-      {/* Benefits Section (Using register_third.png) */}
+      {/* Benefits Image Section (register_2.png) */}
       <section className="register-benefits-section">
-        <img 
-          src={registerSecondImg} 
-          alt="Benefits you will Gain" 
-          className="register-benefits-img" 
+        <img
+          src={registerBenefitsImg}
+          alt="Benefits of Yoga"
+          className="register-benefits-img reveal-on-load stagger-3"
         />
       </section>
 
-      {/* Mid CTA Section */}
-      <section className="register-mid-cta-section">
-        <div className="register-mid-cta-container">
-          <span className="register-mid-cta-overline">Start Your Wellness Journey</span>
-          <h2 className="register-mid-cta-title">Your Transformation<br />Starts Here</h2>
-          <p className="register-mid-cta-subtitle">Take the first step towards a healthier, balanced you</p>
-          <button className="register-mid-cta-btn" onClick={() => setIsAuthOpen(true)}>
-            Register for Free
-          </button>
-        </div>
-      </section>
+      {/* Bottom CTA — Image as background, text overlaid on top */}
 
-      {/* Mentor Slider */}
       <MentorSlider />
 
       {/* Success Stories Section */}
