@@ -321,7 +321,7 @@ export default function RegisterFreePage() {
         </div>
       </section>
 
-      {/* Media Logos */}
+      {/* Media Logos  */}
       <section className="register-logos-section reveal-on-load stagger-2">
         <MediaLogos />
       </section>
