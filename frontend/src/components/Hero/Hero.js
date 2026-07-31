@@ -6,9 +6,10 @@ export default function Hero() {
   const [views, setViews] = useState(0);
   const [followers, setFollowers] = useState(0);
   const [graduates, setGraduates] = useState(0);
-  const [searchQuery, setSearchQuery] = useState('');
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef(null);
+
+  const [isBtnHovered, setIsBtnHovered] = useState(false);
 
   const handleScrollTo = (id) => {
     const el = document.getElementById(id);
@@ -90,33 +91,40 @@ export default function Hero() {
         {/* Header Text Block */}
         <div className="hero-sage-header-block">
           <h1 className="hero-sage-title hero-animate-item stagger-1">
-            Awaken your<br />True Potential
+            AWAKEN<br />YOUR TRUE POTENTIAL
           </h1>
 
           <p className="hero-sage-subtitle hero-animate-item stagger-2">
-            Your powerhouse for the real-world Transformation
+            Your powerhouse for the real-world<br />Transformation
           </p>
 
           <p className="hero-sage-tagline hero-animate-item stagger-3">
             Breathe - Thrive - Heal
           </p>
 
-          {/* Search Pill Bar (Cream Card #f5f0e8, Warm Orange #f0812e CTA Button) */}
-          <form className="hero-sage-search-pill hero-animate-item stagger-4" onSubmit={(e) => { e.preventDefault(); handleScrollTo('workshops'); }}>
-            <input
-              type="text"
-              className="hero-sage-search-input"
-              placeholder="Start your journey"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-            />
-            <button type="submit" className="hero-sage-search-btn" aria-label="Start your journey">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+          <div className="hero-sage-highlight-banner hero-animate-item stagger-4">
+            <span className="hero-sage-highlight-start">Start your</span>
+            <div className="hero-sage-highlight-boxes">
+              <span className="hero-sage-green-box">5 Days Online</span>
+              <span className="hero-sage-highlight-divider">|</span>
+              <span className="hero-sage-green-box">Free Yoga Workshop</span>
+            </div>
+          </div>
+
+          <button
+            className={`hero-sage-register-btn hero-animate-item stagger-5${isBtnHovered ? ' btn-shaking' : ''}`}
+            onMouseEnter={() => setIsBtnHovered(true)}
+            onMouseLeave={() => setIsBtnHovered(false)}
+            onClick={() => handleScrollTo('workshops')}
+          >
+            <span>Register for Free</span>
+            <span className="hero-sage-arrow-circle">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
                 <line x1="5" y1="12" x2="19" y2="12"></line>
                 <polyline points="12 5 19 12 12 19"></polyline>
               </svg>
-            </button>
-          </form>
+            </span>
+          </button>
 
           {/* Metric Chips Marquee Slider (Cream #f5f0e8 Cards, Dark Green #134400 Text) */}
           <div className="hero-sage-metrics-marquee-wrapper hero-animate-item stagger-5">
