@@ -23,30 +23,37 @@
    ══════════════════════════════════════════════════════════════ */
 .register-hero-section {
   width: 100%;
+  position: relative;
+  overflow: hidden;
+  min-height: 520px;
   background-color: #ede8de;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  text-align: left;
-  box-sizing: border-box;
-  overflow: hidden;
 }
 
 .register-hero-img {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
-  height: auto;
-  display: block;
+  height: 100%;
   object-fit: cover;
+  object-position: center top;
+  z-index: 1;
 }
 
 .register-hero-content {
+  position: relative;
+  z-index: 2;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   text-align: left;
-  padding: 2rem 1.5rem 2.5rem 2rem;
-  gap: 0.6rem;
+  padding: 13rem 1.5rem 2.5rem; /* 13rem top padding creates clear gap below the 3 circles */
+  gap: 0.4rem;
 }
+
+/* (Staggered animations applied via unified selectors below) */
 
 /* ══════════════════════════════════════════════════════════════
    MEDIA LOGOS SECTION
@@ -108,9 +115,10 @@
 
 .register-welcome-title-bottom {
   color: #6b9376;
-  font-size: 2rem;
+  font-size: clamp(1.2rem, 5vw, 2rem);
   font-weight: 800;
   line-height: 1.2;
+  white-space: nowrap;
 }
 
 .register-welcome-badge {
@@ -545,86 +553,217 @@
 }
 
 /* ══════════════════════════════════════════════════════════════
-   BOTTOM CTA SECTION
+   BOTTOM CTA SECTION — Image background with text overlay
    ══════════════════════════════════════════════════════════════ */
 .register-cta-bottom {
   width: 100%;
-  background-color: #ede8de; /* cream/beige matching the screenshot */
-  background-size: cover;
-  background-position: center top;
-  background-repeat: no-repeat;
+  position: relative;
+  overflow: hidden;
+  min-height: 580px;
+}
+
+/* The image sits behind everything */
+.register-cta-bg-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center bottom; /* keep the woman visible at the bottom */
+  z-index: 1;
+}
+
+/* Text overlay sits on top of the image */
+.register-cta-overlay {
+  position: relative;
+  z-index: 2;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  text-align: center;
-  padding: 3.5rem 1.5rem 25rem; /* large bottom padding to show the woman at the bottom on mobile */
-  box-sizing: border-box;
-  gap: 0.6rem;
-  /* Fade in when scrolled into view */
-  animation: rfFadeUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
-  animation-delay: 0.1s;
+  align-items: flex-start;
+  text-align: left;
+  padding: 2.5rem 1.75rem;
+  gap: 0.2rem;
+}
+
+/* Animations for Text & Elements over image */
+@keyframes ctaSlideUpFade {
+  0% {
+    opacity: 0;
+    transform: translateY(35px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes buttonPulseGlow {
+  0%, 100% {
+    box-shadow: 0 4px 14px rgba(115, 146, 124, 0.4), 0 0 0 0 rgba(115, 146, 124, 0.3);
+  }
+  50% {
+    box-shadow: 0 6px 20px rgba(115, 146, 124, 0.6), 0 0 0 8px rgba(115, 146, 124, 0);
+  }
+}
+
+/* One by one sequential entrance animation controlled by reveal-on-load & stagger classes */
+
+/* Keyframe for continuous animated flowing gradient background */
+@keyframes gradientFlow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Keyframe for continuous active hover shake effect */
+@keyframes continuousShake {
+  0% { transform: translateY(-2px) rotate(0deg) scale(1.05); }
+  20% { transform: translateY(-2px) rotate(-4deg) scale(1.05); }
+  40% { transform: translateY(-2px) rotate(4deg) scale(1.05); }
+  60% { transform: translateY(-2px) rotate(-4deg) scale(1.05); }
+  80% { transform: translateY(-2px) rotate(4deg) scale(1.05); }
+  100% { transform: translateY(-2px) rotate(0deg) scale(1.05); }
+}
+
+/* (Button entrance and hover state defined in button styles) */
+
+.register-hero-content .register-cta-overline {
+  color: #f3e8ff; /* Soft lavender glow for overline */
+  font-weight: 500;
+}
+
+.register-hero-content .register-cta-title {
+  color: #ffffff; /* Crisp white for main title */
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
+}
+
+.register-hero-content .register-cta-subtitle {
+  color: #f3e8ff; /* Light readable subtitle */
+}
+
+.register-hero-content .register-highlight-banner {
+  color: #ffffff;
+}
+
+.register-hero-content .register-highlight-divider {
+  color: #ffffff;
 }
 
 .register-cta-overline {
-  font-family: 'Roboto', sans-serif;
-  font-size: 0.85rem;
-  font-weight: 500;
-  color: #4a3b32; /* Warm dark brown */
-  letter-spacing: 0.02em;
-  margin-bottom: 0.2rem;
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 400;
+  color: #4a3b32;
+  letter-spacing: 0.01em;
+  margin-bottom: 0.5rem;
 }
 
 .register-cta-title {
-  font-family: 'Roboto', sans-serif;
-  font-size: 1.5rem;
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.65rem;
   font-weight: 800;
-  color: #4e2a1e; /* Deep reddish brown */
-  line-height: 1.15;
-  margin: 0;
+  color: #2d1a0e;
+  line-height: 1.2;
+  margin: 0 0 0.15rem;
   letter-spacing: -0.02em;
 }
 
 .register-cta-subtitle {
-  font-family: 'Roboto', sans-serif;
-  font-size: 0.95rem;
+  font-family: 'Outfit', sans-serif;
+  font-size: 1rem;
   font-weight: 600;
-  color: #4a3b32; /* Warm dark brown */
+  color: #3e2c1e;
   line-height: 1.35;
   margin: 0;
-  max-width: 90%;
-  letter-spacing: -0.01em;
+  max-width: 85%;
+}
+
+.register-highlight-banner {
+  font-family: 'Outfit', sans-serif;
+  color: #2d1a0e;
+  font-size: 1.05rem;
+  font-weight: 700;
+  text-align: left;
+  margin-top: 1.25rem;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.register-highlight-divider {
+  color: #2d1a0e;
+  font-weight: 700;
+  font-size: 1.2em;
+}
+
+/* Keyframe for continuous animated flowing gradient background */
+@keyframes gradientFlow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Keyframe for hover shake effect */
+@keyframes buttonShake {
+  0% { transform: scale(1.04) rotate(0deg); }
+  20% { transform: scale(1.04) rotate(-3deg); }
+  40% { transform: scale(1.04) rotate(3deg); }
+  60% { transform: scale(1.04) rotate(-2deg); }
+  80% { transform: scale(1.04) rotate(2deg); }
+  100% { transform: scale(1.04) rotate(0deg); }
+}
+
+@keyframes intenseShake {
+  0% { transform: scale(1.05) translate(0, 0) rotate(0deg); }
+  20% { transform: scale(1.05) translate(-3px, 0) rotate(-5deg); }
+  40% { transform: scale(1.05) translate(3px, 0) rotate(5deg); }
+  60% { transform: scale(1.05) translate(-3px, 0) rotate(-4deg); }
+  80% { transform: scale(1.05) translate(3px, 0) rotate(4deg); }
+  100% { transform: scale(1.05) translate(0, 0) rotate(0deg); }
 }
 
 .register-submit-btn {
-  background-color: #73927c; /* Sage green from screenshot */
+  background: linear-gradient(135deg, #73927c, #4a7556, #2d5a39, #73927c, #8eb498);
+  background-size: 300% 300%;
   color: #ffffff;
   border: none;
   border-radius: 50px;
   display: inline-flex;
   align-items: center;
-  justify-content: center;
   gap: 0.75rem;
-  padding: 0.35rem 1.6rem 0.35rem 0.35rem; /* exact spacing for circle and text */
-  font-family: 'Roboto', sans-serif;
+  padding: 0.35rem 1.6rem 0.35rem 0.35rem;
+  font-family: 'Outfit', sans-serif;
   font-size: 0.95rem;
   font-weight: 700;
   cursor: pointer;
-  box-shadow: 0 4px 12px rgba(115, 146, 124, 0.3);
-  transition: background 0.25s, transform 0.2s, box-shadow 0.25s;
+  box-shadow: 0 4px 16px rgba(45, 90, 57, 0.4);
   width: fit-content;
-  align-self: center;
-  margin: 0 auto;
+  transition: transform 0.15s ease, box-shadow 0.25s ease;
 }
 
-.register-submit-btn:hover {
-  background-color: #617f69;
-  transform: translateY(-1px);
-  box-shadow: 0 6px 16px rgba(115, 146, 124, 0.4);
+.register-submit-btn:hover,
+.register-submit-btn.btn-shaking {
+  animation: intenseShake 0.25s ease-in-out infinite, gradientFlow 1.5s ease infinite !important;
+  box-shadow: 0 10px 28px rgba(45, 90, 57, 0.7);
 }
 
 .register-arrow-circle {
-  width: 28px;
-  height: 28px;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
   background-color: #ffffff;
   display: flex;
@@ -635,32 +774,12 @@
 }
 
 .register-submit-btn:hover .register-arrow-circle {
-  transform: scale(1.05);
+  transform: rotate(45deg) scale(1.1);
 }
 
 .register-chevron-svg {
-  width: 10px;
-  height: 10px;
-}
-
-.register-highlight-banner {
-  font-family: 'Roboto', sans-serif;
-  color: #4e2a1e; /* Deep reddish brown */
-  font-size: 0.95rem;
-  font-weight: 700;
-  text-align: left;
-  margin-top: 1rem;
-  margin-bottom: 1.25rem;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  gap: 0.5rem;
-  width: 100%;
-}
-
-.register-highlight-divider {
-  color: #4e2a1e;
-  font-weight: 700;
+  width: 11px;
+  height: 11px;
 }
 
 /* ══════════════════════════════════════════════════════════════
@@ -800,9 +919,11 @@
     border-radius: 24px;
     box-shadow: 0 12px 36px rgba(0, 0, 0, 0.04);
     overflow: hidden;
+    min-height: auto;
   }
 
   .register-hero-img {
+    position: relative;
     width: 50%;
     height: 100%;
     min-height: 500px;
@@ -810,6 +931,7 @@
   }
 
   .register-hero-content {
+    position: relative;
     width: 50%;
     padding: 4rem 3rem;
     align-items: flex-start;
@@ -932,37 +1054,49 @@
     line-height: 1.7;
   }
 
-  /* Bottom CTA Section — Centered Card Layout on Desktop */
+  /* Bottom CTA Section — Desktop */
   .register-cta-bottom {
-    align-items: center;
     border-radius: 24px;
-    box-shadow: 0 12px 36px rgba(0, 0, 0, 0.04);
+    box-shadow: 0 12px 36px rgba(0, 0, 0, 0.06);
     margin: 3rem auto;
     max-width: 860px;
-    padding: 4.5rem 2.5rem 36rem; /* Large bottom padding to show the background image graphics on desktop */
-    text-align: center;
-    background-size: cover;
-    background-position: center top;
+    min-height: 700px;
+  }
+
+  .register-cta-overlay {
+    align-items: flex-start;
+    text-align: left;
+    padding: 3.5rem 3rem;
+    gap: 0.25rem;
   }
 
   .register-cta-overline {
-    font-size: 0.85rem;
+    font-size: 1rem;
   }
 
   .register-cta-title {
-    font-size: 1.75rem;
+    font-size: 2.2rem;
   }
 
   .register-cta-subtitle {
-    font-size: 1rem;
-    margin: 0.4rem 0 1.25rem;
+    font-size: 1.15rem;
+    margin: 0.25rem 0 0;
   }
 
-  .register-cta-btn {
-    font-size: 1rem;
-    min-width: 280px;
-    padding: 0.85rem 2.5rem;
-    width: auto;
+  .register-highlight-banner {
+    font-size: 1.2rem;
+    margin-top: 1.5rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .register-submit-btn {
+    font-size: 1.05rem;
+    padding: 0.4rem 2rem 0.4rem 0.4rem;
+  }
+
+  .register-arrow-circle {
+    height: 34px;
+    width: 34px;
   }
 
   /* Mentor Slider — Expanded Desktop Cards */
@@ -1011,6 +1145,7 @@
 
 /* ── MOBILE BREAKPOINTS ──────────────────────────────────────── */
 @media (max-width: 768px) {
+  .register-hero-content     { padding-top: 12rem; }
   .register-highlight-banner { flex-wrap: wrap; font-size: 0.92rem; gap: 0.3rem; margin-bottom: 0.75rem; }
   .register-submit-btn       { font-size: 0.78rem; padding: 0.22rem 1rem 0.22rem 0.22rem; }
 
@@ -1022,6 +1157,7 @@
 }
 
 @media (max-width: 480px) {
+  .register-hero-content     { padding-top: 10.5rem; }
   .register-highlight-banner { font-size: 0.82rem; gap: 0.25rem; margin-bottom: 0.65rem; }
   .register-highlight-divider { font-size: 1em; }
   .register-submit-btn     { font-size: 0.75rem; gap: 0.4rem; padding: 0.2rem 0.95rem 0.2rem 0.2rem; }
@@ -1035,6 +1171,7 @@
 }
 
 @media (max-width: 360px) {
+  .register-hero-content     { padding-top: 9.5rem; }
   .register-highlight-banner { font-size: 0.76rem; }
   .register-submit-btn     { font-size: 0.72rem; padding: 0.18rem 0.85rem 0.18rem 0.18rem; }
 }
