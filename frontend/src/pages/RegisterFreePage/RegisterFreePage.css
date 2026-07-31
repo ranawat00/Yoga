@@ -49,7 +49,7 @@
   flex-direction: column;
   align-items: flex-start;
   text-align: left;
-  padding: 13rem 1.5rem 2.5rem; /* 13rem top padding creates clear gap below the 3 circles */
+  padding: 15rem 1.5rem 2.5rem; /* generous spacing under hero header circles */
   gap: 0.4rem;
 }
 
@@ -690,23 +690,67 @@
   max-width: 85%;
 }
 
+.register-commitment-text {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.92rem;
+  font-weight: 500;
+  color: #ffffff;
+  line-height: 1.45;
+  margin: 0.85rem 0 1rem;
+  max-width: 90%;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+}
+
 .register-highlight-banner {
   font-family: 'Outfit', sans-serif;
-  color: #2d1a0e;
+  color: #ffffff;
   font-size: 1.05rem;
   font-weight: 700;
   text-align: left;
-  margin-top: 1.25rem;
-  margin-bottom: 1rem;
+  margin-top: 0.75rem;
+  margin-bottom: 1.25rem;
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  align-items: flex-start;
   gap: 0.4rem;
 }
 
-.register-highlight-divider {
-  color: #2d1a0e;
+.register-highlight-start {
+  background: linear-gradient(180deg, #fff176 0%, #ffb74d 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+  font-size: 1.8rem;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+
+.register-highlight-boxes {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  flex-wrap: nowrap;
+  white-space: nowrap;
+  max-width: 100%;
+}
+
+.register-green-box {
+  background-color: #748B6f; /* Exact color code #748B6f */
+  color: #ffffff;
+  padding: 0.22rem clamp(0.35rem, 2vw, 0.7rem);
+  border-radius: 3px;
+  font-size: clamp(0.75rem, 3.2vw, 1.05rem);
   font-weight: 700;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  white-space: nowrap;
+}
+
+.register-highlight-divider {
+  color: #ffffff;
+  font-weight: 400;
   font-size: 1.2em;
+  opacity: 0.85;
 }
 
 /* Keyframe for continuous animated flowing gradient background */
@@ -1150,18 +1194,16 @@
 
 /* ── MOBILE BREAKPOINTS ──────────────────────────────────────── */
 @media (max-width: 768px) {
-  .register-hero-content     { padding-top: 12rem; }
-  .register-highlight-banner { flex-wrap: wrap; font-size: 0.92rem; gap: 0.3rem; margin-bottom: 0.75rem; }
-  .register-submit-btn       { font-size: 0.78rem; padding: 0.22rem 1rem 0.22rem 0.22rem; }
+  .register-hero-content     { padding-top: 17rem; }
+  .register-highlight-banner { font-size: 0.92rem; gap: 0.3rem; margin-bottom: 0.75rem; }
 
   .register-welcome-img { height: 280px; }
 }
 
 @media (max-width: 480px) {
-  .register-hero-content     { padding-top: 10.5rem; }
+  .register-hero-content     { padding-top: 15.5rem; }
   .register-highlight-banner { font-size: 0.82rem; gap: 0.25rem; margin-bottom: 0.65rem; }
   .register-highlight-divider { font-size: 1em; }
-  .register-submit-btn     { font-size: 0.75rem; gap: 0.4rem; padding: 0.2rem 0.95rem 0.2rem 0.2rem; }
   .register-arrow-circle   { width: 20px; height: 20px; }
   .register-chevron-svg   { width: 10px; height: 10px; }
 
@@ -1169,7 +1211,6 @@
 }
 
 @media (max-width: 360px) {
-  .register-hero-content     { padding-top: 9.5rem; }
+  .register-hero-content     { padding-top: 14rem; }
   .register-highlight-banner { font-size: 0.76rem; }
-  .register-submit-btn     { font-size: 0.72rem; padding: 0.18rem 0.85rem 0.18rem 0.18rem; }
 }
