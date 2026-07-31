@@ -106,11 +106,11 @@ function StatsSection() {
 /* ── Mentor data ──────────────────────────────────────────── */
 const MENTORS = [
   { img: mentor_1, name: 'DR.RIYA BARLA', role: 'Gynaecologist & Life Coach' },
-  { img: mentor_2, name: 'KANCHAN MEHTA', role: 'Life Coach & Nutritionist' },
+  { img: mentor_2, name: 'GAYATHRI BL', role: 'Wellness coach' },
   { img: mentor_3, name: 'VIKRAM CHATURVEDI', role: 'Wellness coach' },
-  { img: mentor_4, name: 'GAYATHRI BL', role: 'Wellness coach' },
-  { img: mentor_5, name: 'BENSON JOHNSON', role: 'Relationship Manager ' },
-  { img: mentor_6, name: 'DAVID JOHN', role: 'HR Head ' },
+  { img: mentor_4, name: 'DAVID JOHN', role: 'HR Head ' },
+  { img: mentor_5, name: 'KANCHAN MEHTA', role: 'Life Coach & Nutritionist ' },
+  { img: mentor_6, name: 'BENSON JOHNSON', role: 'Relationship Manager' },
 ];
 
 /* ── Success Stories data ─────────────────────────────────── */
