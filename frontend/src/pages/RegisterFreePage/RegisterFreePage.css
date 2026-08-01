@@ -88,8 +88,7 @@
   display: flex;
   flex-direction: column;
   background-color: #ffffff;
-  padding-top: 0;
-  padding-bottom: 0.8rem;
+  padding: 0 0 0.8rem 0; /* Reset left/right padding to 0 */
   overflow: hidden;
   margin-top: 0;
 }
@@ -110,7 +109,7 @@
   width: 100%;
   max-width: 100%;
   margin: 0 auto;
-  padding: 1.5rem 0.5rem 0.5rem;
+  padding: 1.5rem 1rem 0.5rem; /* standard mobile side padding of 1rem (16px) */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -213,7 +212,7 @@
 .register-stats-section {
   width: 100%;
   background-color: #ffffff;
-  padding: 0.5rem 1.25rem 1.5rem;
+  padding: 0.5rem 1.25rem 0.5rem; /* Reduced bottom padding to 0.5rem on mobile */
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
@@ -337,10 +336,20 @@
 .register-benefits-section {
   width: 100%;
   background-color: #ffffff;
-  padding: 3rem 1.25rem;
+  padding: 1rem 1.25rem; /* Reduced vertical padding to 1rem on mobile */
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.register-benefits-title {
+  font-family: 'Roboto', sans-serif;
+  font-size: clamp(1.4rem, 5vw, 1.8rem);
+  font-weight: 800;
+  color: #73927c;
+  margin: 0 0 1.5rem 0;
+  text-align: center;
 }
 
 .register-benefits-img {
@@ -667,6 +676,24 @@
 }
 
 /* One by one sequential entrance animation controlled by reveal-on-load & stagger classes */
+.register-free-page .reveal-on-load {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: none !important;
+}
+
+.register-free-page.is-animated .reveal-on-load {
+  animation: globalSlideUpFade 0.75s cubic-bezier(0.16, 1, 0.3, 1) both !important;
+}
+
+/* Scoped Register Page Staggers starting from 0s delay for instant, snappy cascade */
+.register-free-page.is-animated .stagger-1 { animation-delay: 0s !important; }
+.register-free-page.is-animated .stagger-2 { animation-delay: 0.15s !important; }
+.register-free-page.is-animated .stagger-3 { animation-delay: 0.3s !important; }
+.register-free-page.is-animated .stagger-4 { animation-delay: 0.45s !important; }
+.register-free-page.is-animated .stagger-5 { animation-delay: 0.6s !important; }
+.register-free-page.is-animated .stagger-6 { animation-delay: 0.75s !important; }
+.register-free-page.is-animated .stagger-7 { animation-delay: 0.9s !important; }
 
 /* Keyframe for continuous animated flowing gradient background */
 @keyframes gradientFlow {
@@ -714,7 +741,6 @@
 
 .register-hero-content .register-cta-overline {
   color: #ffffff;
-  opacity: 0.9;
   font-weight: 700;
 }
 
@@ -726,7 +752,6 @@
 
 .register-hero-content .register-cta-subtitle {
   color: #ffffff;
-  opacity: 0.95;
 }
 
 .register-hero-content .register-highlight-banner {
@@ -771,7 +796,6 @@
   margin: 0.2rem auto 0 auto;
   max-width: 100%;
   width: 100%;
-  opacity: 0.95;
   text-align: center;
   line-height: 1.4;
 }
@@ -803,7 +827,7 @@
   width: max-content;
   max-width: 100%;
   position: relative;
-  left: -20px;
+  left: -5px;
 }
 
 .register-highlight-start {
@@ -1241,6 +1265,11 @@
   .register-welcome-desc {
     font-size: 1.05rem;
     line-height: 1.7;
+  }
+
+  /* Benefits Section — Desktop spacing restored */
+  .register-benefits-section {
+    padding: 3rem 2rem;
   }
 
   /* Bottom CTA Section — Desktop */

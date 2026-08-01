@@ -291,12 +291,25 @@ function MentorSlider() {
 
 /* ── Main Page ────────────────────────────────────────────── */
 export default function RegisterFreePage() {
+  const [animated, setAnimated] = useState(false);
+
   useEffect(() => {
     window.scrollTo(0, 0);
+
+    // If preloader exists, wait for it to fade out (1150ms)
+    // Otherwise, start animation quickly (100ms) for smooth navigation transitions
+    const hasPreloader = !!document.querySelector('.preloader-overlay');
+    const delay = hasPreloader ? 1150 : 100;
+
+    const timer = setTimeout(() => {
+      setAnimated(true);
+    }, delay);
+
+    return () => clearTimeout(timer);
   }, []);
 
   return (
-    <div className="register-free-page">
+    <div className={`register-free-page${animated ? ' is-animated' : ''}`}>
 
       {/* Hero Section (First View) */}
       <section className="register-hero-section">
@@ -306,11 +319,11 @@ export default function RegisterFreePage() {
           <h2 className="register-cta-title reveal-on-load stagger-2">Your Transformation<br />Starts here</h2>
           <p className="register-cta-subtitle reveal-on-load stagger-3">Take the first step towards<br />a healthier, balanced you</p>
 
-          <p className="register-commitment-text reveal-on-load stagger-3">
+          <p className="register-commitment-text reveal-on-load stagger-4">
             We are committed to guiding you on a transformative journey towards self-discovery, empowerment, and holistic well-being
           </p>
 
-          <div className="register-highlight-banner reveal-on-load stagger-4">
+          <div className="register-highlight-banner reveal-on-load stagger-5">
             <span className="register-highlight-start">Start your</span>
             <div className="register-highlight-boxes">
               <span className="register-green-box">5 Days Online</span>
@@ -337,10 +350,10 @@ export default function RegisterFreePage() {
           <div className="register-welcome-badge reveal-on-load stagger-4">
             <img src={logoImg} alt="Yoga Healers Organisation Logo" className="register-welcome-logo" />
           </div>
-          <h3 className="register-welcome-subtitle reveal-on-load stagger-4">
+          <h3 className="register-welcome-subtitle reveal-on-load stagger-5">
             Connecting a Global Family of<br />Wellness Seekers
           </h3>
-          <p className="register-welcome-desc reveal-on-load stagger-5">
+          <p className="register-welcome-desc reveal-on-load stagger-6">
             Rooted in the ancient wisdom of India—the world capital of yoga—our wellness
             experts nurture your health from its foundation. By blending time-tested
             traditions with personalized guidance, they cultivate deep inner balance,
@@ -355,6 +368,7 @@ export default function RegisterFreePage() {
 
       {/* Benefits Image Section (register_2.png) */}
       <section className="register-benefits-section">
+        <h2 className="register-benefits-title reveal-on-load stagger-2">Benefits you will Gain</h2>
         <img
           src={registerBenefitsImg}
           alt="Benefits of Yoga"
