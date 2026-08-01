@@ -1,6 +1,6 @@
 import './Hero.css';
 import React, { useState, useEffect, useRef } from 'react';
-import heroVideo from '../../assets/yoga-healers-video.mp4';
+import heroVideo from '../../assets/yoga_hero.mp4';
 import { useApp } from '../../hooks/useApp';
 // Trigger fresh Vercel build
 
