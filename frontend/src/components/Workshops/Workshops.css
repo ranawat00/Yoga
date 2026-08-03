@@ -140,7 +140,7 @@
 
 .workshop-img-container {
   width: 100%;
-  aspect-ratio: 1 / 1;
+  aspect-ratio: 1.25 / 1;
   position: relative;
   flex-shrink: 0;
   overflow: hidden;
@@ -158,14 +158,14 @@
 }
 
 .workshop-content-horizontal {
-  padding: 1.75rem 1.5rem;
+  padding: 1.25rem 1.25rem;
   display: flex;
   flex-direction: column;
   flex-grow: 1;
 }
 
 .workshop-title {
-  font-size: 1.45rem;
+  font-size: 1.25rem;
   color: #3A3B3B;
   font-weight: 800;
   margin: 0 0 0.25rem 0;
@@ -173,10 +173,10 @@
 }
 
 .workshop-card-subtitle {
-  font-size: 0.95rem;
+  font-size: 0.88rem;
   color: #646868;
   font-weight: 500;
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.5rem;
 }
 
 /* Rating Row */
@@ -184,7 +184,7 @@
   display: flex;
   align-items: center;
   gap: 0.4rem;
-  margin-bottom: 1rem;
+  margin-bottom: 0.65rem;
   font-size: 0.85rem;
   color: #646868;
 }
@@ -218,8 +218,8 @@
   background-color: #FFFFFF;
   border: 1px solid #EBE6DB;
   border-radius: 12px;
-  padding: 0.65rem 0.85rem;
-  margin-bottom: 1.25rem;
+  padding: 0.5rem 0.75rem;
+  margin-bottom: 0.85rem;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.01);
 }
 
@@ -245,11 +245,11 @@
 
 /* Description */
 .workshop-desc-horizontal {
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   color: #3A3B3B;
-  line-height: 1.55;
-  margin-bottom: 1.5rem;
-  min-height: 56px;
+  line-height: 1.45;
+  margin-bottom: 1rem;
+  min-height: 48px;
 }
 
 /* Footer Action Buttons */
@@ -401,29 +401,29 @@
   }
 
   .workshop-content-horizontal {
-    padding: 1.25rem 1rem;
+    padding: 1rem 0.85rem;
   }
 
   .workshop-title {
-    font-size: 1.25rem;
+    font-size: 1.15rem;
   }
 
   .workshop-card-subtitle {
-    font-size: 0.85rem;
+    font-size: 0.8rem;
   }
 
   .workshop-pills-bar {
-    padding: 0.5rem 0.65rem;
+    padding: 0.4rem 0.55rem;
     border-radius: 10px;
   }
 
   .pill-section {
-    font-size: 0.72rem;
+    font-size: 0.7rem;
   }
 
   .workshop-desc-horizontal {
-    font-size: 0.85rem;
-    min-height: 70px;
+    font-size: 0.8rem;
+    min-height: 50px;
   }
 
   .view-details-link-btn {
