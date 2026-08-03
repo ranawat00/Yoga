@@ -27,11 +27,11 @@ app.use(express.urlencoded({ extended: false }));
 app.get('/api/status', (req, res) => {
   res.status(200).json({ status: 'OK', message: 'Yoga Healers Backend is running' });
 });
-
 // Mount routes
 app.use('/api/auth', require('./routes/authRoutes'));
 app.use('/api/payment', require('./routes/paymentRoutes'));
 app.use('/api/orders', require('./routes/orderRoutes'));
+app.use('/api/reviews', require('./routes/reviewRoutes'));
 
 const errorHandler = require('./middleware/errorMiddleware');
 const ErrorResponse = require('./utils/ErrorResponse');

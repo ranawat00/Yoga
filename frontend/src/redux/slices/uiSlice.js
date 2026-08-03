@@ -30,7 +30,20 @@ export const PATH_TO_VIEW = {
   '/register-free': 'register-free',
 };
 
+const getInitialViewingWorkshop = () => {
+  try {
+    const stored = sessionStorage.getItem('viewingWorkshop');
+    return stored ? JSON.parse(stored) : null;
+  } catch (e) {
+    return null;
+  }
+};
+
 const getInitialView = () => {
+  // If a workshop detail is stored, always show workshops view
+  if (getInitialViewingWorkshop()) {
+    return 'workshops';
+  }
   if (typeof window !== 'undefined' && window.location) {
     const path = window.location.pathname.toLowerCase().replace(/\/+$/, '') || '/';
     return PATH_TO_VIEW[path] || 'home';
@@ -42,6 +55,7 @@ const initialState = {
   view: getInitialView(),
   isCheckoutOpen: false,
   notifications: [],
+  viewingWorkshop: getInitialViewingWorkshop(),
 };
 
 export const uiSlice = createSlice({
@@ -62,14 +76,26 @@ export const uiSlice = createSlice({
     removeNotification: (state, action) => {
       state.notifications = state.notifications.filter(n => n.id !== action.payload);
     },
+    setViewingWorkshop: (state, action) => {
+      state.viewingWorkshop = action.payload;
+      // Persist to sessionStorage so it survives page refresh
+      try {
+        if (action.payload) {
+          sessionStorage.setItem('viewingWorkshop', JSON.stringify(action.payload));
+        } else {
+          sessionStorage.removeItem('viewingWorkshop');
+        }
+      } catch (e) { /* ignore storage errors */ }
+    },
   },
 });
 
-export const { setView, setIsCheckoutOpen, addNotification, removeNotification } = uiSlice.actions;
+export const { setView, setIsCheckoutOpen, addNotification, removeNotification, setViewingWorkshop } = uiSlice.actions;
 
 export const selectView = (state) => state.ui.view;
 export const selectIsCheckoutOpen = (state) => state.ui.isCheckoutOpen;
 export const selectNotifications = (state) => state.ui.notifications;
+export const selectViewingWorkshop = (state) => state.ui.viewingWorkshop;
 
 export default uiSlice.reducer;
 

@@ -2,6 +2,7 @@ import './Navbar.css';
 import React, { useState, useEffect } from 'react';
 import Logo from '../../common/Logo/Logo';
 import { useApp } from '../../hooks/useApp';
+import { WORKSHOPS_DATA } from '../../components/Workshops/Workshops';
 import detoxImg from '../../assets/workshop_detox.webp';
 import meditationImg from '../../assets/workshop_meditation.webp';
 import cookingImg from '../../assets/workshop_cooking.webp';
@@ -15,7 +16,7 @@ import neemCombImg from '../../assets/product_neem_comb.webp';
 import copperBottleImg from '../../assets/product_copper_bottle.webp';
 
 export default function Navbar() {
-  const { totalCartCount, setIsCartOpen, setView, user, setIsAuthOpen, handleLogout, setIsProfileOpen, view } = useApp();
+  const { totalCartCount, setIsCartOpen, setView, user, setIsAuthOpen, handleLogout, setIsProfileOpen, view, setViewingWorkshop } = useApp();
   const [activeLink, setActiveLink] = useState('home');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -59,6 +60,10 @@ export default function Navbar() {
     e.preventDefault();
     setMobileMenuOpen(false);
 
+    if (id !== 'workshops') {
+      setViewingWorkshop(null);
+    }
+
     if (id === 'books') {
       setView('books');
       setActiveLink('books');
@@ -95,6 +100,7 @@ export default function Navbar() {
     }
 
     if (id === 'workshops') {
+      setViewingWorkshop(null);
       setView('workshops');
       setActiveLink('workshops');
       window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -123,6 +129,10 @@ export default function Navbar() {
     e.preventDefault();
     e.stopPropagation();
 
+    if (sectionId !== 'workshops') {
+      setViewingWorkshop(null);
+    }
+
     if (sectionId === 'books') {
       setView('books');
       setActiveLink('books');
@@ -131,6 +141,8 @@ export default function Navbar() {
     }
 
     if (sectionId === 'workshops') {
+      const selected = WORKSHOPS_DATA.find(w => w.id === itemId);
+      setViewingWorkshop(selected || null);
       setView('workshops');
       setActiveLink('workshops');
       window.scrollTo({ top: 0, behavior: 'smooth' });

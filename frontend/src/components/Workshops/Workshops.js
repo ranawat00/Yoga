@@ -1,12 +1,13 @@
 import './Workshops.css';
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { useApp } from '../../hooks/useApp';
-import detoxImg from '../../assets/workshop_detox.webp';
+import detoxImg from '../../assets/workshop_1.jpg';
 import meditationImg from '../../assets/workshop_meditation.webp';
 import cookingImg from '../../assets/workshop_cooking.webp';
 import { createOrder, verifyPayment } from '../../api/payment';
 import { createOrderRecord } from '../../api/orders';
-
+import { fetchWorkshopReviews, createWorkshopReview } from '../../api/reviews';
+import WorkshopDetails from './WorkshopDetails';
 // Dynamic script loader for Razorpay Checkout
 const loadRazorpayScript = () => {
   return new Promise((resolve) => {
@@ -22,46 +23,48 @@ const loadRazorpayScript = () => {
   });
 };
 
-const WORKSHOPS_DATA = [
+export const WORKSHOPS_DATA = [
   {
     id: 'detox-21',
-    title: 'Heal Yourself Challenge',
-    rating: 5.0,
-    reviews: 20,
-    date: '15th Jun',
+    title: 'Awaken+ program',
+    subtitle: '7 Days Ultimate Health Challenge',
+    rating: 4.9,
+    reviews: 144,
+    date: '18 August',
     duration: '7 Days',
     language: 'English',
-    price: 990,
+    price: 149,
     startInDays: '3 Days',
-    description: 'Learn 9 steps to heal your chronic lifestyle diseases following the Satvic Healing Plan.',
+    description: 'Master your breath with the Ultimate Clear Lung Challenge—backed by 14+ years of proven expert guidance.',
     image: detoxImg
   },
   {
     id: 'mind-7',
-    title: 'Yoga Sadhana Beginner',
-    rating: 5.0,
-    reviews: 23,
-    date: '22nd Jun',
-    duration: '21 Days',
-    language: 'Multiple',
-    price: 590,
-    startInDays: '11 Days',
-    badge: 'Highly Recommended',
-    description: 'Learn yoga philosophy, asanas and meditations to take charge of your joy!',
-    image: meditationImg
+    title: 'Celebrate Pregnancy',
+    subtitle: 'Your Pregnancy Phase',
+    rating: 4.8,
+    reviews: 96,
+    date: '8th August',
+    duration: '3 Days',
+    language: 'English',
+    price: 199,
+    startInDays: '5 Days',
+    description: 'Bake delicious healthy treats and celebrate your pregnancy. Clean, nutrient-dense ingredients only.',
+    image: cookingImg
   },
   {
     id: 'cook-3',
-    title: 'Cooking Masterclass',
-    rating: 4.9,
-    reviews: 18,
-    date: '5th Jul',
-    duration: '3 Days',
-    language: 'English',
-    price: 490,
-    startInDays: '24 Days',
-    description: 'Learn to cook delicious plant-based meals without oil, dairy, refined sugar, and processed items.',
-    image: cookingImg
+    title: 'Yoga Sadhana Beginner',
+    subtitle: 'Learn yoga philosophy and meditations',
+    rating: 5.0,
+    reviews: 112,
+    date: '22nd August',
+    duration: '21 Days',
+    language: 'Multiple',
+    price: 299,
+    startInDays: '11 Days',
+    description: 'Take charge of your health and inner joy with simple daily practices designed for absolute beginners.',
+    image: meditationImg
   }
 ];
 
@@ -77,7 +80,7 @@ const getMeetLink = (batchName) => {
 };
 
 export default function Workshops({ isStandalone = false }) {
-  const { addNotification, setView } = useApp();
+  const { addNotification, setView, viewingWorkshop, setViewingWorkshop } = useApp();
   const [selectedWorkshop, setSelectedWorkshop] = useState(null);
   const [formData, setFormData] = useState({
     name: '',
@@ -88,9 +91,127 @@ export default function Workshops({ isStandalone = false }) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showAll, setShowAll] = useState(false);
   const [successData, setSuccessData] = useState(null);
+  const [activeSlide, setActiveSlide] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
+  const sliderRef = useRef(null);
 
-  const displayedWorkshops = (isStandalone || showAll) ? WORKSHOPS_DATA : WORKSHOPS_DATA.slice(0, 2);
+  // Detect mobile viewport (useful for responsive behavior)
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth <= 1024);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
+  // Track active slide on scroll
+  const handleSliderScroll = useCallback(() => {
+    const container = sliderRef.current;
+    if (!container) return;
+    const scrollLeft = container.scrollLeft;
+    const cardWidth = container.querySelector('.workshop-card-horizontal')?.offsetWidth || 1;
+    const gap = 20; // matches CSS gap
+    const index = Math.round(scrollLeft / (cardWidth + gap));
+    setActiveSlide(Math.min(index, WORKSHOPS_DATA.length - 1));
+  }, []);
+
+  // Scroll to a specific slide when dot is clicked
+  const scrollToSlide = useCallback((index) => {
+    const container = sliderRef.current;
+    if (!container) return;
+    const cardWidth = container.querySelector('.workshop-card-horizontal')?.offsetWidth || 0;
+    const gap = 20;
+    container.scrollTo({ left: index * (cardWidth + gap), behavior: 'smooth' });
+  }, []);
+
+  // Scroll slider using arrow buttons
+  const scrollSlider = useCallback((direction) => {
+    const container = sliderRef.current;
+    if (!container) return;
+    const cardWidth = container.querySelector('.workshop-card-horizontal')?.offsetWidth || 0;
+    const gap = 20;
+    const scrollAmount = direction === 'left' ? -(cardWidth + gap) : (cardWidth + gap);
+    container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+  }, []); const displayedWorkshops = WORKSHOPS_DATA;
+
+  // Reviews Modal States
+  const [selectedWorkshopReviews, setSelectedWorkshopReviews] = useState(null);
+  const [reviewsList, setReviewsList] = useState([]);
+  const [isLoadingReviews, setIsLoadingReviews] = useState(false);
+  const [reviewForm, setReviewForm] = useState({ name: '', rating: 5, comment: '' });
+  const [isSubmittingReview, setIsSubmittingReview] = useState(false);
+  const [reviewError, setReviewError] = useState('');
+  const [reviewSuccess, setReviewSuccess] = useState(false);
+  const [reviewRatingHover, setReviewRatingHover] = useState(0);
+
+  const handleOpenReviewsModal = async (workshop) => {
+    setSelectedWorkshopReviews(workshop);
+    setIsLoadingReviews(true);
+    setReviewError('');
+    setReviewSuccess(false);
+    setReviewForm({ name: '', rating: 5, comment: '' });
+    try {
+      const res = await fetchWorkshopReviews(workshop.id);
+      if (res && res.success) {
+        setReviewsList(res.data || []);
+      } else {
+        setReviewsList([]);
+      }
+    } catch (err) {
+      console.error('Error fetching reviews:', err);
+      setReviewError('Failed to load reviews. Please try again.');
+    } finally {
+      setIsLoadingReviews(false);
+    }
+  };
+
+  const handleCloseReviewsModal = () => {
+    setSelectedWorkshopReviews(null);
+    setReviewsList([]);
+    setReviewError('');
+    setReviewSuccess(false);
+  };
+
+  const handleReviewInputChange = (e) => {
+    const { name, value } = e.target;
+    setReviewForm((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleReviewRatingSelect = (rating) => {
+    setReviewForm((prev) => ({ ...prev, rating }));
+  };
+
+  const handleReviewSubmit = async (e) => {
+    e.preventDefault();
+    if (!reviewForm.name.trim() || !reviewForm.comment.trim()) {
+      setReviewError('Please fill out all fields.');
+      return;
+    }
+    setIsSubmittingReview(true);
+    setReviewError('');
+    try {
+      const res = await createWorkshopReview({
+        workshopId: selectedWorkshopReviews.id,
+        name: reviewForm.name,
+        rating: reviewForm.rating,
+        comment: reviewForm.comment
+      });
+      if (res && res.success) {
+        setReviewSuccess(true);
+        // Prepend the new review to the local reviews list
+        setReviewsList((prev) => [res.data, ...prev]);
+        // Reset comment & name
+        setReviewForm({ name: '', rating: 5, comment: '' });
+        addNotification('Review submitted successfully!', 'success');
+      } else {
+        setReviewError(res.message || 'Failed to submit review.');
+      }
+    } catch (err) {
+      console.error('Error submitting review:', err);
+      setReviewError('An error occurred. Please try again.');
+    } finally {
+      setIsSubmittingReview(false);
+    }
+  };
 
   const handleOpenModal = (workshop) => {
     setSelectedWorkshop(workshop);
@@ -231,93 +352,125 @@ export default function Workshops({ isStandalone = false }) {
   };
 
   return (
-    <section id="workshops" className={`workshops ${isStandalone ? 'is-standalone' : ''}`}>
-      <div className="section-container" style={{ display: 'flex', flexDirection: 'column' }}>
-        {isStandalone && (
-          <button className="back-btn" style={{ marginBottom: '2rem', alignSelf: 'flex-start' }} onClick={() => {
-            setView('home');
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-          }}>
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-              <line x1="19" y1="12" x2="5" y2="12"></line>
-              <polyline points="12 19 5 12 12 5"></polyline>
-            </svg>
-            Back to Home
-          </button>
-        )}
-        <h2 className="section-title">Upcoming Workshops</h2>
-        <p className="section-subtitle" style={{ marginBottom: '3rem' }}>
-          Attend from the comfort of your home
-        </p>
+    <section id="workshops" className={`workshops ${isStandalone ? 'is-standalone' : ''} ${viewingWorkshop ? 'viewing-details' : ''}`}>
+      {!viewingWorkshop ? (
+        <div className="section-container" style={{ display: 'flex', flexDirection: 'column' }}>
+          {isStandalone && (
+            <button className="back-btn" style={{ marginBottom: '2rem', alignSelf: 'flex-start' }} onClick={() => {
+              setViewingWorkshop(null);
+              setView('home');
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <line x1="19" y1="12" x2="5" y2="12"></line>
+                <polyline points="12 19 5 12 12 5"></polyline>
+              </svg>
+              Back to Home
+            </button>
+          )}
+          <p className="section-pretitle">One decision - Three days - Life long clarity</p>
+          <h2 className="section-title">Upcoming Workshops</h2>
+          <p className="section-subtitle">
+            Learn and grow from anywhere—attend our online workshop right from the comfort of your home
+          </p>
+          <div className="slider-wrapper">
+            <button className="slider-arrow prev" onClick={() => scrollSlider('left')} aria-label="Previous workshop">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <polyline points="15 18 9 12 15 6"></polyline>
+              </svg>
+            </button>
 
-        <div className="workshops-list">
-          {displayedWorkshops.map((w) => (
-            <div key={w.id} className="workshop-card-horizontal">
-              <div className="workshop-img-container">
-                <img loading="lazy" src={w.image} alt={w.title} className="workshop-img" />
-                <div className="workshop-starts-badge">
-                  <span className="starts-label">Starts in</span>
-                  <span className="starts-value">{w.startInDays}</span>
-                </div>
-              </div>
-              <div className="workshop-content-horizontal">
-                <div className="workshop-header-horizontal">
-                  <h3 className="workshop-title">{w.title}</h3>
-                  {w.badge && (
-                    <div className="workshop-recommended-badge">
-                      <svg width="12" height="12" viewBox="0 0 24 24" fill="#CA7D56" stroke="none">
-                        <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
-                      </svg>
-                      {w.badge}
+            <div className="workshops-list" ref={sliderRef} onScroll={handleSliderScroll}>
+              {displayedWorkshops.map((w) => (
+                <div key={w.id} className="workshop-card-horizontal">
+                  <div className="workshop-img-container">
+                    <img loading="lazy" src={w.image} alt={w.title} className="workshop-img" />
+                  </div>
+                  <div className="workshop-content-horizontal">
+                    <h3 className="workshop-title">{w.title}</h3>
+                    {w.subtitle && <p className="workshop-card-subtitle">{w.subtitle}</p>}
+
+                    <div className="workshop-rating-row">
+                      <div className="stars">
+                        {[1, 2, 3, 4, 5].map((star) => (
+                          <svg key={star} width="12" height="12" viewBox="0 0 24 24" fill="#F5A623" stroke="#F5A623" strokeWidth="1">
+                            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                          </svg>
+                        ))}
+                      </div>
+                      <span className="rating-score">({w.rating.toFixed(1)})</span>
+                      <span className="rating-divider">|</span>
+                      <span className="review-count">
+                        <button className="reviews-link-btn" onClick={() => handleOpenReviewsModal(w)}>
+                          {w.reviews} Reviews
+                        </button>
+                      </span>
                     </div>
-                  )}
-                </div>
-                
-                <div className="workshop-rating-row">
-                  <div className="stars">
-                    {[1, 2, 3, 4, 5].map((star) => (
-                      <svg key={star} width="12" height="12" viewBox="0 0 24 24" fill="#F5A623" stroke="#F5A623" strokeWidth="1">
-                        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
-                      </svg>
-                    ))}
-                  </div>
-                  <span className="rating-score">({w.rating.toFixed(1)})</span>
-                  <span className="review-count"><a href="#reviews">{w.reviews} Reviews</a></span>
-                </div>
-                
-                <p className="workshop-desc-horizontal">{w.description}</p>
-                
-                <div className="workshop-pills">
-                  <div className="pill">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-                    {w.date}
-                  </div>
-                  <div className="pill">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6"></path><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"></path></svg>
-                    {w.duration}
-                  </div>
-                  <div className="pill">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
-                    {w.language}
-                  </div>
-                </div>
-                
-                <button className="btn btn-blue btn-register-horizontal" onClick={() => handleOpenModal(w)}>
-                  Register Now ₹{w.price}
-                </button>
-              </div>
-            </div>
-          ))}
-        </div>
 
-        {!isStandalone && WORKSHOPS_DATA.length > 2 && (
-          <div className="view-more-container">
-            <button className="btn btn-outline view-more-btn" onClick={() => setShowAll(!showAll)}>
-              {showAll ? 'View Less' : 'View More'}
+                    <div className="workshop-pills-bar">
+                      <div className="pill-section">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                        <span>{w.date}</span>
+                      </div>
+                      <div className="pill-divider"></div>
+                      <div className="pill-section">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6"></path><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"></path></svg>
+                        <span>{w.duration}</span>
+                      </div>
+                      <div className="pill-divider"></div>
+                      <div className="pill-section">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                        <span>{w.language}</span>
+                      </div>
+                    </div>
+
+                    <p className="workshop-desc-horizontal">{w.description}</p>
+
+                    <div className="workshop-footer-row">
+                      <button className="view-details-link-btn" onClick={() => {
+                        setViewingWorkshop(w);
+                        setView('workshops');
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                      }}>
+                        View Details
+                      </button>
+                      <button className="btn-register-green" onClick={() => handleOpenModal(w)}>
+                        Register Now &nbsp;{w.price} $
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <button className="slider-arrow next" onClick={() => scrollSlider('right')} aria-label="Next workshop">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <polyline points="9 18 15 12 9 6"></polyline>
+              </svg>
             </button>
           </div>
-        )}
-      </div>
+
+          <div className="workshop-slider-dots">
+            {WORKSHOPS_DATA.map((_, i) => (
+              <button
+                key={i}
+                className={`slider-dot ${activeSlide === i ? 'active' : ''}`}
+                onClick={() => scrollToSlide(i)}
+                aria-label={`Go to workshop ${i + 1}`}
+              />
+            ))}
+          </div>
+        </div>
+      ) : (
+        <WorkshopDetails
+          workshop={viewingWorkshop}
+          onBack={() => {
+            setViewingWorkshop(null);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          }}
+          onRegister={() => handleOpenModal(viewingWorkshop)}
+        />
+      )}
 
       {/* Registration Modal */}
       {selectedWorkshop && (
@@ -351,16 +504,16 @@ export default function Workshops({ isStandalone = false }) {
                     <strong>Google Meet Link:</strong>
                   </div>
                   <div style={{ display: 'flex', gap: '0.5rem' }}>
-                    <input 
-                      type="text" 
-                      className="form-control" 
-                      value={successData.meetLink} 
-                      readOnly 
+                    <input
+                      type="text"
+                      className="form-control"
+                      value={successData.meetLink}
+                      readOnly
                       style={{ flex: 1, fontFamily: 'monospace', fontSize: '0.85rem', backgroundColor: 'var(--color-sand)', border: '1px solid var(--color-border)', borderRadius: 'var(--border-radius-sm)', padding: '0.5rem' }}
                     />
-                    <button 
-                      type="button" 
-                      className="btn btn-blue" 
+                    <button
+                      type="button"
+                      className="btn btn-blue"
                       style={{ padding: '0.5rem 1rem', fontSize: '0.85rem' }}
                       onClick={() => {
                         navigator.clipboard.writeText(successData.meetLink);
@@ -386,7 +539,7 @@ export default function Workshops({ isStandalone = false }) {
                   <h2>Register for Workshop</h2>
                   <p style={{ color: 'var(--color-green)', fontWeight: 'bold' }}>{selectedWorkshop.title}</p>
                 </div>
-                
+
                 <form onSubmit={handleSubmit}>
                   <div className="modal-body">
                     <div className="form-group">
@@ -458,7 +611,7 @@ export default function Workshops({ isStandalone = false }) {
                         />
                       </div>
                     )}
-                    
+
                     {formData.batch && (
                       <div style={{ marginTop: '1rem', padding: '1rem', backgroundColor: 'var(--color-sand-dark)', borderRadius: 'var(--border-radius-sm)', fontSize: '0.85rem', border: '1px dashed var(--color-blue)' }}>
                         <div style={{ fontWeight: 'bold', color: 'var(--color-blue)', marginBottom: '0.25rem' }}>
@@ -473,7 +626,7 @@ export default function Workshops({ isStandalone = false }) {
                       </div>
                     )}
                   </div>
-                  
+
                   <div className="modal-footer">
                     <button type="button" className="btn btn-outline" onClick={handleCloseModal} style={{ padding: '0.6rem 1.2rem' }}>
                       Cancel
@@ -488,6 +641,135 @@ export default function Workshops({ isStandalone = false }) {
           </div>
         </div>
       )}
+
+      {/* Reviews Modal */}
+      {selectedWorkshopReviews && (
+        <div className="modal-overlay" onClick={handleCloseReviewsModal}>
+          <div className="modal-content reviews-modal-content" onClick={(e) => e.stopPropagation()}>
+            <button className="modal-close-btn" onClick={handleCloseReviewsModal} aria-label="Close modal">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+              </svg>
+            </button>
+
+            <div className="modal-header">
+              <h2>Customer Reviews</h2>
+              <p style={{ color: 'var(--color-green)', fontWeight: 'bold' }}>{selectedWorkshopReviews.title}</p>
+            </div>
+
+            <div className="modal-body reviews-modal-body">
+              {isLoadingReviews ? (
+                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '3rem 0', gap: '1rem' }}>
+                  <div className="spinner" style={{ width: '40px', height: '40px', border: '3px solid #EBE6DB', borderTopColor: '#748B6F', borderRadius: '50%', animation: 'spin 1s linear infinite' }}></div>
+                  <p style={{ color: 'var(--color-text-secondary)' }}>Loading reviews...</p>
+                </div>
+              ) : (
+                <div className="reviews-layout">
+                  {/* Reviews List */}
+                  <div className="reviews-list-container">
+                    <h3>Recent Reviews ({reviewsList.length})</h3>
+                    {reviewError && <div style={{ color: 'red', marginBottom: '1rem', fontSize: '0.9rem' }}>{reviewError}</div>}
+
+                    {reviewsList.length === 0 ? (
+                      <p style={{ color: 'var(--color-text-secondary)', fontStyle: 'italic', padding: '1.5rem 0' }}>No reviews yet. Be the first to review this workshop!</p>
+                    ) : (
+                      <div className="reviews-scroller">
+                        {reviewsList.map((review, index) => (
+                          <div key={review._id || index} className="review-item">
+                            <div className="review-item-header">
+                              <span className="review-item-author">{review.name}</span>
+                              <span className="review-item-date">
+                                {new Date(review.createdAt).toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' })}
+                              </span>
+                            </div>
+                            <div className="review-item-stars" style={{ margin: '0.25rem 0' }}>
+                              {[1, 2, 3, 4, 5].map((star) => (
+                                <svg key={star} width="12" height="12" viewBox="0 0 24 24" fill={star <= review.rating ? '#F5A623' : '#E2DDD5'} stroke={star <= review.rating ? '#F5A623' : '#E2DDD5'} strokeWidth="1">
+                                  <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                                </svg>
+                              ))}
+                            </div>
+                            <p className="review-item-comment">{review.comment}</p>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Review Submit Form */}
+                  <div className="reviews-form-container">
+                    <h3>Write a Review</h3>
+                    <form onSubmit={handleReviewSubmit}>
+                      <div className="form-group">
+                        <label className="form-label" htmlFor="rev-name">Your Name</label>
+                        <input
+                          id="rev-name"
+                          type="text"
+                          name="name"
+                          className="form-control"
+                          placeholder="Enter your name"
+                          value={reviewForm.name}
+                          onChange={handleReviewInputChange}
+                          required
+                        />
+                      </div>
+
+                      <div className="form-group">
+                        <label className="form-label">Your Rating</label>
+                        <div className="review-rating-select-stars" style={{ display: 'flex', gap: '0.4rem', cursor: 'pointer', margin: '0.5rem 0' }}>
+                          {[1, 2, 3, 4, 5].map((star) => (
+                            <svg
+                              key={star}
+                              width="26"
+                              height="26"
+                              viewBox="0 0 24 24"
+                              fill={(reviewRatingHover || reviewForm.rating) >= star ? '#F5A623' : '#E2DDD5'}
+                              stroke={(reviewRatingHover || reviewForm.rating) >= star ? '#F5A623' : '#E2DDD5'}
+                              strokeWidth="1.5"
+                              onMouseEnter={() => setReviewRatingHover(star)}
+                              onMouseLeave={() => setReviewRatingHover(0)}
+                              onClick={() => handleReviewRatingSelect(star)}
+                            >
+                              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                            </svg>
+                          ))}
+                        </div>
+                      </div>
+
+                      <div className="form-group">
+                        <label className="form-label" htmlFor="rev-comment">Review Comments</label>
+                        <textarea
+                          id="rev-comment"
+                          name="comment"
+                          className="form-control"
+                          rows="4"
+                          placeholder="Tell us what you think about this workshop..."
+                          value={reviewForm.comment}
+                          onChange={handleReviewInputChange}
+                          style={{ resize: 'vertical' }}
+                          required
+                        ></textarea>
+                      </div>
+
+                      <button type="submit" className="btn btn-blue" disabled={isSubmittingReview} style={{ width: '100%', marginTop: '0.5rem', padding: '0.7rem' }}>
+                        {isSubmittingReview ? 'Submitting...' : 'Submit Review'}
+                      </button>
+                    </form>
+                  </div>
+                </div>
+              )}
+            </div>
+
+            <div className="modal-footer">
+              <button type="button" className="btn btn-outline" onClick={handleCloseReviewsModal} style={{ padding: '0.6rem 1.2rem' }}>
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 }
+

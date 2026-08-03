@@ -5,14 +5,17 @@ import { useNotification } from './useNotification';
 import {
   setView as setViewAction,
   setIsCheckoutOpen as setIsCheckoutOpenAction,
+  setViewingWorkshop as setViewingWorkshopAction,
   selectView,
   selectIsCheckoutOpen,
+  selectViewingWorkshop,
 } from '../redux/slices/uiSlice';
 
 export function useApp() {
   const dispatch = useAppDispatch();
   const view = useAppSelector(selectView);
   const isCheckoutOpen = useAppSelector(selectIsCheckoutOpen);
+  const viewingWorkshop = useAppSelector(selectViewingWorkshop);
 
   const cart = useCart();
   const auth = useAuth();
@@ -20,6 +23,7 @@ export function useApp() {
 
   const setView = (v) => dispatch(setViewAction(v));
   const setIsCheckoutOpen = (val) => dispatch(setIsCheckoutOpenAction(val));
+  const setViewingWorkshop = (w) => dispatch(setViewingWorkshopAction(w));
 
   return {
     ...cart,
@@ -29,6 +33,8 @@ export function useApp() {
     setView,
     isCheckoutOpen,
     setIsCheckoutOpen,
+    viewingWorkshop,
+    setViewingWorkshop,
   };
 }
 

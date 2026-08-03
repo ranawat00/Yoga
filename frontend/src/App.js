@@ -150,7 +150,7 @@ function AppContent() {
 
       {/* Floating AI Chat Guide */}
       <Suspense fallback={null}>
-        <ChatAssistant />
+        {/* <ChatAssistant /> */}
       </Suspense>
 
       {/* Footer (Dark Navy) */}
