@@ -1,5 +1,5 @@
 import './Workshops.css';
-import React, { useState, useRef, useEffect, useCallback } from 'react';
+import React, { useState, useRef, useCallback } from 'react';
 import { useApp } from '../../hooks/useApp';
 import detoxImg from '../../assets/workshop_1.jpg';
 import meditationImg from '../../assets/workshop_meditation.webp';
@@ -89,19 +89,9 @@ export default function Workshops({ isStandalone = false }) {
     batch: ''
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [showAll, setShowAll] = useState(false);
   const [successData, setSuccessData] = useState(null);
   const [activeSlide, setActiveSlide] = useState(0);
-  const [isMobile, setIsMobile] = useState(false);
   const sliderRef = useRef(null);
-
-  // Detect mobile viewport (useful for responsive behavior)
-  useEffect(() => {
-    const checkMobile = () => setIsMobile(window.innerWidth <= 1024);
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
-  }, []);
 
   // Track active slide on scroll
   const handleSliderScroll = useCallback(() => {
@@ -140,14 +130,12 @@ export default function Workshops({ isStandalone = false }) {
   const [reviewForm, setReviewForm] = useState({ name: '', rating: 5, comment: '' });
   const [isSubmittingReview, setIsSubmittingReview] = useState(false);
   const [reviewError, setReviewError] = useState('');
-  const [reviewSuccess, setReviewSuccess] = useState(false);
   const [reviewRatingHover, setReviewRatingHover] = useState(0);
 
   const handleOpenReviewsModal = async (workshop) => {
     setSelectedWorkshopReviews(workshop);
     setIsLoadingReviews(true);
     setReviewError('');
-    setReviewSuccess(false);
     setReviewForm({ name: '', rating: 5, comment: '' });
     try {
       const res = await fetchWorkshopReviews(workshop.id);
@@ -168,7 +156,6 @@ export default function Workshops({ isStandalone = false }) {
     setSelectedWorkshopReviews(null);
     setReviewsList([]);
     setReviewError('');
-    setReviewSuccess(false);
   };
 
   const handleReviewInputChange = (e) => {
@@ -196,7 +183,6 @@ export default function Workshops({ isStandalone = false }) {
         comment: reviewForm.comment
       });
       if (res && res.success) {
-        setReviewSuccess(true);
         // Prepend the new review to the local reviews list
         setReviewsList((prev) => [res.data, ...prev]);
         // Reset comment & name

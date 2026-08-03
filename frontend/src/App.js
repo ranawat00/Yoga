@@ -43,7 +43,7 @@ const CartDrawer = lazy(() => import('./layout/CartDrawer/CartDrawer'));
 const CheckoutModal = lazy(() => import('./layout/CheckoutModal/CheckoutModal'));
 const AuthModal = lazy(() => import('./layout/AuthModal/AuthModal'));
 const ProfileDrawer = lazy(() => import('./layout/ProfileDrawer/ProfileDrawer'));
-const ChatAssistant = lazy(() => import('./components/ChatAssistant/ChatAssistant'));
+// const ChatAssistant = lazy(() => import('./components/ChatAssistant/ChatAssistant'));
 
 const VIEW_TITLES = {
   home: 'Yoga Healers | Holistic Health & Satvic Wellness',
