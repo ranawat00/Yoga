@@ -46,7 +46,7 @@ export const WORKSHOPS_DATA = [
     rating: 4.8,
     reviews: 144,
     date: '1 September ',
-    duration: '7 Days  ',
+    duration: '53 Days  ',
     language: 'English',
     price: 299,
     startInDays: '5 Days',
