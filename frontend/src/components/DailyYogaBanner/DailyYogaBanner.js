@@ -1,6 +1,6 @@
 import './DailyYogaBanner.css';
 import React from 'react';
-import yogaBannerImg from '../../assets/banner_yoga.jpg';
+import yogaBannerImg from '../../assets/banners/banner_yoga.jpg';
 import { useApp } from '../../hooks/useApp';
 
 export default function DailyYogaBanner() {

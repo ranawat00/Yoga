@@ -216,7 +216,7 @@
   .navbar.not-home {
     position: fixed !important;
     top: 0 !important;
-    background: linear-gradient(90deg, rgba(20, 5, 25, 0.92) 0%, rgba(45, 10, 30, 0.90) 100%), url('../../assets/hero_mobile_sunset.jpg') no-repeat center top / cover !important;
+    background: linear-gradient(90deg, rgba(20, 5, 25, 0.92) 0%, rgba(45, 10, 30, 0.90) 100%), url('../../assets/hero/hero_mobile_sunset.jpg') no-repeat center top / cover !important;
     backdrop-filter: blur(12px) !important;
     -webkit-backdrop-filter: blur(12px) !important;
     border: none !important;
@@ -294,7 +294,7 @@
     width: 260px;
     max-width: 82vw;
     height: 100vh;
-    background: linear-gradient(180deg, rgba(25, 6, 30, 0.95) 0%, rgba(55, 12, 35, 0.92) 50%, rgba(15, 3, 20, 0.98) 100%), url('../../assets/hero_mobile_sunset.jpg') no-repeat center / cover !important;
+    background: linear-gradient(180deg, rgba(25, 6, 30, 0.95) 0%, rgba(55, 12, 35, 0.92) 50%, rgba(15, 3, 20, 0.98) 100%), url('../../assets/hero/hero_mobile_sunset.jpg') no-repeat center / cover !important;
     box-shadow: -8px 0 35px rgba(0, 0, 0, 0.45);
     z-index: 1000;
     padding: 1.25rem 1.2rem;

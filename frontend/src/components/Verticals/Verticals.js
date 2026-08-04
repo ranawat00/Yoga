@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './Verticals.css';
-import yogaBg from '../../assets/vertical_yoga.webp';
-import youthBg from '../../assets/vertical_youth.webp';
+import yogaBg from '../../assets/verticals/vertical_yoga.webp';
+import youthBg from '../../assets/verticals/vertical_youth.webp';
 
 const VERTICALS_DATA = [
   {

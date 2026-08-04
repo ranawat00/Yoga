@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './HealthScore.css';
-import healthIllustration from '../../assets/health_score_illustration.webp';
+import healthIllustration from '../../assets/common/health_score_illustration.webp';
 import { useApp } from '../../hooks/useApp';
 
 const QUIZ_QUESTIONS = [

@@ -1,8 +1,8 @@
 import React from 'react';
 import { useApp } from '../../hooks/useApp';
 import './AboutUsPage.css';
-import aboutHeroImg from '../../assets/yoga-hero.webp';
-import storyImg from '../../assets/daily_yoga_banner.webp';
+import aboutHeroImg from '../../assets/hero/yoga-hero.webp';
+import storyImg from '../../assets/banners/daily_yoga_banner.webp';
 
 export default function AboutUsPage() {
   const { setView } = useApp();

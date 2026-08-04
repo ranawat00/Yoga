@@ -1,6 +1,6 @@
 import React from 'react';
 import './Logo.css';
-import logoImg from '../../assets/logo.png';
+import logoImg from '../../assets/common/logo.png';
 
 export default function Logo({ size = 100, width, height }) {
   const logoWidth = width || size;

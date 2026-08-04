@@ -1,22 +1,22 @@
 import React, { useEffect, useRef, useState } from 'react';
-import yogaWomanImg from '../../assets/register_hero.jpg';
-import sunsetImg from '../../assets/register_free_second.jpg';
-import logoImg from '../../assets/logo.png';
-import registerBenefitsImg from '../../assets/register_2.png';
+import yogaWomanImg from '../../assets/hero/register_hero.jpg';
+import sunsetImg from '../../assets/banners/register_free_second.jpg';
+import logoImg from '../../assets/common/logo.png';
+import registerBenefitsImg from '../../assets/banners/register_2.png';
 
 // Mentor images from educators
-import mentor_1 from '../../assets/mentor_1.png';
-import mentor_2 from '../../assets/mentor_2.png';
-import mentor_3 from '../../assets/mentor_3.png';
-import mentor_4 from '../../assets/mentor_4.png';
-import mentor_5 from '../../assets/mentor_5.png';
-import mentor_6 from '../../assets/mentor_6.png';
+import mentor_1 from '../../assets/mentors/mentor_1.png';
+import mentor_2 from '../../assets/mentors/mentor_2.png';
+import mentor_3 from '../../assets/mentors/mentor_3.png';
+import mentor_4 from '../../assets/mentors/mentor_4.png';
+import mentor_5 from '../../assets/mentors/mentor_5.png';
+import mentor_6 from '../../assets/mentors/mentor_6.png';
 
 // Success story images
-import success_1 from '../../assets/success_sangeeta_1781259751051.webp';
-import success_2 from '../../assets/success_debjani_1781259727411.webp';
-import success_3 from '../../assets/success_vedant_1781259770410.webp';
-import success_4 from '../../assets/success_eczema_1781259707181.webp';
+import success_1 from '../../assets/success_stories/success_sangeeta_1781259751051.webp';
+import success_2 from '../../assets/success_stories/success_debjani_1781259727411.webp';
+import success_3 from '../../assets/success_stories/success_vedant_1781259770410.webp';
+import success_4 from '../../assets/success_stories/success_eczema_1781259707181.webp';
 
 import MediaLogos from '../../components/MediaLogos/MediaLogos';
 import './RegisterFreePage.css';

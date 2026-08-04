@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import './WorkshopDetails.css';
-import placeholderImg from '../../assets/workshops/workshop_1.jpg';
-import heroImg from '../../assets/workshops/wrokshopDetails1.jpg';
-import expImg1 from '../../assets/workshops/workshop_detail_exp_1.jpg';
-import expImg2 from '../../assets/workshops/workshop_detail_exp_2.jpg';
-import expImg3 from '../../assets/workshops/workshop_detail_exp_3.jpg';
-import expImg4 from '../../assets/workshops/workshop_detail_exp_4.jpg';
-import whatYouGainImg from '../../assets/workshops/workshop_details_gain1.jpg';
-import habitsUnlockImg from '../../assets/workshops/workshopdetails_gain2.jpg';
+import './LungsDetoxDetails.css';
 
-export default function WorkshopDetails({ workshop, onBack, onRegister }) {
+import heroImg from '../../assets/workshops/lungs1.jpg';
+import expImg1 from '../../assets/workshops/lungs2.jpg';
+import expImg2 from '../../assets/workshops/lungs3.jpg';
+import expImg3 from '../../assets/workshops/lungs4.png';
+import expImg4 from '../../assets/workshops/lungs5.jpg';
+import whatYouGainImg from '../../assets/workshops/lungs6.jpg';
+import habitsUnlockImg from '../../assets/workshops/lungs7.jpg';
+import banner from '../../assets/workshops/second_workshop_details_1.jpg';
+
+export default function LungsDetoxDetails({ workshop, onBack, onRegister }) {
   // Real-time Countdown Timer State
   const [timeLeft, setTimeLeft] = useState({
     days: '00',
@@ -19,9 +20,12 @@ export default function WorkshopDetails({ workshop, onBack, onRegister }) {
   });
 
   useEffect(() => {
-    // Parse workshop date (e.g. "18 Aug 2026" or similar)
-    // For safety, let's target August 18, 2026 or fallback to a date 7 days from now if past
-    let targetDate = new Date('August 18, 2026 06:00:00');
+    // Parse workshop date (e.g. "1 September" or similar)
+    let dateStr = workshop.date || '';
+    if (dateStr && !dateStr.includes('2026')) {
+      dateStr = `${dateStr.trim()} 2026 06:00:00`;
+    }
+    let targetDate = new Date(dateStr);
     if (isNaN(targetDate.getTime()) || targetDate.getTime() < Date.now()) {
       targetDate = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000);
     }
@@ -52,69 +56,23 @@ export default function WorkshopDetails({ workshop, onBack, onRegister }) {
     return () => clearInterval(interval);
   }, [workshop]);
 
-  const renderHeroTitle = () => {
-    const title = workshop.title || "";
-    if (title.toLowerCase().includes("awaken")) {
-      return (
-        <h1 className="hero-workshop-title">
-          <span className="title-highlight">AWAKEN+</span> <span className="title-outline">PROGRAM</span>
-        </h1>
-      );
-    }
-    const parts = title.split(' ');
-    const first = parts[0] || "";
-    const rest = parts.slice(1).join(' ') || "";
-    return (
-      <h1 className="hero-workshop-title">
-        <span className="title-highlight">{first.toUpperCase()}</span>{' '}
-        <span className="title-outline">{rest.toUpperCase()}</span>
-      </h1>
-    );
-  };
-
   return (
     <div className="workshop-details-page">
       {/* Hero Header Section */}
-      {workshop.title && workshop.title.toLowerCase().includes("awaken") ? (
-        <div className="details-banner-card-container">
-          <div className="hero-banner-wrapper">
-            <img src={heroImg} className="details-hero-banner-img" alt={workshop.title} />
-            <button className="details-register-btn banner-overlay-btn" onClick={onRegister}>
-              <span>Register now</span>
-              <div className="btn-arrow-circle">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-                  <line x1="5" y1="12" x2="19" y2="12"></line>
-                  <polyline points="12 5 19 12 12 19"></polyline>
-                </svg>
-              </div>
-            </button>
-          </div>
+      <div className="details-banner-card-container">
+        <div className="hero-banner-wrapper">
+          <img src={banner} className="details-hero-banner-img" alt={workshop.title} />
+          <button className="details-register-btn banner-overlay-btn" onClick={onRegister}>
+            <span>Register now</span>
+            <div className="btn-arrow-circle">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </div>
+          </button>
         </div>
-      ) : (
-        <section className="details-hero">
-          <div className="details-hero-container">
-            <div className="details-hero-text">
-              <span className="join-movement-badge">JOIN THE MOVEMENT</span>
-              {renderHeroTitle()}
-              <p className="hero-workshop-subtitle"><span className="subtitle-highlight">7 DAYS</span> ULTIMATE HEALTH CHALLENGE</p>
-
-              <button className="details-register-btn" onClick={onRegister}>
-                <span>Register now</span>
-                <div className="btn-arrow-circle">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-                    <line x1="5" y1="12" x2="19" y2="12"></line>
-                    <polyline points="12 5 19 12 12 19"></polyline>
-                  </svg>
-                </div>
-              </button>
-            </div>
-
-            <div className="details-hero-image-wrapper">
-              <img src={placeholderImg} alt={workshop.title} className="details-hero-img" />
-            </div>
-          </div>
-        </section>
-      )}
+      </div>
 
       {/* Info Grid and Countdown Timer */}
       <section className="details-info-section">
@@ -200,26 +158,34 @@ export default function WorkshopDetails({ workshop, onBack, onRegister }) {
         <div className="experience-items-grid">
           <div className="experience-item-card">
             <div className="experience-img-container">
-              <img src={expImg1} alt="Daily Live Online Session" />
+              <img src={heroImg} alt="Daily Live Online Session" />
             </div>
             <h3>1 hour Daily Live Online session</h3>
-            <p>Every session is a fresh and inspiring experience. It combines deep wisdom, hands-on activities, engaging stories, and practical daily practices.</p>
+            <p>Every session is a fresh and inspiring experience. It combines deep wisdom, hands-on activities, engaging stories, and practical daily practices. Experience 1 hour of daily, step-by-step guided practice from the comfort of your home. The impact: Eliminates travel hassle and fits seamlessly into your morning or evening routine, making it effortless to stay consistent.</p>
           </div>
 
           <div className="experience-item-card">
             <div className="experience-img-container">
-              <img src={expImg2} alt="Natural Healing Science" />
+              <img src={expImg1} alt="Natural Healing Science" />
             </div>
             <h3>Natural Healing Science</h3>
-            <p>This course is designed to transform every aspect of your health, including your physical body, nutrition, sleep quality, movement, sense of purpose, relationships, and your ability to serve others. It offers a holistic approach that helps you build lasting habits and improve your overall well-being. By focusing on these interconnected areas, you will experience a comprehensive transformation that supports a healthier, more balanced life.</p>
+            <p>This course is designed to transform every aspect of your health, including your physical body, nutrition, sleep quality, movement, sense of purpose, relationships, and your ability to serve others. It offers a holistic approach that helps you build lasting habits and improve your overall well-being. Dedicated training in powerful breathwork techniques (Pranayama) designed to expand lung capacity, clear bronchial congestion, and improve oxygen saturation. Helps flush out lingering toxins, reduces breathlessness, and significantly boosts overall vital energy (Prana).</p>
           </div>
 
           <div className="experience-item-card">
             <div className="experience-img-container">
-              <img src={expImg3} alt="Practice in Action" />
+              <img src={expImg2} alt="Habit-Building & Consistency Support" />
             </div>
-            <h3>Practice in Action, Not Just Concepts</h3>
-            <p>This course is different from the hundreds of health videos you've seen before, where applying what you learned was a struggle. Here, you'll actually practice what you learn to make real progress.</p>
+            <h3>Habit-Building & Consistency Support</h3>
+            <p>A structured 53-day journey designed to transform health practices from short-term efforts into lifelong, mindful habits. Guided accountability helps you stay motivated, overcome resistance, and build resilient daily discipline.</p>
+          </div>
+
+          <div className="experience-item-card">
+            <div className="experience-img-container">
+              <img src={expImg3} alt="Guided Postural Alignment for Chest Expansion" />
+            </div>
+            <h3>Guided Postural Alignment for Chest Expansion</h3>
+            <p>Targeted Asana (yoga postures) focused on opening the thoracic cavity, improving posture, and strengthening respiratory muscles (diaphragm and intercostals). Reverses stiffness from prolonged sitting, enhances airflow, and promotes deeper, natural breathing throughout the day.</p>
           </div>
 
           <div className="experience-item-card">
@@ -227,7 +193,7 @@ export default function WorkshopDetails({ workshop, onBack, onRegister }) {
               <img src={expImg4} alt="Global Community" />
             </div>
             <h3>Global Community</h3>
-            <p>You'll join a beautiful community of like-minded people from around the world taking the challenge with you, keeping you motivated every step of the way.</p>
+            <p>You’ll join a beautiful community of like-minded people from around the world taking the challenge with you, keeping you motivated every step of the way.</p>
           </div>
         </div>
       </section>

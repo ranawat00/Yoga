@@ -3,17 +3,17 @@ import React, { useState, useEffect } from 'react';
 import Logo from '../../common/Logo/Logo';
 import { useApp } from '../../hooks/useApp';
 import { WORKSHOPS_DATA } from '../../components/Workshops/Workshops';
-import detoxImg from '../../assets/workshop_detox.webp';
-import meditationImg from '../../assets/workshop_meditation.webp';
-import cookingImg from '../../assets/workshop_cooking.webp';
-import bookQuickEasyImg from '../../assets/book_quick_easy.webp';
-import bookCombo4Img from '../../assets/book_combo_4.webp';
-import bookCombo3Img from '../../assets/book_combo_3.webp';
-import bookSatvic1Img from '../../assets/book_satvic_1.webp';
-import enemaImg from '../../assets/product_enema.webp';
-import sproutImg from '../../assets/product_sprout.webp';
-import neemCombImg from '../../assets/product_neem_comb.webp';
-import copperBottleImg from '../../assets/product_copper_bottle.webp';
+import detoxImg from '../../assets/workshops/workshop_detox.webp';
+import meditationImg from '../../assets/workshops/workshop_meditation.webp';
+import cookingImg from '../../assets/workshops/workshop_cooking.webp';
+import bookQuickEasyImg from '../../assets/books/book_quick_easy.webp';
+import bookCombo4Img from '../../assets/books/book_combo_4.webp';
+import bookCombo3Img from '../../assets/books/book_combo_3.webp';
+import bookSatvic1Img from '../../assets/books/book_satvic_1.webp';
+import enemaImg from '../../assets/products/product_enema.webp';
+import sproutImg from '../../assets/products/product_sprout.webp';
+import neemCombImg from '../../assets/products/product_neem_comb.webp';
+import copperBottleImg from '../../assets/products/product_copper_bottle.webp';
 
 export default function Navbar() {
   const { totalCartCount, setIsCartOpen, setView, user, setIsAuthOpen, handleLogout, setIsProfileOpen, view, setViewingWorkshop } = useApp();

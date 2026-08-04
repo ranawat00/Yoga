@@ -1,11 +1,11 @@
 import './BooksPage.css';
 import React, { useState } from 'react';
 import { useApp } from '../../hooks/useApp';
-import bookQuickEasyImg from '../../assets/book_quick_easy.webp';
-import bookCombo4Img from '../../assets/book_combo_4.webp';
-import bookCombo3Img from '../../assets/book_combo_3.webp';
-import bookSatvic1Img from '../../assets/book_satvic_1.webp';
-import bookSatvic2Img from '../../assets/book_satvic_2.webp';
+import bookQuickEasyImg from '../../assets/books/book_quick_easy.webp';
+import bookCombo4Img from '../../assets/books/book_combo_4.webp';
+import bookCombo3Img from '../../assets/books/book_combo_3.webp';
+import bookSatvic1Img from '../../assets/books/book_satvic_1.webp';
+import bookSatvic2Img from '../../assets/books/book_satvic_2.webp';
 
 const ALL_BOOKS = [
   {

@@ -1,11 +1,11 @@
 import './ProductsPage.css';
 import React from 'react';
 import { useApp } from '../../hooks/useApp';
-import enemaImg from '../../assets/product_enema.webp';
-import sproutImg from '../../assets/product_sprout.webp';
-import neemCombImg from '../../assets/product_neem_comb.webp';
-import copperBottleImg from '../../assets/product_copper_bottle.webp';
-import teaImg from '../../assets/product_tea.webp';
+import enemaImg from '../../assets/products/product_enema.webp';
+import sproutImg from '../../assets/products/product_sprout.webp';
+import neemCombImg from '../../assets/products/product_neem_comb.webp';
+import copperBottleImg from '../../assets/products/product_copper_bottle.webp';
+import teaImg from '../../assets/products/product_tea.webp';
 
 const PRODUCTS_DATA = [
   {

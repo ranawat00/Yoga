@@ -1,13 +1,14 @@
 import './Workshops.css';
 import React, { useState, useRef, useCallback } from 'react';
 import { useApp } from '../../hooks/useApp';
-import detoxImg from '../../assets/workshop_1.jpg';
-import meditationImg from '../../assets/workshop_meditation.webp';
-import cookingImg from '../../assets/workshop_cooking.webp';
+import detoxImg from '../../assets/workshops/workshop_1.jpg';
+import meditationImg from '../../assets/workshops/workshop_meditation.webp';
+import cookingImg from '../../assets/workshops/second_workshop.jpg';
 import { createOrder, verifyPayment } from '../../api/payment';
 import { createOrderRecord } from '../../api/orders';
 import { fetchWorkshopReviews, createWorkshopReview } from '../../api/reviews';
 import WorkshopDetails from './WorkshopDetails';
+import LungsDetoxDetails from './LungsDetoxDetails';
 // Dynamic script loader for Razorpay Checkout
 const loadRazorpayScript = () => {
   return new Promise((resolve) => {
@@ -40,16 +41,16 @@ export const WORKSHOPS_DATA = [
   },
   {
     id: 'mind-7',
-    title: 'Celebrate Pregnancy',
-    subtitle: 'Your Pregnancy Phase',
+    title: 'Lungs Detox Program',
+    subtitle: '53 Days The Ultimate Lungs Detox Challenge',
     rating: 4.8,
-    reviews: 96,
-    date: '8th August',
-    duration: '3 Days',
+    reviews: 144,
+    date: '1 September ',
+    duration: '7 Days  ',
     language: 'English',
-    price: 199,
+    price: 299,
     startInDays: '5 Days',
-    description: 'Bake delicious healthy treats and celebrate your pregnancy. Clean, nutrient-dense ingredients only.',
+    description: 'Master your breath with the Ultimate Clear Lung Challenge—backed by 14+ years of proven expert guidance. ',
     image: cookingImg
   },
   {
@@ -448,14 +449,25 @@ export default function Workshops({ isStandalone = false }) {
           </div>
         </div>
       ) : (
-        <WorkshopDetails
-          workshop={viewingWorkshop}
-          onBack={() => {
-            setViewingWorkshop(null);
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-          }}
-          onRegister={() => handleOpenModal(viewingWorkshop)}
-        />
+        viewingWorkshop.id === 'mind-7' ? (
+          <LungsDetoxDetails
+            workshop={viewingWorkshop}
+            onBack={() => {
+              setViewingWorkshop(null);
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
+            onRegister={() => handleOpenModal(viewingWorkshop)}
+          />
+        ) : (
+          <WorkshopDetails
+            workshop={viewingWorkshop}
+            onBack={() => {
+              setViewingWorkshop(null);
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
+            onRegister={() => handleOpenModal(viewingWorkshop)}
+          />
+        )
       )}
 
       {/* Registration Modal */}

@@ -1,11 +1,11 @@
 import React, { useState, useRef } from 'react';
 import './Educators.css';
-import imgSubah from '../../assets/educator_subah_1781260620713.webp';
-import imgHarsh from '../../assets/educator_harsh_1781260639265.webp';
-import imgRadhika from '../../assets/educator_radhika_1781260661670.webp';
-import imgAkshay from '../../assets/educator_akshay_1781260683443.webp';
-import imgRajat from '../../assets/educator_rajat_1781260812515.webp';
-import imgHimadri from '../../assets/educator_himadri_1781260833983.webp';
+import imgSubah from '../../assets/mentors/educator_subah_1781260620713.webp';
+import imgHarsh from '../../assets/mentors/educator_harsh_1781260639265.webp';
+import imgRadhika from '../../assets/mentors/educator_radhika_1781260661670.webp';
+import imgAkshay from '../../assets/mentors/educator_akshay_1781260683443.webp';
+import imgRajat from '../../assets/mentors/educator_rajat_1781260812515.webp';
+import imgHimadri from '../../assets/mentors/educator_himadri_1781260833983.webp';
 
 const EDUCATOR_DATA = [
   { id: 'ed-1', name: 'Subah Saraf',         role: 'Co-founder',                                          image: imgSubah   },
