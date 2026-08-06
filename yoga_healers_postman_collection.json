@@ -1,0 +1,426 @@
+{
+	"info": {
+		"_postman_id": "8939c4e2-679e-4a69-8bc3-3b10b8cf8189",
+		"name": "Yoga Healers API",
+		"description": "Postman collection for testing the Yoga Healers full-stack application backend API endpoints.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Signup",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Jane Doe\",\n  \"email\": \"jane.doe@example.com\",\n  \"password\": \"password123\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/auth/signup",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"auth",
+								"signup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"if (pm.response.code === 200) {",
+									"    var jsonData = pm.response.json();",
+									"    if (jsonData.token) {",
+									"        pm.environment.set(\"token\", jsonData.token);",
+									"    }",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\": \"jane.doe@example.com\",\n  \"password\": \"password123\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/auth/login",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Me (Profile)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/auth/me",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"auth",
+								"me"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Profile Details",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Jane Smith\",\n  \"email\": \"jane.smith@example.com\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/auth/updatedetails",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"auth",
+								"updatedetails"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Forgot Password",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\": \"jane.smith@example.com\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/auth/forgot-password",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"auth",
+								"forgot-password"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Reset Password",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"password\": \"newpassword123\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/auth/reset-password/:resettoken",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"auth",
+								"reset-password",
+								":resettoken"
+							],
+							"variable": [
+								{
+									"key": "resettoken",
+									"value": "paste_reset_token_here",
+									"description": "The hex token received in the reset password email"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Logout",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/auth/logout",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"auth",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Orders",
+			"item": [
+				{
+					"name": "Create Order (Guest / Authenticated)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Jane Doe\",\n  \"email\": \"jane.doe@example.com\",\n  \"phone\": \"9876543210\",\n  \"address\": \"123 Yoga Street\",\n  \"city\": \"New Delhi\",\n  \"pincode\": \"110001\",\n  \"items\": [\n    {\n      \"product\": {\n        \"id\": \"enema-kit\",\n        \"title\": \"Premium Organic Enema Kit\",\n        \"price\": 399,\n        \"image\": \"product_enema.webp\"\n      },\n      \"quantity\": 1\n    }\n  ],\n  \"subtotal\": 399,\n  \"shipping\": 50,\n  \"gst\": 71.82,\n  \"total\": 520.82,\n  \"paymentMethod\": \"COD\",\n  \"paymentId\": \"cod_pending\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/orders",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"orders"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get My Orders",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/orders/my-orders",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"orders",
+								"my-orders"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Payments",
+			"item": [
+				{
+					"name": "Create Razorpay Order",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"amount\": 499\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/payment/create-order",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"payment",
+								"create-order"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Verify Razorpay Payment Signature",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"razorpay_order_id\": \"order_O1yGki96yN4a7T\",\n  \"razorpay_payment_id\": \"pay_O1yH529a6qR1yX\",\n  \"razorpay_signature\": \"65cbfef8204db23cf0e6db6509930fef8b2a8d3844f2b96317b2b7376db18db3\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/payment/verify-payment",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"payment",
+								"verify-payment"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Reviews",
+			"item": [
+				{
+					"name": "Create Workshop Review",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"workshopId\": \"detox-21\",\n  \"name\": \"Jane Doe\",\n  \"rating\": 5,\n  \"comment\": \"Absolutely life changing experience! Felt very light and energetic after the 21 days.\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/reviews",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"reviews"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Reviews for Workshop",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/reviews/:workshopId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"reviews",
+								":workshopId"
+							],
+							"variable": [
+								{
+									"key": "workshopId",
+									"value": "detox-21",
+									"description": "The unique ID of the workshop (e.g., detox-21, mind-7, cook-3)"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:5000/api",
+			"type": "string"
+		},
+		{
+			"key": "token",
+			"value": "",
+			"type": "string"
+		}
+	]
+}

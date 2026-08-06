@@ -107,46 +107,48 @@ function AppContent() {
       {/* Navigation Bar */}
       <Navbar />
 
-      {/* Conditionally Render Home View, Bookstore View, or Shop View */}
-      {view === 'books' ? (
-        <Suspense fallback={<Loader />}><BooksPage /></Suspense>
-      ) : view === 'products' ? (
-        <Suspense fallback={<Loader />}><ProductsPage /></Suspense>
-      ) : view === 'about' ? (
-        <Suspense fallback={<Loader />}><AboutUs /></Suspense>
-      ) : view === 'contact' ? (
-        <Suspense fallback={<Loader />}><Contact /></Suspense>
-      ) : view === 'careers' ? (
-        <Suspense fallback={<Loader />}><Careers /></Suspense>
-      ) : view === 'workshops' ? (
-        <Suspense fallback={<Loader />}><Workshops isStandalone={true} /></Suspense>
-      ) : view === 'health-score' ? (
-        <Suspense fallback={<Loader />}><HealthScore isStandalone={true} /></Suspense>
-      ) : view === 'orders' ? (
-        <Suspense fallback={<Loader />}><OrdersPage /></Suspense>
-      ) : view === 'register-free' ? (
-        <Suspense fallback={<Loader />}><RegisterFreePage /></Suspense>
-      ) : (
-        <>
-          {/* Main Page Sections */}
-          <Hero />
+      {/* Conditionally Render Home View, Bookstore View, or Shop View with Smooth Transitions */}
+      <main key={view} className="page-transition-container">
+        {view === 'books' ? (
+          <Suspense fallback={<Loader />}><BooksPage /></Suspense>
+        ) : view === 'products' ? (
+          <Suspense fallback={<Loader />}><ProductsPage /></Suspense>
+        ) : view === 'about' ? (
+          <Suspense fallback={<Loader />}><AboutUs /></Suspense>
+        ) : view === 'contact' ? (
+          <Suspense fallback={<Loader />}><Contact /></Suspense>
+        ) : view === 'careers' ? (
+          <Suspense fallback={<Loader />}><Careers /></Suspense>
+        ) : view === 'workshops' ? (
+          <Suspense fallback={<Loader />}><Workshops isStandalone={true} /></Suspense>
+        ) : view === 'health-score' ? (
+          <Suspense fallback={<Loader />}><HealthScore isStandalone={true} /></Suspense>
+        ) : view === 'orders' ? (
+          <Suspense fallback={<Loader />}><OrdersPage /></Suspense>
+        ) : view === 'register-free' ? (
+          <Suspense fallback={<Loader />}><RegisterFreePage /></Suspense>
+        ) : (
+          <>
+            {/* Main Page Sections */}
+            <Hero />
 
-          {/* Featured In: Newspaper Logos Marquee */}
-          <MediaLogos />
+            {/* Featured In: Newspaper Logos Marquee */}
+            <MediaLogos />
 
-          <Suspense fallback={<Loader />}>
-            <DailyYogaBanner />
-            <Workshops />
-            <Products />
-            <Books />
-            <HealthScore />
-            <Verticals />
-            <SuccessStories />
-            <Educators />
-            <FAQ />
-          </Suspense>
-        </>
-      )}
+            <Suspense fallback={<Loader />}>
+              <DailyYogaBanner />
+              <Workshops />
+              <Products />
+              <Books />
+              <HealthScore />
+              <Verticals />
+              <SuccessStories />
+              <Educators />
+              <FAQ />
+            </Suspense>
+          </>
+        )}
+      </main>
       {/* Footer (Dark Navy) */}
       <Footer />
 

@@ -1,5 +1,6 @@
 const express = require('express');
 const cors = require('cors');
+const compression = require('compression');
 const dotenv = require('dotenv');
 const connectDB = require('./config/db');
 
@@ -10,6 +11,9 @@ dotenv.config();
 connectDB();
 
 const app = express();
+
+// Enable response compression
+app.use(compression());
 
 // Enable CORS with dynamic configurations from env
 const corsOptions = {
