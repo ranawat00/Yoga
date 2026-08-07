@@ -139,8 +139,8 @@
   content: '';
   position: absolute;
   inset: 0;
-  border-radius: var(--border-radius-lg);
-  padding: 4px; /* Thicker border for high visibility */
+  border-radius: inherit; /* Inherits the card's border-radius dynamically */
+  padding: 3px; /* Balanced border thickness on desktop */
   background: linear-gradient(90deg, #748B6F, #0da106, #5e17eb, #ff7a00, #748B6F);
   background-size: 300% 300%;
   -webkit-mask: 
@@ -417,6 +417,10 @@
     max-width: 44vw;
   }
 
+  .workshop-card-horizontal::after {
+    padding: 2px; /* Thinner border for mobile and tablet views */
+  }
+
   .workshop-card-horizontal:hover {
     transform: none;
   }
@@ -427,6 +431,46 @@
   .workshop-card-horizontal {
     min-width: 82vw;
     max-width: 82vw;
+  }
+
+  .workshop-img-container {
+    height: auto;
+    aspect-ratio: 1.25 / 1; /* Restore natural aspect ratio so text is not cut */
+  }
+
+  .workshop-content-horizontal {
+    padding: 0.9rem 0.8rem;
+  }
+
+  .workshop-title {
+    font-size: 1.1rem;
+    margin-bottom: 0.2rem;
+  }
+
+  .workshop-card-subtitle {
+    font-size: 0.78rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .workshop-rating-horizontal {
+    margin-bottom: 0.4rem;
+  }
+
+  .workshop-pills-bar {
+    margin-bottom: 0.5rem;
+    padding: 0.35rem 0.5rem;
+    border-radius: 10px;
+  }
+
+  .workshop-desc-horizontal {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    font-size: 0.8rem;
+    line-height: 1.35;
+    margin-bottom: 0.6rem;
+    min-height: auto;
   }
 }
 
@@ -458,41 +502,48 @@
 
   .workshop-img-container {
     height: auto;
+    aspect-ratio: 1.25 / 1; /* Restore natural aspect ratio so text is not cut */
   }
 
   .workshop-content-horizontal {
-    padding: 1rem 0.85rem;
+    padding: 0.85rem 0.75rem;
   }
 
   .workshop-title {
-    font-size: 1.15rem;
+    font-size: 1.05rem;
   }
 
   .workshop-card-subtitle {
-    font-size: 0.8rem;
+    font-size: 0.75rem;
   }
 
   .workshop-pills-bar {
-    padding: 0.4rem 0.55rem;
-    border-radius: 10px;
+    padding: 0.3rem 0.45rem;
+    border-radius: 8px;
   }
 
   .pill-section {
-    font-size: 0.7rem;
+    font-size: 0.68rem;
   }
 
   .workshop-desc-horizontal {
-    font-size: 0.8rem;
-    min-height: 50px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    font-size: 0.78rem;
+    margin-bottom: 0.5rem;
+    line-height: 1.3;
+    min-height: auto;
   }
 
   .view-details-link-btn {
-    font-size: 0.85rem;
+    font-size: 0.82rem;
   }
 
   .btn-register-green {
-    padding: 0.6rem 1rem;
-    font-size: 0.82rem;
+    padding: 0.55rem 0.9rem;
+    font-size: 0.8rem;
   }
 }
 
