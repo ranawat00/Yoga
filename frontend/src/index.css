@@ -266,4 +266,21 @@ input, select, textarea, button {
   }
 }
 
+/* Scroll-driven Zoom In/Out Animations */
+.scroll-zoom-init {
+  opacity: 0;
+  transform: scale(0.93) translate3d(0, 25px, 0);
+  transition: opacity 0.85s cubic-bezier(0.215, 0.61, 0.355, 1), 
+              transform 0.85s cubic-bezier(0.215, 0.61, 0.355, 1);
+  will-change: opacity, transform;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  transform-style: preserve-3d;
+}
+
+.scroll-zoom-init.scroll-in-view {
+  opacity: 1;
+  transform: scale(1) translate3d(0, 0, 0);
+}
+
 

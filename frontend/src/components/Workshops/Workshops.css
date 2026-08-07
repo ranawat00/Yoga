@@ -119,6 +119,7 @@
 
 /* Workshop Card (Vertical Design matching the Image) */
 .workshop-card-horizontal {
+  position: relative;
   background: #FFFFFF;
   border-radius: var(--border-radius-lg);
   display: flex;
@@ -130,12 +131,49 @@
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
   transition: var(--transition-smooth);
   overflow: hidden;
-  border: 1px solid rgba(0, 0, 0, 0.02);
+  border: 1px solid transparent;
+}
+
+/* Animated Border - Continuously Running */
+.workshop-card-horizontal::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: var(--border-radius-lg);
+  padding: 4px; /* Thicker border for high visibility */
+  background: linear-gradient(90deg, #748B6F, #0da106, #5e17eb, #ff7a00, #748B6F);
+  background-size: 300% 300%;
+  -webkit-mask: 
+     linear-gradient(#fff 0 0) content-box, 
+     linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+  pointer-events: none;
+  opacity: 0.85; /* Highly visible continuously running border */
+  transition: opacity 0.3s ease;
+  animation: borderGlowFlow 4s linear infinite;
 }
 
 .workshop-card-horizontal:hover {
   transform: translateY(-6px);
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 15px 35px rgba(116, 139, 111, 0.2);
+}
+
+.workshop-card-horizontal:hover::after {
+  opacity: 1; /* Brighten on hover */
+  animation: borderGlowFlow 2s linear infinite; /* Speed up on hover */
+}
+
+@keyframes borderGlowFlow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 .workshop-img-container {
@@ -277,7 +315,8 @@
 }
 
 .btn-register-green {
-  background-color: #748B6F;
+  background: linear-gradient(90deg, #748B6F, #5C7257, #CA7D56, #748B6F);
+  background-size: 300% 100%;
   color: #FFFFFF;
   border-radius: 50px;
   padding: 0.7rem 1.4rem;
@@ -285,14 +324,35 @@
   font-weight: 700;
   border: none;
   cursor: pointer;
-  transition: var(--transition-smooth);
-  box-shadow: 0 4px 10px rgba(116, 139, 111, 0.2);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  box-shadow: 0 4px 15px rgba(116, 139, 111, 0.25);
+  animation: registerBtnFlow 4s linear infinite, registerBtnPulse 2.5s ease-in-out infinite;
 }
 
 .btn-register-green:hover {
-  background-color: #5C7257;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 15px rgba(116, 139, 111, 0.3);
+  transform: scale(1.06) translateY(-2px);
+  box-shadow: 0 8px 25px rgba(202, 125, 86, 0.4);
+  animation: registerBtnFlow 2s linear infinite;
+}
+
+@keyframes registerBtnFlow {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 300% 50%;
+  }
+}
+
+@keyframes registerBtnPulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 4px 15px rgba(116, 139, 111, 0.25);
+  }
+  50% {
+    transform: scale(1.03);
+    box-shadow: 0 6px 20px rgba(116, 139, 111, 0.45);
+  }
 }
 
 /* Slider Dot Indicators */

@@ -63,13 +63,20 @@ export default function OrdersPage() {
   }, [user, setView]);
 
   const formatDate = (dateString) => {
-    return new Date(dateString).toLocaleDateString('en-IN', {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric',
-      hour: '2-digit',
-      minute: '2-digit'
-    });
+    if (!dateString) return 'N/A';
+    try {
+      const date = new Date(dateString);
+      if (isNaN(date.getTime())) return 'N/A';
+      return date.toLocaleDateString('en-IN', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit'
+      });
+    } catch (e) {
+      return 'N/A';
+    }
   };
 
   return (
@@ -117,9 +124,9 @@ export default function OrdersPage() {
                   <div className="order-page-card-body">
                     {/* Items Purchased List */}
                     <div className="order-body-items">
-                      <h4>Items Ordered ({order.items.reduce((total, item) => total + item.quantity, 0)})</h4>
+                      <h4>Items Ordered {order.items ? `(${order.items.reduce((total, item) => total + (item.quantity || 0), 0)})` : ''}</h4>
                       <div className="order-items-grid">
-                        {order.items.map((item, idx) => {
+                        {(order.items || []).map((item, idx) => {
                           const product = item.product || {};
                           const img = product.id ? getProductImage(product.id) : null;
                           const price = product.price || 0;
@@ -135,52 +142,52 @@ export default function OrdersPage() {
                               <div className="item-desc-col">
                                 <span className="item-title">{product.title || 'Wellness Product'}</span>
                                 <span className="item-qty-price">
-                                  Quantity: <strong>{item.quantity}</strong> • ₹{price.toLocaleString()} each
+                                  Quantity: <strong>{item.quantity || 0}</strong> • ₹{(price || 0).toLocaleString()} each
                                 </span>
                               </div>
                               <div className="item-total-col">
-                                <span>₹{(price * item.quantity).toLocaleString()}</span>
+                                <span>₹{((price || 0) * (item.quantity || 0)).toLocaleString()}</span>
                               </div>
                             </div>
                           );
                         })}
                       </div>
                     </div>
-
+ 
                     {/* Delivery & Shipping Info */}
                     <div className="order-body-delivery">
                       <h4>Delivery Address</h4>
                       <div className="delivery-address-box">
-                        <p className="delivery-name"><strong>{order.name}</strong></p>
-                        <p className="delivery-phone">📞 {order.phone}</p>
-                        <p className="delivery-text">{order.address}</p>
-                        <p className="delivery-city">{order.city} - {order.pincode}</p>
+                        <p className="delivery-name"><strong>{order.name || ''}</strong></p>
+                        <p className="delivery-phone">📞 {order.phone || ''}</p>
+                        <p className="delivery-text">{order.address || ''}</p>
+                        <p className="delivery-city">{order.city || ''} - {order.pincode || ''}</p>
                       </div>
                       
                       <div className="delivery-payment-meta">
-                        <p>Payment Method: <strong>{order.paymentMethod}</strong></p>
+                        <p>Payment Method: <strong>{order.paymentMethod || ''}</strong></p>
                         <p>Reference: <code className="ref-code">{(order.paymentId || '').substring(0, 18)}...</code></p>
                       </div>
                     </div>
                   </div>
-
+ 
                   {/* Summary / Invoice Totals Footer */}
                   <div className="order-page-card-footer">
                     <div className="invoice-row">
                       <span>Subtotal</span>
-                      <span>₹{order.subtotal.toLocaleString()}</span>
+                      <span>₹{(order.subtotal || 0).toLocaleString()}</span>
                     </div>
                     <div className="invoice-row">
                       <span>GST (5%)</span>
-                      <span>₹{order.gst.toLocaleString()}</span>
+                      <span>₹{(order.gst || 0).toLocaleString()}</span>
                     </div>
                     <div className="invoice-row">
                       <span>Shipping</span>
-                      <span>{order.shipping === 0 ? 'FREE' : `₹${order.shipping}`}</span>
+                      <span>{(order.shipping || 0) === 0 ? 'FREE' : `₹${(order.shipping || 0).toLocaleString()}`}</span>
                     </div>
                     <div className="invoice-row grand-total-row">
                       <span>Grand Total</span>
-                      <span>₹{order.total.toLocaleString()}</span>
+                      <span>₹{(order.total || 0).toLocaleString()}</span>
                     </div>
                   </div>
                 </div>

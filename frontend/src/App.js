@@ -93,6 +93,63 @@ function AppContent() {
     window.scrollTo(0, 0);
   }, [view]);
 
+  // Scroll entrance animations (Zoom In / Zoom Out on scroll)
+  useEffect(() => {
+    const observerOptions = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.1
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('scroll-in-view');
+        } else {
+          entry.target.classList.remove('scroll-in-view');
+        }
+      });
+    }, observerOptions);
+
+    const selectors = [
+      '.workshop-card-horizontal',
+      '.product-card',
+      '.book-card',
+      '.success-card',
+      '.daily-yoga-card',
+      '.daily-yoga-left-content',
+      '.hero-content-wrapper',
+      '.vertical-card',
+      '.educator-card',
+      '.about-content-card',
+      '.career-card',
+      'img.daily-yoga-img',
+      'img.about-hero-img',
+      'img.contact-hero-img'
+    ];
+
+    const updateObservations = () => {
+      const elements = document.querySelectorAll(selectors.join(', '));
+      elements.forEach((el) => {
+        if (!el.classList.contains('scroll-zoom-init')) {
+          el.classList.add('scroll-zoom-init');
+        }
+        observer.observe(el);
+      });
+    };
+
+    updateObservations();
+
+    // Observe dynamically loaded nodes (e.g. from Suspense or React lazy sections)
+    const mutationObserver = new MutationObserver(updateObservations);
+    mutationObserver.observe(document.body, { childList: true, subtree: true });
+
+    return () => {
+      observer.disconnect();
+      mutationObserver.disconnect();
+    };
+  }, [view]);
+
   return (
     <div className="App">
       {/* Premium Load Preloader */}

@@ -10,6 +10,8 @@ dotenv.config();
 // Connect to database
 connectDB();
 
+const cookieParser = require('cookie-parser');
+
 const app = express();
 
 // Enable response compression
@@ -25,6 +27,14 @@ app.use(cors(corsOptions));
 
 // Body parser (JSON & URL-encoded payload support)
 app.use(express.json());
+app.use(cookieParser());
+app.use((req, res, next) => {
+  console.log(`[Request] ${req.method} ${req.originalUrl}`);
+  res.on('finish', () => {
+    console.log(`[Response] ${req.method} ${req.originalUrl} - Status: ${res.statusCode}`);
+  });
+  next();
+});
 app.use(express.urlencoded({ extended: false }));
 
 // Basic status check route

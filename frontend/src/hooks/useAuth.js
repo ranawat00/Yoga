@@ -49,6 +49,7 @@ export function useAuth() {
       const data = await authApi.login(email, password);
       if (data.success) {
         localStorage.setItem('token', data.token);
+        localStorage.setItem('refreshToken', data.refreshToken);
         dispatch(setUser(data.user));
         dispatch(setIsAuthOpen(false));
         dispatch(addNotification({ message: `Welcome back, ${data.user.name}!`, type: 'success' }));
@@ -73,6 +74,7 @@ export function useAuth() {
       const data = await authApi.signup(name, email, password);
       if (data.success) {
         localStorage.setItem('token', data.token);
+        localStorage.setItem('refreshToken', data.refreshToken);
         dispatch(setUser(data.user));
         dispatch(setIsAuthOpen(false));
         dispatch(addNotification({ message: `Account created successfully! Welcome, ${data.user.name}.`, type: 'success' }));
@@ -94,12 +96,23 @@ export function useAuth() {
 
   const handleLogout = async () => {
     try {
-      await authApi.logout();
+      const refreshToken = localStorage.getItem('refreshToken');
+      await authApi.logout(refreshToken);
     } catch (error) {
       console.error('Logout error:', error);
     }
     dispatch(logoutUser());
     dispatch(addNotification({ message: 'Logged out successfully.', type: 'success' }));
+  };
+
+  const handleLogoutAll = async () => {
+    try {
+      await authApi.logoutAllDevices();
+    } catch (error) {
+      console.error('Logout all devices error:', error);
+    }
+    dispatch(logoutUser());
+    dispatch(addNotification({ message: 'Successfully logged out of all devices.', type: 'success' }));
   };
 
   const handleForgotPassword = async (email) => {
@@ -133,6 +146,7 @@ export function useAuth() {
     handleLogin,
     handleSignup,
     handleLogout,
+    handleLogoutAll,
     handleForgotPassword,
   };
 }

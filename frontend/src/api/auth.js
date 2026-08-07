@@ -37,11 +37,22 @@ export const signup = (name, email, password) =>
 
 /**
  * Log out the current user.
+ * @param {string} [refreshToken] - Optional refresh token to revoke on the server
  * @returns {Promise<object>} response data
  */
-export const logout = () => 
+export const logout = (refreshToken) => 
   apiClient('/auth/logout', { 
-    method: 'POST' 
+    method: 'POST',
+    body: refreshToken ? JSON.stringify({ refreshToken }) : undefined
+  });
+
+/**
+ * Log out of all active devices / revoke all sessions.
+ * @returns {Promise<object>} response data
+ */
+export const logoutAllDevices = () =>
+  apiClient('/auth/logout-all', {
+    method: 'POST'
   });
 
 /**

@@ -339,6 +339,30 @@
   box-shadow: 0 4px 10px rgba(239, 68, 68, 0.08);
 }
 
+.btn-profile-logout-all {
+  width: 100%;
+  background: #ffffff;
+  color: #475569;
+  border: 1.5px solid #cbd5e1;
+  border-radius: 10px;
+  padding: 0.75rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.75rem;
+  transition: all 0.25s ease;
+}
+
+.btn-profile-logout-all:hover {
+  background: #f1f5f9;
+  border-color: #94a3b8;
+  color: #0f172a;
+  box-shadow: 0 4px 10px rgba(71, 85, 105, 0.08);
+}
+
 /* Mobile Responsive Profile Drawer Adjustments */
 @media (max-width: 480px) {
   .profile-drawer {

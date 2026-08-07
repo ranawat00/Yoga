@@ -9,7 +9,10 @@ const {
   forgotPassword,
   resetPassword,
   getMe,
-  updateDetails
+  updateDetails,
+  verifyToken,
+  refreshToken,
+  logoutAllDevices
 } = require('../controllers/authController');
 
 // Import validators & middleware
@@ -26,11 +29,14 @@ const { protect } = require('../middleware/authMiddleware');
 router.post('/signup', signupValidator, validate, registerUser);
 router.post('/login', loginValidator, validate, loginUser);
 router.post('/logout', logoutUser);
+router.post('/verify-token', verifyToken);
+router.post('/refresh-token', refreshToken);
 router.post('/forgot-password', forgotPasswordValidator, validate, forgotPassword);
 router.put('/reset-password/:resettoken', resetPasswordValidator, validate, resetPassword);
 
 // Protected route to get user context
 router.get('/me', protect, getMe);
+router.post('/logout-all', protect, logoutAllDevices);
 router.put('/updatedetails', protect, updateDetails);
 
 module.exports = router;

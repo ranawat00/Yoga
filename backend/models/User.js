@@ -27,10 +27,31 @@ const UserSchema = new mongoose.Schema({
   },
   resetPasswordToken: String,
   resetPasswordExpire: Date,
+  refreshTokens: [
+    {
+      token: { type: String, required: true },
+      userAgent: String,
+      ipAddress: String,
+      createdAt: { type: Date, default: Date.now }
+    }
+  ],
   createdAt: {
     type: Date,
     default: Date.now
-  }
+  },
+  loginAttempts: {
+    type: Number,
+    required: true,
+    default: 0
+  },
+  lockUntil: {
+    type: Date
+  },
+  knownIPs: [
+    {
+      type: String
+    }
+  ]
 });
 
 // Encrypt password using bcrypt before saving user
@@ -47,6 +68,11 @@ UserSchema.pre('save', async function (next) {
 UserSchema.methods.matchPassword = async function (enteredPassword) {
   return await bcrypt.compare(enteredPassword, this.password);
 };
+
+// Check if user is locked out
+UserSchema.virtual('isLocked').get(function () {
+  return !!(this.lockUntil && this.lockUntil > Date.now());
+});
 
 // Generate and hash password reset token
 UserSchema.methods.getResetPasswordToken = function () {
