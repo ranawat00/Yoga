@@ -1,5 +1,6 @@
 import './Workshops.css';
 import React, { useState, useRef, useCallback } from 'react';
+import { createPortal } from 'react-dom';
 import { useApp } from '../../hooks/useApp';
 import detoxImg from '../../assets/workshops/workshop_1.jpg';
 import meditationImg from '../../assets/workshops/workshop_meditation.webp';
@@ -421,7 +422,11 @@ export default function Workshops({ isStandalone = false }) {
                       }}>
                         View Details
                       </button>
-                      <button className="btn-register-green" onClick={() => handleOpenModal(w)}>
+                      <button className="btn-register-green" onClick={() => {
+                        setViewingWorkshop(w);
+                        setView('workshops');
+                        handleOpenModal(w);
+                      }}>
                         Register Now &nbsp;{w.price} $
                       </button>
                     </div>
@@ -471,7 +476,7 @@ export default function Workshops({ isStandalone = false }) {
       )}
 
       {/* Registration Modal */}
-      {selectedWorkshop && (
+      {selectedWorkshop && createPortal(
         <div className="modal-overlay" onClick={handleCloseModal}>
           <div className="modal-content" onClick={(e) => e.stopPropagation()}>
             <button className="modal-close-btn" onClick={handleCloseModal} aria-label="Close modal">
@@ -637,11 +642,12 @@ export default function Workshops({ isStandalone = false }) {
               </>
             )}
           </div>
-        </div>
+        </div>,
+        document.body
       )}
 
       {/* Reviews Modal */}
-      {selectedWorkshopReviews && (
+      {selectedWorkshopReviews && createPortal(
         <div className="modal-overlay" onClick={handleCloseReviewsModal}>
           <div className="modal-content reviews-modal-content" onClick={(e) => e.stopPropagation()}>
             <button className="modal-close-btn" onClick={handleCloseReviewsModal} aria-label="Close modal">
@@ -765,7 +771,8 @@ export default function Workshops({ isStandalone = false }) {
               </button>
             </div>
           </div>
-        </div>
+        </div>,
+        document.body
       )}
     </section>
   );
