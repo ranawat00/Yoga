@@ -105,6 +105,9 @@ const sendTokenResponse = async (user, statusCode, res, req = null) => {
       id: user._id,
       name: user.name,
       email: user.email,
+      role: user.role,
+      schoolName: user.schoolName,
+      studentId: user.studentId,
       createdAt: user.createdAt
     }
   });
@@ -117,7 +120,7 @@ const sendTokenResponse = async (user, statusCode, res, req = null) => {
  */
 exports.registerUser = async (req, res, next) => {
   try {
-    const { name, email, password } = req.body;
+    const { name, email, password, role, schoolName, studentId } = req.body;
 
     // Check if user already exists
     const userExists = await User.findOne({ email });
@@ -133,7 +136,10 @@ exports.registerUser = async (req, res, next) => {
     const user = await User.create({
       name,
       email,
-      password
+      password,
+      role: role || 'user',
+      schoolName,
+      studentId
     });
 
     await sendTokenResponse(user, 201, res, req);
@@ -149,7 +155,7 @@ exports.registerUser = async (req, res, next) => {
  */
 exports.loginUser = async (req, res, next) => {
   try {
-    const { email, password } = req.body;
+    const { email, password, role, studentId } = req.body;
 
     // Check for user (select password explicitly)
     const user = await User.findOne({ email }).select('+password');
@@ -159,6 +165,32 @@ exports.loginUser = async (req, res, next) => {
         success: false,
         message: 'Invalid email or password'
       });
+    }
+
+    // Verify user role matches the login form role
+    const expectedRole = role || 'user';
+    if (user.role && user.role !== expectedRole) {
+      if (expectedRole === 'student') {
+        return res.status(400).json({
+          success: false,
+          message: 'This account is not registered as a student. Please log in as a normal user.'
+        });
+      } else {
+        return res.status(400).json({
+          success: false,
+          message: 'This account is registered as a student. Please log in using the Student form.'
+        });
+      }
+    }
+
+    // Verify Student ID if logging in as student
+    if (expectedRole === 'student') {
+      if (!studentId || user.studentId !== studentId) {
+        return res.status(400).json({
+          success: false,
+          message: 'Invalid Student ID / Roll Number'
+        });
+      }
     }
 
     // Check if account is currently locked
@@ -464,6 +496,9 @@ exports.verifyToken = async (req, res, next) => {
         id: user._id,
         name: user.name,
         email: user.email,
+        role: user.role,
+        schoolName: user.schoolName,
+        studentId: user.studentId,
         createdAt: user.createdAt
       }
     });
@@ -557,6 +592,9 @@ exports.refreshToken = async (req, res, next) => {
         id: user._id,
         name: user.name,
         email: user.email,
+        role: user.role,
+        schoolName: user.schoolName,
+        studentId: user.studentId,
         createdAt: user.createdAt
       }
     });

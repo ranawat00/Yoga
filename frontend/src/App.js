@@ -59,7 +59,7 @@ const VIEW_TITLES = {
 };
 
 function AppContent() {
-  const { isCartOpen, isCheckoutOpen, view, setView } = useApp();
+  const { isCartOpen, isCheckoutOpen, view, setView, setIsAuthOpen, user } = useApp();
 
   // Reset scroll to top on initial page load / refresh
   useEffect(() => {
@@ -68,6 +68,8 @@ function AppContent() {
     }
     window.scrollTo(0, 0);
   }, []);
+
+
 
   // Listen for browser Back / Forward navigation events
   useEffect(() => {

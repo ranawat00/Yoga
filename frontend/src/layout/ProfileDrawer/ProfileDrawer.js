@@ -12,7 +12,10 @@ export default function ProfileDrawer() {
     setView,
     handleLogout,
     handleLogoutAll,
-    addNotification 
+    addNotification,
+    authRole,
+    setAuthRole,
+    setIsAuthOpen
   } = useApp();
 
   const [isEditing, setIsEditing] = useState(false);
@@ -26,7 +29,7 @@ export default function ProfileDrawer() {
     }
   }, [user]);
 
-  if (!isProfileOpen || !user) return null;
+  if (!isProfileOpen) return null;
 
   const handleEditSubmit = async (e) => {
     e.preventDefault();
@@ -79,94 +82,159 @@ export default function ProfileDrawer() {
           </button>
         </div>
 
-        <div className="profile-drawer-body">
-          {/* User Details Box */}
-          <div className="profile-user-card">
-            <div className="profile-avatar-gradient">
-              {user.name.charAt(0).toUpperCase()}
-            </div>
-            
-            {!isEditing ? (
-              <div className="profile-details-info">
-                <h4>{user.name}</h4>
-                <p className="profile-email-text">{user.email}</p>
-                <p className="profile-date-joined">Joined: {formatDate(user.createdAt)}</p>
-                <button className="btn-edit-profile-trigger" onClick={() => setIsEditing(true)}>
-                  Edit Profile
+        {user ? (
+          <>
+            <div className="profile-drawer-body">
+              {/* User Details Box */}
+              <div className="profile-user-card">
+                <div className="profile-avatar-gradient">
+                  {user.name.charAt(0).toUpperCase()}
+                </div>
+                
+                {!isEditing ? (
+                  <div className="profile-details-info">
+                    <h4>{user.name}</h4>
+                    <p className="profile-email-text">{user.email}</p>
+                    {user.role === 'student' && (
+                      <div className="student-badge-container">
+                        <span className="student-badge">🎓 Student</span>
+                        {user.schoolName && <p className="student-school-text">🏫 {user.schoolName}</p>}
+                        {user.studentId && <p className="student-id-text">ID: {user.studentId}</p>}
+                      </div>
+                    )}
+                    <p className="profile-date-joined">Joined: {formatDate(user.createdAt)}</p>
+                    <button className="btn-edit-profile-trigger" onClick={() => setIsEditing(true)}>
+                      Edit Profile
+                    </button>
+                  </div>
+                ) : (
+                  <form onSubmit={handleEditSubmit} className="profile-edit-form animate-fade-in">
+                    <div className="form-group-profile">
+                      <label htmlFor="edit-name">Name</label>
+                      <input
+                        id="edit-name"
+                        type="text"
+                        value={editForm.name}
+                        onChange={(e) => setEditForm({ ...editForm, name: e.target.value })}
+                        required
+                      />
+                    </div>
+                    <div className="form-group-profile">
+                      <label htmlFor="edit-email">Email</label>
+                      <input
+                        id="edit-email"
+                        type="email"
+                        value={editForm.email}
+                        onChange={(e) => setEditForm({ ...editForm, email: e.target.value })}
+                        required
+                      />
+                    </div>
+                    <div className="edit-profile-actions">
+                      <button type="button" className="btn-cancel-edit" onClick={() => setIsEditing(false)}>
+                        Cancel
+                      </button>
+                      <button type="submit" className="btn-save-profile" disabled={updatingProfile}>
+                        {updatingProfile ? 'Saving...' : 'Save'}
+                      </button>
+                    </div>
+                  </form>
+                )}
+              </div>
+
+              {/* Divider */}
+              <div className="drawer-section-divider"></div>
+
+              {/* Clickable Order History Option */}
+              <div className="profile-orders-section">
+                <button 
+                  className="btn-profile-orders-link" 
+                  onClick={() => {
+                    setIsProfileOpen(false);
+                    setView('orders');
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                  }}
+                >
+                  <span className="icon-orders-link">📦</span>
+                  <div className="orders-link-text">
+                    <span className="link-title">Order History</span>
+                    <span className="link-subtitle">View and track all your past orders</span>
+                  </div>
+                  <span className="arrow-orders-link">→</span>
                 </button>
               </div>
-            ) : (
-              <form onSubmit={handleEditSubmit} className="profile-edit-form animate-fade-in">
-                <div className="form-group-profile">
-                  <label htmlFor="edit-name">Name</label>
-                  <input
-                    id="edit-name"
-                    type="text"
-                    value={editForm.name}
-                    onChange={(e) => setEditForm({ ...editForm, name: e.target.value })}
-                    required
-                  />
-                </div>
-                <div className="form-group-profile">
-                  <label htmlFor="edit-email">Email</label>
-                  <input
-                    id="edit-email"
-                    type="email"
-                    value={editForm.email}
-                    onChange={(e) => setEditForm({ ...editForm, email: e.target.value })}
-                    required
-                  />
-                </div>
-                <div className="edit-profile-actions">
-                  <button type="button" className="btn-cancel-edit" onClick={() => setIsEditing(false)}>
-                    Cancel
-                  </button>
-                  <button type="submit" className="btn-save-profile" disabled={updatingProfile}>
-                    {updatingProfile ? 'Saving...' : 'Save'}
-                  </button>
-                </div>
-              </form>
-            )}
-          </div>
+            </div>
 
-          {/* Divider */}
-          <div className="drawer-section-divider"></div>
-
-          {/* Clickable Order History Option */}
-          <div className="profile-orders-section">
-            <button 
-              className="btn-profile-orders-link" 
-              onClick={() => {
-                setIsProfileOpen(false);
-                setView('orders');
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-              }}
-            >
-              <span className="icon-orders-link">📦</span>
-              <div className="orders-link-text">
-                <span className="link-title">Order History</span>
-                <span className="link-subtitle">View and track all your past orders</span>
+            {/* Footer Actions */}
+            <div className="profile-drawer-footer">
+              <button className="btn-profile-logout-all" onClick={() => { handleLogoutAll(); setIsProfileOpen(false); }}>
+                <span style={{ marginRight: '8px' }}>🌐</span>
+                Logout All Devices
+              </button>
+              <button className="btn-profile-logout" onClick={() => { handleLogout(); setIsProfileOpen(false); }}>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ marginRight: '8px' }}>
+                  <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                  <polyline points="16 17 21 12 16 7"></polyline>
+                  <line x1="21" y1="12" x2="9" y2="12"></line>
+                </svg>
+                Log Out
+              </button>
+            </div>
+          </>
+        ) : (
+          <div className="profile-drawer-body">
+            {/* Guest Details Box */}
+            <div className="profile-guest-card animate-fade-in">
+              <div className="profile-guest-avatar">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="12" cy="7" r="4"></circle>
+                </svg>
               </div>
-              <span className="arrow-orders-link">→</span>
-            </button>
-          </div>
-        </div>
+              <h4 className="profile-guest-title">Welcome, Guest</h4>
+              <p className="profile-guest-desc">
+                Log in to track your orders, book healing workshops, and get your satvic health score.
+              </p>
+              <button 
+                className="profile-guest-login-btn" 
+                onClick={() => {
+                  setAuthRole('user');
+                  setIsProfileOpen(false);
+                  setIsAuthOpen(true);
+                }}
+              >
+                Log In / Sign Up
+              </button>
+            </div>
 
-        {/* Footer Actions */}
-        <div className="profile-drawer-footer">
-          <button className="btn-profile-logout-all" onClick={() => { handleLogoutAll(); setIsProfileOpen(false); }}>
-            <span style={{ marginRight: '8px' }}>🌐</span>
-            Logout All Devices
-          </button>
-          <button className="btn-profile-logout" onClick={() => { handleLogout(); setIsProfileOpen(false); }}>
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ marginRight: '8px' }}>
-              <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
-              <polyline points="16 17 21 12 16 7"></polyline>
-              <line x1="21" y1="12" x2="9" y2="12"></line>
-            </svg>
-            Log Out
-          </button>
-        </div>
+            {/* Divider */}
+            <div className="drawer-section-divider"></div>
+
+            {/* Student Mode Switch Toggle */}
+            <div className="profile-student-toggle-card">
+              <div className="student-toggle-info">
+                <span className="student-toggle-title">🎓 Student Mode</span>
+                <span className="student-toggle-desc">Toggle to log in or register as a student</span>
+              </div>
+              <label className="switch">
+                <input 
+                  type="checkbox" 
+                  checked={authRole === 'student'} 
+                  onChange={(e) => {
+                    const checked = e.target.checked;
+                    if (checked) {
+                      setAuthRole('student');
+                      setIsProfileOpen(false);
+                      setIsAuthOpen(true);
+                    } else {
+                      setAuthRole('user');
+                    }
+                  }} 
+                />
+                <span className="slider"></span>
+              </label>
+            </div>
+          </div>
+        )}
       </div>
     </>
   );

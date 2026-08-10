@@ -51,7 +51,20 @@ const UserSchema = new mongoose.Schema({
     {
       type: String
     }
-  ]
+  ],
+  role: {
+    type: String,
+    enum: ['user', 'student'],
+    default: 'user'
+  },
+  schoolName: {
+    type: String,
+    trim: true
+  },
+  studentId: {
+    type: String,
+    trim: true
+  }
 });
 
 // Encrypt password using bcrypt before saving user

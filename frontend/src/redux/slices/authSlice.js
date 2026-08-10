@@ -4,6 +4,7 @@ const initialState = {
   user: null,
   isAuthOpen: false,
   isProfileOpen: false,
+  authRole: 'user', // 'user' or 'student'
 };
 
 export const authSlice = createSlice({
@@ -19,6 +20,9 @@ export const authSlice = createSlice({
     setIsProfileOpen: (state, action) => {
       state.isProfileOpen = action.payload;
     },
+    setAuthRole: (state, action) => {
+      state.authRole = action.payload;
+    },
     logoutUser: (state) => {
       state.user = null;
       localStorage.removeItem('token');
@@ -27,10 +31,11 @@ export const authSlice = createSlice({
   },
 });
 
-export const { setUser, setIsAuthOpen, setIsProfileOpen, logoutUser } = authSlice.actions;
+export const { setUser, setIsAuthOpen, setIsProfileOpen, setAuthRole, logoutUser } = authSlice.actions;
 
 export const selectUser = (state) => state.auth.user;
 export const selectIsAuthOpen = (state) => state.auth.isAuthOpen;
 export const selectIsProfileOpen = (state) => state.auth.isProfileOpen;
+export const selectAuthRole = (state) => state.auth.authRole;
 
 export default authSlice.reducer;

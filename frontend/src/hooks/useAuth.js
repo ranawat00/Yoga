@@ -4,10 +4,12 @@ import {
   setUser,
   setIsAuthOpen,
   setIsProfileOpen,
+  setAuthRole,
   logoutUser,
   selectUser,
   selectIsAuthOpen,
   selectIsProfileOpen,
+  selectAuthRole,
 } from '../redux/slices/authSlice';
 import { addNotification } from '../redux/slices/uiSlice';
 import * as authApi from '../api/auth';
@@ -17,6 +19,7 @@ export function useAuth() {
   const user = useAppSelector(selectUser);
   const isAuthOpen = useAppSelector(selectIsAuthOpen);
   const isProfileOpen = useAppSelector(selectIsProfileOpen);
+  const authRole = useAppSelector(selectAuthRole);
 
   // Restore user session on mount
   useEffect(() => {
@@ -40,13 +43,17 @@ export function useAuth() {
     restoreSession();
   }, [dispatch]);
 
-  const handleLogin = async (email, password) => {
+  const handleLogin = async (email, password, role = 'user', studentId = '') => {
     if (!email || !password) {
       dispatch(addNotification({ message: 'Please fill in all fields.', type: 'error' }));
       return false;
     }
+    if (role === 'student' && !studentId) {
+      dispatch(addNotification({ message: 'Please fill in your Student ID / Roll Number.', type: 'error' }));
+      return false;
+    }
     try {
-      const data = await authApi.login(email, password);
+      const data = await authApi.login(email, password, role, studentId);
       if (data.success) {
         localStorage.setItem('token', data.token);
         localStorage.setItem('refreshToken', data.refreshToken);
@@ -65,13 +72,17 @@ export function useAuth() {
     }
   };
 
-  const handleSignup = async (name, email, password) => {
+  const handleSignup = async (name, email, password, role = 'user', schoolName = '', studentId = '') => {
     if (!name || !email || !password) {
       dispatch(addNotification({ message: 'Please fill in all fields.', type: 'error' }));
       return false;
     }
+    if (role === 'student' && (!schoolName || !studentId)) {
+      dispatch(addNotification({ message: 'Please fill in school name and student ID.', type: 'error' }));
+      return false;
+    }
     try {
-      const data = await authApi.signup(name, email, password);
+      const data = await authApi.signup(name, email, password, role, schoolName, studentId);
       if (data.success) {
         localStorage.setItem('token', data.token);
         localStorage.setItem('refreshToken', data.refreshToken);
@@ -143,6 +154,8 @@ export function useAuth() {
     setIsAuthOpen: (val) => dispatch(setIsAuthOpen(val)),
     isProfileOpen,
     setIsProfileOpen: (val) => dispatch(setIsProfileOpen(val)),
+    authRole,
+    setAuthRole: (val) => dispatch(setAuthRole(val)),
     handleLogin,
     handleSignup,
     handleLogout,

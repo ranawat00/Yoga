@@ -5,7 +5,7 @@ import { fetchMyOrders } from '../../api/orders';
 
 import detoxImg from '../../assets/workshops/workshop_detox.webp';
 import meditationImg from '../../assets/workshops/workshop_meditation.webp';
-import cookingImg from '../../assets/workshops/workshop_cooking.webp';
+import harmonalImg from '../../assets/workshops/third_wordshop.jpg';
 import bookQuickEasyImg from '../../assets/books/book_quick_easy.webp';
 import bookCombo4Img from '../../assets/books/book_combo_4.webp';
 import bookCombo3Img from '../../assets/books/book_combo_3.webp';
@@ -20,7 +20,7 @@ const getProductImage = (productId) => {
   switch (productId) {
     case 'detox-21': return detoxImg;
     case 'mind-7': return meditationImg;
-    case 'cook-3': return cookingImg;
+    case 'cook-3': return harmonalImg;
     case 'book-quick-easy': return bookQuickEasyImg;
     case 'book-combo-4': return bookCombo4Img;
     case 'book-combo-3': return bookCombo3Img;

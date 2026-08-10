@@ -5,7 +5,7 @@ import { useApp } from '../../hooks/useApp';
 import { WORKSHOPS_DATA } from '../../components/Workshops/Workshops';
 import detoxImg from '../../assets/workshops/workshop_detox.webp';
 import meditationImg from '../../assets/workshops/workshop_meditation.webp';
-import cookingImg from '../../assets/workshops/workshop_cooking.webp';
+import harmonalImg from '../../assets/workshops/third_wordshop.jpg';
 import bookQuickEasyImg from '../../assets/books/book_quick_easy.webp';
 import bookCombo4Img from '../../assets/books/book_combo_4.webp';
 import bookCombo3Img from '../../assets/books/book_combo_3.webp';
@@ -211,11 +211,11 @@ export default function Navbar() {
               </div>
               <div className="mega-dropdown-card" onClick={(e) => handleDropdownClick('workshops', 'cook-3', e)}>
                 <div className="mega-card-img-wrapper">
-                  <img loading="lazy" src={cookingImg} alt="Cooking Masterclass" className="mega-card-img" />
+                  <img loading="lazy" src={harmonalImg} alt="Harmonal Wellness Program" className="mega-card-img" />
                 </div>
                 <div className="mega-card-body">
-                  <span className="mega-card-title">Cooking Masterclass</span>
-                  <span className="mega-card-desc">3 Days • 5th Jul • ₹490</span>
+                  <span className="mega-card-title">Harmonal Wellness Program</span>
+                  <span className="mega-card-desc">3 Months • 1st Sep • $299</span>
                 </div>
               </div>
             </div>
@@ -339,7 +339,7 @@ export default function Navbar() {
                 </button>
               </div>
             ) : (
-              <button className="auth-trigger-btn" onClick={() => setIsAuthOpen(true)} aria-label="Sign In">
+              <button className="auth-trigger-btn" onClick={() => setIsProfileOpen(true)} aria-label="Sign In">
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
                   <circle cx="12" cy="7" r="4"></circle>
@@ -442,7 +442,7 @@ export default function Navbar() {
               </>
             ) : (
               <li>
-                <a href="#login" onClick={(e) => { e.preventDefault(); setIsAuthOpen(true); setMobileMenuOpen(false); }}>
+                <a href="#login" onClick={(e) => { e.preventDefault(); setIsProfileOpen(true); setMobileMenuOpen(false); }}>
                   Log In / Sign Up
                 </a>
               </li>

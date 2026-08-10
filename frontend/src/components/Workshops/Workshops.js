@@ -3,13 +3,14 @@ import React, { useState, useRef, useCallback } from 'react';
 import { createPortal } from 'react-dom';
 import { useApp } from '../../hooks/useApp';
 import detoxImg from '../../assets/workshops/workshop_1.jpg';
-import meditationImg from '../../assets/workshops/workshop_meditation.webp';
+import meditationImg from '../../assets/workshops/third_wordshop.jpg';
 import cookingImg from '../../assets/workshops/second_workshop.jpg';
 import { createOrder, verifyPayment } from '../../api/payment';
 import { createOrderRecord } from '../../api/orders';
 import { fetchWorkshopReviews, createWorkshopReview } from '../../api/reviews';
 import WorkshopDetails from './WorkshopDetails';
 import LungsDetoxDetails from './LungsDetoxDetails';
+import HarmonalBalanceDetails from './HarmonalBalanceDetails';
 // Dynamic script loader for Razorpay Checkout
 const loadRazorpayScript = () => {
   return new Promise((resolve) => {
@@ -56,16 +57,16 @@ export const WORKSHOPS_DATA = [
   },
   {
     id: 'cook-3',
-    title: 'Yoga Sadhana Beginner',
-    subtitle: 'Learn yoga philosophy and meditations',
+    title: 'Harmonal Wellness Program',
+    subtitle: 'The Ultimate Harmonal Balance Challenge',
     rating: 5.0,
     reviews: 112,
-    date: '22nd August',
-    duration: '21 Days',
-    language: 'Multiple',
+    date: '1 September',
+    duration: '3 Months',
+    language: 'English',
     price: 299,
     startInDays: '11 Days',
-    description: 'Take charge of your health and inner joy with simple daily practices designed for absolute beginners.',
+    description: 'Targeting the root cause of thyroid issues, PMOS, hormonal imbalances, and fatigue.',
     image: meditationImg
   }
 ];
@@ -456,6 +457,15 @@ export default function Workshops({ isStandalone = false }) {
       ) : (
         viewingWorkshop.id === 'mind-7' ? (
           <LungsDetoxDetails
+            workshop={viewingWorkshop}
+            onBack={() => {
+              setViewingWorkshop(null);
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
+            onRegister={() => handleOpenModal(viewingWorkshop)}
+          />
+        ) : viewingWorkshop.id === 'cook-3' ? (
+          <HarmonalBalanceDetails
             workshop={viewingWorkshop}
             onBack={() => {
               setViewingWorkshop(null);

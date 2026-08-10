@@ -4,20 +4,36 @@ import Logo from '../../common/Logo/Logo';
 import './AuthModal.css';
 
 export default function AuthModal() {
-  const { isAuthOpen, setIsAuthOpen, handleLogin, handleSignup, handleForgotPassword } = useApp();
+  const { 
+    isAuthOpen, 
+    setIsAuthOpen, 
+    handleLogin, 
+    handleSignup, 
+    handleForgotPassword,
+    authRole,
+    setAuthRole 
+  } = useApp();
+  
   const [activeTab, setActiveTab] = useState('login'); // 'login', 'signup', or 'forgot'
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [schoolName, setSchoolName] = useState('');
+  const [studentId, setStudentId] = useState('');
 
   if (!isAuthOpen) return null;
+
+  const handleClose = () => {
+    setIsAuthOpen(false);
+    setAuthRole('user');
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (activeTab === 'login') {
-      await handleLogin(email, password);
+      await handleLogin(email, password, authRole, studentId);
     } else if (activeTab === 'signup') {
-      await handleSignup(name, email, password);
+      await handleSignup(name, email, password, authRole, schoolName, studentId);
     } else if (activeTab === 'forgot') {
       const success = await handleForgotPassword(email);
       if (success) {
@@ -32,6 +48,8 @@ export default function AuthModal() {
     setName('');
     setEmail('');
     setPassword('');
+    setSchoolName('');
+    setStudentId('');
   };
 
   const getHeaderTitle = () => {
@@ -53,10 +71,10 @@ export default function AuthModal() {
   };
 
   return (
-    <div className="auth-modal-overlay" onClick={() => setIsAuthOpen(false)}>
+    <div className="auth-modal-overlay" onClick={handleClose}>
       <div className="auth-modal-card" onClick={(e) => e.stopPropagation()}>
         {/* Close Button */}
-        <button className="auth-modal-close" onClick={() => setIsAuthOpen(false)} aria-label="Close Authentication">
+        <button className="auth-modal-close" onClick={handleClose} aria-label="Close Authentication">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
             <line x1="18" y1="6" x2="6" y2="18"></line>
             <line x1="6" y1="6" x2="18" y2="18"></line>
@@ -115,7 +133,9 @@ export default function AuthModal() {
           )}
 
           <div className="form-group">
-            <label htmlFor="auth-email">Email Address</label>
+            <label htmlFor="auth-email">
+              {authRole === 'student' && activeTab !== 'forgot' ? 'Student Email Address' : 'Email Address'}
+            </label>
             <div className="input-wrapper">
               <svg className="input-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
@@ -124,13 +144,57 @@ export default function AuthModal() {
               <input 
                 type="email" 
                 id="auth-email" 
-                placeholder="you@example.com"
+                placeholder={authRole === 'student' && activeTab !== 'forgot' ? 'student@school.edu' : 'you@example.com'}
                 value={email} 
                 onChange={(e) => setEmail(e.target.value)} 
                 required 
               />
             </div>
           </div>
+
+          {/* School Name (only for Student Sign Up) */}
+          {activeTab === 'signup' && authRole === 'student' && (
+            <div className="form-group animate-slide-down">
+              <label htmlFor="auth-school">School / College Name</label>
+              <div className="input-wrapper">
+                <svg className="input-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
+                  <path d="M6 12v5c0 2 2 3 6 3s6-1 6-3v-5"></path>
+                </svg>
+                <input 
+                  type="text" 
+                  id="auth-school" 
+                  placeholder="Enter your school/college name"
+                  value={schoolName} 
+                  onChange={(e) => setSchoolName(e.target.value)} 
+                  required 
+                />
+              </div>
+            </div>
+          )}
+
+          {/* Student ID / Roll Number (for Student Login & Sign Up) */}
+          {authRole === 'student' && activeTab !== 'forgot' && (
+            <div className="form-group animate-slide-down">
+              <label htmlFor="auth-studentid">Student ID / Roll Number</label>
+              <div className="input-wrapper">
+                <svg className="input-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <rect x="3" y="4" width="18" height="16" rx="2"></rect>
+                  <line x1="7" y1="8" x2="17" y2="8"></line>
+                  <line x1="7" y1="12" x2="13" y2="12"></line>
+                  <line x1="7" y1="16" x2="9" y2="16"></line>
+                </svg>
+                <input 
+                  type="text" 
+                  id="auth-studentid" 
+                  placeholder="Enter student ID or roll number"
+                  value={studentId} 
+                  onChange={(e) => setStudentId(e.target.value)} 
+                  required 
+                />
+              </div>
+            </div>
+          )}
 
           {activeTab !== 'forgot' && (
             <div className="form-group">

@@ -14,12 +14,14 @@ export const fetchMe = (token) =>
  * Log in a user with email and password.
  * @param {string} email 
  * @param {string} password 
+ * @param {string} [role]
+ * @param {string} [studentId]
  * @returns {Promise<object>} response data
  */
-export const login = (email, password) => 
+export const login = (email, password, role, studentId) => 
   apiClient('/auth/login', {
     method: 'POST',
-    body: JSON.stringify({ email, password })
+    body: JSON.stringify({ email, password, role, studentId })
   });
 
 /**
@@ -27,12 +29,15 @@ export const login = (email, password) =>
  * @param {string} name 
  * @param {string} email 
  * @param {string} password 
+ * @param {string} [role]
+ * @param {string} [schoolName]
+ * @param {string} [studentId]
  * @returns {Promise<object>} response data
  */
-export const signup = (name, email, password) => 
+export const signup = (name, email, password, role, schoolName, studentId) => 
   apiClient('/auth/signup', {
     method: 'POST',
-    body: JSON.stringify({ name, email, password })
+    body: JSON.stringify({ name, email, password, role, schoolName, studentId })
   });
 
 /**
