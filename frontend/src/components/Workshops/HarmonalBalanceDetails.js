@@ -2,15 +2,53 @@ import React, { useState, useEffect } from 'react';
 import './HarmonalBalanceDetails.css';
 
 import banner from '../../assets/workshops/hero_image_hermonal.jpg';
-import expImg1 from '../../assets/workshops/workshop_detail_exp_1.jpg';
-import expImg2 from '../../assets/workshops/workshop_detail_exp_2.jpg';
-import expImg3 from '../../assets/workshops/workshop_detail_exp_3.jpg';
-import expImg4 from '../../assets/workshops/workshop_detail_exp_4.jpg';
 import hermonal3 from '../../assets/workshops/hermonal3.jpg';
-import whatYouGainImg from '../../assets/workshops/workshop_details_gain1.jpg';
-import habitsUnlockImg from '../../assets/workshops/workshopdetails_gain2.jpg';
+import brainHeadImg from '../../assets/workshops/brain_head_icon.png';
+import growthArrowsImg from '../../assets/workshops/growth_arrows_icon.png';
+import greenPointerImg from '../../assets/workshops/green_pointer_icon.png';
+import blueArrowImg from '../../assets/workshops/blue_arrow_icon.png';
+import sunHandsImg from '../../assets/workshops/sun_hands_icon.png';
+import hermonal2 from '../../assets/workshops/hermonal2.jpg';
+import hermonal4 from '../../assets/workshops/hermonal4.jpg';
 
 export default function HarmonalBalanceDetails({ workshop, onBack, onRegister }) {
+  const [openFaq, setOpenFaq] = useState(0);
+
+  const toggleFaq = (index) => {
+    setOpenFaq(openFaq === index ? null : index);
+  };
+
+  const faqList = [
+    {
+      q: "Who is this workshop for?",
+      a: "Women aged 21–55 dealing with hormonal shifts, irregular cycles, fatigue, sleep disruptions, or mood changes—regardless of whether you have an official perimenopause or menopause diagnosis."
+    },
+    {
+      q: "What if I'm still having regular periods?",
+      a: "You're welcome. Many women experience subtle hormonal changes despite having a regular cycle. This workshop will guide you in understanding and responding to your body's early signals."
+    },
+    {
+      q: "Can I ask questions live?",
+      a: "Definitely! There will be time reserved at the end for a live Q&A where you can ask your wellness coach/counselor your questions directly."
+    },
+    {
+      q: "Why you should join our online Ultimate Harmonal Balance program ?",
+      a: "Designed by a team of wellness coaches, doctors, and psychologists, the Ultimate Hormonal Balance Program offers a transformative approach to correcting hormonal imbalances. Delivered entirely online from the comfort of your home, it connects you with a global community all working toward a shared goal: reclaiming and elevating your ultimate health."
+    },
+    {
+      q: "Why this ultimate harmonal balance program is for 3 months ?",
+      a: "Real hormonal balance doesn't happen overnight. Three months allow us to address root causes, track full cycle shifts, and build lasting habits from the comfort of your home."
+    },
+    {
+      q: "When shall I receive the confirmation message?",
+      a: "Once you register, we’ll instantly send your confirmation details straight to your WhatsApp or email."
+    },
+    {
+      q: "Why We Charge a Fee ?",
+      a: "We charge a program fee to ensure your full commitment, maintain high standards of comfort, and deliver tangible, result-oriented outcomes. Additionally, 5% of every fee is directly invested in our charity initiatives—empowering women through education and supporting local projects to build stronger, resilient communities."
+    }
+  ];
+
   // Real-time Countdown Timer State
   const [timeLeft, setTimeLeft] = useState({
     days: '00',
@@ -185,81 +223,178 @@ export default function HarmonalBalanceDetails({ workshop, onBack, onRegister })
       </section>
 
       {/* Your Experience Includes Section */}
+      <section className="experience-includes-section">
+        <h2 className="experience-main-title">Your Experience Includes</h2>
 
-      <section className="experience-includes">
-        <h2 className="section-details-heading">Your Experience Includes</h2>
-
-        <div className="experience-items-grid">
-          <div className="experience-item-card">
-            <div className="experience-img-container">
-              <img src={expImg1} alt="Daily Live Online Session" />
+        <div className="experience-cards-wrapper">
+          {/* Card 1: 1 hour Daily Live Online session */}
+          <div className="experience-card-box">
+            <div className="live-status-pill">
+              <span className="live-status-dot"></span>
+              <span className="live-status-text">LIVE</span>
             </div>
-            <h3>1 hour Daily Live Online session</h3>
-            <p>Experience 1 hour of daily, step-by-step guided practice from the comfort of your home. Eliminates travel hassle and fits seamlessly into your daily routine.</p>
+
+            <h3 className="exp-card-heading">1 hour Daily Live Online session</h3>
+
+            <div className="exp-card-body-text">
+              <p>
+                Every session is a fresh and inspiring experience. It combines deep wisdom, hands-on activities, engaging stories, and practical daily practices.
+              </p>
+              <p>
+                Experience <strong>1 hour of daily, step-by-step guided practice</strong> from the comfort of your home.
+              </p>
+              <p>
+                <strong>The impact:</strong> Eliminates travel hassle and fits seamlessly into your morning or evening routine, making it effortless to stay consistent.
+              </p>
+            </div>
+
+            <div className="exp-card-top-icon" style={{ marginTop: '1.2rem', marginBottom: 0 }}>
+              <img src={brainHeadImg} alt="Brain Head Logo" className="exp-card-icon-img" />
+            </div>
           </div>
 
-          <div className="experience-item-card">
-            <div className="experience-img-container">
-              <img src={expImg2} alt="Natural Hormone Healing Science" />
+          {/* Card 2: A Clear Understanding of Your Body (Separate Card) */}
+          <div className="experience-card-box">
+            <h3 className="exp-card-heading" style={{ textAlign: 'center' }}>A Clear Understanding of Your Body</h3>
+
+            <div className="exp-card-body-text text-center">
+              <p>
+                You will learn to decode fatigue, mood shifts, and cycle irregularities, shifting from simply managing discomfort to understanding what your body truly needs.
+              </p>
             </div>
-            <h3>Natural Hormone Healing Science</h3>
-            <p>Targeting the root cause of thyroid issues, PCOS/PMOS, hormonal imbalances, and chronic fatigue. Learn dietary shifts, detoxification, and natural lifestyle corrections to restore balance.</p>
+
+            <div className="exp-card-top-icon" style={{ marginTop: '1.2rem', marginBottom: 0 }}>
+              <img src={growthArrowsImg} alt="Growth Arrows Logo" className="exp-card-icon-img" />
+            </div>
           </div>
 
-          <div className="experience-item-card">
-            <div className="experience-img-container">
-              <img src={expImg3} alt="Therapeutic Yoga & Breathwork" />
+          {/* Card 3: A Personalized Food & Lifestyle Framework */}
+          <div className="experience-card-box">
+            <h3 className="exp-card-heading" style={{ textAlign: 'center' }}>A Personalized Food & Lifestyle Framework</h3>
+
+            <div className="exp-card-body-text text-center">
+              <p>
+                No rigid diets or unsustainable routines. You'll receive practical, nourishment-first principles and daily habits designed to support your hormone health naturally and fit seamlessly into your life.
+              </p>
             </div>
-            <h3>Therapeutic Yoga & Breathwork</h3>
-            <p>Dedicated practice of specialized endocrine-stimulating Asanas (yoga postures) and Pranayamas (breathing techniques) designed to regulate glands and boost vital energy.</p>
+
+            <div className="exp-card-top-icon" style={{ marginTop: '1.2rem', marginBottom: 0 }}>
+              <img src={greenPointerImg} alt="Personalized Framework Pointer" className="exp-card-icon-img" />
+            </div>
           </div>
 
-          <div className="experience-item-card">
-            <div className="experience-img-container">
-              <img src={expImg4} alt="Stress & Sleep Synchronization" />
+          {/* Card 4: Step-by-Step Action Plans & Roadmap */}
+          <div className="experience-card-box">
+            <h3 className="exp-card-heading" style={{ textAlign: 'center' }}>Step-by-Step Action Plans & Roadmap</h3>
+
+            <div className="exp-card-body-text text-center">
+              <p>
+                Eliminate the guesswork entirely. Each month brings clear, actionable strategies that guide your transition from identifying root causes to establishing lasting hormonal harmony.
+              </p>
             </div>
-            <h3>Stress & Sleep Synchronization</h3>
-            <p>Address the nervous system's connection to hormones. Learn deep relaxation practices and circadian rhythm rules to keep cortisol low and progesterone/melatonin balanced.</p>
+
+            <div className="exp-card-top-icon" style={{ marginTop: '1.2rem', marginBottom: 0 }}>
+              <img src={blueArrowImg} alt="Action Plans Arrow Roadmap" className="exp-card-icon-img" />
+            </div>
           </div>
 
-          <div className="experience-item-card">
-            <div className="experience-img-container">
-              <img src={expImg1} alt="Global Healing Community" />
+          {/* Card 5: Dedicated Guidance & Accountable Support */}
+          <div className="experience-card-box">
+            <h3 className="exp-card-heading" style={{ textAlign: 'center' }}>Dedicated Guidance & Accountable Support</h3>
+
+            <div className="exp-card-body-text text-center">
+              <p>
+                You won't navigate this transition alone. Through regular check-ins and expert support, you'll receive the encouragement, adjustments, and answers needed to keep you moving forward with confidence.
+              </p>
             </div>
-            <h3>Global Healing Community</h3>
-            <p>You’ll join a beautiful community of like-minded people from around the world taking the challenge with you, keeping you motivated every step of the way.</p>
+
+            <div className="exp-card-top-icon" style={{ marginTop: '1.2rem', marginBottom: 0 }}>
+              <img src={sunHandsImg} alt="Dedicated Guidance Sun Hands" className="exp-card-icon-img" />
+            </div>
+          </div>
+
+          {/* Card 6: Unshakable Clarity for Your Next Chapter */}
+          <div className="experience-card-box">
+            <h3 className="exp-card-heading" style={{ textAlign: 'center' }}>Unshakable Clarity for Your Next Chapter</h3>
+
+            <div className="exp-card-body-text text-center">
+              <p>
+                Walk away feeling grounded, energized, and self-assured in your body. You will leave the program with sustainable tools and a clear path to maintain long-term balance, vitality, and peace of mind.
+              </p>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* What You'll Gain Section */}
-      <section className="what-you-gain">
-        <h2 className="section-details-heading">What you'll Gain</h2>
-        <div className="composite-image-container">
-          <img src={whatYouGainImg} alt="What you'll Gain" className="composite-section-image" />
+      {/* What You Will Unlock Section */}
+      <section className="session-unlock-section">
+        <h2 className="session-unlock-title">What you will unlock during this session !</h2>
+
+        <div className="session-unlock-bars">
+          <div className="unlock-gradient-bar">
+            <span>Navigating life’s transitions with grace and clarity</span>
+          </div>
+
+          <div className="unlock-gradient-bar">
+            <span>Understanding the natural wisdom of your body</span>
+          </div>
+
+          <div className="unlock-gradient-bar">
+            <span>Moving forward with purpose and direction</span>
+          </div>
+
+          <div className="unlock-gradient-bar">
+            <span>Everyday guidance for nourishment and well-being</span>
+          </div>
+        </div>
+      </section>
+
+      {/* What You Will Gain Section */}
+      <section className="what-you-will-gain-section">
+        <h2 className="what-you-will-gain-title">what you will gain</h2>
+        <div className="gain-image-wrapper">
+          <img src={hermonal2} alt="what you will gain" className="gain-section-image" />
         </div>
       </section>
 
       {/* 7 Lifelong Habits Section */}
-      <section className="habits-unlock">
-        <h2 className="section-details-heading">7 Lifelong Habits You Will Unlock</h2>
-        <div className="composite-image-container">
-          <img src={habitsUnlockImg} alt="7 Lifelong Habits You Will Unlock" className="composite-section-image" />
+      <section className="habits-unlock-section">
+        <h2 className="habits-unlock-title">7 Lifelong Habits You Will Unlock</h2>
+        <div className="habits-image-wrapper">
+          <img src={hermonal4} alt="7 Lifelong Habits You Will Unlock" className="habits-section-image" />
         </div>
       </section>
 
-      {/* Sticky Bottom Bar for Mobile Register */}
-      <div className="sticky-details-footer">
-        <div className="sticky-footer-content">
-          <div className="sticky-price-info">
-            <span className="sticky-title">{workshop.title}</span>
-            <span className="sticky-price">{workshop.price} $</span>
-          </div>
-          <button className="sticky-register-btn" onClick={onRegister}>
-            Register Now
-          </button>
+      {/* FAQ Section with Smooth Accordion Animation */}
+      <section className="faq-details-section">
+        <h2 className="faq-section-title">FAQ</h2>
+
+        <div className="faq-accordion-container">
+          {faqList.map((faq, index) => {
+            const isOpen = openFaq === index;
+            return (
+              <div 
+                key={index} 
+                className={`faq-accordion-item ${isOpen ? 'active' : ''}`}
+                onClick={() => toggleFaq(index)}
+              >
+                <div className="faq-accordion-header">
+                  <h3 className="faq-question-text">{faq.q}</h3>
+                  <div className={`faq-chevron-icon ${isOpen ? 'rotate' : ''}`}>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                      <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                  </div>
+                </div>
+
+                <div className={`faq-accordion-body ${isOpen ? 'show' : ''}`}>
+                  <p>{faq.a}</p>
+                </div>
+              </div>
+            );
+          })}
         </div>
-      </div>
+      </section>
     </div>
   );
 }

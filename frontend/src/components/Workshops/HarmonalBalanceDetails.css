@@ -636,75 +636,178 @@
   border-radius: 2px;
 }
 
-/* Experience Includes */
-.experience-includes {
-  padding: 5rem 2rem;
-  background-color: #faf8f5;
-}
-
-.experience-items-grid {
-  max-width: 1200px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 3rem;
-  align-items: start;
-}
-
-.experience-item-card {
+/* ============================================================
+   YOUR EXPERIENCE INCLUDES SECTION (Exact UI Match)
+   ============================================================ */
+.experience-includes-section {
+  padding: 4.5rem 1.5rem;
   background-color: #ffffff;
-  border: 1px solid #ebe6db;
-  border-radius: 20px;
-  padding: 1.5rem;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.experience-main-title {
+  font-family: var(--font-heading), 'Plus Jakarta Sans', sans-serif;
+  color: #4a6d4e;
+  font-size: 2.2rem;
+  font-weight: 800;
   text-align: center;
+  margin-bottom: 2.5rem;
+  letter-spacing: -0.4px;
+}
+
+.experience-cards-wrapper {
+  max-width: 680px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+.experience-card-box {
+  background-color: #f4f9f4;
+  border-radius: 28px;
+  padding: 2.5rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+  border: 1px solid #e2eee2;
   transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
-.experience-item-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.06);
+.experience-card-box:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(74, 109, 78, 0.08);
 }
 
-.experience-img-container {
-  width: 100%;
-  max-width: 280px;
-  height: 180px;
-  overflow: hidden;
-  margin: 0 auto 0.2rem auto;
+/* LIVE Status Pill Badge */
+.live-status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: 2.5px solid #ff002b;
+  border-radius: 12px;
+  padding: 4px 14px;
+  margin-bottom: 1.5rem;
+  background-color: transparent;
+}
+
+.live-status-dot {
+  width: 13px;
+  height: 13px;
+  background-color: #ff002b;
+  border-radius: 50%;
+  display: inline-block;
+  box-shadow: 0 0 8px rgba(255, 0, 43, 0.6);
+  animation: livePulse 2s infinite ease-in-out;
+}
+
+@keyframes livePulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 0.8;
+  }
+}
+
+.live-status-text {
+  font-family: var(--font-heading), 'Plus Jakarta Sans', sans-serif;
+  color: #ff002b;
+  font-weight: 800;
+  font-size: 0.95rem;
+  letter-spacing: 1.5px;
+}
+
+/* Card Heading */
+.exp-card-heading {
+  font-family: var(--font-heading), 'Plus Jakarta Sans', sans-serif;
+  font-size: 1.38rem;
+  font-weight: 800;
+  color: #0d0d0d;
+  margin: 0 0 1.2rem 0;
+  line-height: 1.3;
+  letter-spacing: -0.3px;
+}
+
+/* Body Paragraphs */
+.exp-card-body-text {
+  font-family: var(--font-body), 'Plus Jakarta Sans', sans-serif;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  color: #333333;
+  font-size: 1.02rem;
+  line-height: 1.65;
+  margin-bottom: 1.8rem;
+  text-align: left;
+  max-width: 600px;
+}
+
+.exp-card-body-text p {
+  margin: 0;
+}
+
+.exp-card-body-text strong {
+  font-weight: 700;
+  color: #000000;
+}
+
+/* Top Icon Wrapper */
+.exp-card-top-icon {
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-bottom: 1.2rem;
 }
 
-.experience-img-container img {
-  width: 100%;
-  height: 100%;
+.exp-card-icon-img {
+  height: 65px;
+  width: auto;
   object-fit: contain;
-  transform: scale(1.45);
-  transition: transform 0.3s ease;
+  display: block;
 }
 
-.experience-item-card:hover .experience-img-container img {
-  transform: scale(1.5);
+.exp-card-body-text.text-center {
+  text-align: center;
 }
 
-.experience-item-card h3 {
-  font-family: var(--font-display), sans-serif;
-  font-size: 1.25rem;
-  color: #111111;
-  margin: 0.25rem 0 0.35rem 0;
-  font-weight: 800;
+.exp-card-divider {
+  width: 100%;
+  height: 1px;
+  background-color: #e0ebe0;
+  margin: 1.8rem 0;
 }
 
-.experience-item-card p {
-  font-size: 0.9rem;
-  line-height: 1.5;
-  color: #4a4a4a;
-  margin: 0;
+@media (max-width: 768px) {
+  .experience-includes-section {
+    padding: 3rem 1rem;
+  }
+
+  .experience-main-title {
+    font-size: 1.75rem;
+    margin-bottom: 1.8rem;
+  }
+
+  .experience-card-box {
+    padding: 2rem 1.2rem;
+    border-radius: 20px;
+  }
+
+  .exp-card-heading {
+    font-size: 1.35rem;
+  }
+
+  .exp-card-body-text {
+    font-size: 0.95rem;
+  }
 }
 
 /* What You'll Gain */
@@ -1256,5 +1359,297 @@
 
   .not-alone-heading {
     font-size: 1.3rem;
+  }
+}
+
+/* What You Will Unlock Section */
+.session-unlock-section {
+  background-color: #ffffff;
+  padding: 3.5rem 2rem;
+  text-align: center;
+  border-bottom: 1px solid #e2efe3;
+}
+
+.session-unlock-title {
+  font-family: var(--font-heading), 'Plus Jakarta Sans', sans-serif;
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #5c8862;
+  margin-bottom: 2.5rem;
+  line-height: 1.35;
+  letter-spacing: -0.3px;
+}
+
+.session-unlock-bars {
+  max-width: 760px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem;
+}
+
+.unlock-gradient-bar {
+  background: linear-gradient(90deg, #7fb480 0%, #31543a 100%);
+  padding: 1.15rem 1.8rem;
+  border-radius: 4px;
+  text-align: left;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.unlock-gradient-bar:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+}
+
+.unlock-gradient-bar span {
+  font-family: var(--font-body), 'Plus Jakarta Sans', sans-serif;
+  font-size: 1.15rem;
+  font-weight: 500;
+  color: #ffffff;
+  line-height: 1.4;
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .session-unlock-section {
+    padding: 2.5rem 1.2rem;
+  }
+
+  .session-unlock-title {
+    font-size: 1.55rem;
+    margin-bottom: 1.8rem;
+  }
+
+  .session-unlock-bars {
+    gap: 1.1rem;
+  }
+
+  .unlock-gradient-bar {
+    padding: 1rem 1.2rem;
+  }
+
+  .unlock-gradient-bar span {
+    font-size: 1rem;
+  }
+}
+
+/* What You Will Gain Section */
+.what-you-will-gain-section {
+  background-color: #f7fcf4;
+  padding: 3rem 1.5rem 3rem 1.5rem;
+  text-align: center;
+  border-top: 1px solid #e2efe3;
+  border-bottom: 1px solid #e2efe3;
+}
+
+.what-you-will-gain-title {
+  font-family: var(--font-heading), 'Plus Jakarta Sans', sans-serif;
+  font-size: 2.4rem;
+  font-weight: 800;
+  color: #6b9772;
+  margin-bottom: 1.8rem;
+  text-transform: lowercase;
+  letter-spacing: -0.5px;
+}
+
+.gain-image-wrapper {
+  max-width: 1000px;
+  margin: 0 auto;
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+}
+
+.gain-section-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: contain;
+}
+
+@media (max-width: 768px) {
+  .what-you-will-gain-section {
+    padding: 2rem 1rem 2rem 1rem;
+  }
+
+  .what-you-will-gain-title {
+    font-size: 1.8rem;
+    margin-bottom: 1.2rem;
+  }
+}
+
+/* 7 Lifelong Habits Section */
+.habits-unlock-section {
+  background-color: #ffffff;
+  padding: 3rem 1.5rem 2.5rem 1.5rem;
+  text-align: center;
+  border-top: 1px solid #e2efe3;
+  border-bottom: 1px solid #e2efe3;
+}
+
+.habits-unlock-title {
+  font-family: var(--font-heading), 'Plus Jakarta Sans', sans-serif;
+  font-size: 2.4rem;
+  font-weight: 800;
+  color: #6b9772;
+  margin-bottom: 1.8rem;
+  letter-spacing: -0.5px;
+}
+
+.habits-image-wrapper {
+  max-width: 1000px;
+  margin: 0 auto;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.habits-section-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: contain;
+}
+
+@media (max-width: 768px) {
+  .habits-unlock-section {
+    padding: 2rem 1rem 1.5rem 1rem;
+  }
+
+  .habits-unlock-title {
+    font-size: 1.8rem;
+    margin-bottom: 1.2rem;
+  }
+}
+
+/* FAQ Accordion Section */
+.faq-details-section {
+  background-color: #f7fcf4;
+  padding: 3rem 1.5rem 4rem 1.5rem;
+  text-align: center;
+  border-top: 1px solid #e2efe3;
+}
+
+.faq-section-title {
+  font-family: var(--font-heading), 'Plus Jakarta Sans', sans-serif;
+  font-size: 2.8rem;
+  font-weight: 800;
+  color: #6b9772;
+  margin-bottom: 1.8rem;
+  letter-spacing: -0.5px;
+}
+
+.faq-accordion-container {
+  max-width: 840px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  text-align: left;
+}
+
+.faq-accordion-item {
+  background: #ffffff;
+  border: 1.5px solid #e2efe3;
+  border-radius: 12px;
+  padding: 1.4rem 1.8rem;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+}
+
+.faq-accordion-item:hover {
+  border-color: #a8d5ad;
+  box-shadow: 0 6px 18px rgba(107, 151, 114, 0.12);
+}
+
+.faq-accordion-item.active {
+  background: #ffffff;
+  border-color: #6b9772;
+  box-shadow: 0 8px 24px rgba(107, 151, 114, 0.15);
+}
+
+.faq-accordion-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.faq-question-text {
+  font-family: var(--font-heading), 'Plus Jakarta Sans', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #1a251b;
+  margin: 0;
+  line-height: 1.4;
+}
+
+.faq-chevron-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #f0f7f1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #5c8862;
+  flex-shrink: 0;
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.3s ease;
+}
+
+.faq-accordion-item.active .faq-chevron-icon {
+  background: #6b9772;
+  color: #ffffff;
+}
+
+.faq-chevron-icon.rotate {
+  transform: rotate(180deg);
+}
+
+.faq-accordion-body {
+  max-height: 0;
+  opacity: 0;
+  transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease, margin-top 0.3s ease;
+  margin-top: 0;
+}
+
+.faq-accordion-body.show {
+  max-height: 300px;
+  opacity: 1;
+  margin-top: 1rem;
+}
+
+.faq-accordion-body p {
+  font-family: var(--font-body), 'Plus Jakarta Sans', sans-serif;
+  font-size: 1.05rem;
+  color: #4a584c;
+  line-height: 1.65;
+  margin: 0;
+  padding-top: 0.8rem;
+  border-top: 1px solid #f0f7f1;
+}
+
+@media (max-width: 768px) {
+  .faq-details-section {
+    padding: 1.8rem 1rem 3rem 1rem;
+  }
+
+  .faq-section-title {
+    font-size: 2.2rem;
+    margin-bottom: 1.4rem;
+  }
+
+  .faq-accordion-item {
+    padding: 1.1rem 1.2rem;
+  }
+
+  .faq-question-text {
+    font-size: 1.08rem;
+  }
+
+  .faq-accordion-body p {
+    font-size: 0.98rem;
   }
 }
