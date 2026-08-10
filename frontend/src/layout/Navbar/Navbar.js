@@ -16,7 +16,7 @@ import neemCombImg from '../../assets/products/product_neem_comb.webp';
 import copperBottleImg from '../../assets/products/product_copper_bottle.webp';
 
 export default function Navbar() {
-  const { totalCartCount, setIsCartOpen, setView, user, setIsAuthOpen, handleLogout, setIsProfileOpen, view, setViewingWorkshop } = useApp();
+  const { totalCartCount, setIsCartOpen, setView, user, handleLogout, setIsProfileOpen, view, setViewingWorkshop } = useApp();
   const [activeLink, setActiveLink] = useState('home');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);

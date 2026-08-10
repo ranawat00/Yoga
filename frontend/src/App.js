@@ -59,7 +59,7 @@ const VIEW_TITLES = {
 };
 
 function AppContent() {
-  const { isCartOpen, isCheckoutOpen, view, setView, setIsAuthOpen, user } = useApp();
+  const { isCartOpen, isCheckoutOpen, view, setView } = useApp();
 
   // Reset scroll to top on initial page load / refresh
   useEffect(() => {
