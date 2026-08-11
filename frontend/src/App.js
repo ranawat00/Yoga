@@ -59,7 +59,14 @@ const VIEW_TITLES = {
 };
 
 function AppContent() {
-  const { isCartOpen, isCheckoutOpen, view, setView } = useApp();
+  const { isCartOpen, isCheckoutOpen, view, setView, setViewingWorkshop } = useApp();
+
+  // Reset viewingWorkshop if we navigate away from workshops view
+  useEffect(() => {
+    if (view !== 'workshops') {
+      setViewingWorkshop(null);
+    }
+  }, [view, setViewingWorkshop]);
 
   // Reset scroll to top on initial page load / refresh
   useEffect(() => {
