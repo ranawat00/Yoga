@@ -59,14 +59,14 @@ export const WORKSHOPS_DATA = [
     id: 'cook-3',
     title: 'Harmonal Wellness Program',
     subtitle: 'The Ultimate Harmonal Balance Challenge',
-    rating: 5.0,
-    reviews: 112,
+    rating: 4.9,
+    reviews: 144,
     date: '1 September',
     duration: '3 Months',
     language: 'English',
-    price: 299,
+    price: 499,
     startInDays: '11 Days',
-    description: 'Targeting the root cause of thyroid issues, PMOS, hormonal imbalances, and fatigue.',
+    description: 'Tackle PMOS at the root with 14+ years of proven expertise from leading doctors, psychologists, and wellness coaches ',
     image: meditationImg
   }
 ];

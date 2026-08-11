@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './HarmonalBalanceDetails.css';
 
-import banner from '../../assets/workshops/hero_image_hermonal.jpg';
+import banner from '../../assets/workshops/hermona_banner.jpg';
 import hermonal3 from '../../assets/workshops/hermonal3.jpg';
 import brainHeadImg from '../../assets/workshops/brain_head_icon.png';
 import growthArrowsImg from '../../assets/workshops/growth_arrows_icon.png';
@@ -373,8 +373,8 @@ export default function HarmonalBalanceDetails({ workshop, onBack, onRegister })
           {faqList.map((faq, index) => {
             const isOpen = openFaq === index;
             return (
-              <div 
-                key={index} 
+              <div
+                key={index}
                 className={`faq-accordion-item ${isOpen ? 'active' : ''}`}
                 onClick={() => toggleFaq(index)}
               >
