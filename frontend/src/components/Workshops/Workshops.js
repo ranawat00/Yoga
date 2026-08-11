@@ -85,12 +85,20 @@ const getMeetLink = (batchName) => {
 export default function Workshops({ isStandalone = false }) {
   const { addNotification, setView, viewingWorkshop, setViewingWorkshop } = useApp();
   const [selectedWorkshop, setSelectedWorkshop] = useState(null);
+  const [expandedWorkshops, setExpandedWorkshops] = useState({});
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     phone: '',
     batch: ''
   });
+
+  const toggleDescription = (id) => {
+    setExpandedWorkshops((prev) => ({
+      ...prev,
+      [id]: !prev[id]
+    }));
+  };
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [successData, setSuccessData] = useState(null);
   const [activeSlide, setActiveSlide] = useState(0);
@@ -413,7 +421,14 @@ export default function Workshops({ isStandalone = false }) {
                       </div>
                     </div>
 
-                    <p className="workshop-desc-horizontal">{w.description}</p>
+                    <p 
+                      className={`workshop-desc-horizontal ${expandedWorkshops[w.id] ? 'is-expanded' : ''}`}
+                      onClick={() => toggleDescription(w.id)}
+                      style={{ cursor: 'pointer' }}
+                      title="Click to toggle full description"
+                    >
+                      {w.description}
+                    </p>
 
                     <div className="workshop-footer-row">
                       <button className="view-details-link-btn" onClick={() => {

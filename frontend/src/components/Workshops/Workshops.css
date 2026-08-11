@@ -288,6 +288,13 @@
   line-height: 1.45;
   margin-bottom: 1rem;
   min-height: 48px;
+  cursor: pointer;
+}
+
+.workshop-desc-horizontal.is-expanded {
+  display: block !important;
+  -webkit-line-clamp: none !important;
+  overflow: visible !important;
 }
 
 /* Footer Action Buttons */
