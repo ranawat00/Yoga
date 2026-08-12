@@ -210,9 +210,17 @@
 }
 
 @keyframes idlePulse {
-  0% { box-shadow: 0 8px 28px rgba(0, 210, 106, 0.5); }
-  50% { box-shadow: 0 14px 35px rgba(0, 210, 106, 0.75); }
-  100% { box-shadow: 0 8px 28px rgba(0, 210, 106, 0.5); }
+  0% {
+    box-shadow: 0 8px 28px rgba(0, 210, 106, 0.5);
+  }
+
+  50% {
+    box-shadow: 0 14px 35px rgba(0, 210, 106, 0.75);
+  }
+
+  100% {
+    box-shadow: 0 8px 28px rgba(0, 210, 106, 0.5);
+  }
 }
 
 @media (max-width: 768px) {
@@ -335,10 +343,12 @@
     transform: translate(-50%, -50%) scale(1);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35), 0 0 0 0 rgba(255, 255, 255, 0.6);
   }
+
   50% {
     transform: translate(-50%, -50%) scale(1.05);
     box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45), 0 0 28px 8px rgba(255, 255, 255, 0.75);
   }
+
   100% {
     transform: translate(-50%, -50%) scale(1);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35), 0 0 0 0 rgba(255, 255, 255, 0.6);
@@ -346,8 +356,15 @@
 }
 
 @keyframes arrowSlide {
-  0%, 100% { transform: translateX(0); }
-  50% { transform: translateX(4px); }
+
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+
+  50% {
+    transform: translateX(4px);
+  }
 }
 
 /* Responsiveness */
@@ -357,10 +374,22 @@
     left: 50%;
     padding: 4px;
   }
-  .btn-navy-block { padding: 8px 18px; }
-  .btn-navy-text { font-size: 0.95rem; }
-  .btn-arrow-block { padding: 8px 11px; }
-  .btn-white-fill { width: 110px; }
+
+  .btn-navy-block {
+    padding: 8px 18px;
+  }
+
+  .btn-navy-text {
+    font-size: 0.95rem;
+  }
+
+  .btn-arrow-block {
+    padding: 8px 11px;
+  }
+
+  .btn-white-fill {
+    width: 110px;
+  }
 }
 
 @media (max-width: 992px) {
@@ -369,10 +398,22 @@
     left: 50%;
     padding: 3.5px;
   }
-  .btn-navy-block { padding: 7px 14px; }
-  .btn-navy-text { font-size: 0.85rem; }
-  .btn-arrow-block { padding: 7px 9px; }
-  .btn-white-fill { width: 90px; }
+
+  .btn-navy-block {
+    padding: 7px 14px;
+  }
+
+  .btn-navy-text {
+    font-size: 0.85rem;
+  }
+
+  .btn-arrow-block {
+    padding: 7px 9px;
+  }
+
+  .btn-white-fill {
+    width: 90px;
+  }
 }
 
 @media (max-width: 768px) {
@@ -381,10 +422,23 @@
     left: 50%;
     padding: 3px;
   }
-  .btn-navy-block { padding: 6px 12px; }
-  .btn-navy-text { font-size: 0.72rem; letter-spacing: 0.8px; }
-  .btn-arrow-block { padding: 6px 7px; }
-  .btn-white-fill { width: 65px; }
+
+  .btn-navy-block {
+    padding: 6px 12px;
+  }
+
+  .btn-navy-text {
+    font-size: 0.72rem;
+    letter-spacing: 0.8px;
+  }
+
+  .btn-arrow-block {
+    padding: 6px 7px;
+  }
+
+  .btn-white-fill {
+    width: 65px;
+  }
 }
 
 @media (max-width: 480px) {
@@ -393,10 +447,23 @@
     left: 50%;
     padding: 2px;
   }
-  .btn-navy-block { padding: 4px 8px; }
-  .btn-navy-text { font-size: 0.6rem; letter-spacing: 0.4px; }
-  .btn-arrow-block { padding: 4px 5px; }
-  .btn-white-fill { width: 45px; }
+
+  .btn-navy-block {
+    padding: 4px 8px;
+  }
+
+  .btn-navy-text {
+    font-size: 0.6rem;
+    letter-spacing: 0.4px;
+  }
+
+  .btn-arrow-block {
+    padding: 4px 5px;
+  }
+
+  .btn-white-fill {
+    width: 45px;
+  }
 }
 
 /* Content Container */
@@ -495,7 +562,8 @@
   font-size: 2.3rem;
   font-weight: 800;
   text-align: center;
-  color: #00C853; /* vivid bright green as in the screenshot */
+  color: #00C853;
+  /* vivid bright green as in the screenshot */
   margin-bottom: 3.5rem;
   letter-spacing: 1px;
   text-transform: uppercase;
@@ -546,14 +614,16 @@
 .ritual-card h3 {
   font-size: 1.25rem;
   font-weight: 800;
-  color: #2D3748; /* dark grey/navy */
+  color: #2D3748;
+  /* dark grey/navy */
   margin-top: -0.5rem;
   margin-bottom: 0.5rem;
   letter-spacing: 0.2px;
 }
 
 .ritual-card p {
-  color: #64748B; /* light slate/grey */
+  color: #64748B;
+  /* light slate/grey */
   font-size: 0.95rem;
   line-height: 1.6;
   margin: 0;
@@ -571,13 +641,16 @@
     grid-template-columns: 1fr;
     gap: 1.25rem;
   }
+
   .rituals-section-heading {
     font-size: 1.8rem;
     margin-bottom: 2rem;
   }
+
   .ritual-card {
     padding: 1.75rem 1.25rem;
   }
+
   .ritual-image-container {
     width: 155px;
     height: 155px;
@@ -598,7 +671,8 @@
 .unlock-heading {
   font-size: 2.3rem;
   font-weight: 800;
-  color: #00C853; /* bright green matching the screenshot */
+  color: #00C853;
+  /* bright green matching the screenshot */
   margin-bottom: 1.5rem;
   letter-spacing: 0.5px;
 }
@@ -631,10 +705,12 @@
   .unlock-level-section {
     padding: 1rem 0 0 0;
   }
+
   .unlock-heading {
     font-size: 1.75rem;
     margin-bottom: 1.25rem;
   }
+
   .unlock-description {
     font-size: 0.95rem;
     line-height: 1.6;
@@ -673,7 +749,8 @@
 .gain-images-heading {
   font-size: 2.3rem;
   font-weight: 800;
-  color: #588364; /* muted forest green from the screenshot */
+  color: #588364;
+  /* muted forest green from the screenshot */
   text-transform: lowercase;
   margin-bottom: 2rem;
   letter-spacing: 0.5px;
@@ -703,18 +780,18 @@
 /* CTA Callout Card */
 .details-cta-card {
   background: linear-gradient(90deg, #FF003C 0%, #FF7A00 100%);
-  padding: 2rem 3rem;
-  border-radius: 16px;
+  padding: 2.5rem 3.5rem;
+  border-radius: 20px;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
   text-align: left;
   color: #FFFFFF;
-  margin-top: 2.5rem;
-  margin-bottom: 1.5rem;
+  margin-top: 3.5rem;
+  margin-bottom: 3.5rem;
   box-shadow: 0 15px 40px rgba(255, 0, 60, 0.15);
-  gap: 2rem;
+  gap: 3rem;
   width: 100%;
   box-sizing: border-box;
 }
@@ -739,7 +816,7 @@
   font-size: 2.1rem;
   font-weight: 800;
   color: #FFFFFF;
-  margin-bottom: 0.25rem;
+  margin-bottom: 0.35rem;
   letter-spacing: 0.5px;
   line-height: 1.2;
 }
@@ -753,42 +830,45 @@
   max-width: 600px;
 }
 
+/* Reduced Compact Animated Register Button */
 .cta-register-btn.animated-register-btn {
   display: inline-flex;
   align-items: center;
-  background-color: #00C853; /* green matching branding */
-  border: 3.5px solid #FFFFFF; /* white border matching screenshot */
-  border-radius: 4px;
+  background-color: #00C853;
+  border: 2.5px solid #FFFFFF;
+  border-radius: 6px;
   padding: 0;
   cursor: pointer;
   color: #FFFFFF;
-  transition: all 0.2s ease-in-out;
+  transition: all 0.25s ease-in-out;
   overflow: hidden;
-  box-shadow: 0 8px 24px rgba(0, 200, 83, 0.35);
+  box-shadow: 0 6px 20px rgba(0, 200, 83, 0.35);
   animation: ctaButtonPulse 2.5s infinite ease-in-out;
+  flex-shrink: 0;
 }
 
 .cta-register-btn.animated-register-btn:hover {
   transform: scale(1.05);
-  box-shadow: 0 12px 30px rgba(0, 200, 83, 0.5);
+  box-shadow: 0 10px 28px rgba(0, 200, 83, 0.5);
 }
 
 .cta-register-btn.animated-register-btn .btn-text {
-  padding: 10px 24px;
-  font-size: 1.1rem;
+  padding: 8px 18px;
+  font-size: 0.92rem;
   font-weight: 800;
-  letter-spacing: 0.75px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
 }
 
 .cta-register-btn.animated-register-btn .btn-separator {
-  width: 3.5px;
-  height: 42px;
+  width: 2.5px;
+  height: 32px;
   background-color: #FFFFFF;
   align-self: stretch;
 }
 
 .cta-register-btn.animated-register-btn .btn-arrow {
-  padding: 10px 16px;
+  padding: 8px 14px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -796,21 +876,28 @@
 }
 
 @keyframes ctaButtonPulse {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: scale(1);
   }
+
   40% {
     transform: scale(1.03);
   }
+
   50% {
     transform: scale(1.03) rotate(-1deg);
   }
+
   55% {
     transform: scale(1.03) rotate(1deg);
   }
+
   60% {
     transform: scale(1.03) rotate(-1deg);
   }
+
   65% {
     transform: scale(1.03) rotate(0deg);
   }
@@ -883,7 +970,8 @@
 .faq-item-custom.is-open {
   border-color: rgba(26, 128, 106, 0.4);
   box-shadow: 0 10px 30px rgba(26, 128, 106, 0.08);
-  background: #FAF8F5; /* subtle warmth when open */
+  background: #FAF8F5;
+  /* subtle warmth when open */
 }
 
 .faq-item-header-custom {
@@ -923,7 +1011,8 @@
 .faq-item-custom.is-open .faq-item-icon-wrapper {
   background: #1A806A;
   color: #FFFFFF;
-  transform: rotate(135deg); /* smoothly rotates plus into minus! */
+  transform: rotate(135deg);
+  /* smoothly rotates plus into minus! */
 }
 
 .faq-item-icon {
@@ -969,7 +1058,8 @@
 .daily-yoga-modal {
   background: linear-gradient(135deg, #249C7F 0%, #177A62 100%);
   width: 100%;
-  max-width: 440px; /* compact pop-up width to match screenshot */
+  max-width: 440px;
+  /* compact pop-up width to match screenshot */
   border-radius: 20px;
   padding: 2.25rem 1.75rem;
   position: relative;
@@ -1262,6 +1352,7 @@
   0% {
     transform: scale(0);
   }
+
   100% {
     transform: scale(1);
   }
@@ -1296,13 +1387,15 @@
   .details-cta-card {
     flex-direction: column;
     text-align: center;
-    padding: 1.15rem 1rem;
-    gap: 1rem;
+    padding: 2.25rem 1.5rem;
+    gap: 1.75rem;
     align-items: center;
-    width: calc(100% + 1.5rem);
-    margin-left: -0.75rem;
-    margin-right: -0.75rem;
-    border-radius: 12px;
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 2.5rem;
+    margin-bottom: 2.5rem;
+    border-radius: 16px;
   }
 
   .cta-text-wrapper {
@@ -1312,17 +1405,33 @@
 
   .cta-eyebrow {
     font-size: 1.05rem;
-    margin-bottom: 0.25rem;
+    margin-bottom: 0.35rem;
   }
 
   .cta-main-heading {
-    font-size: 1.5rem;
-    margin-bottom: 0.25rem;
+    font-size: 1.55rem;
+    margin-bottom: 0.5rem;
   }
 
   .cta-description {
     font-size: 0.95rem;
-    margin-bottom: 1.25rem;
+    margin-bottom: 0.5rem;
+    line-height: 1.5;
+  }
+
+  .cta-register-btn.animated-register-btn .btn-text {
+    padding: 7px 15px;
+    font-size: 0.84rem;
+    letter-spacing: 0.4px;
+  }
+
+  .cta-register-btn.animated-register-btn .btn-separator {
+    height: 28px;
+    width: 2px;
+  }
+
+  .cta-register-btn.animated-register-btn .btn-arrow {
+    padding: 7px 10px;
   }
 }
 

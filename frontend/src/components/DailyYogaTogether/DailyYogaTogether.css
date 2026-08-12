@@ -56,7 +56,7 @@
 /* Green Pill Register Now Button Overlay - Positioned in the clear space below TOGETHER */
 .daily-yoga-together-btn {
   position: absolute;
-  top: 58.5%;
+  top: 65%;
   left: 7.2%;
   transform: translateY(-50%);
   pointer-events: auto;
@@ -118,9 +118,11 @@
   0% {
     box-shadow: 0 8px 28px rgba(0, 210, 106, 0.5);
   }
+
   50% {
     box-shadow: 0 14px 35px rgba(0, 210, 106, 0.75);
   }
+
   100% {
     box-shadow: 0 8px 28px rgba(0, 210, 106, 0.5);
   }
@@ -131,96 +133,113 @@
   .daily-yoga-together-container {
     max-width: 95%;
   }
+
   .btn-label-text {
     font-size: 1.1rem;
   }
+
   .btn-icon-wrapper {
     width: 34px;
     height: 34px;
   }
+
   .daily-yoga-together-btn {
     padding: 8px 22px 8px 8px;
     gap: 10px;
-    top: 58.5%;
+    top: 65%;
     left: 7.2%;
   }
 }
 
 @media (max-width: 992px) {
   .daily-yoga-together-section {
-    padding: 2.5rem 1rem;
+    padding: 3.5rem 1.5rem;
   }
+
   .daily-yoga-together-container {
     max-width: 100%;
     border-radius: 16px;
   }
+
   .btn-label-text {
     font-size: 0.95rem;
     letter-spacing: 1px;
   }
+
   .btn-icon-wrapper {
     width: 30px;
     height: 30px;
   }
+
   .daily-yoga-together-btn {
     padding: 6px 18px 6px 6px;
     gap: 8px;
-    top: 58.5%;
+    top: 65%;
     left: 7.2%;
   }
 }
 
 @media (max-width: 768px) {
   .daily-yoga-together-section {
-    padding: 2rem 0.75rem;
+    padding: 3rem 1.25rem;
   }
+
   .daily-yoga-together-container {
     border-radius: 12px;
   }
+
   .btn-label-text {
     font-size: 0.82rem;
     letter-spacing: 0.8px;
   }
+
   .btn-icon-wrapper {
     width: 24px;
     height: 24px;
   }
+
   .btn-icon-wrapper svg {
     width: 14px;
     height: 14px;
   }
+
   .daily-yoga-together-btn {
     padding: 4px 14px 4px 4px;
     gap: 6px;
     border-width: 1px;
-    top: 58.5%;
+    top: 65%;
     left: 7%;
   }
 }
 
 @media (max-width: 480px) {
   .daily-yoga-together-section {
-    padding: 1.5rem 0.5rem;
+    padding: 2.5rem 1rem;
   }
+
   .daily-yoga-together-container {
     border-radius: 10px;
   }
+
   .btn-label-text {
     font-size: 0.68rem;
     letter-spacing: 0.5px;
   }
+
   .btn-icon-wrapper {
     width: 18px;
     height: 18px;
   }
+
   .btn-icon-wrapper svg {
     width: 11px;
     height: 11px;
   }
+
   .daily-yoga-together-btn {
     padding: 3px 10px 3px 3px;
     gap: 5px;
-    top: 58.5%;
+    top: 65%;
     left: 6.5%;
   }
 }
