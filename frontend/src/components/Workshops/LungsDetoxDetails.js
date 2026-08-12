@@ -255,48 +255,39 @@ export default function LungsDetoxDetails({ workshop, onBack, onRegister }) {
         </div>
       </section>
 
-      {/* Frequently Asked Questions */}
-      <div className="details-faq-section-custom">
+      {/* FAQ Section with Smooth Accordion Animation */}
+      <section className="faq-details-section">
         <div className="faq-header-wrapper-custom">
           <span className="faq-small-title">FAQ</span>
           <h2 className="faq-large-title">LUNGS DETOX PROGRAM</h2>
         </div>
-        <div className="faq-accordion-custom">
-          {LUNGS_FAQS.map((faq, idx) => {
-            const isOpen = activeFaq === idx;
+
+        <div className="faq-accordion-container">
+          {LUNGS_FAQS.map((faq, index) => {
+            const isOpen = activeFaq === index;
             return (
               <div
-                key={idx}
-                className={`faq-item-custom ${isOpen ? 'is-open' : ''}`}
-                onClick={() => toggleFaq(idx)}
+                key={index}
+                className={`faq-accordion-item ${isOpen ? 'active' : ''}`}
+                onClick={() => toggleFaq(index)}
               >
-                <div className="faq-item-header-custom">
-                  <h3 className="faq-item-question">{faq.q}</h3>
-                  <div className="faq-item-icon-wrapper">
-                    <svg
-                      className="faq-item-icon"
-                      width="14"
-                      height="14"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="3.5"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    >
-                      <line x1="12" y1="5" x2="12" y2="19"></line>
-                      <line x1="5" y1="12" x2="19" y2="12"></line>
+                <div className="faq-accordion-header">
+                  <h3 className="faq-question-text">{faq.q}</h3>
+                  <div className={`faq-chevron-icon ${isOpen ? 'rotate' : ''}`}>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                      <polyline points="6 9 12 15 18 9"></polyline>
                     </svg>
                   </div>
                 </div>
-                <div className="faq-item-content-wrapper" style={{ maxHeight: isOpen ? '250px' : '0' }}>
-                  <p className="faq-item-answer">{faq.a}</p>
+
+                <div className={`faq-accordion-body ${isOpen ? 'show' : ''}`}>
+                  <p>{faq.a}</p>
                 </div>
               </div>
             );
           })}
         </div>
-      </div>
+      </section>
 
 
     </div>

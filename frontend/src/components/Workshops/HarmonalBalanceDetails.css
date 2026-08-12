@@ -1525,18 +1525,39 @@
 /* FAQ Accordion Section */
 .faq-details-section {
   background-color: #f7fcf4;
-  padding: 3rem 1.5rem 4rem 1.5rem;
+  padding: 2rem 1.5rem 4rem 1.5rem;
   text-align: center;
   border-top: 1px solid #e2efe3;
 }
 
-.faq-section-title {
-  font-family: var(--font-heading), 'Plus Jakarta Sans', sans-serif;
-  font-size: 2.8rem;
-  font-weight: 800;
+.faq-header-wrapper-custom {
+  text-align: center;
+  margin-bottom: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.faq-small-title {
+  font-size: 0.85rem;
+  font-weight: 700;
   color: #6b9772;
-  margin-bottom: 1.8rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  background: rgba(107, 151, 114, 0.1);
+  padding: 0.35rem 0.85rem;
+  border-radius: 50px;
+  margin-bottom: 0.75rem;
+}
+
+.faq-large-title {
+  font-size: clamp(1.6rem, 4.5vw, 2.4rem);
+  font-weight: 900;
+  color: #1a251b;
+  margin: 0;
   letter-spacing: -0.5px;
+  font-family: var(--font-heading), 'Plus Jakarta Sans', sans-serif;
+  text-transform: uppercase;
 }
 
 .faq-accordion-container {
@@ -1562,12 +1583,14 @@
 .faq-accordion-item:hover {
   border-color: #a8d5ad;
   box-shadow: 0 6px 18px rgba(107, 151, 114, 0.12);
+  animation: runningBorderFlow 3.5s ease-in-out infinite;
 }
 
 .faq-accordion-item.active {
   background: #ffffff;
   border-color: #6b9772;
   box-shadow: 0 8px 24px rgba(107, 151, 114, 0.15);
+  animation: runningBorderFlow 3.5s ease-in-out infinite;
 }
 
 .faq-accordion-header {
@@ -1633,11 +1656,11 @@
 
 @media (max-width: 768px) {
   .faq-details-section {
-    padding: 1.8rem 1rem 3rem 1rem;
+    padding: 1.2rem 1rem 3rem 1rem;
   }
 
-  .faq-section-title {
-    font-size: 2.2rem;
+  .faq-large-title {
+    font-size: 1.8rem;
     margin-bottom: 1.4rem;
   }
 

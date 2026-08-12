@@ -367,7 +367,10 @@ export default function HarmonalBalanceDetails({ workshop, onBack, onRegister })
 
       {/* FAQ Section with Smooth Accordion Animation */}
       <section className="faq-details-section">
-        <h2 className="faq-section-title">FAQ</h2>
+        <div className="faq-header-wrapper-custom">
+          <span className="faq-small-title">FAQ</span>
+          <h2 className="faq-large-title">HARMONAL BALANCE PROGRAM</h2>
+        </div>
 
         <div className="faq-accordion-container">
           {faqList.map((faq, index) => {
