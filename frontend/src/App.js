@@ -37,6 +37,7 @@ const AboutUs = lazy(() => import('./pages/AboutUsPage/AboutUsPage'));
 const Contact = lazy(() => import('./pages/ContactPage/ContactPage'));
 const Careers = lazy(() => import('./pages/CareersPage/CareersPage'));
 const OrdersPage = lazy(() => import('./pages/OrdersPage/OrdersPage'));
+// eslint-disable-next-line no-unused-vars
 const RegisterFreePage = lazy(() => import('./pages/RegisterFreePage/RegisterFreePage'));
 const DailyYogaTogetherDetails = lazy(() => import('./components/DailyYogaTogether/DailyYogaTogetherDetails'));
 

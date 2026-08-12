@@ -29,6 +29,7 @@ const loadRazorpayScript = () => {
   });
 };
 
+// eslint-disable-next-line no-unused-vars
 const getMeetLink = (batchName) => {
   if (batchName.includes('Morning')) {
     return 'https://meet.google.com/yga-daily-morn';
@@ -39,6 +40,7 @@ const getMeetLink = (batchName) => {
 };
 
 export default function DailyYogaTogetherDetails() {
+  // eslint-disable-next-line no-unused-vars
   const { setView, addNotification } = useApp();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
