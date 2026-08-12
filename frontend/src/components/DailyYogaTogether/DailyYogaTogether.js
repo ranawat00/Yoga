@@ -31,19 +31,16 @@ export default function DailyYogaTogether() {
           />
           <div className="daily-yoga-together-overlay-content">
             <button
-              className="revolution-register-btn"
+              className="daily-yoga-together-btn"
               onClick={handleRegisterClick}
               aria-label="Register Now"
             >
-              <div className="btn-navy-block">
-                <span className="btn-navy-text">REGISTER NOW</span>
-              </div>
-              <div className="btn-arrow-block">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round">
+              <div className="btn-icon-wrapper">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#00C96A" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
                   <polyline points="9 18 15 12 9 6" />
                 </svg>
               </div>
-              <div className="btn-white-fill" />
+              <span className="btn-label-text">REGISTER NOW</span>
             </button>
           </div>
         </div>

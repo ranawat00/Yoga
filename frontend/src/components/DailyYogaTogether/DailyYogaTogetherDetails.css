@@ -151,11 +151,126 @@
   z-index: 2;
 }
 
-.revolution-register-btn {
+/* Green Pill Button positioned on the details page orange banner */
+.daily-yoga-details-hero-overlay .daily-yoga-together-btn {
   position: absolute;
   top: 30%;
-  left: 16.5%;
-  transform: translateY(-50%);
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: auto;
+}
+
+/* Green Pill Button Base Styles */
+.daily-yoga-together-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  background: linear-gradient(135deg, #00D26A 0%, #00E676 100%);
+  color: #ffffff;
+  border: 2px solid rgba(255, 255, 255, 0.9);
+  padding: 10px 28px 10px 10px;
+  border-radius: 50px;
+  cursor: pointer;
+  box-shadow: 0 8px 28px rgba(0, 210, 106, 0.5);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  animation: idlePulse 2.8s infinite ease-in-out;
+  z-index: 5;
+}
+
+.daily-yoga-together-btn:hover {
+  transform: translate(-50%, -50%) scale(1.05);
+  box-shadow: 0 14px 38px rgba(0, 210, 106, 0.7);
+}
+
+.btn-icon-wrapper {
+  width: 40px;
+  height: 40px;
+  background-color: #FFFFFF;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.18);
+  flex-shrink: 0;
+  transition: transform 0.3s ease;
+}
+
+.daily-yoga-together-btn:hover .btn-icon-wrapper {
+  transform: translateX(3px);
+}
+
+.btn-label-text {
+  font-size: 1.25rem;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #FFFFFF;
+  font-family: var(--font-body, 'Plus Jakarta Sans', sans-serif);
+  white-space: nowrap;
+}
+
+@keyframes idlePulse {
+  0% { box-shadow: 0 8px 28px rgba(0, 210, 106, 0.5); }
+  50% { box-shadow: 0 14px 35px rgba(0, 210, 106, 0.75); }
+  100% { box-shadow: 0 8px 28px rgba(0, 210, 106, 0.5); }
+}
+
+@media (max-width: 768px) {
+  .daily-yoga-details-hero-overlay .daily-yoga-together-btn {
+    top: 28%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .daily-yoga-together-btn {
+    padding: 6px 18px 6px 6px;
+    gap: 8px;
+  }
+
+  .btn-icon-wrapper {
+    width: 30px;
+    height: 30px;
+  }
+
+  .btn-label-text {
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+  }
+}
+
+@media (max-width: 480px) {
+  .daily-yoga-details-hero-overlay .daily-yoga-together-btn {
+    top: 27%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .daily-yoga-together-btn {
+    padding: 4px 12px 4px 4px;
+    gap: 6px;
+  }
+
+  .btn-icon-wrapper {
+    width: 24px;
+    height: 24px;
+  }
+
+  .btn-icon-wrapper svg {
+    width: 13px;
+    height: 13px;
+  }
+
+  .btn-label-text {
+    font-size: 0.68rem;
+    letter-spacing: 0.7px;
+  }
+}
+
+.revolution-register-btn {
+  position: absolute;
+  top: 33%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   pointer-events: auto;
   display: inline-flex;
   align-items: center;
@@ -171,8 +286,8 @@
 }
 
 .revolution-register-btn:hover {
-  transform: translateY(-50%) scale(1.08);
-  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.55), 0 0 30px rgba(0, 210, 106, 0.65);
+  transform: translate(-50%, -50%) scale(1.08);
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.55);
 }
 
 .btn-navy-block {
@@ -185,9 +300,9 @@
 
 .btn-navy-text {
   font-family: var(--font-body, 'Plus Jakarta Sans', sans-serif);
-  font-size: 1.1rem;
+  font-size: 1.05rem;
   font-weight: 900;
-  letter-spacing: 1.2px;
+  letter-spacing: 1.5px;
   color: #FFFFFF;
   text-transform: uppercase;
   white-space: nowrap;
@@ -217,130 +332,71 @@
 /* Animations */
 @keyframes registerButtonPulse {
   0% {
-    transform: translateY(-50%) scale(1);
+    transform: translate(-50%, -50%) scale(1);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35), 0 0 0 0 rgba(255, 255, 255, 0.6);
   }
-
   50% {
-    transform: translateY(-50%) scale(1.06);
+    transform: translate(-50%, -50%) scale(1.05);
     box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45), 0 0 28px 8px rgba(255, 255, 255, 0.75);
   }
-
   100% {
-    transform: translateY(-50%) scale(1);
+    transform: translate(-50%, -50%) scale(1);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35), 0 0 0 0 rgba(255, 255, 255, 0.6);
   }
 }
 
 @keyframes arrowSlide {
-
-  0%,
-  100% {
-    transform: translateX(0);
-  }
-
-  50% {
-    transform: translateX(4px);
-  }
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(4px); }
 }
 
-/* Responsiveness for all screen sizes */
+/* Responsiveness */
 @media (max-width: 1200px) {
   .revolution-register-btn {
-    top: 33.5%;
-    left: 17%;
+    top: 33%;
+    left: 50%;
     padding: 4px;
   }
-
-  .btn-navy-block {
-    padding: 8px 18px;
-  }
-
-  .btn-navy-text {
-    font-size: 0.95rem;
-  }
-
-  .btn-arrow-block {
-    padding: 8px 11px;
-  }
-
-  .btn-white-fill {
-    width: 110px;
-  }
+  .btn-navy-block { padding: 8px 18px; }
+  .btn-navy-text { font-size: 0.95rem; }
+  .btn-arrow-block { padding: 8px 11px; }
+  .btn-white-fill { width: 110px; }
 }
 
 @media (max-width: 992px) {
   .revolution-register-btn {
-    top: 33.5%;
-    left: 16.5%;
+    top: 33%;
+    left: 50%;
     padding: 3.5px;
   }
-
-  .btn-navy-block {
-    padding: 7px 14px;
-  }
-
-  .btn-navy-text {
-    font-size: 0.85rem;
-  }
-
-  .btn-arrow-block {
-    padding: 7px 9px;
-  }
-
-  .btn-white-fill {
-    width: 90px;
-  }
+  .btn-navy-block { padding: 7px 14px; }
+  .btn-navy-text { font-size: 0.85rem; }
+  .btn-arrow-block { padding: 7px 9px; }
+  .btn-white-fill { width: 90px; }
 }
 
 @media (max-width: 768px) {
   .revolution-register-btn {
-    top: 33.5%;
-    left: 16%;
+    top: 33%;
+    left: 50%;
     padding: 3px;
   }
-
-  .btn-navy-block {
-    padding: 6px 12px;
-  }
-
-  .btn-navy-text {
-    font-size: 0.72rem;
-    letter-spacing: 0.8px;
-  }
-
-  .btn-arrow-block {
-    padding: 6px 7px;
-  }
-
-  .btn-white-fill {
-    width: 65px;
-  }
+  .btn-navy-block { padding: 6px 12px; }
+  .btn-navy-text { font-size: 0.72rem; letter-spacing: 0.8px; }
+  .btn-arrow-block { padding: 6px 7px; }
+  .btn-white-fill { width: 65px; }
 }
 
 @media (max-width: 480px) {
   .revolution-register-btn {
-    top: 33.5%;
-    left: 15.5%;
+    top: 33%;
+    left: 50%;
     padding: 2px;
   }
-
-  .btn-navy-block {
-    padding: 4px 8px;
-  }
-
-  .btn-navy-text {
-    font-size: 0.58rem;
-    letter-spacing: 0.4px;
-  }
-
-  .btn-arrow-block {
-    padding: 4px 5px;
-  }
-
-  .btn-white-fill {
-    width: 45px;
-  }
+  .btn-navy-block { padding: 4px 8px; }
+  .btn-navy-text { font-size: 0.6rem; letter-spacing: 0.4px; }
+  .btn-arrow-block { padding: 4px 5px; }
+  .btn-white-fill { width: 45px; }
 }
 
 /* Content Container */
@@ -839,7 +895,7 @@
 }
 
 .faq-item-question {
-  font-size: 1.15rem;
+  font-size: 1rem;
   font-weight: 800;
   color: #09101F;
   margin: 0;
