@@ -110,16 +110,14 @@ function AppContent() {
   useEffect(() => {
     const observerOptions = {
       root: null,
-      rootMargin: '0px',
-      threshold: 0.1
+      rootMargin: '100px',
+      threshold: 0.05
     };
 
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           entry.target.classList.add('scroll-in-view');
-        } else {
-          entry.target.classList.remove('scroll-in-view');
         }
       });
     }, observerOptions);
@@ -130,16 +128,9 @@ function AppContent() {
       '.book-card',
       '.success-card',
       '.daily-yoga-card',
-      '.daily-yoga-left-content',
       '.daily-yoga-together-container',
-      '.hero-content-wrapper',
       '.vertical-card',
-      '.educator-card',
-      '.about-content-card',
-      '.career-card',
-      'img.daily-yoga-img',
-      'img.about-hero-img',
-      'img.contact-hero-img'
+      '.educator-card'
     ];
 
     const updateObservations = () => {
@@ -152,15 +143,11 @@ function AppContent() {
       });
     };
 
-    updateObservations();
-
-    // Observe dynamically loaded nodes (e.g. from Suspense or React lazy sections)
-    const mutationObserver = new MutationObserver(updateObservations);
-    mutationObserver.observe(document.body, { childList: true, subtree: true });
+    const timer = setTimeout(updateObservations, 150);
 
     return () => {
+      clearTimeout(timer);
       observer.disconnect();
-      mutationObserver.disconnect();
     };
   }, [view]);
 
@@ -196,7 +183,9 @@ function AppContent() {
           <Suspense fallback={<Loader />}><HealthScore isStandalone={true} /></Suspense>
         ) : view === 'orders' ? (
           <Suspense fallback={<Loader />}><OrdersPage /></Suspense>
-        ) : view === 'register-free' || view === 'daily-yoga-together-details' ? (
+        ) : view === 'register-free' ? (
+          <Suspense fallback={<Loader />}><RegisterFreePage /></Suspense>
+        ) : view === 'daily-yoga-together-details' ? (
           <Suspense fallback={<Loader />}><DailyYogaTogetherDetails /></Suspense>
         ) : (
           <>
@@ -206,18 +195,16 @@ function AppContent() {
             {/* Featured In: Newspaper Logos Marquee */}
             <MediaLogos />
 
-            <Suspense fallback={<Loader />}>
-              <DailyYogaBanner />
-              <Workshops />
-              <DailyYogaTogether />
-              <Products />
-              <Books />
-              <HealthScore />
-              <Verticals />
-              <SuccessStories />
-              <Educators />
-              <FAQ />
-            </Suspense>
+            <Suspense fallback={null}><DailyYogaBanner /></Suspense>
+            <Suspense fallback={null}><Workshops /></Suspense>
+            <Suspense fallback={null}><DailyYogaTogether /></Suspense>
+            <Suspense fallback={null}><Products /></Suspense>
+            <Suspense fallback={null}><Books /></Suspense>
+            <Suspense fallback={null}><HealthScore /></Suspense>
+            <Suspense fallback={null}><Verticals /></Suspense>
+            <Suspense fallback={null}><SuccessStories /></Suspense>
+            <Suspense fallback={null}><Educators /></Suspense>
+            <Suspense fallback={null}><FAQ /></Suspense>
           </>
         )}
       </main>

@@ -15,26 +15,7 @@ export default function Hero() {
   const [isBtnHovered, setIsBtnHovered] = useState(false);
 
   useEffect(() => {
-    const node = sectionRef.current;
-    // Section scroll transition triggered at 20% viewport visibility
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-        }
-      },
-      { threshold: 0.2 }
-    );
-
-    if (node) {
-      observer.observe(node);
-    }
-
-    return () => {
-      if (node) {
-        observer.unobserve(node);
-      }
-    };
+    setIsVisible(true);
   }, []);
 
   useEffect(() => {

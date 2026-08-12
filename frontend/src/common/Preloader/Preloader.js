@@ -10,16 +10,16 @@ export default function Preloader() {
     // Lock scrolling while preloader is active
     document.body.style.overflow = 'hidden';
 
-    // Show preloader animation, then start smooth fade out at 650ms
+    // Fast preloader splash: start fade out at 150ms, unlock at 350ms
     const fadeTimer = setTimeout(() => {
       setFade(true);
-    }, 650);
+    }, 150);
 
-    // Remove preloader overlay and restore scroll at 1100ms (1.1s total)
+    // Remove preloader overlay and restore scroll at 350ms
     const removeTimer = setTimeout(() => {
       setVisible(false);
       document.body.style.overflow = '';
-    }, 1100);
+    }, 350);
 
     return () => {
       clearTimeout(fadeTimer);

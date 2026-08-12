@@ -207,7 +207,7 @@
 
 .hero-workshop-title {
   font-family: var(--font-display), sans-serif;
-  font-size: 3.8rem;
+  font-size: 3.0rem;
   font-weight: 900;
   line-height: 1.1;
   margin: 0 0 1rem 0;
@@ -618,7 +618,7 @@
   text-align: center;
   font-family: var(--font-display), sans-serif;
   color: #0b6845;
-  font-size: 2.5rem;
+  font-size: 2.0rem;
   font-weight: 800;
   margin-bottom: 4rem;
   position: relative;
@@ -652,7 +652,7 @@
 .experience-main-title {
   font-family: var(--font-heading), 'Plus Jakarta Sans', sans-serif;
   color: #4a6d4e;
-  font-size: 2.2rem;
+  font-size: 1.85rem;
   font-weight: 800;
   text-align: center;
   margin-bottom: 2.5rem;
@@ -729,12 +729,15 @@
 /* Card Heading */
 .exp-card-heading {
   font-family: var(--font-heading), 'Plus Jakarta Sans', sans-serif;
-  font-size: 1.38rem;
+  font-size: 1.35rem;
   font-weight: 800;
   color: #0d0d0d;
   margin: 0 0 1.2rem 0;
   line-height: 1.3;
   letter-spacing: -0.3px;
+  width: 100%;
+  display: block;
+  text-align: center;
 }
 
 /* Body Paragraphs */
@@ -1674,5 +1677,15 @@
 
   .faq-accordion-body p {
     font-size: 0.98rem;
+  }
+
+  .experience-card-box {
+    padding: 2.2rem 1.2rem;
+    width: 100%;
+  }
+
+  .exp-card-heading {
+    width: 100%;
+    font-size: 1.28rem;
   }
 }

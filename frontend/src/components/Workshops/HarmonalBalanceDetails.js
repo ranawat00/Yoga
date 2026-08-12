@@ -247,14 +247,14 @@ export default function HarmonalBalanceDetails({ workshop, onBack, onRegister })
                 <strong>The impact:</strong> Eliminates travel hassle and fits seamlessly into your morning or evening routine, making it effortless to stay consistent.
               </p>
             </div>
-
-            <div className="exp-card-top-icon" style={{ marginTop: '1.2rem', marginBottom: 0 }}>
-              <img src={brainHeadImg} alt="Brain Head Logo" className="exp-card-icon-img" />
-            </div>
           </div>
 
-          {/* Card 2: A Clear Understanding of Your Body (Separate Card) */}
+          {/* Card 2: A Clear Understanding of Your Body (Human head image placed at top) */}
           <div className="experience-card-box">
+            <div className="exp-card-top-icon">
+              <img src={brainHeadImg} alt="Brain Head Logo" className="exp-card-icon-img" />
+            </div>
+
             <h3 className="exp-card-heading" style={{ textAlign: 'center' }}>A Clear Understanding of Your Body</h3>
 
             <div className="exp-card-body-text text-center">
@@ -262,14 +262,14 @@ export default function HarmonalBalanceDetails({ workshop, onBack, onRegister })
                 You will learn to decode fatigue, mood shifts, and cycle irregularities, shifting from simply managing discomfort to understanding what your body truly needs.
               </p>
             </div>
-
-            <div className="exp-card-top-icon" style={{ marginTop: '1.2rem', marginBottom: 0 }}>
-              <img src={growthArrowsImg} alt="Growth Arrows Logo" className="exp-card-icon-img" />
-            </div>
           </div>
 
           {/* Card 3: A Personalized Food & Lifestyle Framework */}
           <div className="experience-card-box">
+            <div className="exp-card-top-icon">
+              <img src={growthArrowsImg} alt="Growth Arrows Logo" className="exp-card-icon-img" />
+            </div>
+
             <h3 className="exp-card-heading" style={{ textAlign: 'center' }}>A Personalized Food & Lifestyle Framework</h3>
 
             <div className="exp-card-body-text text-center">
@@ -277,14 +277,13 @@ export default function HarmonalBalanceDetails({ workshop, onBack, onRegister })
                 No rigid diets or unsustainable routines. You'll receive practical, nourishment-first principles and daily habits designed to support your hormone health naturally and fit seamlessly into your life.
               </p>
             </div>
-
-            <div className="exp-card-top-icon" style={{ marginTop: '1.2rem', marginBottom: 0 }}>
-              <img src={greenPointerImg} alt="Personalized Framework Pointer" className="exp-card-icon-img" />
-            </div>
           </div>
 
           {/* Card 4: Step-by-Step Action Plans & Roadmap */}
           <div className="experience-card-box">
+            <div className="exp-card-top-icon">
+              <img src={blueArrowImg} alt="Action Plans Arrow Roadmap" className="exp-card-icon-img" />
+            </div>
             <h3 className="exp-card-heading" style={{ textAlign: 'center' }}>Step-by-Step Action Plans & Roadmap</h3>
 
             <div className="exp-card-body-text text-center">
@@ -292,24 +291,19 @@ export default function HarmonalBalanceDetails({ workshop, onBack, onRegister })
                 Eliminate the guesswork entirely. Each month brings clear, actionable strategies that guide your transition from identifying root causes to establishing lasting hormonal harmony.
               </p>
             </div>
-
-            <div className="exp-card-top-icon" style={{ marginTop: '1.2rem', marginBottom: 0 }}>
-              <img src={blueArrowImg} alt="Action Plans Arrow Roadmap" className="exp-card-icon-img" />
-            </div>
           </div>
 
           {/* Card 5: Dedicated Guidance & Accountable Support */}
           <div className="experience-card-box">
+            <div className="exp-card-top-icon">
+              <img src={sunHandsImg} alt="Dedicated Guidance Sun Hands" className="exp-card-icon-img" />
+            </div>
             <h3 className="exp-card-heading" style={{ textAlign: 'center' }}>Dedicated Guidance & Accountable Support</h3>
 
             <div className="exp-card-body-text text-center">
               <p>
                 You won't navigate this transition alone. Through regular check-ins and expert support, you'll receive the encouragement, adjustments, and answers needed to keep you moving forward with confidence.
               </p>
-            </div>
-
-            <div className="exp-card-top-icon" style={{ marginTop: '1.2rem', marginBottom: 0 }}>
-              <img src={sunHandsImg} alt="Dedicated Guidance Sun Hands" className="exp-card-icon-img" />
             </div>
           </div>
 

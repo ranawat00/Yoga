@@ -101,6 +101,13 @@ h6 {
   color: var(--color-headline-primary);
 }
 
+h1 { font-size: 2.2rem; }
+h2 { font-size: 1.75rem; }
+h3 { font-size: 1.35rem; }
+h4 { font-size: 1.15rem; }
+h5 { font-size: 1.0rem; }
+h6 { font-size: 0.9rem; }
+
 p {
   color: var(--color-text-primary);
 }
@@ -336,18 +343,22 @@ button {
     border-color: #6b9772;
     box-shadow: 0 6px 20px rgba(107, 151, 114, 0.28), 0 0 10px rgba(107, 151, 114, 0.15);
   }
+
   25% {
     border-color: #0b6845;
     box-shadow: 0 8px 24px rgba(11, 104, 69, 0.35), 0 0 12px rgba(11, 104, 69, 0.2);
   }
+
   50% {
     border-color: #86BD43;
     box-shadow: 0 8px 22px rgba(134, 189, 67, 0.35), 0 0 12px rgba(134, 189, 67, 0.22);
   }
+
   75% {
     border-color: #2C5234;
     box-shadow: 0 8px 26px rgba(44, 82, 52, 0.35), 0 0 10px rgba(44, 82, 52, 0.18);
   }
+
   100% {
     border-color: #6b9772;
     box-shadow: 0 6px 20px rgba(107, 151, 114, 0.28), 0 0 10px rgba(107, 151, 114, 0.15);
@@ -359,50 +370,35 @@ button {
     border-color: #6b9772;
     box-shadow: 0 6px 20px rgba(107, 151, 114, 0.28), 0 0 10px rgba(107, 151, 114, 0.15);
   }
+
   25% {
     border-color: #0b6845;
     box-shadow: 0 8px 24px rgba(11, 104, 69, 0.35), 0 0 12px rgba(11, 104, 69, 0.2);
   }
+
   50% {
     border-color: #86BD43;
     box-shadow: 0 8px 22px rgba(134, 189, 67, 0.35), 0 0 12px rgba(134, 189, 67, 0.22);
   }
+
   75% {
     border-color: #2C5234;
     box-shadow: 0 8px 26px rgba(44, 82, 52, 0.35), 0 0 10px rgba(44, 82, 52, 0.18);
   }
+
   100% {
     border-color: #6b9772;
     box-shadow: 0 6px 20px rgba(107, 151, 114, 0.28), 0 0 10px rgba(107, 151, 114, 0.15);
   }
 }
 
-/* Apply Running Border Animation & Glowing Shadow to all Bordered Elements Across Website */
-.faq-accordion-item,
-.faq-item,
-.faq-item-custom,
-.practice-plan-card,
-.highlight-card,
-.experience-item-card,
-.info-detail-card,
-.order-page-card,
-.ritual-card,
+.running-border,
 .workshop-card,
-.vertical-card,
-.health-score-card,
-.details-cta-card,
-.details-banner-card-container,
-.details-info-section,
-.habits-unlock-section,
-.habits-unlock,
-.what-you-gain,
-.modal-content,
-.daily-yoga-info-card,
-.gain-image-wrapper,
 .product-card,
 .book-card,
 .educator-card,
 .story-card,
-.running-border {
-  animation: runningBorderGlowFlow 3.5s ease-in-out infinite !important;
+.vertical-card,
+.modal-content {
+  animation: runningBorderGlowFlow 6s ease-in-out infinite;
 }
