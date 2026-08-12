@@ -5,7 +5,6 @@ import banner from '../../assets/workshops/hermona_banner.jpg';
 import hermonal3 from '../../assets/workshops/hermonal3.jpg';
 import brainHeadImg from '../../assets/workshops/brain_head_icon.png';
 import growthArrowsImg from '../../assets/workshops/growth_arrows_icon.png';
-import greenPointerImg from '../../assets/workshops/green_pointer_icon.png';
 import blueArrowImg from '../../assets/workshops/blue_arrow_icon.png';
 import sunHandsImg from '../../assets/workshops/sun_hands_icon.png';
 import hermonal2 from '../../assets/workshops/hermonal2.jpg';
