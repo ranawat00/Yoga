@@ -21,6 +21,7 @@ import './App.css';
 // Lazy load non-critical sections below the fold
 const DailyYogaBanner = lazy(() => import('./components/DailyYogaBanner/DailyYogaBanner'));
 const Workshops = lazy(() => import('./components/Workshops/Workshops'));
+const DailyYogaTogether = lazy(() => import('./components/DailyYogaTogether/DailyYogaTogether'));
 const Products = lazy(() => import('./components/Products/Products'));
 const Books = lazy(() => import('./components/Books/Books'));
 const HealthScore = lazy(() => import('./components/HealthScore/HealthScore'));
@@ -37,6 +38,7 @@ const Contact = lazy(() => import('./pages/ContactPage/ContactPage'));
 const Careers = lazy(() => import('./pages/CareersPage/CareersPage'));
 const OrdersPage = lazy(() => import('./pages/OrdersPage/OrdersPage'));
 const RegisterFreePage = lazy(() => import('./pages/RegisterFreePage/RegisterFreePage'));
+const DailyYogaTogetherDetails = lazy(() => import('./components/DailyYogaTogether/DailyYogaTogetherDetails'));
 
 // Lazy load modals/drawers
 const CartDrawer = lazy(() => import('./layout/CartDrawer/CartDrawer'));
@@ -56,6 +58,7 @@ const VIEW_TITLES = {
   'health-score': 'Health Score Assessment | Yoga Healers',
   orders: 'My Orders | Yoga Healers',
   'register-free': 'Register for 5 Days Free Yoga Sessions | Yoga Healers',
+  'daily-yoga-together-details': 'Daily Yoga Together | Yoga Healers',
 };
 
 function AppContent() {
@@ -127,6 +130,7 @@ function AppContent() {
       '.success-card',
       '.daily-yoga-card',
       '.daily-yoga-left-content',
+      '.daily-yoga-together-container',
       '.hero-content-wrapper',
       '.vertical-card',
       '.educator-card',
@@ -191,8 +195,8 @@ function AppContent() {
           <Suspense fallback={<Loader />}><HealthScore isStandalone={true} /></Suspense>
         ) : view === 'orders' ? (
           <Suspense fallback={<Loader />}><OrdersPage /></Suspense>
-        ) : view === 'register-free' ? (
-          <Suspense fallback={<Loader />}><RegisterFreePage /></Suspense>
+        ) : view === 'register-free' || view === 'daily-yoga-together-details' ? (
+          <Suspense fallback={<Loader />}><DailyYogaTogetherDetails /></Suspense>
         ) : (
           <>
             {/* Main Page Sections */}
@@ -204,6 +208,7 @@ function AppContent() {
             <Suspense fallback={<Loader />}>
               <DailyYogaBanner />
               <Workshops />
+              <DailyYogaTogether />
               <Products />
               <Books />
               <HealthScore />

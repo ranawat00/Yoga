@@ -11,6 +11,7 @@ export const VIEW_TO_PATH = {
   'health-score': '/health-score',
   orders: '/orders',
   'register-free': '/register-free',
+  'daily-yoga-together-details': '/daily-yoga-together-details',
 };
 
 export const PATH_TO_VIEW = {
@@ -28,6 +29,7 @@ export const PATH_TO_VIEW = {
   '/health-score': 'health-score',
   '/orders': 'orders',
   '/register-free': 'register-free',
+  '/daily-yoga-together-details': 'daily-yoga-together-details',
 };
 
 const getInitialViewingWorkshop = () => {

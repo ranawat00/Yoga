@@ -660,7 +660,7 @@ export default function Workshops({ isStandalone = false }) {
                       Cancel
                     </button>
                     <button type="submit" className="btn btn-blue" disabled={isSubmitting} style={{ padding: '0.6rem 1.5rem' }}>
-                      {isSubmitting ? 'Registering...' : `Pay & Register (₹${selectedWorkshop.price})`}
+                      {isSubmitting ? 'Registering...' : `Pay & Register ($${selectedWorkshop.price})`}
                     </button>
                   </div>
                 </form>

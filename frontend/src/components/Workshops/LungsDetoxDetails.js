@@ -56,6 +56,47 @@ export default function LungsDetoxDetails({ workshop, onBack, onRegister }) {
     return () => clearInterval(interval);
   }, [workshop]);
 
+  const [activeFaq, setActiveFaq] = useState(null);
+
+  const toggleFaq = (index) => {
+    setActiveFaq(activeFaq === index ? null : index);
+  };
+
+  const LUNGS_FAQS = [
+    {
+      q: 'What is the Ultimate Lungs Detox Challenge?',
+      a: 'The Ultimate Lungs Detox Challenge is a structured 53-day online workshop powered by YHO\'s modern breathwork and transformation methodology. It is designed to deep-cleanse and reset your respiratory system, release stored emotional pressure, and activate mental clarity through a blend of natural healing science and guided daily practice.'
+    },
+    {
+      q: 'Who is this workshop for?',
+      a: 'This program is ideal for anyone looking to optimize their lung capacity, clear physical or emotional congestion, improve posture, and build unshakeable daily health habits. Whether you suffer from shallow breathing, stiffness from long hours of sitting, or stress-related chest tension, this workshop provides a complete reset.'
+    },
+    {
+      q: 'When and where do the sessions take place?',
+      a: 'The challenge is held 100% live online. Participants meet for 1 hour daily in live interactive sessions where you will be guided through breathwork, postural alignment, and habit-building exercises.'
+    },
+    {
+      q: 'What if I miss a live session?',
+      a: 'While live attendance is encouraged to maintain momentum and community energy, session resources, guidance notes, and recordings (where applicable) are made available so you never fall behind on your 53-day streak.'
+    },
+    {
+      q: 'Why is the challenge 53 days long?',
+      a: 'Real transformation requires time to rewrite neural pathways and replace ingrained patterns. Over 53 days, you transition from temporary short-term effort to permanent, mindful discipline—ensuring your new health practices become second nature for life.'
+    },
+    {
+      q: 'What is YHO\'s breathwork and transformation methodology?',
+      a: 'YHO\'s methodology combines modern respiratory science with ancient breath practices. It focuses on functional breath re-education, nervous system regulation, and emotional release to help you break free from stress patterns and optimize oxygen delivery throughout your body.'
+    },
+    {
+      q: 'How does Guided Postural Alignment help with lung detox?',
+      a: 'Prolonged sitting and slouching collapse the thoracic cavity, limiting your diaphragm\'s range of motion. Our targeted yoga postures (asanas) focus on chest expansion, reversing upper-body stiffness, strengthening intercostal muscles, and opening up physical space for deeper, natural airflow.'
+    },
+    {
+      q: 'How does lung detox help release emotional pressure?',
+      a: 'The respiratory system tightly mirrors your emotional state—stress and unspoken tension often physically lodge in the chest and diaphragm as shallow breathing patterns. Through systematic breathwork and movement, you release these physical blockages, creating deep mental clarity and emotional relief.'
+    }
+  ];
+
   return (
     <div className="workshop-details-page">
       {/* Hero Header Section */}
@@ -214,18 +255,50 @@ export default function LungsDetoxDetails({ workshop, onBack, onRegister }) {
         </div>
       </section>
 
-      {/* Sticky Bottom Bar for Mobile Register */}
-      <div className="sticky-details-footer">
-        <div className="sticky-footer-content">
-          <div className="sticky-price-info">
-            <span className="sticky-title">{workshop.title}</span>
-            <span className="sticky-price">{workshop.price} $</span>
-          </div>
-          <button className="sticky-register-btn" onClick={onRegister}>
-            Register Now
-          </button>
+      {/* Frequently Asked Questions */}
+      <div className="details-faq-section-custom">
+        <div className="faq-header-wrapper-custom">
+          <span className="faq-small-title">FAQ</span>
+          <h2 className="faq-large-title">LUNGS DETOX PROGRAM</h2>
+        </div>
+        <div className="faq-accordion-custom">
+          {LUNGS_FAQS.map((faq, idx) => {
+            const isOpen = activeFaq === idx;
+            return (
+              <div
+                key={idx}
+                className={`faq-item-custom ${isOpen ? 'is-open' : ''}`}
+                onClick={() => toggleFaq(idx)}
+              >
+                <div className="faq-item-header-custom">
+                  <h3 className="faq-item-question">{faq.q}</h3>
+                  <div className="faq-item-icon-wrapper">
+                    <svg
+                      className="faq-item-icon"
+                      width="14"
+                      height="14"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="3.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <line x1="12" y1="5" x2="12" y2="19"></line>
+                      <line x1="5" y1="12" x2="19" y2="12"></line>
+                    </svg>
+                  </div>
+                </div>
+                <div className="faq-item-content-wrapper" style={{ maxHeight: isOpen ? '250px' : '0' }}>
+                  <p className="faq-item-answer">{faq.a}</p>
+                </div>
+              </div>
+            );
+          })}
         </div>
       </div>
+
+
     </div>
   );
 }
