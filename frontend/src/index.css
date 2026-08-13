@@ -109,12 +109,29 @@ h6,
   color: var(--color-headline-primary);
 }
 
-h1 { font-size: 1.9rem; }
-h2 { font-size: 1.45rem; }
-h3 { font-size: 1.05rem; }
-h4 { font-size: 0.85rem; }
-h5 { font-size: 0.7rem; }
-h6 { font-size: 0.6rem; }
+h1 {
+  font-size: 1.7rem;
+}
+
+h2 {
+  font-size: 1.45rem;
+}
+
+h3 {
+  font-size: 1.05rem;
+}
+
+h4 {
+  font-size: 0.85rem;
+}
+
+h5 {
+  font-size: 0.7rem;
+}
+
+h6 {
+  font-size: 0.6rem;
+}
 
 p {
   color: var(--color-text-primary);
@@ -290,12 +307,29 @@ button {
 }
 
 @media (max-width: 768px) {
-  h1 { font-size: 1.6rem; }
-  h2 { font-size: 1.25rem; }
-  h3 { font-size: 0.95rem; }
-  h4 { font-size: 0.8rem; }
-  h5 { font-size: 0.65rem; }
-  h6 { font-size: 0.55rem; }
+  h1 {
+    font-size: 1.6rem;
+  }
+
+  h2 {
+    font-size: 1.25rem;
+  }
+
+  h3 {
+    font-size: 0.95rem;
+  }
+
+  h4 {
+    font-size: 0.8rem;
+  }
+
+  h5 {
+    font-size: 0.65rem;
+  }
+
+  h6 {
+    font-size: 0.55rem;
+  }
 
   input[type="text"],
   input[type="email"],

@@ -244,19 +244,17 @@ export default function DailyYogaTogetherDetails() {
             />
             <div className="daily-yoga-details-hero-overlay">
               <button
-                className="revolution-register-btn"
+                className="hero-sage-register-btn"
                 onClick={handleOpenModal}
                 aria-label="Register Now"
               >
-                <div className="btn-navy-block">
-                  <span className="btn-navy-text">REGISTER NOW</span>
-                </div>
-                <div className="btn-arrow-block">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round">
-                    <polyline points="9 18 15 12 9 6" />
+                <span>REGISTER NOW</span>
+                <span className="hero-sage-arrow-circle">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                    <polyline points="12 5 19 12 12 19"></polyline>
                   </svg>
-                </div>
-                <div className="btn-white-fill" />
+                </span>
               </button>
             </div>
           </div>
@@ -328,12 +326,12 @@ export default function DailyYogaTogetherDetails() {
               <h2 className="cta-main-heading">Your Transformation Starts Here</h2>
               <p className="cta-description">Take the first step towards a healthier, balanced you</p>
             </div>
-            <button className="cta-register-btn animated-register-btn" onClick={handleOpenModal}>
-              <span className="btn-text">REGISTER NOW</span>
-              <span className="btn-separator"></span>
-              <span className="btn-arrow">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round">
-                  <polyline points="9 18 15 12 9 6"></polyline>
+            <button className="hero-sage-register-btn" onClick={handleOpenModal} aria-label="Register Now">
+              <span>REGISTER NOW</span>
+              <span className="hero-sage-arrow-circle">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
                 </svg>
               </span>
             </button>
