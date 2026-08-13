@@ -263,59 +263,7 @@ export default function DailyYogaTogetherDetails() {
         </div>
       </section>
 
-      {/* Program Details Info Section */}
-      <section className="daily-yoga-program-info-section">
-        <div className="daily-yoga-info-cards-container">
 
-          <div className="daily-yoga-info-card">
-            <div className="daily-yoga-info-icon-wrapper">
-              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#1A806A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
-                <line x1="16" y1="2" x2="16" y2="6" />
-                <line x1="8" y1="2" x2="8" y2="6" />
-                <line x1="3" y1="10" x2="21" y2="10" />
-              </svg>
-            </div>
-            <div className="daily-yoga-info-text-wrapper">
-              <h4>Start Date</h4>
-              <p>Anytime, any day</p>
-            </div>
-          </div>
-
-          <div className="daily-yoga-info-card">
-            <div className="daily-yoga-info-icon-wrapper">
-              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#1A806A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <circle cx="12" cy="5" r="2.5" />
-                <path d="M12 9c-2.5 0-4.5 1.5-4.5 4v2c0 2 2 3.5 4.5 3.5s4.5-1.5 4.5-3.5v-2c0-2.5-2-4-4.5-4z" />
-                <path d="M7.5 15c-1.5-.5-3.5-1.5-3.5-3 0-2 2.5-3 4-1" />
-                <path d="M16.5 15c1.5-.5 3.5-1.5 3.5-3 0-2-2.5-3-4-1" />
-                <path d="M6 20c2-1.5 4-2 6-2s4 .5 6 2" />
-              </svg>
-            </div>
-            <div className="daily-yoga-info-text-wrapper">
-              <h4>Level</h4>
-              <p>Beginner & Intermediate</p>
-            </div>
-          </div>
-
-          <div className="daily-yoga-info-card">
-            <div className="daily-yoga-info-icon-wrapper">
-              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#1A806A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <circle cx="12" cy="12" r="10" />
-                <line x1="2" y1="12" x2="22" y2="12" />
-                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
-              </svg>
-            </div>
-            <div className="daily-yoga-info-text-wrapper">
-              <h4>Language</h4>
-              <p>English</p>
-            </div>
-          </div>
-
-
-
-        </div>
-      </section>
 
       {/* Main Program Overview */}
       <section className="daily-yoga-details-content">

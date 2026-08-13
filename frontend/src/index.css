@@ -31,7 +31,7 @@
   --color-liquid-white-accent: #FCFCFB;
 
   /* Headline & Text Color Palette */
-  --color-headline-primary: #748B6F;
+  --color-headline-primary: #5c8862;
   --color-headline-secondary: #5C7257;
   --color-text-primary: #3A3B3B;
   --color-text-secondary: #3A3B3B;
@@ -94,19 +94,27 @@ h2,
 h3,
 h4,
 h5,
-h6 {
+h6,
+.section-title,
+.page-title,
+.what-you-will-gain-title,
+.habits-unlock-title,
+.session-unlock-title,
+.gain-images-heading,
+.rituals-section-heading,
+.details-title {
   font-family: var(--font-heading);
   font-weight: 700;
   line-height: 1.25;
   color: var(--color-headline-primary);
 }
 
-h1 { font-size: 2.2rem; }
-h2 { font-size: 1.75rem; }
-h3 { font-size: 1.35rem; }
-h4 { font-size: 1.15rem; }
-h5 { font-size: 1.0rem; }
-h6 { font-size: 0.9rem; }
+h1 { font-size: 1.9rem; }
+h2 { font-size: 1.45rem; }
+h3 { font-size: 1.05rem; }
+h4 { font-size: 0.85rem; }
+h5 { font-size: 0.7rem; }
+h6 { font-size: 0.6rem; }
 
 p {
   color: var(--color-text-primary);
@@ -282,6 +290,12 @@ button {
 }
 
 @media (max-width: 768px) {
+  h1 { font-size: 1.6rem; }
+  h2 { font-size: 1.25rem; }
+  h3 { font-size: 0.95rem; }
+  h4 { font-size: 0.8rem; }
+  h5 { font-size: 0.65rem; }
+  h6 { font-size: 0.55rem; }
 
   input[type="text"],
   input[type="email"],

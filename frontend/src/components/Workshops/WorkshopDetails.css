@@ -152,7 +152,8 @@
 .banner-overlay-btn:hover {
   transform: translate(-50%, 50%) translateY(-2px);
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.28);
-  animation: waterFlow 2s linear infinite; /* Stop shake and speed up flow on hover */
+  animation: waterFlow 2s linear infinite;
+  /* Stop shake and speed up flow on hover */
   filter: brightness(1.03);
 }
 
@@ -262,7 +263,8 @@
 .details-register-btn:not(.banner-overlay-btn):hover {
   transform: translateY(-2px);
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.28);
-  animation: waterFlow 2s linear infinite; /* Stop shake and speed up flow on hover */
+  animation: waterFlow 2s linear infinite;
+  /* Stop shake and speed up flow on hover */
   filter: brightness(1.03);
 }
 
@@ -286,60 +288,79 @@
   0% {
     background-position: 0% 50%;
   }
+
   100% {
     background-position: 300% 50%;
   }
 }
 
 @keyframes regularButtonShake {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: scale(1) rotate(0deg);
   }
+
   1.5% {
     transform: scale(1.03) rotate(-2deg);
   }
+
   3% {
     transform: scale(1.03) rotate(2deg);
   }
+
   4.5% {
     transform: scale(1.03) rotate(-1.5deg);
   }
+
   6% {
     transform: scale(1.03) rotate(1.5deg);
   }
+
   7.5% {
     transform: scale(1.03) rotate(-1deg);
   }
+
   9% {
     transform: scale(1.03) rotate(1deg);
   }
+
   10.5% {
     transform: scale(1) rotate(0deg);
   }
 }
 
 @keyframes bannerButtonShake {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translate(-50%, 50%) scale(1) rotate(0deg);
   }
+
   1.5% {
     transform: translate(-50%, 50%) scale(1.03) rotate(-2deg);
   }
+
   3% {
     transform: translate(-50%, 50%) scale(1.03) rotate(2deg);
   }
+
   4.5% {
     transform: translate(-50%, 50%) scale(1.03) rotate(-1.5deg);
   }
+
   6% {
     transform: translate(-50%, 50%) scale(1.03) rotate(1.5deg);
   }
+
   7.5% {
     transform: translate(-50%, 50%) scale(1.03) rotate(-1deg);
   }
+
   9% {
     transform: translate(-50%, 50%) scale(1.03) rotate(1.5deg);
   }
+
   10.5% {
     transform: translate(-50%, 50%) scale(1) rotate(0deg);
   }
@@ -617,8 +638,8 @@
 .section-details-heading {
   text-align: center;
   font-family: var(--font-display), sans-serif;
-  color: #0b6845;
-  font-size: 2.0rem;
+  color: #588364;
+  font-size: 1.7rem;
   font-weight: 800;
   margin-bottom: 4rem;
   position: relative;
@@ -745,7 +766,7 @@
 
 /* Sticky Footer on Mobile */
 .sticky-details-footer {
-  display: none;
+  display: none !important;
   position: fixed;
   bottom: 0;
   left: 0;
@@ -875,7 +896,7 @@
   }
 
   .section-details-heading {
-    font-size: 1.9rem;
+    font-size: 1.7rem;
     margin-bottom: 2.5rem;
   }
 
@@ -980,7 +1001,7 @@
   }
 
   .sticky-details-footer {
-    display: block;
+    display: none !important;
   }
 
   /* Hide the non-banner register button — banner uses overlay btn */
