@@ -1,5 +1,4 @@
 import React from 'react';
-import { useApp } from '../../hooks/useApp';
 import './AboutUsPage.css';
 import '../RegisterFreePage/RegisterFreePage.css';
 import bannerImg from '../../assets/about_us/banner.jpg';
@@ -43,7 +42,6 @@ function CounterNumber({ end, duration = 1800, suffix = "" }) {
 }
 
 export default function AboutUsPage() {
-  const { setView } = useApp();
 
   return (
     <div className="about-us-page">
