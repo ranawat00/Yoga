@@ -59,7 +59,7 @@
 
 .about-movement-text {
   font-family: var(--font-body, 'Plus Jakarta Sans', sans-serif);
-  font-size: clamp(1.02rem, 3.2vw, 1.25rem);
+  font-size: clamp(0.95rem, 3.2vw, 1.25rem);
   color: #475569;
   line-height: 1.65;
   font-weight: 500;
@@ -115,7 +115,7 @@
 
 .about-mission-lead {
   font-family: var(--font-body, 'Plus Jakarta Sans', sans-serif);
-  font-size: clamp(1rem, 3vw, 1.1rem);
+  font-size: clamp(0.95rem, 3vw, 1.1rem);
   color: #334155;
   line-height: 1.7;
   margin-bottom: 1.8rem;
@@ -209,7 +209,7 @@
 }
 
 .stat-card-unit {
-  font-size: clamp(1.1rem, 3vw, 1.35rem);
+  font-size: clamp(0.95rem, 3vw, 1.35rem);
   font-weight: 700;
   color: #334155;
   margin-left: 0.25rem;
@@ -254,7 +254,7 @@
 
 .about-impact-heading {
   font-family: var(--font-display, 'Plus Jakarta Sans', sans-serif);
-  font-size: clamp(1.15rem, 5vw, 1.7rem);
+  font-size: clamp(0.95rem, 5vw, 1.7rem);
   font-weight: 800;
   color: #588364;
   margin-bottom: 2rem;
@@ -268,7 +268,7 @@
 
 .about-impact-intro {
   font-family: var(--font-body, 'Plus Jakarta Sans', sans-serif);
-  font-size: clamp(1.02rem, 3.2vw, 1.15rem);
+  font-size: clamp(0.95rem, 3.2vw, 1.15rem);
   color: #334155;
   line-height: 1.65;
   margin-bottom: 3rem;
@@ -387,7 +387,7 @@
 
 .about-community-text {
   font-family: var(--font-body, 'Plus Jakarta Sans', sans-serif);
-  font-size: clamp(1.02rem, 3.2vw, 1.15rem);
+  font-size: clamp(0.95rem, 3.2vw, 1.15rem);
   color: #334155;
   line-height: 1.7;
   margin: 0 auto;
