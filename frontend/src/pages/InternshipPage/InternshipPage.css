@@ -92,7 +92,7 @@
 }
 
 .why-enroll-text {
-  font-size: 1.05rem;
+  font-size: 0.95rem;
   color: #475569;
   line-height: 1.65;
   margin: 0;
@@ -171,7 +171,7 @@
 }
 
 .what-receive-desc {
-  font-size: 1rem;
+  font-size: 0.95rem;
   color: #64748b;
   line-height: 1.6;
   margin: 0;
@@ -228,7 +228,7 @@
 }
 
 .commitment-fee-body {
-  font-size: 1.02rem;
+  font-size: 0.95rem;
   color: #475569;
   line-height: 1.75;
   margin: 0;
@@ -272,7 +272,7 @@
 }
 
 .faq-large-title {
-  font-size: clamp(1.4rem, 4.5vw, 2.3rem);
+  font-size: 1.75rem;
   font-weight: 900;
   color: #1a251b;
   margin: 0;
@@ -681,7 +681,7 @@
   }
 
   .faq-large-title {
-    font-size: 1 rem;
+    font-size: 1.75rem;
     margin-bottom: 1.4rem;
   }
 

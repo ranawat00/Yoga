@@ -185,14 +185,15 @@ export default function InternshipPage() {
       <section className="internship-faq-section">
         <div className="internship-container">
           <div className="faq-header-wrapper-custom">
-            <h2 className="faq-large-title">APPLIED PSYCHOLOGY INTERNSHIP</h2>
+            <span className="faq-small-title">FAQ</span>
+
           </div>
           <div className="faq-list">
             {INTERNSHIP_FAQS.map((faq, index) => {
               const isOpen = openFaq === index;
               return (
-                <div 
-                  key={faq.id} 
+                <div
+                  key={faq.id}
                   className={`faq-item-box ${isOpen ? 'active' : ''}`}
                   onClick={() => toggleFaq(index)}
                 >
