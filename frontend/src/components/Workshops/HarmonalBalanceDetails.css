@@ -639,7 +639,7 @@
   text-align: center;
   font-family: var(--font-display), sans-serif;
   color: #588364;
-  font-size: 1.7rem;
+  font-size: clamp(1.15rem, 5vw, 1.7rem);
   font-weight: 800;
   margin-bottom: 4rem;
   position: relative;
@@ -673,7 +673,7 @@
 .experience-main-title {
   font-family: var(--font-heading), 'Plus Jakarta Sans', sans-serif;
   color: #588364;
-  font-size: 1.7rem;
+  font-size: clamp(1.15rem, 5vw, 1.7rem);
   font-weight: 800;
   text-align: center;
   margin-bottom: 2.5rem;
@@ -1005,7 +1005,7 @@
   }
 
   .section-details-heading {
-    font-size: 1.7rem;
+    font-size: clamp(1.15rem, 5vw, 1.7rem);
     margin-bottom: 2.5rem;
   }
 

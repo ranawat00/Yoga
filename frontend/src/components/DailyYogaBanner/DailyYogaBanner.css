@@ -28,7 +28,7 @@
 .top-banner-title {
   font-family: var(--font-heading);
   color: #748B6F;
-  font-size: 2.75rem;
+  font-size: clamp(1.15rem, 5vw, 1.7rem);
   font-weight: 800;
   line-height: 1.25;
   margin-bottom: 1.25rem;
@@ -244,7 +244,7 @@
   }
 
   .top-banner-title {
-    font-size: 2.2rem;
+    font-size: clamp(1.15rem, 5vw, 1.7rem);
   }
 
   .daily-yoga-card {
@@ -276,7 +276,7 @@
   }
 
   .top-banner-title {
-    font-size: 1.85rem;
+    font-size: clamp(1.15rem, 5vw, 1.7rem);
     margin-bottom: 0.8rem;
   }
 

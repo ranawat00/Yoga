@@ -1,6 +1,7 @@
 /* Success Stories Section */
 .success-stories-section {
-  background-color: #EBF4F5; /* Soft pastel mint/blue background */
+  background-color: #EBF4F5;
+  /* Soft pastel mint/blue background */
   padding: 100px 0;
   overflow: hidden;
   position: relative;
@@ -19,7 +20,7 @@
 }
 
 .success-header .section-title {
-  font-size: 2.8rem;
+  font-size: clamp(1.15rem, 5vw, 1.7rem);
   color: var(--color-headline-primary);
   font-family: var(--font-heading);
   margin-bottom: 0.8rem;
@@ -35,8 +36,10 @@
 /* Slider Track & Wrapper */
 .success-slider-outer {
   width: 100%;
-  overflow: hidden; /* Prevent horizontal scrollbars on page */
-  padding: 15px 0 35px 0; /* Add top/bottom padding to prevent clipping of card shadows/bottoms */
+  overflow: hidden;
+  /* Prevent horizontal scrollbars on page */
+  padding: 15px 0 35px 0;
+  /* Add top/bottom padding to prevent clipping of card shadows/bottoms */
   margin-bottom: 2.5rem;
 }
 
@@ -49,7 +52,8 @@
 
 /* Success Card */
 .success-card {
-  width: 360px; /* Fixed desktop card width */
+  width: 360px;
+  /* Fixed desktop card width */
   flex-shrink: 0;
   background: #FFFFFF;
   border-radius: 16px;
@@ -58,7 +62,7 @@
   display: flex;
   flex-direction: column;
   transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1),
-              box-shadow 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    box-shadow 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
 .success-card:hover {
@@ -91,7 +95,8 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  flex-grow: 1; /* Stretch body to push the links to the bottom */
+  flex-grow: 1;
+  /* Stretch body to push the links to the bottom */
 }
 
 .success-card-title {
@@ -101,7 +106,8 @@
   line-height: 1.45;
   margin-bottom: 0.8rem;
   font-family: var(--font-body);
-  height: 50px; /* Aligns description height across cards */
+  height: 50px;
+  /* Aligns description height across cards */
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
@@ -124,11 +130,13 @@
 .success-card-link {
   font-size: 0.95rem;
   font-weight: 700;
-  color: var(--color-blue); /* Blue link */
+  color: var(--color-blue);
+  /* Blue link */
   text-decoration: none;
   display: inline-flex;
   align-items: center;
-  margin-top: auto; /* Push the link to the bottom of the card body */
+  margin-top: auto;
+  /* Push the link to the bottom of the card body */
   transition: var(--transition-smooth);
 }
 
@@ -209,7 +217,8 @@
 @media (max-width: 1200px) {
   .success-slider-outer {
     overflow: hidden;
-    padding: 15px 0 35px 0; /* Preserve shadow/bottom padding on tablet */
+    padding: 15px 0 35px 0;
+    /* Preserve shadow/bottom padding on tablet */
   }
 }
 
@@ -217,23 +226,25 @@
   .success-stories-section {
     padding: 70px 0;
   }
-  
+
   .success-header .section-title {
     font-size: 2.2rem;
   }
-  
+
   .success-card {
-    width: calc(100vw - 4rem); /* Full viewport width minus container padding */
+    width: calc(100vw - 4rem);
+    /* Full viewport width minus container padding */
   }
-  
+
   .success-slider-track {
-    gap: 0; /* Align side-by-side cleanly for mobile slider */
+    gap: 0;
+    /* Align side-by-side cleanly for mobile slider */
   }
-  
+
   .success-card-body {
     padding: 1.5rem;
   }
-  
+
   .success-card-title {
     height: auto;
   }

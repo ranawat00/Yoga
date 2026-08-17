@@ -427,7 +427,7 @@
 }
 
 .details-title {
-  font-size: 3rem;
+  font-size: clamp(1.15rem, 5vw, 1.7rem);
   font-weight: 800;
   color: var(--color-headline-primary);
   margin-bottom: 1.25rem;
@@ -492,7 +492,7 @@
 }
 
 .rituals-section-heading {
-  font-size: 2.3rem;
+  font-size: clamp(1.15rem, 5vw, 1.7rem);
   font-weight: 800;
   text-align: center;
   color: #588364;
@@ -602,7 +602,7 @@
 }
 
 .unlock-heading {
-  font-size: 2.3rem;
+  font-size: clamp(1.15rem, 5vw, 1.7rem);
   font-weight: 800;
   color: #588364;
   /* bright green matching the screenshot */
@@ -640,7 +640,7 @@
   }
 
   .unlock-heading {
-    font-size: 1.7rem;
+    font-size: clamp(1.15rem, 5vw, 1.7rem);
     margin-bottom: 1.25rem;
   }
 
@@ -680,7 +680,7 @@
 }
 
 .gain-images-heading {
-  font-size: 2.3rem;
+  font-size: clamp(1.15rem, 5vw, 1.7rem);
   font-weight: 800;
   color: #588364;
   /* muted forest green from the screenshot */
@@ -746,7 +746,7 @@
 }
 
 .cta-main-heading {
-  font-size: 2.1rem;
+  font-size: clamp(1.15rem, 5vw, 1.7rem);
   font-weight: 800;
   color: #FFFFFF;
   margin-bottom: 0.35rem;
@@ -1244,7 +1244,7 @@
   }
 
   .gain-images-heading {
-    font-size: 1.7rem;
+    font-size: clamp(1.15rem, 5vw, 1.7rem);
     margin-bottom: 1.5rem;
   }
 
@@ -1257,7 +1257,7 @@
   }
 
   .details-title {
-    font-size: 2.2rem;
+    font-size: clamp(1.15rem, 5vw, 1.7rem);
   }
 
   .details-cta-card {
@@ -1322,11 +1322,11 @@
   }
 
   .details-title {
-    font-size: 1.8rem;
+    font-size: clamp(1.15rem, 5vw, 1.7rem);
   }
 
   .section-heading {
-    font-size: 1.75rem;
+    font-size: clamp(1.15rem, 5vw, 1.7rem);
   }
 
   .faq-details-section {
@@ -1334,7 +1334,7 @@
   }
 
   .faq-large-title {
-    font-size: 1.8rem;
+    font-size: clamp(1.15rem, 5vw, 1.7rem);
     margin-bottom: 1.4rem;
   }
 

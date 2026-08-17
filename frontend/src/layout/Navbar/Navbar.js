@@ -92,9 +92,9 @@ export default function Navbar() {
       return;
     }
 
-    if (id === 'careers') {
-      setView('careers');
-      setActiveLink('careers');
+    if (id === 'internship' || id === 'careers') {
+      setView('internship');
+      setActiveLink('internship');
       window.scrollTo({ top: 0, behavior: 'smooth' });
       return;
     }
@@ -312,8 +312,8 @@ export default function Navbar() {
             </a>
           </li>
           <li>
-            <a href="/careers" className={activeLink === 'careers' ? 'active' : ''} onClick={(e) => handleLinkClick('careers', e)}>
-              Careers
+            <a href="/internship" className={(activeLink === 'internship' || activeLink === 'careers') ? 'active' : ''} onClick={(e) => handleLinkClick('internship', e)}>
+              Internship
             </a>
           </li>
         </ul>
@@ -417,8 +417,8 @@ export default function Navbar() {
               </a>
             </li>
             <li>
-              <a href="/careers" className={activeLink === 'careers' ? 'active-pill' : ''} onClick={(e) => handleLinkClick('careers', e)}>
-                Careers
+              <a href="/internship" className={(activeLink === 'internship' || activeLink === 'careers') ? 'active-pill' : ''} onClick={(e) => handleLinkClick('internship', e)}>
+                Internship
               </a>
             </li>
             <li>

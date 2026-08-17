@@ -102,11 +102,40 @@ h6,
 .session-unlock-title,
 .gain-images-heading,
 .rituals-section-heading,
-.details-title {
+.details-title,
+.about-community-heading,
+.mentor-slider-title,
+.register-success-title,
+.register-benefits-title,
+.why-enroll-heading,
+.what-receive-heading,
+.section-details-heading,
+.faq-section-title {
   font-family: var(--font-heading);
-  font-weight: 700;
+  font-weight: 800;
   line-height: 1.25;
-  color: var(--color-headline-primary);
+  color: var(--color-headline-primary, #588364);
+}
+
+.section-title,
+.page-title,
+.what-you-will-gain-title,
+.habits-unlock-title,
+.session-unlock-title,
+.gain-images-heading,
+.rituals-section-heading,
+.details-title,
+.about-community-heading,
+.mentor-slider-title,
+.register-success-title,
+.register-benefits-title,
+.why-enroll-heading,
+.what-receive-heading,
+.section-details-heading,
+.faq-section-title {
+  font-size: clamp(1.15rem, 5vw, 1.7rem) !important;
+  color: #588364;
+  font-weight: 800;
 }
 
 h1 {

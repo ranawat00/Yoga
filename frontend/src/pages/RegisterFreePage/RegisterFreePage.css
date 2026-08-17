@@ -451,12 +451,12 @@
 }
 
 .register-success-title {
-  font-family: 'Roboto', sans-serif;
-  font-size: 1.35rem;
+  font-family: var(--font-display, 'Plus Jakarta Sans', sans-serif);
+  font-size: clamp(1.15rem, 5vw, 1.7rem);
   font-weight: 800;
-  color: #73927c;
+  color: #588364;
   text-transform: uppercase;
-  letter-spacing: 1px;
+  letter-spacing: -0.3px;
   margin: 0 0 2rem 0;
   text-align: center;
 }
@@ -998,14 +998,14 @@
 }
 
 .mentor-slider-title {
-  font-family: 'Roboto', sans-serif;
-  font-size: 1.4rem;
+  font-family: var(--font-display, 'Plus Jakarta Sans', sans-serif);
+  font-size: clamp(1.15rem, 5vw, 1.7rem);
   font-weight: 800;
-  color: #6b9376;
-  /* sage green matching design */
+  color: #588364;
   text-align: center;
-  letter-spacing: 0.06em;
+  letter-spacing: -0.3px;
   margin: 0 0 1.75rem;
+  text-transform: uppercase;
 }
 
 /* Track: shows 3 cards at once — prev (peek), active, next (peek) */

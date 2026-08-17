@@ -89,7 +89,7 @@ export default function Footer() {
         {/* Column 3: Secondary Links */}
         <div className="footer-col link-col">
           <ul className="footer-links">
-            <li><a href="/" onClick={(e) => { e.preventDefault(); handleScrollTo('home'); }}>Satvic Youth</a></li>
+            <li><a href="/internship" onClick={(e) => { e.preventDefault(); setView('internship'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}>Internship</a></li>
             <li><a href="/" onClick={(e) => { e.preventDefault(); handleScrollTo('home'); }}>Meet The Team</a></li>
             <li><a href="/" onClick={(e) => { e.preventDefault(); handleScrollTo('success-stories'); }}>Satvic Stories</a></li>
             <li><a href="/" onClick={(e) => { e.preventDefault(); handleScrollTo('home'); }}>Blogs</a></li>

@@ -149,7 +149,7 @@ const STORIES = [
 ];
 
 /* ── Success Stories Slider ───────────────────────────────── */
-function SuccessStories() {
+export function SuccessStories({ showFaqTitle = true }) {
   const sliderRef = useRef(null);
 
   useEffect(() => {
@@ -205,13 +205,13 @@ function SuccessStories() {
           </div>
         ))}
       </div>
-      <h2 className="register-success-title register-faq-title">FREQUENTLY ASKED QUESTIONS</h2>
+      {showFaqTitle && <h2 className="register-success-title register-faq-title">FREQUENTLY ASKED QUESTIONS</h2>}
     </section>
   );
 }
 
 /* ── Mentor Slider ────────────────────────────────────────── */
-function MentorSlider() {
+export function MentorSlider() {
   const [current, setCurrent] = useState(0);
   const trackRef = useRef(null);
   const touchStart = useRef(null);

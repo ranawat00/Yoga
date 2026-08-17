@@ -35,7 +35,7 @@ const BooksPage = lazy(() => import('./pages/BooksPage/BooksPage'));
 const ProductsPage = lazy(() => import('./pages/ProductsPage/ProductsPage'));
 const AboutUs = lazy(() => import('./pages/AboutUsPage/AboutUsPage'));
 const Contact = lazy(() => import('./pages/ContactPage/ContactPage'));
-const Careers = lazy(() => import('./pages/CareersPage/CareersPage'));
+const Internship = lazy(() => import('./pages/InternshipPage/InternshipPage'));
 const OrdersPage = lazy(() => import('./pages/OrdersPage/OrdersPage'));
 // eslint-disable-next-line no-unused-vars
 const RegisterFreePage = lazy(() => import('./pages/RegisterFreePage/RegisterFreePage'));
@@ -51,7 +51,8 @@ const ProfileDrawer = lazy(() => import('./layout/ProfileDrawer/ProfileDrawer'))
 const VIEW_TITLES = {
   home: 'Yoga Healers | Holistic Health & Satvic Wellness',
   about: 'About Us | Yoga Healers',
-  careers: 'Careers | Yoga Healers',
+  internship: 'Internship | Yoga Healers',
+  careers: 'Internship | Yoga Healers',
   books: 'Books & Recipe Guides | Yoga Healers',
   products: 'Shop Organic Products | Yoga Healers',
   contact: 'Contact Us | Yoga Healers',
@@ -175,8 +176,8 @@ function AppContent() {
           <Suspense fallback={<Loader />}><AboutUs /></Suspense>
         ) : view === 'contact' ? (
           <Suspense fallback={<Loader />}><Contact /></Suspense>
-        ) : view === 'careers' ? (
-          <Suspense fallback={<Loader />}><Careers /></Suspense>
+        ) : (view === 'internship' || view === 'careers') ? (
+          <Suspense fallback={<Loader />}><Internship /></Suspense>
         ) : view === 'workshops' ? (
           <Suspense fallback={<Loader />}><Workshops isStandalone={true} /></Suspense>
         ) : view === 'health-score' ? (

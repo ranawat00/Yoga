@@ -1,132 +1,211 @@
 import React from 'react';
 import { useApp } from '../../hooks/useApp';
 import './AboutUsPage.css';
-import aboutHeroImg from '../../assets/hero/yoga-hero.webp';
-import storyImg from '../../assets/banners/daily_yoga_banner.webp';
+import '../RegisterFreePage/RegisterFreePage.css';
+import bannerImg from '../../assets/about_us/banner.jpg';
+import secondImg from '../../assets/about_us/second.jpg';
+import thirdImg from '../../assets/about_us/third.jpg';
+import aboutVideo from '../../assets/about_us/about.mp4';
+import { MentorSlider, SuccessStories } from '../RegisterFreePage/RegisterFreePage';
+
+function CounterNumber({ end, duration = 1800, suffix = "" }) {
+  const [count, setCount] = React.useState(0);
+  const countRef = React.useRef(null);
+  const [hasAnimated, setHasAnimated] = React.useState(false);
+
+  React.useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting && !hasAnimated) {
+          setHasAnimated(true);
+          let start = 0;
+          const stepTime = Math.max(Math.floor(duration / Math.max(end, 1)), 35);
+          const timer = setInterval(() => {
+            start += 1;
+            setCount(start);
+            if (start >= end) {
+              clearInterval(timer);
+            }
+          }, stepTime);
+        }
+      },
+      { threshold: 0.2 }
+    );
+
+    if (countRef.current) {
+      observer.observe(countRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, [end, duration, hasAnimated]);
+
+  return <span ref={countRef}>{count}{suffix}</span>;
+}
 
 export default function AboutUsPage() {
   const { setView } = useApp();
 
   return (
     <div className="about-us-page">
-      {/* Hero Banner Section */}
-      <section className="about-hero">
-        <div className="about-hero-overlay"></div>
-        <img loading="lazy" src={aboutHeroImg} alt="Serene Yoga Practice" className="about-hero-bg" />
-        <div className="about-hero-content">
-          <span className="about-tagline">OUR MISSION</span>
-          <h1 className="about-title">Building a Drug-Free World</h1>
-          <p className="about-subtitle">
-            We are on a journey to guide individuals back to nature's design, helping reverse chronic lifestyle diseases using ancient yoga philosophy and natural healing.
+      {/* Hero Banner Section using about_us/banner.jpg */}
+      <section className="about-banner-hero">
+        <div className="about-banner-container">
+          <div className="about-banner-card">
+            <img
+              src={bannerImg}
+              alt="Teaching the World the Art of Conscious Living"
+              className="about-banner-img"
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* Second Section: Global Movement Statement & Image */}
+      <section className="about-movement-section">
+        <div className="about-movement-text-wrapper">
+          <p className="about-movement-text">
+            The Yoga Healers Organisation (YHO) fills the vital gap. YHO is a transformative global movement dedicated to teaching the skills, mindsets, and conscious practices that matter most.
           </p>
         </div>
-      </section>
-
-      {/* Core Philosophy (Three Pillars) */}
-      <section className="about-pillars">
-        <div className="about-container">
-          <h2 className="section-title">The Three Pillars of Healing</h2>
-          <p className="section-subtitle">Living in harmony with your body's inherent intelligence</p>
-
-          <div className="pillars-grid">
-            <div className="pillar-card">
-              <div className="pillar-icon-wrapper">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
-                </svg>
-              </div>
-              <h3>Natural Diet (Ahar)</h3>
-              <p>Rejuvenating the body with live, organic, plant-based food. Consuming living water and enzyme-rich meals to activate healing.</p>
-            </div>
-
-            <div className="pillar-card">
-              <div className="pillar-icon-wrapper">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <circle cx="12" cy="12" r="10" />
-                  <path d="M12 8v4l3 3" />
-                </svg>
-              </div>
-              <h3>Active Practice (Vihar)</h3>
-              <p>Unlocking physical energy through daily yogic asanas, rhythmic pranayama, cold water therapies, and sunlight exposure.</p>
-            </div>
-
-            <div className="pillar-card">
-              <div className="pillar-icon-wrapper">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
-                </svg>
-              </div>
-              <h3>Mental Stillness (Chichar)</h3>
-              <p>Cultivating peace using deep mindfulness practices, daily meditation, active gratitude, and dedicating service to others.</p>
-            </div>
-          </div>
+        <div className="about-movement-img-wrapper">
+          <img 
+            src={secondImg} 
+            alt="Yoga Healers Transformative Movement" 
+            className="about-movement-img" 
+          />
         </div>
       </section>
 
-      {/* Our Story / Founder Note */}
-      <section className="about-story">
-        <div className="about-container story-flex">
-          <div className="story-img-container">
-            <img loading="lazy" src={storyImg} alt="Spreading Satvic Wellness" className="story-img" />
-          </div>
-          <div className="story-content">
-            <span className="story-tag">HOW WE STARTED</span>
-            <h2>Our Story</h2>
-            <p>
-              Founded in 2021, Yoga Healers began with a simple observation: modern healthcare manages symptoms, but nature cures the root cause. What started as online community healing sessions soon transformed into a global wellness movement.
+      {/* Third Section: Core Mission & Philosophy */}
+      <section className="about-mission-philosophy">
+        <div className="about-container">
+          <h2 className="about-mission-heading">THE YHO CORE MISSION & PHILOSOPHY</h2>
+          <div className="about-mission-content">
+            <p className="about-mission-lead">
+              At YHO, learning is designed as a lifelong adventure that unleashes the fullest potential of your mind, body, and spirit. The organization operates on a simple premise: personal growth and collective well-being are deeply interconnected.
             </p>
-            <p>
-              Today, we have guided over 50,000+ individuals to reverse lifestyle ailments including thyroid imbalance, type-2 diabetes, hypertension, eczema, and insomnia. We don't prescribe medicines; we simply teach you how to build the right internal climate for your body to heal itself.
+            <ul className="about-mission-list">
+              <li>
+                <strong>Conscious Living:</strong> Moving beyond mere survival to cultivate high energy, unbreakable joy, and deep self-awareness.
+              </li>
+              <li>
+                <strong>Peak Performance & Vitality:</strong> Helping individuals thrive at work while maintaining a youthful, vibrant, and healthy body.
+              </li>
+              <li>
+                <strong>State-of-the-art Learning:</strong> Integrating traditional wisdom with modern transformational techniques, expert educators, and a world-class digital learning platform.
+              </li>
+            </ul>
+            <div className="about-philosophy-img-wrapper">
+              <img 
+                src={thirdImg} 
+                alt="State-of-the-art Learning, Your True Potential, Conscious Living Diagram" 
+                className="about-philosophy-img" 
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Fourth Section: Key Areas of Impact & Stats */}
+      <section className="about-impact-section">
+        <div className="about-container">
+          {/* Stats Cards */}
+          <div className="about-stats-cards-wrapper">
+            <div className="about-stat-card full-card">
+              <div className="stat-card-number">
+                <CounterNumber end={20} suffix="+" /> <span className="stat-card-unit">Million</span>
+              </div>
+              <div className="stat-card-label">GLOBAL CONNECTS</div>
+            </div>
+            <div className="about-stats-split-row">
+              <div className="about-stat-card half-card">
+                <div className="stat-card-number">
+                  <CounterNumber end={14} suffix="+" />
+                </div>
+                <div className="stat-card-label">YEARS OF EXPERIENCED MENTORS</div>
+              </div>
+              <div className="about-stat-card half-card star-card">
+                <div className="stat-card-title">Globally Recognised</div>
+                <div className="stat-card-stars">
+                  <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Key Areas of Impact Content */}
+          <div className="about-impact-content-wrapper">
+            <h2 className="about-impact-heading">KEY AREAS OF IMPACT & COMMUNITY INITIATIVES</h2>
+            <p className="about-impact-intro">
+              <strong>YHO</strong> reaches every corner of society, ensuring that conscious living and mental health support are accessible to all walks of life.
             </p>
-            <div className="about-stats-row">
-              <div className="stat-box">
-                <span className="stat-num">50K+</span>
-                <span className="stat-label">Healed Minds</span>
+
+            <div className="about-impact-items-list">
+              <div className="about-impact-item">
+                <h3 className="impact-item-title">Youth & Student Empowerment</h3>
+                <p className="impact-item-desc">
+                  Training the next generation of resilient, conscious leaders equipped for personal success and social responsibility.
+                </p>
               </div>
-              <div className="stat-box">
-                <span className="stat-num">98%</span>
-                <span className="stat-label">Success Rate</span>
+
+              <div className="about-impact-item">
+                <h3 className="impact-item-title">Corporate & Workplace Health</h3>
+                <p className="impact-item-desc">
+                  Addressing burnout, mental health, and stress management to foster healthy corporate environments.
+                </p>
               </div>
-              <div className="stat-box">
-                <span className="stat-num">12+</span>
-                <span className="stat-label">Countries Reach</span>
+
+              <div className="about-impact-item">
+                <h3 className="impact-item-title">Global NGO & Community Outreach</h3>
+                <p className="impact-item-desc">
+                  Collaborating internationally to uplift underserved populations, with a focused effort on women and children.
+                </p>
+              </div>
+
+              <div className="about-impact-item">
+                <h3 className="impact-item-title">Sustainable Development & Peace</h3>
+                <p className="impact-item-desc">
+                  Running public awareness campaigns and sustainable camps aimed at fostering global harmony and social unity.
+                </p>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Core Values */}
-      <section className="about-values">
-        <div className="about-container">
-          <h2 className="section-title">Values We Stand By</h2>
-          <div className="values-grid">
-            <div className="value-item">
-              <h4>Scriptural Authenticity</h4>
-              <p>We respect timeless wisdom. All our protocols are directly aligned with classical Hatha Yoga and natural laws.</p>
+      {/* Fifth Section: Driven Global Community & Video */}
+      <section className="about-community-section">
+        <div className="about-community-full-wrapper">
+          <div className="hero-video-aura-wrapper about-video-aura">
+            <div className="hero-video-aura-halo"></div>
+            <div className="hero-sage-video-card about-sage-video-card">
+              <video
+                src={aboutVideo}
+                autoPlay
+                muted
+                loop
+                playsInline
+                controls
+                preload="auto"
+                className="hero-sage-video-el about-community-video"
+              />
             </div>
-            <div className="value-item">
-              <h4>Scientific Simplicity</h4>
-              <p>Health should not be complicated. We break down complex metabolic concepts into easy, daily rituals.</p>
-            </div>
-            <div className="value-item">
-              <h4>Unconditional Seva</h4>
-              <p>Healing is a service. We dedicate a portion of our work to community outreach programs and free education.</p>
-            </div>
+          </div>
+
+          <div className="about-community-content">
+            <h2 className="about-community-heading">A DRIVEN GLOBAL COMMUNITY</h2>
+            <p className="about-community-text">
+              Beyond its programs and curricula, YHO is a dynamic global movement. It unites the dedicated educators, passionate team members, and a vibrant community, all driven by a shared purpose: to support personal transformation for themselves and others while fostering global peace.
+            </p>
           </div>
         </div>
       </section>
 
-      {/* Action / CTA */}
-      <section className="about-cta">
-        <div className="about-container">
-          <h2>Take Your First Step Towards Healing</h2>
-          <p>Join our upcoming 7-Day Heal Yourself Challenge to experience the power of natural detoxification.</p>
-          <button className="btn btn-blue btn-cta-about" onClick={() => { setView('home'); setTimeout(() => { document.getElementById('workshops')?.scrollIntoView({ behavior: 'smooth' }); }, 200); }}>
-            Explore Workshops
-          </button>
-        </div>
-      </section>
+      {/* Sixth Section: Mentors */}
+      <MentorSlider />
+
+      {/* Seventh Section: Success Stories */}
+      <SuccessStories showFaqTitle={false} />
     </div>
   );
 }

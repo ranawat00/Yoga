@@ -8,12 +8,12 @@ import imgRajat from '../../assets/mentors/educator_rajat_1781260812515.webp';
 import imgHimadri from '../../assets/mentors/educator_himadri_1781260833983.webp';
 
 const EDUCATOR_DATA = [
-  { id: 'ed-1', name: 'Subah Saraf',         role: 'Co-founder',                                          image: imgSubah   },
-  { id: 'ed-2', name: 'Harshvardhan Saraf',  role: 'Co-founder',                                          image: imgHarsh   },
-  { id: 'ed-3', name: 'Radhika Gupta',       role: 'Co-Leader of Yoga Wing',                              image: imgRadhika },
-  { id: 'ed-4', name: 'Akshay Jain',         role: 'Co-Leader of Yoga Wing',                              image: imgAkshay  },
-  { id: 'ed-5', name: 'Rajat Jadon',         role: 'Host of 5AM Challenge & Co-Leader of the Youth Wing', image: imgRajat   },
-  { id: 'ed-6', name: 'Himadri Pareek',      role: 'Co-Leader of the Youth Wing',                         image: imgHimadri },
+  { id: 'ed-1', name: 'Subah Saraf', role: 'Co-founder', image: imgSubah },
+  { id: 'ed-2', name: 'Harshvardhan Saraf', role: 'Co-founder', image: imgHarsh },
+  { id: 'ed-3', name: 'Radhika Gupta', role: 'Co-Leader of Yoga Wing', image: imgRadhika },
+  { id: 'ed-4', name: 'Akshay Jain', role: 'Co-Leader of Yoga Wing', image: imgAkshay },
+  { id: 'ed-5', name: 'Rajat Jadon', role: 'Host of 5AM Challenge & Co-Leader of the Youth Wing', image: imgRajat },
+  { id: 'ed-6', name: 'Himadri Pareek', role: 'Co-Leader of the Youth Wing', image: imgHimadri },
 ];
 
 /* ── Educator Card (shared) ─────────────────────────────────────── */
@@ -41,7 +41,7 @@ function EducatorsSlider() {
   const next = () => setCurrent((c) => (c + 1) % total);
 
   const onTouchStart = (e) => { touchStartX.current = e.touches[0].clientX; };
-  const onTouchEnd   = (e) => {
+  const onTouchEnd = (e) => {
     if (touchStartX.current === null) return;
     const diff = touchStartX.current - e.changedTouches[0].clientX;
     if (Math.abs(diff) > 40) { diff > 0 ? next() : prev(); }
@@ -50,12 +50,12 @@ function EducatorsSlider() {
 
   return (
     <div className="educators-slider-wrapper"
-         onTouchStart={onTouchStart}
-         onTouchEnd={onTouchEnd}>
+      onTouchStart={onTouchStart}
+      onTouchEnd={onTouchEnd}>
 
       {/* Track */}
       <div className="educators-slider-track"
-           style={{ transform: `translateX(-${current * 100}%)` }}>
+        style={{ transform: `translateX(-${current * 100}%)` }}>
         {EDUCATOR_DATA.map((ed) => (
           <div key={ed.id} className="educators-slide">
             <EducatorCard ed={ed} />

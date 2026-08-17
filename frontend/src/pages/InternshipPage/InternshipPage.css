@@ -1,0 +1,708 @@
+.internship-page {
+  width: 100%;
+  min-height: 100vh;
+  background-color: var(--color-bg-light, #faf9f6);
+  color: var(--color-text-dark, #2b3a42);
+  padding-top: 80px;
+  overflow-x: hidden;
+}
+
+/* Banner Hero Section */
+.internship-banner-hero {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  background: transparent;
+}
+
+.internship-banner-container {
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.internship-banner-card {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  background-color: transparent;
+}
+
+.internship-banner-img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Why Should You Enroll Section */
+.internship-why-enroll {
+  background-color: #ffffff;
+  padding: 4.5rem 0.5rem;
+  text-align: center;
+}
+
+.why-enroll-heading {
+  font-family: var(--font-display, 'Plus Jakarta Sans', sans-serif);
+  font-size: clamp(1.1rem, 5vw, 1.7rem);
+  font-weight: 800;
+  color: #588364;
+  margin-bottom: 3.5rem;
+  letter-spacing: -0.3px;
+  text-align: center;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.why-enroll-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2.75rem;
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.why-enroll-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.85rem;
+  text-align: center;
+}
+
+.why-enroll-icon-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 65px;
+  overflow: hidden;
+  margin-bottom: 0.25rem;
+}
+
+.why-enroll-icon {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+  transform: scale(1.45);
+}
+
+.why-enroll-text {
+  font-size: 1.05rem;
+  color: #475569;
+  line-height: 1.65;
+  margin: 0;
+  width: 100%;
+  max-width: 100%;
+}
+
+.why-enroll-text strong {
+  color: #1e293b;
+  font-weight: 700;
+}
+
+/* What You Will Receive Section */
+.internship-what-receive {
+  background-color: #ffffff;
+  padding: 4.5rem 0.5rem;
+  text-align: center;
+  border-top: 1px solid #f1f5f9;
+}
+
+.what-receive-heading {
+  font-family: var(--font-display, 'Plus Jakarta Sans', sans-serif);
+  font-size: clamp(1.1rem, 5vw, 1.7rem);
+  font-weight: 800;
+  color: #588364;
+  margin-bottom: 3.5rem;
+  letter-spacing: -0.3px;
+  text-align: center;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.what-receive-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3rem;
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto 3.5rem;
+}
+
+.what-receive-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  text-align: center;
+  width: 100%;
+  max-width: 100%;
+}
+
+.what-receive-icon-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 65px;
+  overflow: hidden;
+  margin-bottom: 0.35rem;
+}
+
+.what-receive-icon {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+  transform: scale(1.45);
+}
+
+.what-receive-title {
+  font-family: var(--font-heading, 'Plus Jakarta Sans', sans-serif);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin: 0;
+}
+
+.what-receive-desc {
+  font-size: 1rem;
+  color: #64748b;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.what-receive-footer-text {
+  font-size: 0.98rem;
+  color: #64748b;
+  line-height: 1.6;
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* Understanding Our Commitment Fee Section */
+.internship-commitment-fee {
+  background-color: #ffffff;
+  padding: 4.5rem 0.5rem;
+  text-align: center;
+  border-top: 1px solid #f1f5f9;
+}
+
+.commitment-fee-heading {
+  font-family: var(--font-display, 'Plus Jakarta Sans', sans-serif);
+  font-size: clamp(1.1rem, 5vw, 1.7rem);
+  font-weight: 800;
+  color: #588364;
+  margin-bottom: 2.5rem;
+  letter-spacing: -0.3px;
+  text-align: center;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.commitment-fee-content {
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.commitment-fee-lead {
+  font-size: 1.12rem;
+  font-weight: 600;
+  color: #1e293b;
+  line-height: 1.65;
+  margin: 0;
+  width: 100%;
+  max-width: 100%;
+}
+
+.commitment-fee-body {
+  font-size: 1.02rem;
+  color: #475569;
+  line-height: 1.75;
+  margin: 0;
+  width: 100%;
+  max-width: 100%;
+}
+
+/* FAQ Section */
+.internship-faq-section {
+  background-color: #f7fcf4;
+  padding: 4rem 0.5rem;
+  text-align: center;
+  border-top: 1px solid #e2efe3;
+}
+
+.internship-faq-section .internship-container {
+  width: 100%;
+  max-width: 100%;
+  padding: 0 0.5rem;
+}
+
+.faq-header-wrapper-custom {
+  text-align: center;
+  margin-bottom: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.faq-small-title {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #588364;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  background: rgba(107, 151, 114, 0.12);
+  padding: 0.35rem 0.85rem;
+  border-radius: 50px;
+  margin-bottom: 0.75rem;
+  display: inline-block;
+}
+
+.faq-large-title {
+  font-size: clamp(1.4rem, 4.5vw, 2.3rem);
+  font-weight: 900;
+  color: #1a251b;
+  margin: 0;
+  letter-spacing: -0.5px;
+  font-family: var(--font-display, 'Plus Jakarta Sans', sans-serif);
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.faq-list {
+  max-width: 100%;
+  margin: 0 auto;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  text-align: left;
+}
+
+.faq-item-box {
+  background: #ffffff;
+  border: 1.5px solid #e2efe3;
+  border-radius: 12px;
+  padding: 1.6rem 2.2rem;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+  width: 100%;
+}
+
+.faq-item-box:hover {
+  border-color: #a8d5ad;
+  box-shadow: 0 6px 18px rgba(107, 151, 114, 0.12);
+  animation: runningBorderFlow 3.5s ease-in-out infinite;
+}
+
+.faq-item-box.active {
+  background: #ffffff;
+  border-color: #6b9772;
+  box-shadow: 0 8px 24px rgba(107, 151, 114, 0.15);
+  animation: runningBorderFlow 3.5s ease-in-out infinite;
+}
+
+.faq-item-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.faq-question-title {
+  font-family: var(--font-heading, 'Plus Jakarta Sans', sans-serif);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin: 0;
+  line-height: 1.45;
+}
+
+.faq-chevron {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #f0f7f1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #5c8862;
+  flex-shrink: 0;
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.3s ease;
+}
+
+.faq-item-box.active .faq-chevron {
+  background: #6b9772;
+  color: #ffffff;
+}
+
+.faq-chevron.rotate {
+  transform: rotate(180deg);
+}
+
+.faq-item-body {
+  max-height: 0;
+  opacity: 0;
+  transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease, margin-top 0.3s ease;
+  margin-top: 0;
+}
+
+.faq-item-body.show {
+  max-height: 300px;
+  opacity: 1;
+  margin-top: 1rem;
+}
+
+.faq-item-body p {
+  font-family: var(--font-body, 'Plus Jakarta Sans', sans-serif);
+  font-size: 1.02rem;
+  color: #475569;
+  line-height: 1.65;
+  margin: 0;
+  padding-top: 0.8rem;
+  border-top: 1px solid #f0f7f1;
+}
+
+/* Common Container */
+.internship-container {
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0 0.5rem;
+}
+
+/* Culture Section */
+.internship-culture {
+  padding: 5rem 0;
+  background: #ffffff;
+}
+
+.internship-culture .section-title {
+  font-family: var(--font-heading, 'Plus Jakarta Sans', sans-serif);
+  text-align: center;
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--color-headline-primary, #5c8862);
+  margin-bottom: 3rem;
+}
+
+.culture-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.culture-card {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  padding: 2.5rem 2rem;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.culture-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+}
+
+.culture-icon {
+  font-size: 3rem;
+  margin-bottom: 1.25rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60px;
+  overflow: hidden;
+}
+
+.culture-icon-img {
+  width: 90px;
+  height: 90px;
+  object-fit: contain;
+  transform: scale(1.4);
+}
+
+.culture-card h3 {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 0.75rem;
+}
+
+.culture-card p {
+  font-size: 0.98rem;
+  color: #64748b;
+  line-height: 1.6;
+}
+
+/* Internship Openings List */
+.internship-jobs {
+  padding: 5rem 0;
+  background: #faf9f6;
+}
+
+.internship-jobs .section-title {
+  font-family: var(--font-heading, 'Plus Jakarta Sans', sans-serif);
+  text-align: center;
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--color-headline-primary, #5c8862);
+  margin-bottom: 0.5rem;
+}
+
+.section-subtitle {
+  text-align: center;
+  font-size: 1.05rem;
+  color: #64748b;
+  margin-bottom: 3rem;
+}
+
+.jobs-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.job-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.job-card:hover {
+  border-color: #cbd5e1;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+}
+
+.job-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.job-dept {
+  font-size: 0.825rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #5c8862;
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+.job-title-text {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #1e293b;
+}
+
+.job-type {
+  background: #e2e8f0;
+  color: #334155;
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 0.35rem 0.85rem;
+  border-radius: 20px;
+  white-space: nowrap;
+}
+
+.job-details-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+  color: #64748b;
+  font-weight: 500;
+}
+
+.job-desc {
+  font-size: 0.98rem;
+  color: #475569;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.btn-apply {
+  padding: 0.7rem 1.75rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+/* Application Form Section */
+.internship-application-section {
+  padding: 4rem 0 6rem;
+  background: #ffffff;
+  border-top: 1px solid #e2e8f0;
+}
+
+.form-container-box {
+  max-width: 750px;
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 20px;
+  padding: 2.5rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+}
+
+.form-header-box {
+  margin-bottom: 2rem;
+  border-bottom: 1px solid #f1f5f9;
+  padding-bottom: 1.25rem;
+}
+
+.form-header-box h2 {
+  font-family: var(--font-heading, 'Plus Jakarta Sans', sans-serif);
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--color-headline-primary, #5c8862);
+  margin-bottom: 0.5rem;
+}
+
+.selected-job-indicator {
+  font-size: 1rem;
+  color: #5c8862;
+}
+
+.application-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #334155;
+}
+
+.form-control {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  color: #1e293b;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  background-color: #f8fafc;
+}
+
+.form-control:focus {
+  border-color: #3a6b8c;
+  background-color: #ffffff;
+  box-shadow: 0 0 0 3px rgba(58, 107, 140, 0.15);
+}
+
+.app-textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.form-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+@media (max-width: 768px) {
+  .internship-page {
+    padding-top: 65px;
+  }
+
+  .internship-why-enroll {
+    padding: 3rem 0.25rem;
+  }
+
+  .why-enroll-heading {
+    font-size: 1.7rem;
+    margin-bottom: 2.2rem;
+  }
+
+  .internship-what-receive {
+    padding: 3rem 0.25rem;
+  }
+
+  .what-receive-heading {
+    font-size: 1.7rem;
+    margin-bottom: 2.2rem;
+  }
+
+  .internship-commitment-fee {
+    padding: 3rem 0.25rem;
+  }
+
+  .commitment-fee-heading {
+    font-size: 1.4rem;
+    margin-bottom: 1.8rem;
+  }
+
+  .internship-faq-section {
+    padding: 3rem 0.25rem;
+  }
+
+  .faq-large-title {
+    font-size: 1 rem;
+    margin-bottom: 1.4rem;
+  }
+
+  .faq-item-box {
+    padding: 1.1rem 1.2rem;
+  }
+
+  .faq-question-title {
+    font-size: 1.0rem;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .job-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .form-container-box {
+    padding: 1.5rem;
+  }
+}

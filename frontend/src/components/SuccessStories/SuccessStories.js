@@ -74,7 +74,7 @@ export default function SuccessStories() {
   return (
     <section id="success-stories" className="success-stories-section">
       <div className="section-container">
-        
+
         {/* Header */}
         <div className="success-header">
           <h2 className="section-title">Stories of Success</h2>
@@ -83,7 +83,7 @@ export default function SuccessStories() {
 
         {/* Carousel Slider Outer Wrapper */}
         <div className="success-slider-outer">
-          <div 
+          <div
             className="success-slider-track"
             style={{ transform: `translateX(${getTranslateX()})` }}
           >
@@ -93,7 +93,7 @@ export default function SuccessStories() {
                 <div className="success-card-img-container">
                   <img loading="lazy" src={item.image} alt={item.title} className="success-card-img" />
                 </div>
-                
+
                 {/* Card Info Content */}
                 <div className="success-card-body">
                   <h3 className="success-card-title">{item.title}</h3>
