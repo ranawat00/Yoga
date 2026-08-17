@@ -185,7 +185,6 @@ export default function InternshipPage() {
       <section className="internship-faq-section">
         <div className="internship-container">
           <div className="faq-header-wrapper-custom">
-            <span className="faq-small-title">FAQ</span>
             <h2 className="faq-large-title">APPLIED PSYCHOLOGY INTERNSHIP</h2>
           </div>
           <div className="faq-list">
