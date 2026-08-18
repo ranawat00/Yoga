@@ -41,7 +41,9 @@ export default function BlogSection() {
 
   const scrollSlider = (direction) => {
     if (sliderRef.current) {
-      const scrollAmount = direction === 'left' ? -380 : 380;
+      const card = sliderRef.current.querySelector('.home-blog-card');
+      const cardWidth = card ? card.offsetWidth + 18 : 320;
+      const scrollAmount = direction === 'left' ? -cardWidth : cardWidth;
       sliderRef.current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
     }
   };

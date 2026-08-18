@@ -81,7 +81,8 @@
   gap: 24px;
   overflow-x: auto;
   scroll-behavior: smooth;
-  padding: 10px 4px 20px 4px;
+  scroll-snap-type: x mandatory;
+  padding: 10px 1.5rem 20px 1.5rem;
   box-sizing: border-box;
   scrollbar-width: none; /* Firefox */
   -ms-overflow-style: none; /* IE/Edge */
@@ -94,8 +95,9 @@
 /* Blog Card Styling */
 .home-blog-card {
   position: relative;
-  flex: 0 0 370px;
-  max-width: 370px;
+  flex: 0 0 350px;
+  max-width: 350px;
+  scroll-snap-align: start;
   background: #ffffff;
   border-radius: 14px;
   overflow: hidden;
@@ -255,25 +257,35 @@
 /* Responsive Media Queries */
 @media (max-width: 768px) {
   .home-blog-section {
-    padding: 30px 1rem 45px 1rem;
+    padding: 28px 1rem 40px 1rem;
+  }
+
+  .home-blog-header-row {
+    padding: 0;
   }
 
   .home-blog-title {
-    font-size: 1.5rem;
+    font-size: 1.4rem;
   }
 
   .home-blog-pretitle {
-    font-size: 0.72rem;
+    font-size: 0.7rem;
   }
 
   .blog-slider-arrow {
-    width: 38px;
-    height: 38px;
+    width: 36px;
+    height: 36px;
+  }
+
+  .home-blog-slider-track {
+    padding: 10px 4px 20px 4px;
+    gap: 16px;
   }
 
   .home-blog-card {
-    flex: 0 0 310px;
-    max-width: 310px;
+    flex: 0 0 78vw;
+    max-width: 78vw;
+    min-width: 250px;
   }
 
   .home-blog-card-body {
