@@ -757,7 +757,7 @@
 
 /* Habits Unlock */
 .habits-unlock {
-  padding: 6rem 2rem;
+  padding: 3rem 2rem 1rem 2rem;
   background-color: #ffffff;
   display: flex;
   flex-direction: column;
@@ -991,9 +991,12 @@
 
   .details-info-section,
   .experience-includes,
-  .what-you-gain,
-  .habits-unlock {
+  .what-you-gain {
     padding: 3rem 1rem;
+  }
+
+  .habits-unlock {
+    padding: 2rem 1rem 0.5rem 1rem;
   }
 
   .time-slots-grid {
@@ -1138,4 +1141,198 @@
   color: #7a7a7a;
   margin-top: 2px;
   text-transform: lowercase;
+}
+
+/* FAQ Accordion Section */
+.faq-details-section {
+  background-color: #f7fcf4;
+  padding: 1.25rem 1.5rem 4rem 1.5rem;
+  text-align: center;
+  border-top: 1px solid #e2efe3;
+}
+
+.faq-header-wrapper-custom {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.faq-small-title {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #588364;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  background: rgba(107, 151, 114, 0.1);
+  padding: 0.35rem 0.85rem;
+  border-radius: 50px;
+  margin-bottom: 0.75rem;
+}
+
+.faq-large-title {
+  font-size: clamp(1.6rem, 4.5vw, 2.4rem);
+  font-weight: 900;
+  color: #1a251b;
+  margin: 0;
+  letter-spacing: -0.5px;
+  font-family: var(--font-heading), 'Plus Jakarta Sans', sans-serif;
+  text-transform: uppercase;
+}
+
+.faq-accordion-container {
+  max-width: 840px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  text-align: left;
+}
+
+.faq-accordion-item {
+  background: #ffffff;
+  border: 1.5px solid #e2efe3;
+  border-radius: 12px;
+  padding: 1.4rem 1.8rem;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+}
+
+.faq-accordion-item:hover {
+  border-color: #a8d5ad;
+  box-shadow: 0 6px 18px rgba(107, 151, 114, 0.12);
+  animation: runningBorderFlow 3.5s ease-in-out infinite;
+}
+
+.faq-accordion-item.active {
+  background: #ffffff;
+  border-color: #6b9772;
+  box-shadow: 0 8px 24px rgba(107, 151, 114, 0.15);
+  animation: runningBorderFlow 3.5s ease-in-out infinite;
+}
+
+.faq-accordion-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.faq-question-text {
+  font-family: var(--font-heading), 'Plus Jakarta Sans', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #1a251b;
+  margin: 0;
+  line-height: 1.4;
+}
+
+.faq-chevron-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #f0f7f1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #5c8862;
+  flex-shrink: 0;
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.3s ease;
+}
+
+.faq-accordion-item.active .faq-chevron-icon {
+  background: #6b9772;
+  color: #ffffff;
+}
+
+.faq-chevron-icon.rotate {
+  transform: rotate(180deg);
+}
+
+.faq-accordion-body {
+  max-height: 0;
+  opacity: 0;
+  transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease, margin-top 0.3s ease;
+  margin-top: 0;
+}
+
+.faq-accordion-body.show {
+  max-height: 600px;
+  opacity: 1;
+  margin-top: 1rem;
+}
+
+.faq-accordion-body p {
+  font-family: var(--font-body), 'Plus Jakarta Sans', sans-serif;
+  font-size: 1.05rem;
+  color: #4a584c;
+  line-height: 1.65;
+  margin: 0;
+  padding-top: 0.8rem;
+  border-top: 1px solid #f0f7f1;
+}
+
+.faq-answer-content {
+  padding-top: 0.8rem;
+  border-top: 1px solid #f0f7f1;
+}
+
+.faq-intro-text {
+  font-family: var(--font-body), 'Plus Jakarta Sans', sans-serif;
+  font-size: 1.05rem;
+  color: #4a584c;
+  line-height: 1.65;
+  margin: 0 0 0.6rem 0;
+  border-top: none !important;
+  padding-top: 0 !important;
+}
+
+.faq-bullet-list {
+  margin: 0;
+  padding-left: 1.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.faq-bullet-list li {
+  font-family: var(--font-body), 'Plus Jakarta Sans', sans-serif;
+  font-size: 1.02rem;
+  color: #4a584c;
+  line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+  .habits-unlock {
+    padding: 1.5rem 1rem 0.5rem 1rem;
+  }
+
+  .faq-details-section {
+    padding: 0.75rem 1rem 2.5rem 1rem;
+  }
+
+  .faq-header-wrapper-custom {
+    margin-bottom: 1.2rem;
+  }
+
+  .faq-large-title {
+    font-size: 1.4rem;
+  }
+
+  .faq-accordion-item {
+    padding: 1.1rem 1.2rem;
+  }
+
+  .faq-question-text {
+    font-size: 1.0rem;
+  }
+
+  .faq-accordion-body p,
+  .faq-intro-text,
+  .faq-bullet-list li {
+    font-size: 0.98rem;
+  }
 }

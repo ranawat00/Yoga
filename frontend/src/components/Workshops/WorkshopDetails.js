@@ -9,7 +9,68 @@ import expImg4 from '../../assets/workshops/workshop_detail_exp_4.jpg';
 import whatYouGainImg from '../../assets/workshops/workshop_details_gain1.jpg';
 import habitsUnlockImg from '../../assets/workshops/workshopdetails_gain2.jpg';
 
+const AWAKEN_FAQS = [
+  {
+    id: 1,
+    question: 'What is the Awaken Plus Program?',
+    answer: 'Awaken Plus is a 7-day online complete health challenge designed to help you break free from daily hustle, reconnect with your inner potential, and cultivate conscious living. Through daily actionable practices, guided sessions, and holistic health routines, it focuses on reducing stress, boosting mental clarity, and nurturing peace of mind.'
+  },
+  {
+    id: 2,
+    question: 'Who is this program for?',
+    answer: 'This program is for anyone feeling overwhelmed by daily work and routine, experiencing chronic stress, or feeling disconnected from their true potential. Whether you want to improve your mental wellbeing, adopt healthier daily habits, or find deep inner peace, Awaken Plus is built to guide you step-by-step.'
+  },
+  {
+    id: 3,
+    question: 'How is the 7-day challenge delivered?',
+    answer: 'The program is 100% online. Upon enrolling, you receive access to daily structured modules, guided exercises, mental wellbeing practices, and habit-building action steps that you can complete from the comfort of your home.'
+  },
+  {
+    id: 4,
+    question: 'How much time do I need to commit each day?',
+    answer: 'You will need approximately 60 minutes per day. The practices are intentionally designed to fit seamlessly into a busy schedule without causing additional stress or overwhelm.'
+  },
+  {
+    id: 5,
+    question: 'What if I miss a day during the 7-day challenge?',
+    answer: 'Life happens! All daily sessions, guides, and resources remain accessible to you, allowing you to catch up at your own pace or revisit any practice whenever you need a refresh.'
+  },
+  {
+    id: 6,
+    question: 'What key benefits can I expect after completing 7 days?',
+    intro: 'By the end of the program, you can expect:',
+    list: [
+      'Reduced stress and anxiety through proven mindfulness and grounding practices.',
+      'Greater mental clarity and focus to excel in work and daily decisions.',
+      'A sense of inner peace and wisdom by shifting from reactive living to conscious living.',
+      'Enhanced physical vitality through light, holistic health habits.',
+      'Reconnection with your true potential and a clearer direction for your life.'
+    ]
+  },
+  {
+    id: 7,
+    question: 'Do I need prior experience in yoga or meditation?',
+    answer: 'Not at all. Awaken Plus is beginner-friendly. Every technique, practice, and exercise is introduced with clear, step-by-step guidance suitable for all experience levels.'
+  },
+  {
+    id: 8,
+    question: 'How do I join the Awaken Plus Program?',
+    answer: 'You can sign up directly on our website by clicking the "Enroll Now" button. Once registered, you will receive an instant confirmation email with login details to access the program portal.'
+  },
+  {
+    id: 9,
+    question: 'What equipment or tools do I need?',
+    answer: 'All you need is a stable internet connection, a smartphone or computer, a notebook or journal, and a quiet space for your daily sessions.'
+  }
+];
+
 export default function WorkshopDetails({ workshop, onBack, onRegister }) {
+  const [openFaq, setOpenFaq] = useState(null);
+
+  const toggleFaq = (index) => {
+    setOpenFaq(openFaq === index ? null : index);
+  };
+
   // Real-time Countdown Timer State
   const [timeLeft, setTimeLeft] = useState({
     days: '00',
@@ -245,6 +306,50 @@ export default function WorkshopDetails({ workshop, onBack, onRegister }) {
         <h2 className="section-details-heading">7 Lifelong Habits You Will Unlock</h2>
         <div className="composite-image-container">
           <img src={habitsUnlockImg} alt="7 Lifelong Habits You Will Unlock" className="composite-section-image" />
+        </div>
+      </section>
+
+      {/* FAQ Accordion Section */}
+      <section className="faq-details-section">
+        <div className="faq-header-wrapper-custom">
+          <span className="faq-small-title">FAQ</span>
+          <h2 className="faq-large-title">AWAKEN + PROGRAM</h2>
+        </div>
+
+        <div className="faq-accordion-container">
+          {AWAKEN_FAQS.map((faq, index) => {
+            const isOpen = openFaq === index;
+            return (
+              <div
+                key={faq.id}
+                className={`faq-accordion-item ${isOpen ? 'active' : ''}`}
+                onClick={() => toggleFaq(index)}
+              >
+                <div className="faq-accordion-header">
+                  <h3 className="faq-question-text">{faq.question}</h3>
+                  <div className={`faq-chevron-icon ${isOpen ? 'rotate' : ''}`}>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                      <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                  </div>
+                </div>
+                <div className={`faq-accordion-body ${isOpen ? 'show' : ''}`}>
+                  {faq.list ? (
+                    <div className="faq-answer-content">
+                      <p className="faq-intro-text">{faq.intro}</p>
+                      <ul className="faq-bullet-list">
+                        {faq.list.map((item, i) => (
+                          <li key={i}>{item}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  ) : (
+                    <p>{faq.answer}</p>
+                  )}
+                </div>
+              </div>
+            );
+          })}
         </div>
       </section>
 
