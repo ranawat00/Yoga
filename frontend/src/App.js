@@ -22,17 +22,12 @@ import './App.css';
 const DailyYogaBanner = lazy(() => import('./components/DailyYogaBanner/DailyYogaBanner'));
 const Workshops = lazy(() => import('./components/Workshops/Workshops'));
 const DailyYogaTogether = lazy(() => import('./components/DailyYogaTogether/DailyYogaTogether'));
-const Products = lazy(() => import('./components/Products/Products'));
-const Books = lazy(() => import('./components/Books/Books'));
+const BlogSection = lazy(() => import('./components/BlogSection/BlogSection'));
 const HealthScore = lazy(() => import('./components/HealthScore/HealthScore'));
-const Verticals = lazy(() => import('./components/Verticals/Verticals'));
-const SuccessStories = lazy(() => import('./components/SuccessStories/SuccessStories'));
 const Educators = lazy(() => import('./components/Educators/Educators'));
 const FAQ = lazy(() => import('./components/FAQ/FAQ'));
 
 // Lazy load full page views
-const BooksPage = lazy(() => import('./pages/BooksPage/BooksPage'));
-const ProductsPage = lazy(() => import('./pages/ProductsPage/ProductsPage'));
 const AboutUs = lazy(() => import('./pages/AboutUsPage/AboutUsPage'));
 const Contact = lazy(() => import('./pages/ContactPage/ContactPage'));
 const Internship = lazy(() => import('./pages/InternshipPage/InternshipPage'));
@@ -40,31 +35,30 @@ const OrdersPage = lazy(() => import('./pages/OrdersPage/OrdersPage'));
 // eslint-disable-next-line no-unused-vars
 const RegisterFreePage = lazy(() => import('./pages/RegisterFreePage/RegisterFreePage'));
 const DailyYogaTogetherDetails = lazy(() => import('./components/DailyYogaTogether/DailyYogaTogetherDetails'));
+const BlogPage = lazy(() => import('./pages/BlogPage/BlogPage'));
 
 // Lazy load modals/drawers
-const CartDrawer = lazy(() => import('./layout/CartDrawer/CartDrawer'));
 const CheckoutModal = lazy(() => import('./layout/CheckoutModal/CheckoutModal'));
 const AuthModal = lazy(() => import('./layout/AuthModal/AuthModal'));
 const ProfileDrawer = lazy(() => import('./layout/ProfileDrawer/ProfileDrawer'));
-
 
 const VIEW_TITLES = {
   home: 'Yoga Healers | Holistic Health & Satvic Wellness',
   about: 'About Us | Yoga Healers',
   internship: 'Internship | Yoga Healers',
   careers: 'Internship | Yoga Healers',
-  books: 'Books & Recipe Guides | Yoga Healers',
-  products: 'Shop Organic Products | Yoga Healers',
   contact: 'Contact Us | Yoga Healers',
   workshops: 'Holistic Workshops | Yoga Healers',
   'health-score': 'Health Score Assessment | Yoga Healers',
   orders: 'My Orders | Yoga Healers',
   'register-free': 'Register for 5 Days Free Yoga Sessions | Yoga Healers',
   'daily-yoga-together-details': 'Daily Yoga Together | Yoga Healers',
+  blog: 'Blog Articles | Yoga Healers',
 };
 
 function AppContent() {
-  const { isCartOpen, isCheckoutOpen, view, setView, setViewingWorkshop } = useApp();
+  // Main application view controller
+  const { isCheckoutOpen, view, setView, setViewingWorkshop } = useApp();
 
   // Reset viewingWorkshop if we navigate away from workshops view
   useEffect(() => {
@@ -125,12 +119,8 @@ function AppContent() {
 
     const selectors = [
       '.workshop-card-horizontal',
-      '.product-card',
-      '.book-card',
-      '.success-card',
       '.daily-yoga-card',
       '.daily-yoga-together-container',
-      '.vertical-card',
       '.educator-card'
     ];
 
@@ -166,13 +156,9 @@ function AppContent() {
       {/* Navigation Bar */}
       <Navbar />
 
-      {/* Conditionally Render Home View, Bookstore View, or Shop View with Smooth Transitions */}
+      {/* Conditionally Render Views with Smooth Transitions */}
       <main key={view} className="page-transition-container">
-        {view === 'books' ? (
-          <Suspense fallback={<Loader />}><BooksPage /></Suspense>
-        ) : view === 'products' ? (
-          <Suspense fallback={<Loader />}><ProductsPage /></Suspense>
-        ) : view === 'about' ? (
+        {view === 'about' ? (
           <Suspense fallback={<Loader />}><AboutUs /></Suspense>
         ) : view === 'contact' ? (
           <Suspense fallback={<Loader />}><Contact /></Suspense>
@@ -188,6 +174,8 @@ function AppContent() {
           <Suspense fallback={<Loader />}><RegisterFreePage /></Suspense>
         ) : view === 'daily-yoga-together-details' ? (
           <Suspense fallback={<Loader />}><DailyYogaTogetherDetails /></Suspense>
+        ) : view === 'blog' ? (
+          <Suspense fallback={<Loader />}><BlogPage /></Suspense>
         ) : (
           <>
             {/* Main Page Sections */}
@@ -199,11 +187,8 @@ function AppContent() {
             <Suspense fallback={null}><DailyYogaBanner /></Suspense>
             <Suspense fallback={null}><Workshops /></Suspense>
             <Suspense fallback={null}><DailyYogaTogether /></Suspense>
-            <Suspense fallback={null}><Products /></Suspense>
-            <Suspense fallback={null}><Books /></Suspense>
+            <Suspense fallback={null}><BlogSection /></Suspense>
             <Suspense fallback={null}><HealthScore /></Suspense>
-            <Suspense fallback={null}><Verticals /></Suspense>
-            <Suspense fallback={null}><SuccessStories /></Suspense>
             <Suspense fallback={null}><Educators /></Suspense>
             <Suspense fallback={null}><FAQ /></Suspense>
           </>
@@ -211,11 +196,6 @@ function AppContent() {
       </main>
       {/* Footer (Dark Navy) */}
       <Footer />
-
-      {/* Shopping Cart Drawer Slider */}
-      <Suspense fallback={null}>
-        {isCartOpen && <CartDrawer />}
-      </Suspense>
 
       {/* Checkout Steps Modal */}
       <Suspense fallback={null}>

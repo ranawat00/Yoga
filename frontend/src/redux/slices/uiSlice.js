@@ -4,14 +4,13 @@ export const VIEW_TO_PATH = {
   home: '/',
   about: '/about',
   internship: '/internship',
-  books: '/books',
-  products: '/products',
   contact: '/contact',
   workshops: '/workshops',
   'health-score': '/health-score',
   orders: '/orders',
   'register-free': '/register-free',
   'daily-yoga-together-details': '/daily-yoga-together-details',
+  blog: '/blog',
 };
 
 export const PATH_TO_VIEW = {
@@ -22,9 +21,6 @@ export const PATH_TO_VIEW = {
   '/internships': 'internship',
   '/careers': 'internship',
   '/career': 'internship',
-  '/books': 'books',
-  '/products': 'products',
-  '/shop': 'products',
   '/contact': 'contact',
   '/contact-us': 'contact',
   '/workshops': 'workshops',
@@ -32,6 +28,8 @@ export const PATH_TO_VIEW = {
   '/orders': 'orders',
   '/register-free': 'register-free',
   '/daily-yoga-together-details': 'daily-yoga-together-details',
+  '/blog': 'blog',
+  '/blogs': 'blog',
 };
 
 const getInitialViewingWorkshop = () => {

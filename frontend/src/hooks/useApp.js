@@ -1,6 +1,5 @@
 import { useCallback } from 'react';
 import { useAppDispatch, useAppSelector } from '../redux/hooks';
-import { useCart } from './useCart';
 import { useAuth } from './useAuth';
 import { useNotification } from './useNotification';
 import {
@@ -18,7 +17,6 @@ export function useApp() {
   const isCheckoutOpen = useAppSelector(selectIsCheckoutOpen);
   const viewingWorkshop = useAppSelector(selectViewingWorkshop);
 
-  const cart = useCart();
   const auth = useAuth();
   const notification = useNotification();
 
@@ -27,7 +25,6 @@ export function useApp() {
   const setViewingWorkshop = useCallback((w) => dispatch(setViewingWorkshopAction(w)), [dispatch]);
 
   return {
-    ...cart,
     ...auth,
     ...notification,
     view,

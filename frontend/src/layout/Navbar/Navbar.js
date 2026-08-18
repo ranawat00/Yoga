@@ -6,17 +6,9 @@ import { WORKSHOPS_DATA } from '../../components/Workshops/Workshops';
 import detoxImg from '../../assets/workshops/workshop_detox.webp';
 import meditationImg from '../../assets/workshops/workshop_meditation.webp';
 import harmonalImg from '../../assets/workshops/third_wordshop.jpg';
-import bookQuickEasyImg from '../../assets/books/book_quick_easy.webp';
-import bookCombo4Img from '../../assets/books/book_combo_4.webp';
-import bookCombo3Img from '../../assets/books/book_combo_3.webp';
-import bookSatvic1Img from '../../assets/books/book_satvic_1.webp';
-import enemaImg from '../../assets/products/product_enema.webp';
-import sproutImg from '../../assets/products/product_sprout.webp';
-import neemCombImg from '../../assets/products/product_neem_comb.webp';
-import copperBottleImg from '../../assets/products/product_copper_bottle.webp';
 
 export default function Navbar() {
-  const { totalCartCount, setIsCartOpen, setView, user, handleLogout, setIsProfileOpen, view, setViewingWorkshop } = useApp();
+  const { setView, user, handleLogout, setIsProfileOpen, view, setViewingWorkshop } = useApp();
   const [activeLink, setActiveLink] = useState('home');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -29,7 +21,7 @@ export default function Navbar() {
   useEffect(() => {
     const handleScroll = () => {
       if (view !== 'home') return;
-      const sections = ['home', 'workshops', 'products', 'health-score', 'verticals', 'success-stories', 'educators', 'faq'];
+      const sections = ['home', 'workshops', 'health-score', 'educators', 'faq'];
       const scrollPosition = window.scrollY + 200;
 
       for (const section of sections) {
@@ -62,20 +54,6 @@ export default function Navbar() {
 
     if (id !== 'workshops') {
       setViewingWorkshop(null);
-    }
-
-    if (id === 'books') {
-      setView('books');
-      setActiveLink('books');
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-      return;
-    }
-
-    if (id === 'products') {
-      setView('products');
-      setActiveLink('products');
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-      return;
     }
 
     if (id === 'about') {
@@ -114,6 +92,13 @@ export default function Navbar() {
       return;
     }
 
+    if (id === 'blog') {
+      setView('blog');
+      setActiveLink('blog');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
+
     setView('home');
     setActiveLink(id);
 
@@ -131,13 +116,6 @@ export default function Navbar() {
 
     if (sectionId !== 'workshops') {
       setViewingWorkshop(null);
-    }
-
-    if (sectionId === 'books') {
-      setView('books');
-      setActiveLink('books');
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-      return;
     }
 
     if (sectionId === 'workshops') {
@@ -220,92 +198,6 @@ export default function Navbar() {
               </div>
             </div>
           </li>
-          <li className="has-dropdown">
-            <a href="/books" className={activeLink === 'books' ? 'active' : ''} onClick={(e) => handleLinkClick('books', e)}>
-              Books {renderChevron()}
-            </a>
-            <div className="nav-dropdown books-mega">
-              <div className="mega-dropdown-card" onClick={(e) => handleDropdownClick('books', 'book-quick-easy', e)}>
-                <div className="mega-card-img-wrapper">
-                  <img loading="lazy" src={bookQuickEasyImg} alt="Quick & Easy Food Book" className="mega-card-img" />
-                </div>
-                <div className="mega-card-body">
-                  <span className="mega-card-title">Quick & Easy Food Book</span>
-                  <span className="mega-card-desc">70+ Satvic recipes in 30 mins • ₹590</span>
-                </div>
-              </div>
-              <div className="mega-dropdown-card" onClick={(e) => handleDropdownClick('books', 'book-combo-4', e)}>
-                <div className="mega-card-img-wrapper">
-                  <img loading="lazy" src={bookCombo4Img} alt="Combo Pack of 4" className="mega-card-img" />
-                </div>
-                <div className="mega-card-body">
-                  <span className="mega-card-title">Combo Pack of 4</span>
-                  <span className="mega-card-desc">Complete Satvic book set • ₹1490</span>
-                </div>
-              </div>
-              <div className="mega-dropdown-card" onClick={(e) => handleDropdownClick('books', 'book-combo-3', e)}>
-                <div className="mega-card-img-wrapper">
-                  <img loading="lazy" src={bookCombo3Img} alt="Combo Pack of 3" className="mega-card-img" />
-                </div>
-                <div className="mega-card-body">
-                  <span className="mega-card-title">Combo Pack of 3</span>
-                  <span className="mega-card-desc">Curated bundle of 3 books • ₹1190</span>
-                </div>
-              </div>
-              <div className="mega-dropdown-card" onClick={(e) => handleDropdownClick('books', 'book-satvic-1', e)}>
-                <div className="mega-card-img-wrapper">
-                  <img loading="lazy" src={bookSatvic1Img} alt="Satvic Food Book 1" className="mega-card-img" />
-                </div>
-                <div className="mega-card-body">
-                  <span className="mega-card-title">Satvic Food Book 1</span>
-                  <span className="mega-card-desc">45 healing recipes & guide • ₹490</span>
-                </div>
-              </div>
-            </div>
-          </li>
-          <li className="has-dropdown">
-            <a href="/products" className={activeLink === 'products' ? 'active' : ''} onClick={(e) => handleLinkClick('products', e)}>
-              Shop {renderChevron()}
-            </a>
-            <div className="nav-dropdown products-mega">
-              <div className="mega-dropdown-card" onClick={(e) => handleDropdownClick('products', 'enema-kit', e)}>
-                <div className="mega-card-img-wrapper">
-                  <img loading="lazy" src={enemaImg} alt="Premium Organic Enema Kit" className="mega-card-img" />
-                </div>
-                <div className="mega-card-body">
-                  <span className="mega-card-title">Organic Enema Kit</span>
-                  <span className="mega-card-desc">BPA-free silicone • ₹399</span>
-                </div>
-              </div>
-              <div className="mega-dropdown-card" onClick={(e) => handleDropdownClick('products', 'sprout-kit', e)}>
-                <div className="mega-card-img-wrapper">
-                  <img loading="lazy" src={sproutImg} alt="Sprouted Moong Sprouting Kit" className="mega-card-img" />
-                </div>
-                <div className="mega-card-body">
-                  <span className="mega-card-title">Terracotta Sprouting Kit</span>
-                  <span className="mega-card-desc">Organic moong pot • ₹189</span>
-                </div>
-              </div>
-              <div className="mega-dropdown-card" onClick={(e) => handleDropdownClick('products', 'neem-comb', e)}>
-                <div className="mega-card-img-wrapper">
-                  <img loading="lazy" src={neemCombImg} alt="Handcrafted Neem Wood Comb" className="mega-card-img" />
-                </div>
-                <div className="mega-card-body">
-                  <span className="mega-card-title">Neem Wood Comb</span>
-                  <span className="mega-card-desc">Handcrafted neem comb • ₹149</span>
-                </div>
-              </div>
-              <div className="mega-dropdown-card" onClick={(e) => handleDropdownClick('products', 'copper-bottle', e)}>
-                <div className="mega-card-img-wrapper">
-                  <img loading="lazy" src={copperBottleImg} alt="Holistic Copper Water Bottle" className="mega-card-img" />
-                </div>
-                <div className="mega-card-body">
-                  <span className="mega-card-title">Copper Water Bottle</span>
-                  <span className="mega-card-desc">Pure alkaline charger • ₹699</span>
-                </div>
-              </div>
-            </div>
-          </li>
           <li>
             <a href="/health-score" className={activeLink === 'health-score' ? 'active' : ''} onClick={(e) => handleLinkClick('health-score', e)}>
               Health Score
@@ -316,20 +208,15 @@ export default function Navbar() {
               Internship
             </a>
           </li>
+          <li>
+            <a href="/blog" className={activeLink === 'blog' ? 'active' : ''} onClick={(e) => handleLinkClick('blog', e)}>
+              Blog
+            </a>
+          </li>
         </ul>
 
         {/* Right Side Actions */}
         <div className="nav-actions">
-          {/* Cart Drawer Trigger */}
-          <button className="cart-icon-btn" onClick={() => setIsCartOpen(true)} aria-label="Open Shopping Cart">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <circle cx="9" cy="21" r="1"></circle>
-              <circle cx="20" cy="21" r="1"></circle>
-              <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
-            </svg>
-            {totalCartCount > 0 && <span className="cart-badge">{totalCartCount}</span>}
-          </button>
-
           {/* User Profile / Auth Trigger */}
           <div className="user-profile-container" style={{ position: 'relative' }}>
             {user ? (
@@ -402,16 +289,6 @@ export default function Navbar() {
               </a>
             </li>
             <li>
-              <a href="/books" className={activeLink === 'books' ? 'active-pill' : ''} onClick={(e) => handleLinkClick('books', e)}>
-                Books
-              </a>
-            </li>
-            <li>
-              <a href="/products" className={activeLink === 'products' ? 'active-pill' : ''} onClick={(e) => handleLinkClick('products', e)}>
-                Shop
-              </a>
-            </li>
-            <li>
               <a href="/health-score" onClick={(e) => handleLinkClick('health-score', e)}>
                 Health Score
               </a>
@@ -419,6 +296,11 @@ export default function Navbar() {
             <li>
               <a href="/internship" className={(activeLink === 'internship' || activeLink === 'careers') ? 'active-pill' : ''} onClick={(e) => handleLinkClick('internship', e)}>
                 Internship
+              </a>
+            </li>
+            <li>
+              <a href="/blog" className={activeLink === 'blog' ? 'active-pill' : ''} onClick={(e) => handleLinkClick('blog', e)}>
+                Blog
               </a>
             </li>
             <li>

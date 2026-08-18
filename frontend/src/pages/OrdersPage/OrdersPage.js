@@ -6,30 +6,12 @@ import { fetchMyOrders } from '../../api/orders';
 import detoxImg from '../../assets/workshops/workshop_detox.webp';
 import meditationImg from '../../assets/workshops/workshop_meditation.webp';
 import harmonalImg from '../../assets/workshops/third_wordshop.jpg';
-import bookQuickEasyImg from '../../assets/books/book_quick_easy.webp';
-import bookCombo4Img from '../../assets/books/book_combo_4.webp';
-import bookCombo3Img from '../../assets/books/book_combo_3.webp';
-import bookSatvic1Img from '../../assets/books/book_satvic_1.webp';
-import enemaImg from '../../assets/products/product_enema.webp';
-import sproutImg from '../../assets/products/product_sprout.webp';
-import neemCombImg from '../../assets/products/product_neem_comb.webp';
-import copperBottleImg from '../../assets/products/product_copper_bottle.webp';
-import teaImg from '../../assets/products/product_tea.webp';
 
 const getProductImage = (productId) => {
   switch (productId) {
     case 'detox-21': return detoxImg;
     case 'mind-7': return meditationImg;
     case 'cook-3': return harmonalImg;
-    case 'book-quick-easy': return bookQuickEasyImg;
-    case 'book-combo-4': return bookCombo4Img;
-    case 'book-combo-3': return bookCombo3Img;
-    case 'book-satvic-1': return bookSatvic1Img;
-    case 'enema-kit': return enemaImg;
-    case 'sprout-kit': return sproutImg;
-    case 'neem-comb': return neemCombImg;
-    case 'copper-bottle': return copperBottleImg;
-    case 'herbal-tea': return teaImg;
     default: return null;
   }
 };
@@ -199,10 +181,10 @@ export default function OrdersPage() {
               <h2>No Orders Found</h2>
               <p>You haven't placed any orders yet. Explore our Satvic shop to begin your healing journey.</p>
               <button className="btn btn-blue btn-large" onClick={() => {
-                setView('products');
+                setView('home');
                 window.scrollTo({ top: 0, behavior: 'smooth' });
               }}>
-                Shop Organic Products
+                Explore Workshops
               </button>
             </div>
           )}

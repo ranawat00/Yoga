@@ -80,8 +80,6 @@ export default function Footer() {
           <ul className="footer-links">
             <li><a href="/about" onClick={(e) => { e.preventDefault(); setView('about'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}>About Us</a></li>
             <li><a href="/workshops" onClick={(e) => { e.preventDefault(); setView('workshops'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}>Workshops</a></li>
-            <li><a href="/books" onClick={(e) => { e.preventDefault(); setView('books'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}>Books</a></li>
-            <li><a href="/products" onClick={(e) => { e.preventDefault(); setView('products'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}>Shop</a></li>
             <li><a href="/" onClick={(e) => { e.preventDefault(); setView('home'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}>Satvic Yoga</a></li>
           </ul>
         </div>
@@ -91,8 +89,7 @@ export default function Footer() {
           <ul className="footer-links">
             <li><a href="/internship" onClick={(e) => { e.preventDefault(); setView('internship'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}>Internship</a></li>
             <li><a href="/" onClick={(e) => { e.preventDefault(); handleScrollTo('home'); }}>Meet The Team</a></li>
-            <li><a href="/" onClick={(e) => { e.preventDefault(); handleScrollTo('success-stories'); }}>Satvic Stories</a></li>
-            <li><a href="/" onClick={(e) => { e.preventDefault(); handleScrollTo('home'); }}>Blogs</a></li>
+            <li><a href="/blog" onClick={(e) => { e.preventDefault(); setView('blog'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}>Blogs</a></li>
             <li><a href="/contact" onClick={(e) => { e.preventDefault(); setView('contact'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}>Contact Us</a></li>
           </ul>
         </div>
