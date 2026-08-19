@@ -1,51 +1,54 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState, useEffect, useCallback } from 'react';
 import './BlogSection.css';
-import blogBannerImg from '../../assets/blog/blog_banner.jpg';
 import { useApp } from '../../hooks/useApp';
+import { BLOGS_DATA } from '../../data/blogsData';
 
-export const BLOGS_DATA = [
-  {
-    id: 'mental-health-silent-pandemic',
-    title: 'Mental Health - A Silent Pandemic',
-    excerpt: 'We live in an era defined by extraordinary innovation. Artificial Intelligence speeds up our tasks, digital transformation connects us globally in milliseconds, and opportunities to learn and grow are everywhere. Yet, alongside this fast-paced shift to put speed and achievement first, a quiet phenomenon has emerged: the silent pandemic of neglected mental health.',
-    image: blogBannerImg
-  },
-  {
-    id: 'holistic-living-mindful-wellness',
-    title: 'Holistic Living & Mindful Wellness',
-    excerpt: 'Digital advancements offer powerful tools to streamline our daily routines, opening up space to focus on holistic health. Prioritizing mental strength transforms how we navigate high-speed environments and fosters creative problem-solving and intentional decision-making.',
-    image: blogBannerImg
-  },
-  {
-    id: 'yoga-breathwork-stress-resilience',
-    title: 'Yoga & Breathwork for Stress Resilience',
-    excerpt: 'Ancient yoga and pranayama practices provide a scientifically backed foundation to restore nervous system balance, improve focus, boost physical immunity, and cultivate inner peace in high-pressure daily life.',
-    image: blogBannerImg
-  },
-  {
-    id: 'nurturing-mental-strength-youth',
-    title: 'Nurturing Mental Strength in Youth',
-    excerpt: 'Academic competition and continuous screen time put unprecedented pressure on children and young adults. Proactive mindfulness habits build emotional stability, long-term focus, and healthy social connections.',
-    image: blogBannerImg
-  }
-];
+// Central export of blogs data collection (Blogs 1 to 9 inclusive) - Active Home Slider
+export { BLOGS_DATA };
 
 export default function BlogSection() {
-  const { setView } = useApp();
+  const { setView, setViewingBlog } = useApp();
   const sliderRef = useRef(null);
+  const [activeIndex, setActiveIndex] = useState(0);
 
-  const handleCardClick = () => {
+  const handleCardClick = (blogId) => {
+    if (setViewingBlog) {
+      setViewingBlog(blogId);
+    }
     setView('blog');
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  const scrollSlider = (direction) => {
+  const handleScroll = useCallback(() => {
+    if (sliderRef.current) {
+      const scrollPosition = sliderRef.current.scrollLeft;
+      const card = sliderRef.current.querySelector('.home-blog-card');
+      const cardWidth = card ? card.offsetWidth + 24 : 350;
+      const newIndex = Math.round(scrollPosition / cardWidth);
+      setActiveIndex(Math.min(Math.max(newIndex, 0), BLOGS_DATA.length - 1));
+    }
+  }, []);
+
+  useEffect(() => {
+    const sliderElement = sliderRef.current;
+    if (sliderElement) {
+      sliderElement.addEventListener('scroll', handleScroll, { passive: true });
+      return () => sliderElement.removeEventListener('scroll', handleScroll);
+    }
+  }, [handleScroll]);
+
+  const scrollToSlide = (index) => {
     if (sliderRef.current) {
       const card = sliderRef.current.querySelector('.home-blog-card');
-      const cardWidth = card ? card.offsetWidth + 18 : 320;
-      const scrollAmount = direction === 'left' ? -cardWidth : cardWidth;
-      sliderRef.current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+      const cardWidth = card ? card.offsetWidth + 24 : 350;
+      sliderRef.current.scrollTo({ left: index * cardWidth, behavior: 'smooth' });
+      setActiveIndex(index);
     }
+  };
+
+  const scrollSlider = (direction) => {
+    const targetIndex = direction === 'left' ? activeIndex - 1 : activeIndex + 1;
+    scrollToSlide(Math.min(Math.max(targetIndex, 0), BLOGS_DATA.length - 1));
   };
 
   return (
@@ -65,6 +68,7 @@ export default function BlogSection() {
               className="blog-slider-arrow prev"
               onClick={() => scrollSlider('left')}
               aria-label="Previous article"
+              disabled={activeIndex === 0}
             >
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                 <polyline points="15 18 9 12 15 6"></polyline>
@@ -74,6 +78,7 @@ export default function BlogSection() {
               className="blog-slider-arrow next"
               onClick={() => scrollSlider('right')}
               aria-label="Next article"
+              disabled={activeIndex === BLOGS_DATA.length - 1}
             >
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                 <polyline points="9 18 15 12 9 6"></polyline>
@@ -89,7 +94,7 @@ export default function BlogSection() {
               <article
                 key={blog.id}
                 className="home-blog-card"
-                onClick={handleCardClick}
+                onClick={() => handleCardClick(blog.id)}
                 role="button"
                 tabIndex="0"
                 aria-label={`Read article: ${blog.title}`}
@@ -122,6 +127,18 @@ export default function BlogSection() {
                   </div>
                 </div>
               </article>
+            ))}
+          </div>
+
+          {/* Slider Pagination Dots */}
+          <div className="home-blog-dots-container">
+            {BLOGS_DATA.map((blog, idx) => (
+              <button
+                key={`dot-${blog.id}`}
+                className={`home-blog-dot ${idx === activeIndex ? 'active' : ''}`}
+                onClick={() => scrollToSlide(idx)}
+                aria-label={`Go to slide ${idx + 1}`}
+              />
             ))}
           </div>
         </div>

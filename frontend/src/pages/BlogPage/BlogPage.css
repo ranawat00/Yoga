@@ -7,6 +7,8 @@
   min-height: 100vh;
   padding-bottom: 5rem;
   color: #1e293b;
+  overflow-x: hidden;
+  width: 100%;
 }
 
 /* Hero Banner Wrapper - Touch Navbar Directly With Zero Gap */
@@ -16,6 +18,7 @@
   background: #000000;
   display: flex;
   justify-content: center;
+  overflow: hidden;
 }
 
 .blog-banner-frame {
@@ -43,6 +46,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  overflow-x: hidden;
+  box-sizing: border-box;
 }
 
 .blog-container {
@@ -53,6 +58,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  overflow-x: hidden;
 }
 
 /* Logo Badge & Header Titles */
@@ -427,5 +433,1235 @@
     padding: 0.75rem 0.35rem;
     font-size: 0.74rem;
     line-height: 1.35;
+  }
+
+  .blog-climate-main-title {
+    font-size: clamp(1.2rem, 4.5vw, 1.5rem);
+    margin: 1rem auto 1.75rem;
+  }
+
+  .blog-climate-section-heading {
+    margin: 2.25rem auto 1.25rem;
+    font-size: 1.2rem;
+  }
+
+  .blog-climate-subheading {
+    margin: 1.75rem auto 0.5rem;
+    font-size: 1.05rem;
+  }
+}
+
+/* ============================================================
+   ARTICLE HERO IMAGE STRUCTURE (BLOG 2 & BLOG 3)
+   ============================================================ */
+
+.blog-article-hero-image-wrapper {
+  width: 100%;
+  max-width: 680px;
+  margin: 0 auto 2rem;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+}
+
+.blog-article-hero-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
+/* ============================================================
+   BLOG 2 (CLIMATE CHANGE ARTICLE) STYLES — Identical Font Format
+   ============================================================ */
+
+.blog-climate-article {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  width: 100%;
+}
+
+.blog-climate-main-title {
+  font-family: var(--font-heading), 'Plus Jakarta Sans', sans-serif;
+  color: #588364;
+  font-size: clamp(1.25rem, 3.5vw, 1.7rem);
+  font-weight: 800;
+  text-align: left;
+  line-height: 1.35;
+  margin: 1.5rem 0 2rem;
+  width: 100%;
+  letter-spacing: -0.2px;
+}
+
+.blog-climate-section-heading {
+  font-family: var(--font-heading), 'Plus Jakarta Sans', sans-serif;
+  color: #588364;
+  font-size: clamp(1.2rem, 3vw, 1.55rem);
+  font-weight: 800;
+  text-align: left;
+  margin: 2.5rem 0 1.25rem;
+  line-height: 1.35;
+}
+
+.blog-climate-subheading {
+  font-family: var(--font-heading), 'Plus Jakarta Sans', sans-serif;
+  color: #588364;
+  font-size: clamp(1.05rem, 2.4vw, 1.25rem);
+  font-weight: 800;
+  text-align: left;
+  margin: 1.75rem 0 0.5rem;
+  line-height: 1.4;
+}
+
+.blog-climate-paragraph {
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  font-size: clamp(0.98rem, 2vw, 1.08rem);
+  line-height: 1.8;
+  color: #334155;
+  text-align: left;
+  margin-bottom: 1.5rem;
+  width: 100%;
+}
+
+.blog-climate-lead {
+  font-size: clamp(1.02rem, 2.2vw, 1.12rem);
+  color: #1e293b;
+  line-height: 1.85;
+  margin-bottom: 2rem;
+}
+
+.blog-climate-list {
+  margin: 0.5rem 0 1.75rem 1.5rem;
+  padding: 0;
+  list-style-type: disc;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.blog-climate-list li {
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  font-size: clamp(0.98rem, 2vw, 1.05rem);
+  line-height: 1.75;
+  color: #334155;
+}
+
+.blog-climate-list li strong {
+  color: #1e293b;
+  font-weight: 700;
+}
+
+.blog-climate-lead {
+  font-size: clamp(1rem, 2.2vw, 1.1rem);
+  color: #334155;
+  line-height: 1.8;
+  margin-bottom: 2.5rem;
+}
+
+.blog-climate-points-group {
+  width: 100%;
+  max-width: 660px;
+  margin: 1rem auto 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.blog-climate-point {
+  text-align: center;
+  margin-bottom: 0.5rem;
+  line-height: 1.7;
+}
+
+.blog-climate-point strong {
+  color: #1e293b;
+  font-weight: 800;
+}
+
+.blog-climate-action-blocks {
+  width: 100%;
+  max-width: 660px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.blog-climate-action-item {
+  text-align: center;
+}
+
+.blog-climate-conclusion {
+  width: 100%;
+  max-width: 660px;
+  margin: 2rem auto 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.blog-climate-cta {
+  font-size: clamp(1.02rem, 2.2vw, 1.15rem);
+  margin-top: 0.5rem;
+}
+
+.blog-climate-cta strong {
+  color: #1e293b;
+  font-weight: 800;
+}
+
+/* ============================================================
+   BLOG 3 (YOUTH SUBSTANCE ABUSE ARTICLE) STYLES — Exact Image Match
+   ============================================================ */
+
+.blog-substance-article {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  width: 100%;
+}
+
+.blog-substance-section-heading {
+  font-family: var(--font-heading), 'Plus Jakarta Sans', sans-serif;
+  color: #588364;
+  font-size: clamp(1.2rem, 3vw, 1.55rem);
+  font-weight: 800;
+  text-align: left;
+  margin: 2.5rem 0 1.25rem;
+  line-height: 1.35;
+}
+
+.blog-substance-paragraph {
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  font-size: clamp(0.98rem, 2vw, 1.08rem);
+  line-height: 1.8;
+  color: #334155;
+  text-align: left;
+  margin-bottom: 1.5rem;
+  width: 100%;
+}
+
+.blog-substance-lead {
+  font-size: clamp(1.02rem, 2.2vw, 1.12rem);
+  color: #1e293b;
+  line-height: 1.85;
+  margin-bottom: 2rem;
+  margin-top: 1.5rem;
+}
+
+.blog-substance-list {
+  margin: 0.5rem 0 1.75rem 1.5rem;
+  padding: 0;
+  list-style-type: disc;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.blog-substance-list li {
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  font-size: clamp(0.98rem, 2vw, 1.05rem);
+  line-height: 1.75;
+  color: #334155;
+}
+
+.blog-substance-list li strong {
+  color: #1e293b;
+  font-weight: 700;
+}
+
+.blog-substance-strategies {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.blog-substance-strategies .blog-substance-paragraph strong {
+  color: #1e293b;
+  font-weight: 700;
+}
+
+.blog-substance-conclusion {
+  margin-top: 1.5rem;
+  font-size: clamp(1rem, 2.1vw, 1.1rem);
+  color: #1e293b;
+  line-height: 1.8;
+}
+
+/* ============================================================
+   BLOG 4 (PCOS IS NOW PMOS ARTICLE) STYLES
+   ============================================================ */
+
+.blog-pmos-article {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  width: 100%;
+}
+
+.blog-pmos-section-heading {
+  font-family: var(--font-heading), 'Plus Jakarta Sans', sans-serif;
+  color: #588364;
+  font-size: clamp(1.2rem, 3vw, 1.55rem);
+  font-weight: 800;
+  text-align: left;
+  margin: 2.5rem 0 1.25rem;
+  line-height: 1.35;
+}
+
+.blog-pmos-subheading {
+  font-family: var(--font-heading), 'Plus Jakarta Sans', sans-serif;
+  color: #1e293b;
+  font-size: clamp(1.05rem, 2.2vw, 1.15rem);
+  font-weight: 800;
+  text-align: left;
+  margin: 1.5rem 0 0.5rem;
+  line-height: 1.4;
+}
+
+.blog-pmos-paragraph {
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  font-size: clamp(0.98rem, 2vw, 1.08rem);
+  line-height: 1.8;
+  color: #334155;
+  text-align: left;
+  margin-bottom: 1.25rem;
+  width: 100%;
+}
+
+.blog-pmos-lead {
+  font-size: clamp(1.02rem, 2.2vw, 1.12rem);
+  color: #1e293b;
+  line-height: 1.85;
+  margin-bottom: 1.5rem;
+  margin-top: 1rem;
+}
+
+.blog-pmos-highlight-box {
+  font-size: clamp(1.02rem, 2.2vw, 1.15rem);
+  color: #1e293b;
+  margin-bottom: 1.5rem;
+}
+
+.blog-pmos-highlight-box strong {
+  font-weight: 800;
+  color: #1e293b;
+}
+
+.blog-pmos-list {
+  margin: 0.5rem 0 1.75rem 1.5rem;
+  padding: 0;
+  list-style-type: disc;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.blog-pmos-list li {
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  font-size: clamp(0.98rem, 2vw, 1.05rem);
+  line-height: 1.75;
+  color: #334155;
+}
+
+.blog-pmos-list li strong {
+  color: #1e293b;
+  font-weight: 700;
+}
+
+.blog-pmos-subsections {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+}
+
+.blog-pmos-subsection-item {
+  width: 100%;
+}
+
+.blog-pmos-conclusion {
+  margin-top: 2rem;
+  font-size: clamp(1rem, 2.1vw, 1.1rem);
+  color: #1e293b;
+  line-height: 1.8;
+}
+
+/* ============================================================
+   BLOG 5 (SUSTAINABLE SOIL MANAGEMENT ARTICLE) STYLES
+   ============================================================ */
+
+.blog-soil-article {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  width: 100%;
+}
+
+.blog-soil-main-title {
+  font-family: var(--font-heading), 'Plus Jakarta Sans', sans-serif;
+  color: #588364;
+  font-size: clamp(1.25rem, 3.5vw, 1.7rem);
+  font-weight: 800;
+  text-align: left;
+  line-height: 1.35;
+  margin: 1.5rem 0 2rem;
+  width: 100%;
+  letter-spacing: -0.2px;
+}
+
+.blog-soil-section-heading {
+  font-family: var(--font-heading), 'Plus Jakarta Sans', sans-serif;
+  color: #588364;
+  font-size: clamp(1.2rem, 3vw, 1.55rem);
+  font-weight: 800;
+  text-align: left;
+  margin: 2.5rem 0 1.25rem;
+  line-height: 1.35;
+}
+
+.blog-soil-paragraph {
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  font-size: clamp(0.98rem, 2vw, 1.08rem);
+  line-height: 1.8;
+  color: #334155;
+  text-align: left;
+  margin-bottom: 1.25rem;
+  width: 100%;
+}
+
+.blog-soil-lead {
+  font-size: clamp(1.02rem, 2.2vw, 1.12rem);
+  color: #1e293b;
+  line-height: 1.85;
+  margin-bottom: 1.5rem;
+}
+
+.blog-soil-list {
+  margin: 0.5rem 0 1.75rem 1.5rem;
+  padding: 0;
+  list-style-type: disc;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.blog-soil-list li {
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  font-size: clamp(0.98rem, 2vw, 1.05rem);
+  line-height: 1.75;
+  color: #334155;
+}
+
+.blog-soil-list li strong {
+  color: #1e293b;
+  font-weight: 700;
+}
+
+/* Impact Area Table Styling - Exact Image Match */
+.blog-soil-table-container {
+  width: 100%;
+  margin: 1.5rem 0 2rem;
+  overflow-x: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+}
+
+.blog-soil-impact-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  border: 2px solid #f87171;
+}
+
+.blog-soil-impact-table th {
+  background-color: #588364;
+  color: #ffffff;
+  font-size: clamp(1rem, 2.2vw, 1.15rem);
+  font-weight: 800;
+  padding: 1rem 1.25rem;
+  border: 2px solid #f87171;
+}
+
+.blog-soil-impact-table td {
+  padding: 1rem 1.25rem;
+  font-size: clamp(0.95rem, 2vw, 1.02rem);
+  line-height: 1.6;
+  color: #334155;
+  border: 2px solid #f87171;
+  background-color: #ffffff;
+}
+
+.blog-soil-impact-table td.blog-soil-table-impact {
+  font-weight: 800;
+  color: #1e293b;
+  width: 32%;
+}
+
+.blog-soil-policies {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
+  margin-bottom: 1.5rem;
+}
+
+.blog-soil-policies .blog-soil-paragraph strong {
+  color: #1e293b;
+  font-weight: 700;
+}
+
+.blog-soil-conclusion {
+  margin-top: 2rem;
+  font-size: clamp(1rem, 2.1vw, 1.1rem);
+  color: #1e293b;
+  line-height: 1.85;
+}
+
+/* ============================================================
+   BLOG 6 (RECLAIMING YOUR HEALTH: DIABETES & YOGA ARTICLE) STYLES
+   ============================================================ */
+
+.blog-diabetes-article {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  width: 100%;
+}
+
+.blog-diabetes-main-title {
+  font-family: var(--font-heading), 'Plus Jakarta Sans', sans-serif;
+  color: #588364;
+  font-size: clamp(1.25rem, 3.5vw, 1.7rem);
+  font-weight: 800;
+  text-align: left;
+  line-height: 1.35;
+  margin: 1.5rem 0 2rem;
+  width: 100%;
+  letter-spacing: -0.2px;
+}
+
+.blog-diabetes-section-heading {
+  font-family: var(--font-heading), 'Plus Jakarta Sans', sans-serif;
+  color: #588364;
+  font-size: clamp(1.2rem, 3vw, 1.55rem);
+  font-weight: 800;
+  text-align: left;
+  margin: 2.5rem 0 1.25rem;
+  line-height: 1.35;
+}
+
+.blog-diabetes-subheading {
+  font-family: var(--font-heading), 'Plus Jakarta Sans', sans-serif;
+  color: #1e293b;
+  font-size: clamp(1.05rem, 2.2vw, 1.15rem);
+  font-weight: 800;
+  text-align: left;
+  margin: 1.5rem 0 0.5rem;
+  line-height: 1.4;
+}
+
+.blog-diabetes-paragraph {
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  font-size: clamp(0.98rem, 2vw, 1.08rem);
+  line-height: 1.8;
+  color: #334155;
+  text-align: left;
+  margin-bottom: 1.25rem;
+  width: 100%;
+}
+
+.blog-diabetes-lead {
+  font-size: clamp(1.02rem, 2.2vw, 1.12rem);
+  color: #1e293b;
+  line-height: 1.85;
+  margin-bottom: 1.5rem;
+}
+
+.blog-diabetes-list {
+  margin: 0.5rem 0 1.75rem 1.5rem;
+  padding: 0;
+  list-style-type: disc;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.blog-diabetes-list li {
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  font-size: clamp(0.98rem, 2vw, 1.05rem);
+  line-height: 1.75;
+  color: #334155;
+}
+
+.blog-diabetes-list li strong {
+  color: #1e293b;
+  font-weight: 700;
+}
+
+.blog-diabetes-subsections {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+}
+
+.blog-diabetes-subsection-item {
+  width: 100%;
+}
+
+.blog-diabetes-conclusion {
+  margin-top: 1.5rem;
+  font-size: clamp(1rem, 2.1vw, 1.1rem);
+  color: #1e293b;
+  line-height: 1.8;
+}
+
+/* ============================================================
+   BLOG 7 (NURTURING THE NURTURERS: PARENTAL MENTAL HEALTH) STYLES
+   ============================================================ */
+
+.blog-parental-article {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  text-align: left;
+  width: 100%;
+}
+
+.blog-parental-main-title {
+  font-family: var(--font-heading), 'Plus Jakarta Sans', sans-serif;
+  color: #588364;
+  font-size: clamp(1.25rem, 3.5vw, 1.7rem);
+  font-weight: 800;
+  text-align: left;
+  line-height: 1.35;
+  margin: 1.5rem 0 2rem;
+  width: 100%;
+  letter-spacing: -0.2px;
+}
+
+.blog-parental-section-heading {
+  font-family: var(--font-heading), 'Plus Jakarta Sans', sans-serif;
+  color: #588364;
+  font-size: clamp(1.2rem, 3vw, 1.55rem);
+  font-weight: 800;
+  text-align: left;
+  margin: 2.5rem 0 1.25rem;
+  line-height: 1.35;
+}
+
+.blog-parental-subheading {
+  font-family: var(--font-heading), 'Plus Jakarta Sans', sans-serif;
+  color: #1e293b;
+  font-size: clamp(1.05rem, 2.2vw, 1.15rem);
+  font-weight: 800;
+  text-align: left;
+  margin: 1.5rem 0 0.5rem;
+  line-height: 1.4;
+}
+
+.blog-parental-paragraph {
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  font-size: clamp(0.98rem, 2vw, 1.08rem);
+  line-height: 1.8;
+  color: #334155;
+  text-align: left;
+  margin-bottom: 1.25rem;
+  width: 100%;
+}
+
+.blog-parental-lead {
+  font-size: clamp(1.02rem, 2.2vw, 1.12rem);
+  color: #1e293b;
+  line-height: 1.85;
+  margin-bottom: 1.5rem;
+}
+
+.blog-parental-list {
+  margin: 0.5rem 0 1.75rem 1.5rem;
+  padding: 0;
+  list-style-type: disc;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.blog-parental-list li {
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  font-size: clamp(0.98rem, 2vw, 1.05rem);
+  line-height: 1.75;
+  color: #334155;
+}
+
+.blog-parental-list li strong {
+  color: #1e293b;
+  font-weight: 700;
+}
+
+.blog-parental-subsections {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+}
+
+.blog-parental-subsection-item {
+  width: 100%;
+}
+
+.blog-parental-conclusion {
+  margin-top: 1.5rem;
+  font-size: clamp(1rem, 2.1vw, 1.1rem);
+  color: #1e293b;
+  line-height: 1.8;
+}
+
+/* ============================================================
+   GLOBAL BLOG HEADINGS CENTERING
+   ============================================================ */
+
+.blog-article-body h1,
+.blog-article-body h2,
+.blog-section-heading,
+.blog-climate-main-title,
+.blog-climate-section-heading,
+.blog-substance-main-title,
+.blog-substance-section-heading,
+.blog-pmos-section-heading,
+.blog-soil-main-title,
+.blog-soil-section-heading,
+.blog-diabetes-main-title,
+.blog-diabetes-section-heading,
+.blog-parental-main-title,
+.blog-parental-section-heading,
+.blog-fitness-main-title,
+.blog-fitness-section-heading,
+.blog-yoga-capital-main-title,
+.blog-yoga-capital-section-heading {
+  text-align: center !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+/* ============================================================
+   BLOG 7 CTA WORKSHOP BANNER & REGISTER NOW BUTTON
+   (SITE-WIDE SAGE GREEN DESIGN SYSTEM)
+   ============================================================ */
+
+.blog7-cta-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: calc(100% + 3rem);
+  margin-left: -1.5rem;
+  margin-right: -1.5rem;
+  margin-top: 2.5rem;
+  margin-bottom: 2.5rem;
+  gap: 1.5rem;
+  box-sizing: border-box;
+}
+
+.blog7-content-img-wrapper {
+  width: 100%;
+  max-width: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+  box-sizing: border-box;
+}
+
+.blog7-content-img {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
+.blog7-register-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  width: auto;
+  min-width: 280px;
+  max-width: 360px;
+  background: linear-gradient(135deg, #ffffff 0%, #e8f3ea 25%, #748B6f 50%, #e8f3ea 75%, #ffffff 100%);
+  background-size: 300% 300%;
+  color: #1e3d23;
+  border: 1.5px solid rgba(255, 255, 255, 0.9);
+  border-radius: 50px;
+  padding: 0.45rem 0.5rem 0.45rem 2rem;
+  font-family: var(--font-heading), 'Plus Jakarta Sans', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  animation: heroPeriodicShake 4s ease-in-out infinite, heroLiquidGradient 6s ease infinite !important;
+  position: relative;
+  overflow: hidden;
+}
+
+.blog7-register-btn:hover,
+.blog7-register-btn:focus,
+.blog7-register-btn:active {
+  background: linear-gradient(135deg, #ffeb3b 0%, #748B6f 25%, #4caf50 50%, #ffaa2b 75%, #ffeb3b 100%);
+  background-size: 300% 300%;
+  animation: heroLiquidGradient 5s ease infinite !important;
+  color: #0d2810;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.3);
+  transform: translateY(-2px);
+}
+
+.blog7-btn-arrow {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: #748B6f;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.blog7-register-btn:hover .blog7-btn-arrow {
+  transform: translateX(3px);
+  background-color: #1e3d23;
+}
+
+/* ============================================================
+   BLOG 8 (WHY NOURISHMENT IS ONLY HALF THE EQUATION) STYLES
+   ============================================================ */
+
+.blog-fitness-article {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  text-align: left;
+  width: 100%;
+}
+
+.blog-fitness-main-title {
+  font-family: var(--font-heading), 'Plus Jakarta Sans', sans-serif;
+  color: #588364;
+  font-size: clamp(1.25rem, 3.5vw, 1.7rem);
+  font-weight: 800;
+  text-align: center;
+  line-height: 1.35;
+  margin: 1.5rem 0 2rem;
+  width: 100%;
+  letter-spacing: -0.2px;
+}
+
+.blog-fitness-section-heading {
+  font-family: var(--font-heading), 'Plus Jakarta Sans', sans-serif;
+  color: #588364;
+  font-size: clamp(1.2rem, 3vw, 1.55rem);
+  font-weight: 800;
+  text-align: center;
+  margin: 2.5rem 0 1.25rem;
+  line-height: 1.35;
+}
+
+.blog-fitness-paragraph {
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  font-size: clamp(0.98rem, 2vw, 1.08rem);
+  line-height: 1.8;
+  color: #334155;
+  text-align: left;
+  margin-bottom: 1.25rem;
+  width: 100%;
+}
+
+.blog-fitness-lead {
+  font-size: clamp(1.02rem, 2.2vw, 1.12rem);
+  color: #1e293b;
+  line-height: 1.85;
+  margin-bottom: 1.5rem;
+}
+
+.blog-fitness-middle-img-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin: 0.5rem 0 1.25rem;
+}
+
+.blog-fitness-middle-img {
+  max-width: 280px;
+  width: 85%;
+  height: auto;
+  display: block;
+  object-fit: contain;
+}
+
+.blog-fitness-list {
+  margin: 0.5rem 0 1.75rem 1.5rem;
+  padding: 0;
+  list-style-type: disc;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.blog-fitness-list li {
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  font-size: clamp(0.98rem, 2vw, 1.05rem);
+  line-height: 1.75;
+  color: #334155;
+}
+
+.blog-fitness-list li strong {
+  color: #1e293b;
+  font-weight: 700;
+}
+
+.blog-fitness-conclusion {
+  margin-top: 1.5rem;
+  font-size: clamp(1rem, 2.1vw, 1.1rem);
+  color: #1e293b;
+  line-height: 1.8;
+}
+
+.blog8-cta-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: calc(100% + 3rem);
+  margin-left: -1.5rem;
+  margin-right: -1.5rem;
+  margin-top: 2.5rem;
+  margin-bottom: 2.5rem;
+  gap: 1.5rem;
+  box-sizing: border-box;
+}
+
+.blog8-content-img-wrapper {
+  width: 100%;
+  max-width: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+  box-sizing: border-box;
+}
+
+.blog8-content-img {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
+.blog8-register-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  width: auto;
+  min-width: 280px;
+  max-width: 360px;
+  background: linear-gradient(135deg, #ffffff 0%, #e8f3ea 25%, #748B6f 50%, #e8f3ea 75%, #ffffff 100%);
+  background-size: 300% 300%;
+  color: #1e3d23;
+  border: 1.5px solid rgba(255, 255, 255, 0.9);
+  border-radius: 50px;
+  padding: 0.45rem 0.5rem 0.45rem 2rem;
+  font-family: var(--font-heading), 'Plus Jakarta Sans', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  animation: heroPeriodicShake 4s ease-in-out infinite, heroLiquidGradient 6s ease infinite !important;
+  position: relative;
+  overflow: hidden;
+}
+
+.blog8-register-btn:hover,
+.blog8-register-btn:focus,
+.blog8-register-btn:active {
+  background: linear-gradient(135deg, #ffeb3b 0%, #748B6f 25%, #4caf50 50%, #ffaa2b 75%, #ffeb3b 100%);
+  background-size: 300% 300%;
+  animation: heroLiquidGradient 5s ease infinite !important;
+  color: #0d2810;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.3);
+  transform: translateY(-2px);
+}
+
+.blog8-btn-arrow {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: #748B6f;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.blog8-register-btn:hover .blog8-btn-arrow {
+  transform: translateX(3px);
+  background-color: #1e3d23;
+}
+
+/* ============================================================
+   BLOG 9 (WHY INDIA REMAINS THE GLOBAL CAPITAL OF YOGA) STYLES
+   ============================================================ */
+
+.blog-yoga-capital-article {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  text-align: left;
+  width: 100%;
+}
+
+.blog-yoga-capital-main-title {
+  font-family: var(--font-heading), 'Plus Jakarta Sans', sans-serif;
+  color: #588364;
+  font-size: clamp(1.25rem, 3.5vw, 1.75rem);
+  font-weight: 800;
+  text-align: center;
+  line-height: 1.35;
+  margin: 1.5rem 0 2rem;
+  width: 100%;
+  letter-spacing: -0.2px;
+}
+
+.blog-yoga-capital-section-heading {
+  font-family: var(--font-heading), 'Plus Jakarta Sans', sans-serif;
+  color: #588364;
+  font-size: clamp(1.2rem, 3vw, 1.55rem);
+  font-weight: 800;
+  text-align: center;
+  margin: 2.5rem 0 1.25rem;
+  line-height: 1.35;
+}
+
+.blog-yoga-capital-paragraph {
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  font-size: clamp(0.98rem, 2vw, 1.08rem);
+  line-height: 1.8;
+  color: #334155;
+  text-align: left;
+  margin-bottom: 1.25rem;
+  width: 100%;
+}
+
+.blog-yoga-capital-lead {
+  font-size: clamp(1.02rem, 2.2vw, 1.12rem);
+  color: #1e293b;
+  line-height: 1.85;
+  margin-bottom: 1.5rem;
+}
+
+.blog9-content-img-box {
+  width: 100%;
+  margin: 1.75rem 0;
+  display: flex;
+  justify-content: center;
+}
+
+.blog9-content-img-wrapper {
+  width: calc(100% + 2rem);
+  margin-left: -1rem;
+  margin-right: -1rem;
+  max-width: calc(100% + 2rem);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+  box-sizing: border-box;
+}
+
+.blog9-content-img {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
+.blog-yoga-capital-list {
+  margin: 0.5rem 0 1.75rem 1.5rem;
+  padding: 0;
+  list-style-type: disc;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.blog-yoga-capital-list li {
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  font-size: clamp(0.98rem, 2vw, 1.05rem);
+  line-height: 1.75;
+  color: #334155;
+}
+
+.blog-yoga-capital-list li strong {
+  color: #1e293b;
+  font-weight: 700;
+}
+
+.blog-yoga-capital-conclusion {
+  margin-top: 1rem;
+  font-size: clamp(1rem, 2.1vw, 1.1rem);
+  color: #1e293b;
+  line-height: 1.8;
+}
+
+.blog9-cta-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: calc(100% + 2rem);
+  margin-left: -1rem;
+  margin-right: -1rem;
+  margin-top: 2.5rem;
+  margin-bottom: 2.5rem;
+  gap: 1.5rem;
+  box-sizing: border-box;
+}
+
+.blog9-register-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  width: auto;
+  min-width: 280px;
+  max-width: 360px;
+  background: linear-gradient(135deg, #ffffff 0%, #e8f3ea 25%, #748B6f 50%, #e8f3ea 75%, #ffffff 100%);
+  background-size: 300% 300%;
+  color: #1e3d23;
+  border: 1.5px solid rgba(255, 255, 255, 0.9);
+  border-radius: 50px;
+  padding: 0.45rem 0.5rem 0.45rem 2rem;
+  font-family: var(--font-heading), 'Plus Jakarta Sans', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  animation: heroPeriodicShake 4s ease-in-out infinite, heroLiquidGradient 6s ease infinite !important;
+  position: relative;
+  overflow: hidden;
+}
+
+.blog9-register-btn:hover,
+.blog9-register-btn:focus,
+.blog9-register-btn:active {
+  background: linear-gradient(135deg, #ffeb3b 0%, #748B6f 25%, #4caf50 50%, #ffaa2b 75%, #ffeb3b 100%);
+  background-size: 300% 300%;
+  animation: heroLiquidGradient 5s ease infinite !important;
+  color: #0d2810;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.3);
+  transform: translateY(-2px);
+}
+
+.blog9-btn-arrow {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: #748B6f;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.blog9-register-btn:hover .blog9-btn-arrow {
+  transform: translateX(3px);
+  background-color: #1e3d23;
+}
+
+/* ============================================================
+   MOBILE RESPONSIVENESS & BALANCED BANNERS (BLOG 7, 8, 9)
+   ============================================================ */
+
+@media (max-width: 768px) {
+  .blog9-content-img-box {
+    margin: 1.25rem 0;
+    width: 100%;
+  }
+
+  .blog7-cta-box,
+  .blog7-content-img-wrapper,
+  .blog8-cta-box,
+  .blog8-content-img-wrapper,
+  .blog9-content-img-box,
+  .blog9-content-img-wrapper,
+  .blog9-cta-box {
+    width: calc(100% + 1.5rem) !important;
+    margin-left: -0.75rem !important;
+    margin-right: -0.75rem !important;
+    max-width: calc(100% + 1.5rem) !important;
+    border-radius: 10px !important;
+    box-sizing: border-box !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .blog-container {
+    padding: 0 1rem 2.5rem !important;
+    overflow-x: hidden !important;
+  }
+
+  .blog7-cta-box,
+  .blog7-content-img-wrapper,
+  .blog8-cta-box,
+  .blog8-content-img-wrapper,
+  .blog9-content-img-box,
+  .blog9-content-img-wrapper,
+  .blog9-cta-box {
+    width: calc(100% + 1.25rem) !important;
+    margin-left: -0.625rem !important;
+    margin-right: -0.625rem !important;
+    max-width: calc(100% + 1.25rem) !important;
+    border-radius: 10px !important;
+    box-sizing: border-box !important;
+  }
+
+  .blog7-register-btn,
+  .blog8-register-btn,
+  .blog9-register-btn {
+    width: 100% !important;
+    min-width: unset !important;
+    max-width: 320px !important;
+    padding: 0.5rem 0.5rem 0.5rem 1.25rem !important;
+    font-size: 0.95rem !important;
+    box-sizing: border-box !important;
+    margin: 0 auto !important;
+  }
+
+  .blog-yoga-capital-main-title,
+  .blog-fitness-main-title,
+  .blog-parental-main-title {
+    font-size: 1.2rem !important;
+    margin: 1rem 0 1.25rem !important;
+  }
+
+  .blog-yoga-capital-section-heading,
+  .blog-fitness-section-heading,
+  .blog-parental-section-heading {
+    font-size: 1.1rem !important;
+    margin: 1.75rem 0 1rem !important;
   }
 }

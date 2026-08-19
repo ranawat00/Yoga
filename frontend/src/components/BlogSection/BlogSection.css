@@ -84,12 +84,15 @@
   scroll-snap-type: x mandatory;
   padding: 10px 1.5rem 20px 1.5rem;
   box-sizing: border-box;
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* IE/Edge */
+  scrollbar-width: none;
+  /* Firefox */
+  -ms-overflow-style: none;
+  /* IE/Edge */
 }
 
 .home-blog-slider-track::-webkit-scrollbar {
-  display: none; /* Chrome, Safari, Opera */
+  display: none;
+  /* Chrome, Safari, Opera */
 }
 
 /* Blog Card Styling */
@@ -118,11 +121,11 @@
   padding: 3px;
   background: linear-gradient(90deg, #748B6F, #0da106, #5e17eb, #ff7a00, #748B6F);
   background-size: 300% 300%;
-  -webkit-mask: 
-     linear-gradient(#fff 0 0) content-box, 
-     linear-gradient(#fff 0 0);
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
-          mask-composite: exclude;
+  mask-composite: exclude;
   pointer-events: none;
   opacity: 0.85;
   transition: opacity 0.3s ease;
@@ -143,9 +146,11 @@
   0% {
     background-position: 0% 50%;
   }
+
   50% {
     background-position: 100% 50%;
   }
+
   100% {
     background-position: 0% 50%;
   }
@@ -246,9 +251,12 @@
 }
 
 @keyframes readMoreArrowPulse {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translateX(0);
   }
+
   50% {
     transform: translateX(6px);
   }
@@ -297,4 +305,44 @@
     line-height: 1.5;
     -webkit-line-clamp: 4;
   }
+}
+
+/* Pagination Dots Container */
+.home-blog-dots-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 20px;
+  width: 100%;
+}
+
+.home-blog-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #cbd5e1;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: none;
+}
+
+.home-blog-dot:hover {
+  background-color: #94a3b8;
+}
+
+.home-blog-dot.active {
+  width: 28px;
+  border-radius: 12px;
+  background-color: #588364;
+  box-shadow: 0 2px 8px rgba(88, 131, 100, 0.35);
+}
+
+.blog-slider-arrow:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  transform: none !important;
+  box-shadow: none !important;
 }

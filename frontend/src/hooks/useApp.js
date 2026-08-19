@@ -6,9 +6,11 @@ import {
   setView as setViewAction,
   setIsCheckoutOpen as setIsCheckoutOpenAction,
   setViewingWorkshop as setViewingWorkshopAction,
+  setViewingBlog as setViewingBlogAction,
   selectView,
   selectIsCheckoutOpen,
   selectViewingWorkshop,
+  selectViewingBlog,
 } from '../redux/slices/uiSlice';
 
 export function useApp() {
@@ -16,6 +18,7 @@ export function useApp() {
   const view = useAppSelector(selectView);
   const isCheckoutOpen = useAppSelector(selectIsCheckoutOpen);
   const viewingWorkshop = useAppSelector(selectViewingWorkshop);
+  const viewingBlog = useAppSelector(selectViewingBlog);
 
   const auth = useAuth();
   const notification = useNotification();
@@ -23,6 +26,7 @@ export function useApp() {
   const setView = useCallback((v) => dispatch(setViewAction(v)), [dispatch]);
   const setIsCheckoutOpen = useCallback((val) => dispatch(setIsCheckoutOpenAction(val)), [dispatch]);
   const setViewingWorkshop = useCallback((w) => dispatch(setViewingWorkshopAction(w)), [dispatch]);
+  const setViewingBlog = useCallback((b) => dispatch(setViewingBlogAction(b)), [dispatch]);
 
   return {
     ...auth,
@@ -33,6 +37,8 @@ export function useApp() {
     setIsCheckoutOpen,
     viewingWorkshop,
     setViewingWorkshop,
+    viewingBlog,
+    setViewingBlog,
   };
 }
 

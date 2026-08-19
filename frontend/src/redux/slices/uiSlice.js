@@ -32,6 +32,15 @@ export const PATH_TO_VIEW = {
   '/blogs': 'blog',
 };
 
+const getInitialViewingBlog = () => {
+  try {
+    const stored = sessionStorage.getItem('viewingBlog');
+    return stored || 'climate-change-collective-action';
+  } catch (e) {
+    return 'climate-change-collective-action';
+  }
+};
+
 const getInitialViewingWorkshop = () => {
   try {
     const stored = sessionStorage.getItem('viewingWorkshop');
@@ -58,6 +67,7 @@ const initialState = {
   isCheckoutOpen: false,
   notifications: [],
   viewingWorkshop: getInitialViewingWorkshop(),
+  viewingBlog: getInitialViewingBlog(),
 };
 
 export const uiSlice = createSlice({
@@ -89,15 +99,26 @@ export const uiSlice = createSlice({
         }
       } catch (e) { /* ignore storage errors */ }
     },
+    setViewingBlog: (state, action) => {
+      state.viewingBlog = action.payload;
+      try {
+        if (action.payload) {
+          sessionStorage.setItem('viewingBlog', action.payload);
+        } else {
+          sessionStorage.removeItem('viewingBlog');
+        }
+      } catch (e) { /* ignore storage errors */ }
+    },
   },
 });
 
-export const { setView, setIsCheckoutOpen, addNotification, removeNotification, setViewingWorkshop } = uiSlice.actions;
+export const { setView, setIsCheckoutOpen, addNotification, removeNotification, setViewingWorkshop, setViewingBlog } = uiSlice.actions;
 
 export const selectView = (state) => state.ui.view;
 export const selectIsCheckoutOpen = (state) => state.ui.isCheckoutOpen;
 export const selectNotifications = (state) => state.ui.notifications;
 export const selectViewingWorkshop = (state) => state.ui.viewingWorkshop;
+export const selectViewingBlog = (state) => state.ui.viewingBlog;
 
 export default uiSlice.reducer;
 

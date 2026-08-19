@@ -24,7 +24,6 @@ const Workshops = lazy(() => import('./components/Workshops/Workshops'));
 const DailyYogaTogether = lazy(() => import('./components/DailyYogaTogether/DailyYogaTogether'));
 const BlogSection = lazy(() => import('./components/BlogSection/BlogSection'));
 const HealthScore = lazy(() => import('./components/HealthScore/HealthScore'));
-const Educators = lazy(() => import('./components/Educators/Educators'));
 const FAQ = lazy(() => import('./components/FAQ/FAQ'));
 
 // Lazy load full page views
@@ -189,7 +188,6 @@ function AppContent() {
             <Suspense fallback={null}><DailyYogaTogether /></Suspense>
             <Suspense fallback={null}><BlogSection /></Suspense>
             <Suspense fallback={null}><HealthScore /></Suspense>
-            <Suspense fallback={null}><Educators /></Suspense>
             <Suspense fallback={null}><FAQ /></Suspense>
           </>
         )}
