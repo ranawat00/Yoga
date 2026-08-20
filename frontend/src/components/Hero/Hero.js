@@ -1,6 +1,8 @@
 import './Hero.css';
 import React, { useState, useEffect, useRef } from 'react';
 import heroVideo from '../../assets/hero/yoga_hero.mp4';
+import heroBanner from '../../assets/hero/hero_banner.jpg';
+import heroDesktop from '../../assets/hero/hero_desktop.jpg';
 import { useApp } from '../../hooks/useApp';
 // Trigger fresh Vercel build
 
@@ -54,38 +56,43 @@ export default function Hero() {
       id="home"
       ref={sectionRef}
       className={`hero-sage ${isVisible ? 'in-view' : ''}`}
+      style={{
+        '--hero-desktop-bg': `url(${heroDesktop})`,
+        '--hero-mobile-bg': `url(${heroBanner})`
+      }}
     >
-      {/* Forest Green (#186000) to Lime Green (#78a830) Background Liquid Waves */}
-      <div className="hero-liquid-wave-bg" aria-hidden="true">
-        <div className="liquid-wave liquid-wave-1"></div>
-        <div className="liquid-wave liquid-wave-2"></div>
-        <div className="liquid-wave liquid-wave-3"></div>
-        <div className="liquid-wave liquid-wave-4"></div>
-        <div className="liquid-wave liquid-wave-highlight"></div>
+
+      {/* Centered Top Header Block */}
+      <div className="hero-sage-top-header hero-animate-item stagger-1">
+        <h1 className="hero-sage-title">
+          <span className="hero-title-top">Awaken</span>
+          <span className="hero-title-bottom">Your True Potential</span>
+        </h1>
+
+        <p className="hero-sage-subtitle">
+          Your powerhouse for the real-world<br />
+          Transformation
+        </p>
+
+        <p className="hero-sage-tagline breathe-pulse-anim">
+          Breathe - Thrive - Heal
+        </p>
       </div>
 
       <div className="hero-sage-container">
         {/* Header Text Block */}
         <div className="hero-sage-header-block">
-          <h1 className="hero-sage-title hero-animate-item stagger-1">
-            <span className="hero-title-top">AWAKEN</span>
-            <span className="hero-title-bottom">YOUR TRUE POTENTIAL</span>
-          </h1>
-
-          <p className="hero-sage-subtitle hero-animate-item stagger-2">
-            Your powerhouse for the real-world<br />Transformation
-          </p>
-
-          <p className="hero-sage-tagline hero-animate-item stagger-3">
-            Breathe - Thrive - Heal
-          </p>
 
           <div className="hero-sage-highlight-banner hero-animate-item stagger-4">
             <span className="hero-sage-highlight-start">Start your</span>
             <div className="hero-sage-highlight-boxes">
-              <span className="hero-sage-green-box">5 Days Online</span>
-              <span className="hero-sage-highlight-divider">|</span>
-              <span className="hero-sage-green-box">Free Yoga Workshop</span>
+              <div className="hero-sage-free-tag">
+                <span className="hero-sage-free-text">Free</span>
+              </div>
+              <div className="hero-sage-yellow-box">
+                <span className="hero-sage-num-5">5</span>
+                <span className="hero-sage-box-text">DAYS ONLINE YOGA WORKSHOP</span>
+              </div>
             </div>
           </div>
 

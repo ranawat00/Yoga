@@ -57,33 +57,9 @@ export default function BlogSection() {
 
         {/* Section Header */}
         <div className="home-blog-header-row">
-          <div>
-            <p className="home-blog-pretitle">OUR LATEST INSIGHTS & ARTICLES</p>
-            <h2 className="home-blog-title">Yoga & Mental Wellness Blogs</h2>
-          </div>
-
-          {/* Navigation Arrows */}
-          <div className="home-blog-arrow-group">
-            <button
-              className="blog-slider-arrow prev"
-              onClick={() => scrollSlider('left')}
-              aria-label="Previous article"
-              disabled={activeIndex === 0}
-            >
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                <polyline points="15 18 9 12 15 6"></polyline>
-              </svg>
-            </button>
-            <button
-              className="blog-slider-arrow next"
-              onClick={() => scrollSlider('right')}
-              aria-label="Next article"
-              disabled={activeIndex === BLOGS_DATA.length - 1}
-            >
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                <polyline points="9 18 15 12 9 6"></polyline>
-              </svg>
-            </button>
+          <div className="home-blog-header-center">
+            <h2 className="home-blog-title">DID YOU REALISE ?</h2>
+            <p className="home-blog-subtitle">Don't wait- We must Act Now</p>
           </div>
         </div>
 
@@ -127,18 +103,6 @@ export default function BlogSection() {
                   </div>
                 </div>
               </article>
-            ))}
-          </div>
-
-          {/* Slider Pagination Dots */}
-          <div className="home-blog-dots-container">
-            {BLOGS_DATA.map((blog, idx) => (
-              <button
-                key={`dot-${blog.id}`}
-                className={`home-blog-dot ${idx === activeIndex ? 'active' : ''}`}
-                onClick={() => scrollToSlide(idx)}
-                aria-label={`Go to slide ${idx + 1}`}
-              />
             ))}
           </div>
         </div>

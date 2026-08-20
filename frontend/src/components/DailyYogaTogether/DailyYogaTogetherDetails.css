@@ -495,7 +495,7 @@
   font-size: clamp(1.15rem, 5vw, 1.7rem);
   font-weight: 800;
   text-align: center;
-  color: #588364;
+  color: #333333;
   /* vivid bright green as in the screenshot */
   margin-bottom: 3.5rem;
   letter-spacing: 1px;
@@ -604,7 +604,7 @@
 .unlock-heading {
   font-size: clamp(1.15rem, 5vw, 1.7rem);
   font-weight: 800;
-  color: #588364;
+  color: #333333;
   /* bright green matching the screenshot */
   margin-bottom: 1.5rem;
   letter-spacing: 0.5px;
@@ -682,7 +682,7 @@
 .gain-images-heading {
   font-size: clamp(1.15rem, 5vw, 1.7rem);
   font-weight: 800;
-  color: #588364;
+  color: #333333;
   /* muted forest green from the screenshot */
   text-transform: lowercase;
   margin-bottom: 2rem;
@@ -802,7 +802,7 @@
 .faq-small-title {
   font-size: 0.85rem;
   font-weight: 700;
-  color: #588364;
+  color: #333333;
   letter-spacing: 2px;
   text-transform: uppercase;
   background: rgba(107, 151, 114, 0.1);

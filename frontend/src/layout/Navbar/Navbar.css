@@ -21,13 +21,13 @@
 .navbar.not-home {
   position: fixed;
   top: 0;
-  background-color: rgba(24, 96, 0, 0.95);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background-color: #0b09b5;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   padding: 0.45rem 2rem;
-  box-shadow: 0 4px 24px rgba(15, 45, 0, 0.25);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
   border: none;
-  border-bottom: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .navbar-container {
@@ -216,12 +216,12 @@
   .navbar.not-home {
     position: fixed !important;
     top: 0 !important;
-    background: linear-gradient(90deg, rgba(20, 5, 25, 0.92) 0%, rgba(45, 10, 30, 0.90) 100%), url('../../assets/hero/hero_mobile_sunset.jpg') no-repeat center top / cover !important;
+    background: #0b09b5 !important;
     backdrop-filter: blur(12px) !important;
     -webkit-backdrop-filter: blur(12px) !important;
     border: none !important;
-    border-bottom: none !important;
-    box-shadow: 0 4px 24px rgba(15, 45, 0, 0.35) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25) !important;
   }
 
   .logo-container {
@@ -294,7 +294,7 @@
     width: 260px;
     max-width: 82vw;
     height: 100vh;
-    background: linear-gradient(180deg, rgba(25, 6, 30, 0.95) 0%, rgba(55, 12, 35, 0.92) 50%, rgba(15, 3, 20, 0.98) 100%), url('../../assets/hero/hero_mobile_sunset.jpg') no-repeat center / cover !important;
+    background: linear-gradient(180deg, #0b09b5 0%, #170094 50%, #060a9c 100%) !important;
     box-shadow: -8px 0 35px rgba(0, 0, 0, 0.45);
     z-index: 1000;
     padding: 1.25rem 1.2rem;
@@ -410,6 +410,15 @@
 @media (max-width: 576px) {
   .navbar {
     padding: 0.25rem 0.85rem !important;
+  }
+
+  .navbar.scrolled,
+  .navbar.not-home {
+    padding: 0.35rem 0.85rem !important;
+    background: #0b09b5 !important;
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25) !important;
   }
 
   .logo-container .brand-logo-svg {

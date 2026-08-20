@@ -25,6 +25,7 @@ const DailyYogaTogether = lazy(() => import('./components/DailyYogaTogether/Dail
 const BlogSection = lazy(() => import('./components/BlogSection/BlogSection'));
 const HealthScore = lazy(() => import('./components/HealthScore/HealthScore'));
 const FAQ = lazy(() => import('./components/FAQ/FAQ'));
+const RunningTicker = lazy(() => import('./components/RunningTicker/RunningTicker'));
 
 // Lazy load full page views
 const AboutUs = lazy(() => import('./pages/AboutUsPage/AboutUsPage'));
@@ -184,8 +185,10 @@ function AppContent() {
             <MediaLogos />
 
             <Suspense fallback={null}><DailyYogaBanner /></Suspense>
+
             <Suspense fallback={null}><Workshops /></Suspense>
             <Suspense fallback={null}><DailyYogaTogether /></Suspense>
+            <Suspense fallback={null}><RunningTicker /></Suspense>
             <Suspense fallback={null}><BlogSection /></Suspense>
             <Suspense fallback={null}><HealthScore /></Suspense>
             <Suspense fallback={null}><FAQ /></Suspense>

@@ -27,7 +27,7 @@
 
 .top-banner-title {
   font-family: var(--font-heading);
-  color: #748B6F;
+  color: #333333;
   font-size: clamp(1.15rem, 5vw, 1.7rem);
   font-weight: 800;
   line-height: 1.25;

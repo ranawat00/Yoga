@@ -96,7 +96,7 @@
   font-family: var(--font-display, 'Plus Jakarta Sans', sans-serif);
   font-size: clamp(1.15rem, 5vw, 1.7rem);
   font-weight: 800;
-  color: #588364;
+  color: #333333;
   margin-bottom: 2rem;
   letter-spacing: -0.3px;
   text-align: center;
@@ -256,7 +256,7 @@
   font-family: var(--font-display, 'Plus Jakarta Sans', sans-serif);
   font-size: clamp(0.95rem, 5vw, 1.7rem);
   font-weight: 800;
-  color: #588364;
+  color: #333333;
   margin-bottom: 2rem;
   letter-spacing: -0.3px;
   text-align: center;
@@ -375,7 +375,7 @@
   font-family: var(--font-display, 'Plus Jakarta Sans', sans-serif);
   font-size: clamp(1.15rem, 5vw, 1.7rem);
   font-weight: 800;
-  color: #588364;
+  color: #333333;
   margin-bottom: 1.2rem;
   letter-spacing: -0.3px;
   text-align: center;
