@@ -865,16 +865,31 @@
   .hero-sage-video-container {
     justify-content: center;
     margin-right: 0;
+    width: 100%;
+    max-width: 100%;
   }
 
   .hero-video-aura-wrapper {
+    width: 100%;
+    max-width: 520px;
     margin-left: auto;
     margin-right: auto;
   }
 
   .hero-sage-video-card {
+    width: 100%;
     border-radius: 20px;
     padding: 8px;
+  }
+
+  .hero-sage-video-el {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    min-height: unset;
+    max-height: unset;
+    border-radius: 14px;
+    object-fit: cover;
   }
 }
 
@@ -909,5 +924,21 @@
     width: 40px;
     height: 40px;
     min-width: 40px;
+  }
+
+  .hero-video-aura-wrapper {
+    max-width: 100%;
+  }
+
+  .hero-sage-video-card {
+    padding: 6px;
+    border-radius: 16px;
+  }
+
+  .hero-sage-video-el {
+    aspect-ratio: 16 / 9;
+    min-height: unset;
+    max-height: unset;
+    border-radius: 12px;
   }
 }
