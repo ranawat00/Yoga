@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect, useCallback } from 'react';
+import React, { useRef } from 'react';
 import './BlogSection.css';
 import { useApp } from '../../hooks/useApp';
 import { BLOGS_DATA } from '../../data/blogsData';
@@ -9,7 +9,6 @@ export { BLOGS_DATA };
 export default function BlogSection() {
   const { setView, setViewingBlog } = useApp();
   const sliderRef = useRef(null);
-  const [activeIndex, setActiveIndex] = useState(0);
 
   const handleCardClick = (blogId) => {
     if (setViewingBlog) {
@@ -17,38 +16,6 @@ export default function BlogSection() {
     }
     setView('blog');
     window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
-  const handleScroll = useCallback(() => {
-    if (sliderRef.current) {
-      const scrollPosition = sliderRef.current.scrollLeft;
-      const card = sliderRef.current.querySelector('.home-blog-card');
-      const cardWidth = card ? card.offsetWidth + 24 : 350;
-      const newIndex = Math.round(scrollPosition / cardWidth);
-      setActiveIndex(Math.min(Math.max(newIndex, 0), BLOGS_DATA.length - 1));
-    }
-  }, []);
-
-  useEffect(() => {
-    const sliderElement = sliderRef.current;
-    if (sliderElement) {
-      sliderElement.addEventListener('scroll', handleScroll, { passive: true });
-      return () => sliderElement.removeEventListener('scroll', handleScroll);
-    }
-  }, [handleScroll]);
-
-  const scrollToSlide = (index) => {
-    if (sliderRef.current) {
-      const card = sliderRef.current.querySelector('.home-blog-card');
-      const cardWidth = card ? card.offsetWidth + 24 : 350;
-      sliderRef.current.scrollTo({ left: index * cardWidth, behavior: 'smooth' });
-      setActiveIndex(index);
-    }
-  };
-
-  const scrollSlider = (direction) => {
-    const targetIndex = direction === 'left' ? activeIndex - 1 : activeIndex + 1;
-    scrollToSlide(Math.min(Math.max(targetIndex, 0), BLOGS_DATA.length - 1));
   };
 
   return (
