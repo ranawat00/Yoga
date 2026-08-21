@@ -23,6 +23,7 @@ const DailyYogaBanner = lazy(() => import('./components/DailyYogaBanner/DailyYog
 const Workshops = lazy(() => import('./components/Workshops/Workshops'));
 const DailyYogaTogether = lazy(() => import('./components/DailyYogaTogether/DailyYogaTogether'));
 const BlogSection = lazy(() => import('./components/BlogSection/BlogSection'));
+const ScienceBackedBenefits = lazy(() => import('./components/ScienceBackedBenefits/ScienceBackedBenefits'));
 const HealthScore = lazy(() => import('./components/HealthScore/HealthScore'));
 const FAQ = lazy(() => import('./components/FAQ/FAQ'));
 const RunningTicker = lazy(() => import('./components/RunningTicker/RunningTicker'));
@@ -190,6 +191,7 @@ function AppContent() {
             <Suspense fallback={null}><DailyYogaTogether /></Suspense>
             <Suspense fallback={null}><RunningTicker /></Suspense>
             <Suspense fallback={null}><BlogSection /></Suspense>
+            <Suspense fallback={null}><ScienceBackedBenefits /></Suspense>
             <Suspense fallback={null}><HealthScore /></Suspense>
             <Suspense fallback={null}><FAQ /></Suspense>
           </>
