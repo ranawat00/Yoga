@@ -1,64 +1,186 @@
+/* ==========================================================
+   Celestial Wellness Night Sky Footer Background
+   Exact Specified Hex Colors & Atmospheric Layering
+   ========================================================== */
+
 .footer {
-  background-color: var(--color-blue);
-  color: var(--color-sand);
-  padding: 4rem 2rem 2.5rem;
   position: relative;
-  overflow: visible; /* Allow waves to pop out at the top */
-}
-
-/* Animated Wave Divider */
-.footer-wave-container {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100px;
-  transform: translateY(-100%);
-  margin-top: 1px;
-  pointer-events: none;
+  background: linear-gradient(
+    180deg,
+    #ffffff 0%,
+    #C7C4D9 5%,
+    #645B9A 18%,
+    #281A7C 36%,
+    #1800AC 54%,
+    #0A0049 76%,
+    #000004 100%
+  );
+  color: #ffffff;
+  padding: 0 1.5rem 2.5rem 1.5rem;
   overflow: hidden;
-  line-height: 0;
+  font-family: var(--font-body, 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif);
+  box-sizing: border-box;
 }
 
-.footer-wave-svg {
+/* Soft Pure White Radial Glow at Very Top */
+.footer-top-glow {
   position: absolute;
   top: 0;
   left: 0;
-  width: 200%;
-  height: 100%;
-  will-change: transform;
+  right: 0;
+  height: 120px;
+  background: radial-gradient(ellipse 80% 90px at 50% 0%, #ffffff 0%, rgba(255, 255, 255, 0.85) 40%, rgba(199, 196, 217, 0.4) 75%, transparent 100%);
+  pointer-events: none;
+  z-index: 1;
 }
 
-/* Individual Parallax Wave Layers */
-.wave-layer-1 {
-  animation: move-forever 12s linear infinite;
-}
-.wave-layer-2 {
-  animation: move-forever 9s linear infinite;
-}
-.wave-layer-3 {
-  animation: move-forever 6s linear infinite;
-}
-.wave-layer-4 {
-  animation: move-forever 4s linear infinite;
-}
-
-@keyframes move-forever {
-  0% {
-   transform: translate3d(0, 0, 0);
-  }
-  100% { 
-    transform: translate3d(-50%, 0, 0);
-  }
-}
-
-.footer-grid {
-  display: grid;
-  grid-template-columns: 1.2fr 0.8fr 0.8fr 1.5fr;
-  gap: 4rem;
+/* Scattered White Star Dots Speckled Across Blue & Dark Areas */
+.footer-stars-container {
+  position: absolute;
+  top: 22%;
+  left: 0;
   width: 100%;
-  max-width: var(--container-width);
-  margin: 0 auto 4rem;
+  height: 78%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.star {
+  position: absolute;
+  background: #ffffff;
+  border-radius: 50%;
+  opacity: 0.65;
+  box-shadow: 0 0 4px rgba(255, 255, 255, 0.8);
+  animation: star-twinkle var(--duration, 3s) infinite ease-in-out;
+}
+
+.star-1 { top: 8%; left: 12%; width: 2px; height: 2px; --duration: 2.4s; }
+.star-2 { top: 18%; left: 86%; width: 2.5px; height: 2.5px; --duration: 3.8s; }
+.star-3 { top: 28%; left: 20%; width: 2px; height: 2px; --duration: 3.1s; }
+.star-4 { top: 38%; left: 78%; width: 2px; height: 2px; --duration: 2.7s; }
+.star-5 { top: 48%; left: 14%; width: 1.5px; height: 1.5px; --duration: 4.2s; }
+.star-6 { top: 60%; left: 92%; width: 2.5px; height: 2.5px; --duration: 3.4s; }
+.star-7 { top: 72%; left: 32%; width: 3px; height: 3px; --duration: 2.1s; }
+.star-8 { top: 22%; left: 48%; width: 2px; height: 2px; --duration: 3.6s; }
+.star-9 { top: 54%; left: 62%; width: 2px; height: 2px; --duration: 4.0s; }
+.star-10 { top: 12%; left: 72%; width: 1.5px; height: 1.5px; --duration: 2.9s; }
+.star-11 { top: 34%; left: 42%; width: 2px; height: 2px; --duration: 3.5s; }
+.star-12 { top: 78%; left: 76%; width: 2px; height: 2px; --duration: 2.8s; }
+
+@keyframes star-twinkle {
+  0%, 100% { opacity: 0.3; transform: scale(0.85); }
+  50% { opacity: 1; transform: scale(1.35); }
+}
+
+/* Soft Flat Cloud Silhouettes in Lower Two-Thirds */
+.footer-clouds-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.cloud {
+  position: absolute;
+  opacity: 0.35;
+  width: 100%;
+}
+
+.cloud-top {
+  top: 40%;
+  height: 150px;
+}
+
+.cloud-mid {
+  top: 60%;
+  height: 170px;
+}
+
+/* Outer Container */
+.footer-container {
+  max-width: var(--container-width, 1040px);
+  margin: 0 auto;
+  position: relative;
+  z-index: 5;
+  padding-top: 4rem;
+}
+
+/* Recreated Branding Artwork Header */
+.footer-brand-artwork {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 3.5rem;
+}
+
+.artwork-tagline {
+  font-size: 0.84rem;
+  font-weight: 800;
+  letter-spacing: 4px;
+  color: #ffffff;
+  text-transform: uppercase;
+  margin-bottom: 0.6rem;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+}
+
+.artwork-title {
+  font-size: 2.3rem;
+  font-weight: 900;
+  font-style: italic;
+  font-family: 'Arial Black', -apple-system, BlinkMacSystemFont, sans-serif;
+  letter-spacing: 2px;
+  color: #ffffff;
+  margin: 0 0 0.8rem 0;
+  text-transform: uppercase;
+  text-shadow: 0 4px 18px rgba(0, 0, 0, 0.7);
+}
+
+.artwork-divider-line {
+  width: 100%;
+  max-width: 440px;
+  height: 2px;
+  background: #ffffff;
+  margin-bottom: 1.2rem;
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+}
+
+/* Golden Crescent Moon Glowing Softly in Upper-Middle Area */
+.artwork-crescent-moon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: moon-float 4s ease-in-out infinite alternate;
+}
+
+@keyframes moon-float {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-4px); }
+}
+
+/* Content Grid Layout (Balanced 2 Columns) */
+.footer-content-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 4rem;
+  align-items: start;
+  margin-bottom: 3.5rem;
+}
+
+/* Side-by-Side Links Group (Quick Links + Explore in 1 Line) */
+.footer-nav-group {
+  display: flex;
+  flex-direction: row;
+  gap: 3rem;
+  width: 100%;
+}
+
+.footer-nav-group .nav-col {
+  flex: 1;
 }
 
 .footer-col {
@@ -66,325 +188,208 @@
   flex-direction: column;
 }
 
-/* Brand Column */
-.brand-col {
-  align-items: flex-start;
-  gap: 1.5rem;
-}
-
-.footer-logo-block {
-  display: flex;
-  align-items: center;
-  gap: 0.8rem;
+.footer-col-title {
+  font-size: 1.15rem;
+  font-weight: 700;
   color: #ffffff;
+  margin: 0 0 1.4rem 0;
+  letter-spacing: 0.2px;
 }
 
-.footer-logo-icon {
-  width: 42px;
-  height: 42px;
-  stroke: #ffffff;
-}
-
-.footer-logo-text {
-  display: flex;
-  flex-direction: column;
-  line-height: 1;
-}
-
-.footer-logo-text .logo-bold {
-  font-family: var(--font-body);
-  font-weight: 800;
-  font-size: 1.5rem;
-  letter-spacing: -0.5px;
-}
-
-.footer-logo-text .logo-light {
-  font-family: var(--font-body);
-  font-weight: 300;
-  font-size: 1.25rem;
-  opacity: 0.85;
-}
-
-.footer-divider-line {
-  width: 100%;
-  max-width: 180px;
-  height: 1px;
-  background-color: rgba(255, 255, 255, 0.15);
-}
-
-.social-links {
-  display: flex;
-  gap: 1.2rem;
-}
-
-.social-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background-color: rgba(255, 255, 255, 0.08);
-  transition: var(--transition-smooth);
-}
-
-.social-btn svg {
-  width: 18px;
-  height: 18px;
-  fill: #ffffff;
-  transition: var(--transition-smooth);
-}
-
-.social-btn:hover {
-  background-color: #ffffff;
-}
-
-.social-btn:hover svg {
-  fill: var(--color-blue);
-}
-
-/* Link Columns */
-.link-col {
-  padding-top: 1rem;
-}
-
-.footer-links {
+/* Nav Lists */
+.footer-nav-list {
   list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 1.1rem;
-}
-
-.footer-links a {
-  color: rgba(255, 255, 255, 0.8);
-  text-decoration: none;
-  font-size: 0.95rem;
-  font-weight: 500;
-  transition: var(--transition-smooth);
-}
-
-.footer-links a:hover {
-  color: #ffffff;
-  padding-left: 0;
-  transform: translateX(4px);
-}
-
-/* Newsletter Column */
-.newsletter-col {
-  gap: 1.5rem;
-}
-
-.newsletter-title {
-  font-size: 1.25rem;
-  font-weight: 600;
-  color: #ffffff;
-}
-
-.newsletter-form-modern {
+  padding: 0;
+  margin: 0;
   display: flex;
   flex-direction: column;
   gap: 1rem;
+}
+
+.footer-nav-list a {
+  color: rgba(255, 255, 255, 0.88);
+  text-decoration: none;
+  font-size: 0.96rem;
+  font-weight: 500;
+  transition: all 0.25s ease;
+  display: inline-block;
+}
+
+.footer-nav-list a:hover {
+  color: #ffffff;
+  transform: translateX(5px);
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
+}
+
+/* Newsletter Column */
+.newsletter-purple-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
   width: 100%;
 }
 
-.newsletter-input-group {
+.purple-input-wrap {
   position: relative;
   width: 100%;
 }
 
-.newsletter-field {
+.purple-field {
   width: 100%;
-  padding: 0.85rem 1.2rem;
-  background-color: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 30px; /* Rounded pill style */
+  padding: 0.9rem 1.4rem;
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 30px;
   color: #ffffff;
-  font-family: var(--font-body);
+  font-family: inherit;
   font-size: 0.95rem;
   outline: none;
-  transition: var(--transition-smooth);
+  box-sizing: border-box;
+  transition: all 0.25s ease;
 }
 
-.newsletter-field::placeholder {
-  color: rgba(255, 255, 255, 0.6);
+.purple-field::placeholder {
+  color: rgba(255, 255, 255, 0.65);
 }
 
-.newsletter-field:focus {
-  border-color: rgba(255, 255, 255, 0.5);
-  background-color: rgba(255, 255, 255, 0.12);
+.purple-field:focus {
+  border-color: rgba(255, 255, 255, 0.75);
+  background: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
 }
 
-/* Phone input group with flag drop down */
-.phone-group {
-  display: flex;
-  align-items: center;
-}
-
-.flag-select {
-  position: absolute;
-  left: 1rem;
-  display: flex;
-  align-items: center;
-  gap: 0.3rem;
-  color: rgba(255, 255, 255, 0.85);
-  font-size: 0.95rem;
-  pointer-events: none;
-  z-index: 2;
-}
-
-.flag-select .arrow-down {
-  font-size: 0.65rem;
-  opacity: 0.7;
-}
-
-.phone-field {
-  padding-left: 4.2rem; /* Make room for the flag dropdown */
-}
-
-/* Email & Submit Row */
-.newsletter-row-submit {
-  display: flex;
-  background-color: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.15);
+.btn-purple-subscribe {
+  width: 100%;
+  padding: 0.9rem;
+  background: #ffffff;
+  color: #1800AC;
+  border: none;
   border-radius: 30px;
-  overflow: hidden;
-  padding: 3px;
-  transition: var(--transition-smooth);
-}
-
-.newsletter-row-submit:focus-within {
-  border-color: rgba(255, 255, 255, 0.5);
-  background-color: rgba(255, 255, 255, 0.12);
-}
-
-.email-field {
-  background: transparent;
-  border: none;
-  padding: 0.7rem 1rem;
-  flex-grow: 1;
-}
-
-.email-field:focus {
-  background: transparent;
-}
-
-.btn-newsletter-submit {
-  padding: 0.7rem 1.8rem;
-  background-color: #ffffff;
-  color: var(--color-blue);
-  border: none;
-  border-radius: 25px;
-  font-weight: 600;
-  font-size: 0.95rem;
+  font-weight: 700;
+  font-size: 0.98rem;
   cursor: pointer;
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  transition: var(--transition-smooth);
+  justify-content: center;
+  gap: 0.6rem;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
 }
 
-.btn-newsletter-submit:hover {
-  background-color: var(--color-sand);
-  transform: translateX(2px);
+.btn-purple-subscribe:hover {
+  background: #f3f0ff;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(255, 255, 255, 0.3);
 }
 
-.btn-arrow {
-  font-size: 0.85rem;
+.arrow-icon {
+  font-size: 0.9rem;
+  transition: transform 0.25s ease;
 }
 
-/* Footer Bottom Disclaimer */
-.footer-bottom {
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
-  padding-top: 2.5rem;
-  text-align: center;
-  font-size: 0.85rem;
-  color: rgba(255, 255, 255, 0.6);
-  width: 100%;
-  max-width: var(--container-width);
-  margin: 0 auto;
+.btn-purple-subscribe:hover .arrow-icon {
+  transform: translateX(4px);
+}
+
+/* Social Sub-Block Under Newsletter */
+.social-subblock {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px dashed rgba(255, 255, 255, 0.18);
+}
+
+.social-title-under {
+  font-size: 1.05rem;
+  margin-bottom: 1rem;
+}
+
+.social-buttons-row {
   display: flex;
-  flex-direction: column;
-  gap: 1.2rem;
+  gap: 0.9rem;
 }
 
-.footer-disclaimer {
-  max-width: 900px;
-  margin: 0 auto;
-  line-height: 1.6;
+.social-pill-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.14);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.social-pill-btn svg {
+  width: 19px;
+  height: 19px;
+  fill: #ffffff;
+  transition: transform 0.25s ease;
+}
+
+.social-pill-btn:hover {
+  background: #ffffff;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+}
+
+.social-pill-btn:hover svg {
+  fill: #1800AC;
+  transform: scale(1.1);
+}
+
+/* Bottom Bar */
+.footer-bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  padding-top: 2rem;
+  text-align: center;
+}
+
+.copyright-text {
+  font-size: 0.88rem;
+  color: rgba(255, 255, 255, 0.65);
+  margin: 0;
 }
 
 /* Responsiveness */
-@media (max-width: 992px) {
-  .footer {
-    padding: 3rem 1.5rem 1.5rem;
-  }
-
-  .footer-wave-container {
-    height: 70px;
-  }
-
-  .footer-grid {
-    grid-template-columns: 1fr 1fr;
-    gap: 3rem;
-  }
-
-  .brand-col {
-    grid-column: span 2;
-    align-items: center;
-  }
-
-  .footer-divider-line {
-    max-width: 100%;
-  }
-
-  .newsletter-col {
-    grid-column: span 2;
+@media (max-width: 840px) {
+  .footer-content-grid {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
   }
 }
 
-@media (max-width: 576px) {
-  .footer-wave-container {
-    height: 50px;
+@media (max-width: 600px) {
+  .footer {
+    padding: 0 1.25rem 2rem 1.25rem;
   }
 
-  .footer-grid {
-    grid-template-columns: 1fr;
-    gap: 2rem;
+  .footer-container {
+    padding-top: 3.5rem;
   }
 
-  .brand-col {
-    grid-column: span 1;
+  .artwork-title {
+    font-size: 1.65rem;
   }
 
-  .newsletter-col {
-    grid-column: span 1;
+  .artwork-tagline {
+    font-size: 0.75rem;
+    letter-spacing: 3px;
   }
 
-  .link-col {
-    padding-top: 0.5rem;
-    align-items: center;
-    text-align: center;
+  .artwork-divider-line {
+    max-width: 280px;
   }
 
-  .newsletter-row-submit {
-    flex-direction: column;
-    background: transparent;
-    border: none;
-    padding: 0;
-    gap: 0.8rem;
-    border-radius: 0;
+  .footer-nav-group {
+    gap: 1.5rem;
   }
 
-  .email-field {
-    background-color: rgba(255, 255, 255, 0.08);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    border-radius: 30px;
-    padding: 0.85rem 1.2rem;
-  }
-
-  .btn-newsletter-submit {
-    width: 100%;
-    justify-content: center;
-    padding: 0.85rem;
+  .social-subblock {
+    margin-top: 1.6rem;
+    padding-top: 1.2rem;
   }
 }

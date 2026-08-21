@@ -24,8 +24,6 @@ const Workshops = lazy(() => import('./components/Workshops/Workshops'));
 const DailyYogaTogether = lazy(() => import('./components/DailyYogaTogether/DailyYogaTogether'));
 const BlogSection = lazy(() => import('./components/BlogSection/BlogSection'));
 const ScienceBackedBenefits = lazy(() => import('./components/ScienceBackedBenefits/ScienceBackedBenefits'));
-const HealthScore = lazy(() => import('./components/HealthScore/HealthScore'));
-const FAQ = lazy(() => import('./components/FAQ/FAQ'));
 const RunningTicker = lazy(() => import('./components/RunningTicker/RunningTicker'));
 
 // Lazy load full page views
@@ -167,8 +165,6 @@ function AppContent() {
           <Suspense fallback={<Loader />}><Internship /></Suspense>
         ) : view === 'workshops' ? (
           <Suspense fallback={<Loader />}><Workshops isStandalone={true} /></Suspense>
-        ) : view === 'health-score' ? (
-          <Suspense fallback={<Loader />}><HealthScore isStandalone={true} /></Suspense>
         ) : view === 'orders' ? (
           <Suspense fallback={<Loader />}><OrdersPage /></Suspense>
         ) : view === 'register-free' ? (
@@ -192,8 +188,6 @@ function AppContent() {
             <Suspense fallback={null}><RunningTicker /></Suspense>
             <Suspense fallback={null}><BlogSection /></Suspense>
             <Suspense fallback={null}><ScienceBackedBenefits /></Suspense>
-            <Suspense fallback={null}><HealthScore /></Suspense>
-            <Suspense fallback={null}><FAQ /></Suspense>
           </>
         )}
       </main>
