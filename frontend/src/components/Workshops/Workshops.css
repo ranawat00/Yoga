@@ -1,6 +1,6 @@
 /* Workshops Section */
 .workshops {
-  background-color: var(--color-sand);
+  background-color: #FAF6EE;
   padding: 5rem 2rem;
 }
 
@@ -40,7 +40,8 @@
 }
 
 .workshops .section-title::after {
-  display: none !important; /* Hide underline from App.css global section-title */
+  display: none !important;
+  /* Hide underline from App.css global section-title */
 }
 
 .workshops .section-subtitle {
@@ -75,11 +76,13 @@
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
   padding: 0.5rem 0.5rem 1.5rem;
-  scrollbar-width: none; /* Hide scrollbar for Firefox */
+  scrollbar-width: none;
+  /* Hide scrollbar for Firefox */
 }
 
 .workshops-list::-webkit-scrollbar {
-  display: none; /* Hide scrollbar for Chrome/Safari/Opera */
+  display: none;
+  /* Hide scrollbar for Chrome/Safari/Opera */
 }
 
 /* Slider Arrow Navigation Buttons */
@@ -139,17 +142,20 @@
   content: '';
   position: absolute;
   inset: 0;
-  border-radius: inherit; /* Inherits the card's border-radius dynamically */
-  padding: 3px; /* Balanced border thickness on desktop */
+  border-radius: inherit;
+  /* Inherits the card's border-radius dynamically */
+  padding: 3px;
+  /* Balanced border thickness on desktop */
   background: linear-gradient(90deg, #748B6F, #0da106, #5e17eb, #ff7a00, #748B6F);
   background-size: 300% 300%;
-  -webkit-mask: 
-     linear-gradient(#fff 0 0) content-box, 
-     linear-gradient(#fff 0 0);
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
-          mask-composite: exclude;
+  mask-composite: exclude;
   pointer-events: none;
-  opacity: 0.85; /* Highly visible continuously running border */
+  opacity: 0.85;
+  /* Highly visible continuously running border */
   transition: opacity 0.3s ease;
   animation: borderGlowFlow 4s linear infinite;
 }
@@ -160,17 +166,21 @@
 }
 
 .workshop-card-horizontal:hover::after {
-  opacity: 1; /* Brighten on hover */
-  animation: borderGlowFlow 2s linear infinite; /* Speed up on hover */
+  opacity: 1;
+  /* Brighten on hover */
+  animation: borderGlowFlow 2s linear infinite;
+  /* Speed up on hover */
 }
 
 @keyframes borderGlowFlow {
   0% {
     background-position: 0% 50%;
   }
+
   50% {
     background-position: 100% 50%;
   }
+
   100% {
     background-position: 0% 50%;
   }
@@ -346,16 +356,20 @@
   0% {
     background-position: 0% 50%;
   }
+
   100% {
     background-position: 300% 50%;
   }
 }
 
 @keyframes registerBtnPulse {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: scale(1);
     box-shadow: 0 4px 15px rgba(116, 139, 111, 0.25);
   }
+
   50% {
     transform: scale(1.03);
     box-shadow: 0 6px 20px rgba(116, 139, 111, 0.45);
@@ -425,7 +439,8 @@
   }
 
   .workshop-card-horizontal::after {
-    padding: 2px; /* Thinner border for mobile and tablet views */
+    padding: 2px;
+    /* Thinner border for mobile and tablet views */
   }
 
   .workshop-card-horizontal:hover {
@@ -442,7 +457,8 @@
 
   .workshop-img-container {
     height: auto;
-    aspect-ratio: 1.25 / 1; /* Restore natural aspect ratio so text is not cut */
+    aspect-ratio: 1.25 / 1;
+    /* Restore natural aspect ratio so text is not cut */
   }
 
   .workshop-content-horizontal {
@@ -509,7 +525,8 @@
 
   .workshop-img-container {
     height: auto;
-    aspect-ratio: 1.25 / 1; /* Restore natural aspect ratio so text is not cut */
+    aspect-ratio: 1.25 / 1;
+    /* Restore natural aspect ratio so text is not cut */
   }
 
   .workshop-content-horizontal {
@@ -669,8 +686,13 @@
 
 /* Spinner Animation */
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 /* Responsive Overrides for Reviews Layout */
@@ -679,13 +701,12 @@
     flex-direction: column;
     gap: 1.75rem;
   }
-  
+
   .reviews-scroller {
     max-height: 280px;
   }
-  
+
   .reviews-form-container {
     padding: 1rem;
   }
 }
-
