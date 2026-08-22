@@ -2,7 +2,7 @@
 .daily-yoga-together-section {
   position: relative;
   width: 100%;
-  padding: 3.5rem 1.5rem;
+  padding: 3.5rem 1.5rem 0.5rem 1.5rem;
   background-color: #ffffff;
   display: flex;
   justify-content: center;
@@ -163,7 +163,7 @@
 
 @media (max-width: 992px) {
   .daily-yoga-together-section {
-    padding: 3.5rem 1.5rem;
+    padding: 3rem 1.5rem 0.5rem 1.5rem;
   }
 
   .daily-yoga-together-container {
@@ -191,7 +191,7 @@
 
 @media (max-width: 768px) {
   .daily-yoga-together-section {
-    padding: 3rem 1.25rem;
+    padding: 2.5rem 1.25rem 0.4rem 1.25rem;
   }
 
   .daily-yoga-together-container {
@@ -224,7 +224,7 @@
 
 @media (max-width: 480px) {
   .daily-yoga-together-section {
-    padding: 2.5rem 1rem;
+    padding: 2rem 1rem 0.3rem 1rem;
   }
 
   .daily-yoga-together-container {

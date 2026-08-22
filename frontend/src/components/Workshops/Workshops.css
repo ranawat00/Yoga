@@ -134,42 +134,17 @@
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
   transition: var(--transition-smooth);
   overflow: hidden;
-  border: 1px solid transparent;
+  border: 1px solid rgba(0, 0, 0, 0.09);
 }
 
-/* Animated Border - Continuously Running */
+/* Plain border styling */
 .workshop-card-horizontal::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  /* Inherits the card's border-radius dynamically */
-  padding: 3px;
-  /* Balanced border thickness on desktop */
-  background: linear-gradient(90deg, #748B6F, #0da106, #5e17eb, #ff7a00, #748B6F);
-  background-size: 300% 300%;
-  -webkit-mask:
-    linear-gradient(#fff 0 0) content-box,
-    linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  pointer-events: none;
-  opacity: 0.85;
-  /* Highly visible continuously running border */
-  transition: opacity 0.3s ease;
-  animation: borderGlowFlow 4s linear infinite;
+  content: none;
 }
 
 .workshop-card-horizontal:hover {
   transform: translateY(-6px);
-  box-shadow: 0 15px 35px rgba(116, 139, 111, 0.2);
-}
-
-.workshop-card-horizontal:hover::after {
-  opacity: 1;
-  /* Brighten on hover */
-  animation: borderGlowFlow 2s linear infinite;
-  /* Speed up on hover */
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
 }
 
 @keyframes borderGlowFlow {

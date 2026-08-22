@@ -116,37 +116,17 @@
   transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.3s ease;
   display: flex;
   flex-direction: column;
-  border: 1px solid transparent;
+  border: 1px solid rgba(0, 0, 0, 0.09);
 }
 
-/* Animated Border - Continuously Running */
+/* Plain border styling */
 .home-blog-card::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  padding: 3px;
-  background: linear-gradient(90deg, #748B6F, #0da106, #5e17eb, #ff7a00, #748B6F);
-  background-size: 300% 300%;
-  -webkit-mask:
-    linear-gradient(#fff 0 0) content-box,
-    linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  pointer-events: none;
-  opacity: 0.85;
-  transition: opacity 0.3s ease;
-  animation: borderGlowFlow 4s linear infinite;
+  content: none;
 }
 
 .home-blog-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 16px 36px rgba(0, 0, 0, 0.13);
-}
-
-.home-blog-card:hover::after {
-  opacity: 1;
-  animation: borderGlowFlow 2s linear infinite;
 }
 
 @keyframes borderGlowFlow {
