@@ -8,24 +8,16 @@ export default function DailyYogaBanner() {
 
   return (
     <section className="daily-yoga-section">
-      {/* SVG Wave Divider */}
-      <div className="daily-yoga-wave-divider">
-        <svg viewBox="0 0 1200 120" preserveAspectRatio="none" className="wave-svg">
-          <path d="M0,40 C200,40 350,90 500,80 C650,70 850,25 1000,35 C1100,42 1150,52 1200,60 L1200,120 L0,120 Z" fill="currentColor" />
-        </svg>
-      </div>
-
       <div className="daily-yoga-container">
-        {/* Left Side: Text Content */}
-        <div className="daily-yoga-left-content">
-          <h2 className="top-banner-title">Step into a Better Tomorrow, Starting Today</h2>
+        {/* Top Header Content */}
+        <div className="daily-yoga-header-content">
           <div className="top-banner-sub">Breath — Science — Awakening</div>
           <p className="top-banner-desc">
-            Master your potential. From raising your consciousness and climbing the professional ladder to making powerful relationships and increasing your well being, your path to holistic growth begins now. Define your goals, and let us help you become an even better version of yourself
+            Master your potential. From raising your consciousness and climbing the professional ladder to making powerful relationships and increasing your well being, your path to holistic growth begins now.
           </p>
         </div>
 
-        {/* Right Side: Image Banner Card */}
+        {/* Right Side / Middle: Image Banner Card */}
         <div className="daily-yoga-right-banner">
           <div className="daily-yoga-card">
             <div className="daily-yoga-image-wrapper">
@@ -35,20 +27,24 @@ export default function DailyYogaBanner() {
                 className="daily-yoga-img"
               />
 
-              {/* Register for Free Pill Button Overlay on Image */}
+              {/* Register Now Pill Button Overlay on Image */}
               <div className="daily-yoga-overlay-content">
                 <button className="btn-register-free" onClick={() => setView('register-free')}>
-                  <span className="btn-text">Register for Free</span>
                   <span className="btn-arrow-circle">
-                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#FFFFFF" strokeWidth="2.8" strokeLinecap="round" strokeLinejoin="round">
-                      <polyline points="7 17 12 12 7 7" />
-                      <polyline points="13 17 18 12 13 7" />
+                    <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#FFFFFF" strokeWidth="3.2" strokeLinecap="round" strokeLinejoin="round">
+                      <polyline points="9 18 15 12 9 6" />
                     </svg>
                   </span>
+                  <span className="btn-text">REGISTER NOW</span>
                 </button>
               </div>
             </div>
           </div>
+        </div>
+
+        {/* Tagline directly below banner */}
+        <div className="daily-yoga-bottom-tagline">
+          One decision - Five days - Life long clarity
         </div>
       </div>
     </section>

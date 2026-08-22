@@ -2,77 +2,52 @@
    Daily Yoga Banner Section
 ═══════════════════════════════════════════════════════════ */
 .daily-yoga-section {
-  padding: 5rem 2rem;
+  padding: 4rem 1.5rem;
   background-color: #ffffff;
   width: 100%;
 }
 
 .daily-yoga-container {
   width: 100%;
-  max-width: var(--container-width);
+  max-width: 860px;
   margin: 0 auto;
-  display: grid;
-  grid-template-columns: 1.05fr 0.95fr;
-  align-items: center;
-  gap: 4.5rem;
-}
-
-/* Left Part: Text Content */
-.daily-yoga-left-content {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  text-align: left;
+  align-items: center;
+  text-align: center;
+  gap: 1.75rem;
 }
 
-.top-banner-title {
-  font-family: var(--font-heading);
-  color: #333333;
-  font-size: clamp(1.15rem, 5vw, 1.7rem);
-  font-weight: 800;
-  line-height: 1.25;
-  margin-bottom: 1.25rem;
-  letter-spacing: -0.5px;
+/* Top Header Content */
+.daily-yoga-header-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  max-width: 760px;
 }
 
 .top-banner-sub {
-  font-family: var(--font-body);
-  color: #5C7257;
-  font-size: 1.05rem;
+  font-family: var(--font-body, 'Plus Jakarta Sans', sans-serif);
+  color: #777777;
+  font-size: clamp(0.85rem, 2vw, 1.05rem);
   font-weight: 600;
-  letter-spacing: 0.15em;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
-  margin-bottom: 1.25rem;
-  animation: sub-breath 6s ease-in-out infinite;
+  margin-bottom: 0.85rem;
   display: inline-block;
-  transform-origin: center;
-}
-
-@keyframes sub-breath {
-
-  0%,
-  100% {
-    opacity: 0.85;
-    transform: scale(1);
-    letter-spacing: 0.15em;
-  }
-
-  50% {
-    opacity: 1;
-    transform: scale(1.03);
-    letter-spacing: 0.18em;
-  }
 }
 
 .top-banner-desc {
-  font-family: var(--font-body);
-  color: #3A3B3B;
-  font-size: 1.05rem;
-  line-height: 1.75;
+  font-family: var(--font-body, 'Plus Jakarta Sans', sans-serif);
+  color: #4b5563;
+  font-size: clamp(0.95rem, 1.8vw, 1.1rem);
+  line-height: 1.7;
   margin: 0;
+  text-align: center;
 }
 
-/* Right Part: Image Banner Card container */
+/* Middle: Image Banner Card container */
 .daily-yoga-right-banner {
   width: 100%;
   display: flex;
@@ -82,17 +57,17 @@
 /* Card containing the complete uncropped image */
 .daily-yoga-card {
   width: 100%;
-  max-width: 580px;
-  border-radius: var(--border-radius-lg);
+  max-width: 760px;
+  border-radius: 24px;
   box-shadow: 0 16px 48px rgba(0, 0, 0, 0.12);
   position: relative;
   overflow: hidden;
-  transition: var(--transition-smooth);
+  transition: var(--transition-smooth, all 0.3s ease);
 }
 
 .daily-yoga-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 22px 56px rgba(0, 0, 0, 0.18);
+  transform: translateY(-3px);
+  box-shadow: 0 22px 56px rgba(0, 0, 0, 0.16);
 }
 
 .daily-yoga-image-wrapper {
@@ -105,11 +80,7 @@
   width: 100%;
   height: auto;
   display: block;
-  transition: var(--transition-smooth);
-}
-
-.daily-yoga-card:hover .daily-yoga-img {
-  transform: scale(1.01);
+  transition: var(--transition-smooth, all 0.3s ease);
 }
 
 /* Overlay Container on top of Banner Image */
@@ -123,58 +94,92 @@
   z-index: 2;
 }
 
-/* Register for Free Pill Button - Scaled & Animated with Liquid Gradient Flow & Periodic Shake */
+/* Register Now Pill Button - Decorated Luxury UI */
 .btn-register-free {
   position: absolute;
   bottom: 36%;
   left: 8%;
   pointer-events: auto;
-  background: #ffffff;
-  color: #1e3d23;
+  background: linear-gradient(135deg, #b2d4af 0%, #c8e4c5 25%, #dcefd9 50%, #edf6eb 75%, #f6faf5 100%) !important;
+  background-size: 200% 200% !important;
+  color: #1b3819 !important;
   border-radius: 50px;
-  padding: 0.2rem 0.35rem 0.2rem 1.25rem;
+  padding: 0.35rem 1.35rem 0.35rem 0.4rem;
   font-size: 0.88rem;
   font-weight: 800;
+  letter-spacing: 0.06em;
   display: inline-flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 0.8rem;
-  min-width: 200px;
-  max-width: 260px;
-  border: 1.5px solid rgba(255, 255, 255, 0.9);
+  justify-content: flex-start;
+  gap: 0.75rem;
+  min-width: 195px;
+  max-width: 255px;
+  border: 1.5px solid rgba(255, 255, 255, 0.95);
   cursor: pointer;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.22);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  animation: bannerPeriodicShake 4s ease-in-out infinite !important;
-  font-family: var(--font-body);
+  box-shadow: 0 0 22px rgba(92, 123, 87, 0.35), 0 8px 24px rgba(27, 56, 25, 0.22);
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  animation: bannerLiquidGradient 5s ease infinite, bannerPeriodicShake 4s ease-in-out infinite !important;
+  font-family: var(--font-body, 'Plus Jakarta Sans', sans-serif);
   z-index: 5;
+  overflow: hidden;
+}
+
+/* Diagonal Shimmer Beam Reflection */
+.btn-register-free::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -75%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.5),
+    transparent
+  );
+  transform: skewX(-20deg);
+  animation: btnShimmer 3.5s infinite;
+  pointer-events: none;
+}
+
+@keyframes btnShimmer {
+  0% {
+    left: -75%;
+  }
+  25%, 100% {
+    left: 125%;
+  }
 }
 
 .btn-register-free:hover,
 .btn-register-free:focus,
 .btn-register-free:active {
-  background: linear-gradient(135deg, #ffeb3b 0%, #748B6f 25%, #4caf50 50%, #ffaa2b 75%, #ffeb3b 100%);
-  background-size: 300% 300%;
-  animation: bannerLiquidGradient 5s ease infinite, bannerPeriodicShake 4s ease-in-out infinite !important;
-  color: #0d2810;
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.32);
+  background: linear-gradient(135deg, #a1c99e 0%, #b9dcb6 25%, #d2e7cf 50%, #e5f3e3 75%, #f4fbf3 100%) !important;
+  background-size: 200% 200% !important;
+  animation: bannerLiquidGradient 2.5s ease infinite, bannerPeriodicShake 4s ease-in-out infinite !important;
+  color: #0c210a !important;
+  transform: translateY(-2px);
+  box-shadow: 0 0 30px rgba(92, 123, 87, 0.5), 0 14px 34px rgba(27, 56, 25, 0.35);
 }
 
 .btn-arrow-circle {
-  width: 26px;
-  height: 26px;
+  width: 28px;
+  height: 28px;
   border-radius: 50%;
-  background-color: #6B8E67;
+  background: linear-gradient(135deg, #5c7b57 0%, #466442 100%);
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  transition: transform 0.3s ease, background-color 0.3s ease;
+  transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 3px 10px rgba(40, 70, 40, 0.35), inset 0 1px 1px rgba(255, 255, 255, 0.4);
 }
 
 .btn-register-free:hover .btn-arrow-circle {
-  background-color: #1e3d23;
-  transform: translateX(3px);
+  background: linear-gradient(135deg, #466442 0%, #365032 100%);
+  transform: scale(1.1) translateX(2px);
+  box-shadow: 0 4px 14px rgba(40, 70, 40, 0.5);
 }
 
 @keyframes bannerLiquidGradient {
@@ -220,8 +225,19 @@
   }
 }
 
-.daily-yoga-wave-divider {
-  display: none;
+
+
+
+
+/* Tagline text below banner card */
+.daily-yoga-bottom-tagline {
+  font-family: var(--font-body, 'Plus Jakarta Sans', sans-serif);
+  color: #4b5563;
+  font-size: clamp(0.9rem, 1.8vw, 1.05rem);
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  margin-top: 0.25rem;
+  text-align: center;
 }
 
 /* ═══════════════════════════════════════════════════════════
@@ -229,25 +245,7 @@
 ═══════════════════════════════════════════════════════════ */
 @media (max-width: 992px) {
   .daily-yoga-section {
-    padding: 3.5rem 1.5rem 4rem 1.5rem;
-  }
-
-  .daily-yoga-container {
-    grid-template-columns: 1fr;
-    gap: 3.5rem;
-  }
-
-  .daily-yoga-left-content {
-    align-items: center;
-    text-align: center;
-  }
-
-  .top-banner-title {
-    font-size: clamp(1.15rem, 5vw, 1.7rem);
-  }
-
-  .daily-yoga-card {
-    max-width: 720px;
+    padding: 3rem 1.25rem;
   }
 
   .btn-register-free {
@@ -267,27 +265,7 @@
 
 @media (max-width: 768px) {
   .daily-yoga-section {
-    padding: 2.5rem 1rem 3rem 1rem;
-  }
-
-  .daily-yoga-container {
-    gap: 2.5rem;
-  }
-
-  .top-banner-title {
-    font-size: clamp(1.15rem, 5vw, 1.7rem);
-    margin-bottom: 0.8rem;
-  }
-
-  .top-banner-sub {
-    font-size: 0.88rem;
-    letter-spacing: 0.1em;
-    margin-bottom: 0.8rem;
-  }
-
-  .top-banner-desc {
-    font-size: 0.95rem;
-    line-height: 1.6;
+    padding: 2.25rem 1rem;
   }
 
   .btn-register-free {

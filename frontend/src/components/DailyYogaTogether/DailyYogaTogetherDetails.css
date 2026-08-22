@@ -158,24 +158,25 @@
 .hero-sage-register-btn {
   display: inline-flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 1.2rem;
+  justify-content: flex-start;
+  gap: 0.75rem;
   width: auto;
-  min-width: 240px;
-  max-width: 320px;
-  background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 25%, #7dd3fc 50%, #38bdf8 75%, #bae6fd 100%) !important;
-  background-size: 300% 300% !important;
-  color: #0369a1 !important;
+  min-width: 195px;
+  max-width: 255px;
+  background: linear-gradient(135deg, #b2d4af 0%, #c8e4c5 25%, #dcefd9 50%, #edf6eb 75%, #f6faf5 100%) !important;
+  background-size: 200% 200% !important;
+  color: #1b3819 !important;
   border: 1.5px solid rgba(255, 255, 255, 0.95);
   border-radius: 50px;
-  padding: 0.35rem 0.45rem 0.35rem 1.6rem;
+  padding: 0.35rem 1.35rem 0.35rem 0.4rem;
   font-family: var(--font-body, 'Plus Jakarta Sans', sans-serif);
-  font-size: 1.05rem;
+  font-size: 0.88rem;
   font-weight: 800;
+  letter-spacing: 0.06em;
   cursor: pointer;
-  box-shadow: 0 6px 18px rgba(3, 105, 161, 0.22);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  animation: heroPeriodicShake 4s ease-in-out infinite, heroLiquidGradient 6s ease infinite !important;
+  box-shadow: 0 0 22px rgba(92, 123, 87, 0.35), 0 8px 24px rgba(27, 56, 25, 0.22);
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  animation: bannerLiquidGradient 5s ease infinite, bannerPeriodicShake 4s ease-in-out infinite !important;
   position: relative;
   overflow: hidden;
   opacity: 1 !important;
@@ -184,42 +185,38 @@
 .hero-sage-register-btn:hover,
 .hero-sage-register-btn:focus,
 .hero-sage-register-btn:active {
-  background: linear-gradient(135deg, #bae6fd 0%, #7dd3fc 25%, #38bdf8 50%, #0284c7 75%, #bae6fd 100%) !important;
-  background-size: 300% 300% !important;
-  animation: heroLiquidGradient 3s ease infinite, heroPeriodicShake 4s ease-in-out infinite !important;
-  color: #0c4a6e !important;
-  box-shadow: 0 10px 28px rgba(2, 132, 199, 0.45);
+  background: linear-gradient(135deg, #a1c99e 0%, #b9dcb6 25%, #d2e7cf 50%, #e5f3e3 75%, #f4fbf3 100%) !important;
+  background-size: 200% 200% !important;
+  animation: bannerLiquidGradient 2.5s ease infinite, bannerPeriodicShake 4s ease-in-out infinite !important;
+  color: #0c210a !important;
+  transform: translateY(-2px);
+  box-shadow: 0 0 30px rgba(92, 123, 87, 0.5), 0 14px 34px rgba(27, 56, 25, 0.35);
 }
 
 .hero-sage-arrow-circle {
-  width: 30px;
-  height: 30px;
+  width: 28px;
+  height: 28px;
   border-radius: 50%;
-  background-color: #0284c7;
+  background: linear-gradient(135deg, #5c7b57 0%, #466442 100%);
   color: #ffffff;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: transform 0.2s ease, background-color 0.2s ease;
-  box-shadow: 0 2px 6px rgba(2, 132, 199, 0.2);
   flex-shrink: 0;
-}
-
-.hero-sage-arrow-circle svg {
-  width: 17px;
-  height: 17px;
+  transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 3px 10px rgba(40, 70, 40, 0.35), inset 0 1px 1px rgba(255, 255, 255, 0.4);
 }
 
 .hero-sage-register-btn:hover .hero-sage-arrow-circle {
-  transform: translateX(3px);
-  background-color: #0369a1;
+  background: linear-gradient(135deg, #466442 0%, #365032 100%);
+  transform: scale(1.1) translateX(2px);
   color: #ffffff;
 }
 
 /* Positioned on Hero Banner Overlay — PROMINENT LARGE SIZE */
 .daily-yoga-details-hero-overlay .hero-sage-register-btn {
   position: absolute;
-  top: 29%;
+  top: 36%;
   left: 50%;
   transform: translate(-50%, -50%);
   pointer-events: auto;
@@ -250,7 +247,7 @@
 /* Responsiveness for Hero Overlay Button */
 @media (max-width: 1200px) {
   .daily-yoga-details-hero-overlay .hero-sage-register-btn {
-    top: 29%;
+    top: 36%;
     min-width: 290px;
     font-size: 1.15rem;
     padding: 0.5rem 0.6rem 0.5rem 2rem;
@@ -270,7 +267,7 @@
 
 @media (max-width: 992px) {
   .daily-yoga-details-hero-overlay .hero-sage-register-btn {
-    top: 29%;
+    top: 36%;
     min-width: 250px;
     font-size: 1.0rem;
     padding: 0.42rem 0.5rem 0.42rem 1.6rem;
@@ -290,7 +287,7 @@
 
 @media (max-width: 768px) {
   .daily-yoga-details-hero-overlay .hero-sage-register-btn {
-    top: 29%;
+    top: 36%;
     min-width: 210px;
     font-size: 0.88rem;
     padding: 0.35rem 0.42rem 0.35rem 1.3rem;
@@ -310,7 +307,7 @@
 
 @media (max-width: 480px) {
   .daily-yoga-details-hero-overlay .hero-sage-register-btn {
-    top: 29%;
+    top: 36%;
     min-width: 175px;
     font-size: 0.75rem;
     padding: 0.28rem 0.35rem 0.28rem 1rem;

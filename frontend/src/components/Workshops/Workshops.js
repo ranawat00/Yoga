@@ -365,7 +365,6 @@ export default function Workshops({ isStandalone = false }) {
               Back to Home
             </button>
           )}
-          <p className="section-pretitle">One decision - Three days - Life long clarity</p>
           <h2 className="section-title">Upcoming Workshops</h2>
           <p className="section-subtitle">
             Learn and grow from anywhere—attend our online workshop right from the comfort of your home
@@ -421,7 +420,7 @@ export default function Workshops({ isStandalone = false }) {
                       </div>
                     </div>
 
-                    <p 
+                    <p
                       className={`workshop-desc-horizontal ${expandedWorkshops[w.id] ? 'is-expanded' : ''}`}
                       onClick={() => toggleDescription(w.id)}
                       style={{ cursor: 'pointer' }}

@@ -248,13 +248,12 @@ export default function DailyYogaTogetherDetails() {
                 onClick={handleOpenModal}
                 aria-label="Register Now"
               >
-                <span>REGISTER NOW</span>
                 <span className="hero-sage-arrow-circle">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-                    <line x1="5" y1="12" x2="19" y2="12"></line>
-                    <polyline points="12 5 19 12 12 19"></polyline>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" strokeWidth="3.2" strokeLinecap="round" strokeLinejoin="round">
+                    <polyline points="9 18 15 12 9 6" />
                   </svg>
                 </span>
+                <span>REGISTER NOW</span>
               </button>
             </div>
           </div>
@@ -327,13 +326,12 @@ export default function DailyYogaTogetherDetails() {
               <p className="cta-description">Take the first step towards a healthier, balanced you</p>
             </div>
             <button className="hero-sage-register-btn" onClick={handleOpenModal} aria-label="Register Now">
-              <span>REGISTER NOW</span>
               <span className="hero-sage-arrow-circle">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-                  <line x1="5" y1="12" x2="19" y2="12"></line>
-                  <polyline points="12 5 19 12 12 19"></polyline>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" strokeWidth="3.2" strokeLinecap="round" strokeLinejoin="round">
+                  <polyline points="9 18 15 12 9 6" />
                 </svg>
               </span>
+              <span>REGISTER NOW</span>
             </button>
           </div>
 
