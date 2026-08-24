@@ -6,7 +6,8 @@ import { useApp } from '../../hooks/useApp';
 export default function DailyYogaTogether() {
   const { setView } = useApp();
 
-  const handleRegisterClick = () => {
+  const handleRegisterClick = (e) => {
+    if (e) e.stopPropagation();
     setView('daily-yoga-together-details');
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };

@@ -6,6 +6,11 @@ import { useApp } from '../../hooks/useApp';
 export default function DailyYogaBanner() {
   const { setView } = useApp();
 
+  const handleRegisterClick = () => {
+    setView('register-free');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   return (
     <section className="daily-yoga-section">
       <div className="daily-yoga-container">
@@ -19,7 +24,7 @@ export default function DailyYogaBanner() {
 
         {/* Right Side / Middle: Image Banner Card */}
         <div className="daily-yoga-right-banner">
-          <div className="daily-yoga-card">
+          <div className="daily-yoga-card" onClick={handleRegisterClick} style={{ cursor: 'pointer' }}>
             <div className="daily-yoga-image-wrapper">
               <img loading="lazy"
                 src={yogaBannerImg}
@@ -29,7 +34,7 @@ export default function DailyYogaBanner() {
 
               {/* Register Now Pill Button Overlay on Image */}
               <div className="daily-yoga-overlay-content">
-                <button className="btn-register-free" onClick={() => setView('register-free')}>
+                <button className="btn-register-free" onClick={handleRegisterClick}>
                   <span className="btn-arrow-circle">
                     <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#FFFFFF" strokeWidth="3.2" strokeLinecap="round" strokeLinejoin="round">
                       <polyline points="9 18 15 12 9 6" />

@@ -100,7 +100,10 @@ export default function Hero() {
             className={`hero-sage-register-btn hero-animate-item stagger-5${isBtnHovered ? ' btn-shaking' : ''}`}
             onMouseEnter={() => setIsBtnHovered(true)}
             onMouseLeave={() => setIsBtnHovered(false)}
-            onClick={() => setView('register-free')}
+            onClick={() => {
+              setView('register-free');
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
           >
             <span>Register for Free</span>
             <span className="hero-sage-arrow-circle">

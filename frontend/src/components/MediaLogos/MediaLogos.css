@@ -2,11 +2,11 @@
 .media-logos-section {
   width: 100%;
   background-color: #faf6ee;
-  padding: 0.5rem 0 0.6rem 0;
+  padding: 0.8rem 0 1rem 0;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.35rem;
+  gap: 0.45rem;
   overflow: hidden;
   border-top: 1px solid rgba(0, 0, 0, 0.05);
   border-bottom: 1px solid rgba(0, 0, 0, 0.05);
@@ -50,7 +50,7 @@
   align-items: center;
   justify-content: center;
   gap: 6px;
-  padding: 12px 32px;
+  padding: 10px 28px;
   cursor: default;
   filter: none;
   opacity: 1;
@@ -63,7 +63,7 @@
 }
 
 .media-logo-svg {
-  height: 48px;
+  height: 44px;
   width: auto;
   max-width: 180px;
   display: block;
@@ -92,15 +92,15 @@
 /* Mobile adjustments */
 @media (max-width: 768px) {
   .media-logos-section {
-    padding: 0.35rem 0 0.45rem 0;
-    gap: 0.25rem;
+    padding: 0.75rem 0 0.85rem 0;
+    gap: 0.35rem;
   }
 
   .media-logo-card {
-    padding: 4px 14px;
+    padding: 6px 18px;
   }
 
   .media-logo-svg {
-    height: 28px;
+    height: 38px;
   }
 }

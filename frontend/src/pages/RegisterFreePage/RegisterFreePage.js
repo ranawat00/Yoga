@@ -1,8 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
 import yogaWomanImg from '../../assets/hero/register_hero.jpg';
 import sunsetImg from '../../assets/banners/register_free_second.jpg';
-import logoImg from '../../assets/common/logo.png';
 import registerBenefitsImg from '../../assets/banners/register_2.png';
+import { useApp } from '../../hooks/useApp';
 
 // Mentor images from educators
 import mentor_1 from '../../assets/mentors/mentor_1.png';
@@ -291,7 +291,9 @@ export function MentorSlider() {
 
 /* ── Main Page ────────────────────────────────────────────── */
 export default function RegisterFreePage() {
+  const { setIsRegisterModalOpen } = useApp();
   const [animated, setAnimated] = useState(false);
+  const [isBtnHovered, setIsBtnHovered] = useState(false);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -331,6 +333,21 @@ export default function RegisterFreePage() {
               <span className="register-green-box">Free Yoga Workshop</span>
             </div>
           </div>
+
+          <button
+            className={`register-submit-btn reveal-on-load stagger-6${isBtnHovered ? ' btn-shaking' : ''}`}
+            onMouseEnter={() => setIsBtnHovered(true)}
+            onMouseLeave={() => setIsBtnHovered(false)}
+            onClick={() => setIsRegisterModalOpen(true)}
+            aria-label="Register Now"
+          >
+            <span className="register-arrow-circle">
+              <svg className="register-chevron-svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#2d5a39" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                <polyline points="9 18 15 12 9 6" />
+              </svg>
+            </span>
+            <span>REGISTER NOW</span>
+          </button>
         </div>
       </section>
 
@@ -343,22 +360,11 @@ export default function RegisterFreePage() {
       <section className="register-welcome-section">
         <img src={sunsetImg} alt="Welcome to Yoga Healers Organisation" className="register-welcome-img reveal-on-load stagger-2" />
         <div className="register-welcome-content">
-          <h2 className="register-welcome-title reveal-on-load stagger-3">
-            <span className="register-welcome-title-top">Welcome to</span>
-            <span className="register-welcome-title-bottom">Yoga Healers Organisation</span>
+          <h2 className="register-welcome-heading reveal-on-load stagger-3">
+            Welcome to Yoga Healers<br />Organisation
           </h2>
-          <div className="register-welcome-badge reveal-on-load stagger-4">
-            <img src={logoImg} alt="Yoga Healers Organisation Logo" className="register-welcome-logo" />
-          </div>
-          <h3 className="register-welcome-subtitle reveal-on-load stagger-5">
-            Connecting a Global Family of<br />Wellness Seekers
-          </h3>
-          <p className="register-welcome-desc reveal-on-load stagger-6">
-            Rooted in the ancient wisdom of India—the world capital of yoga—our wellness
-            experts nurture your health from its foundation. By blending time-tested
-            traditions with personalized guidance, they cultivate deep inner balance,
-            enrich your daily routine, and empower you with lasting vitality, clarity,
-            and purpose for a truly meaningful life.
+          <p className="register-welcome-description reveal-on-load stagger-4">
+            We are dedicated to helping you live a healthier, happier, and more balanced life through holistic wellness practices. Discover custom guided sessions, expert mentorship, and a thriving community committed to your physical and inner transformation.
           </p>
         </div>
       </section>

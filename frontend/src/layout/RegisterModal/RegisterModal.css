@@ -1,0 +1,190 @@
+/* Modal Overlay */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(9, 16, 31, 0.75);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  box-sizing: border-box;
+}
+
+/* Modal Card */
+.daily-yoga-modal {
+  background: linear-gradient(135deg, #1e5e4e 0%, #154539 100%);
+  width: 100%;
+  max-width: 440px;
+  border-radius: 24px;
+  padding: 2.25rem 1.75rem;
+  position: relative;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-sizing: border-box;
+  color: #ffffff;
+}
+
+/* Close Button */
+.modal-close-btn-custom {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.25rem;
+  background: rgba(255, 255, 255, 0.15);
+  border: none;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  transition: all 0.2s ease;
+}
+
+.modal-close-btn-custom:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: scale(1.05);
+}
+
+/* Header */
+.practice-modal-header {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.practice-modal-title {
+  font-size: 1.65rem;
+  font-weight: 700;
+  color: #FFFFFF;
+  margin: 0;
+  letter-spacing: 0.3px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+/* Body & Form */
+.practice-modal-body {
+  display: flex;
+  flex-direction: column;
+}
+
+.practice-input-wrapper {
+  margin-bottom: 1rem;
+  width: 100%;
+}
+
+.practice-input-wrapper input {
+  width: 100%;
+  padding: 0.9rem 1.5rem;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1.2px solid rgba(255, 255, 255, 0.35);
+  border-radius: 50px;
+  color: #FFFFFF;
+  font-size: 0.98rem;
+  outline: none;
+  box-sizing: border-box;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.practice-input-wrapper input::placeholder {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.practice-input-wrapper input:focus {
+  border-color: #FFFFFF;
+  background: rgba(255, 255, 255, 0.22);
+}
+
+/* Phone input container */
+.practice-phone-input-wrapper {
+  display: flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1.2px solid rgba(255, 255, 255, 0.35);
+  border-radius: 50px;
+  padding: 0 0.5rem 0 1.25rem;
+  box-sizing: border-box;
+  margin-bottom: 1rem;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.practice-phone-input-wrapper:focus-within {
+  border-color: #FFFFFF;
+  background: rgba(255, 255, 255, 0.22);
+}
+
+.practice-country-select {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding-right: 0.75rem;
+  border-right: 1px solid rgba(255, 255, 255, 0.3);
+  margin-right: 0.75rem;
+  font-size: 0.9rem;
+  color: #FFFFFF;
+  flex-shrink: 0;
+}
+
+.practice-flag {
+  font-size: 1.1rem;
+}
+
+.practice-code {
+  font-weight: 600;
+}
+
+.practice-arrow {
+  font-size: 0.65rem;
+  opacity: 0.8;
+}
+
+.practice-phone-input-wrapper input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #FFFFFF;
+  font-size: 0.98rem;
+  padding: 0.9rem 0;
+}
+
+.practice-phone-input-wrapper input::placeholder {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+/* Submit Button */
+.practice-join-btn {
+  width: 100%;
+  padding: 0.9rem 1.5rem;
+  background: linear-gradient(135deg, #5c8862 0%, #2d5a39 50%, #1e4228 100%);
+  background-size: 200% 200%;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 50px;
+  color: #FFFFFF;
+  font-family: 'Outfit', 'Plus Jakarta Sans', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  box-shadow: 0 6px 20px rgba(30, 66, 40, 0.45);
+  transition: all 0.25s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.practice-join-btn:hover {
+  background: linear-gradient(135deg, #6b9772 0%, #356742 50%, #254e30 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(30, 66, 40, 0.65);
+}
+
+.practice-join-btn:active {
+  transform: scale(0.98);
+}

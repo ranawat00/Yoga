@@ -32,8 +32,8 @@
   width: 100%;
   position: relative;
   overflow: hidden;
-  min-height: clamp(320px, 65vw, 520px);
-  background-color: #ede8de;
+  min-height: auto;
+  background-color: #1C0A52;
   display: flex;
   flex-direction: column;
 }
@@ -56,8 +56,7 @@
   flex-direction: column;
   align-items: center;
   text-align: center;
-  padding: clamp(11.5rem, 22vw, 19.5rem) 0.5rem 0.1rem;
-  /* generous spacing under hero header circles */
+  padding: clamp(10.5rem, 19vw, 16.5rem) 0.5rem 0.75rem;
   gap: 0.4rem;
   width: 100%;
   max-width: 850px;
@@ -65,19 +64,21 @@
   box-sizing: border-box;
 }
 
-/* (Staggered animations applied via unified selectors below) */
-
 /* ══════════════════════════════════════════════════════════════
    MEDIA LOGOS SECTION
    ══════════════════════════════════════════════════════════════ */
 .register-logos-section {
   width: 100%;
-  background-color: #ffffff;
-  /* Matches the hero section beige background */
+  background-color: #faf6ee;
+  margin: 0;
+  padding: 0;
 }
 
 .register-logos-section .media-logos-section {
-  padding-top: 0.1rem;
+  padding-top: 0.6rem;
+  padding-bottom: 0.6rem;
+  border-top: none;
+  border-bottom: none;
 }
 
 /* ══════════════════════════════════════════════════════════════
@@ -88,7 +89,7 @@
   display: flex;
   flex-direction: column;
   background-color: #ffffff;
-  padding: 0 0 0.8rem 0; /* Reset left/right padding to 0 */
+  padding: 0;
   overflow: hidden;
   margin-top: 0;
 }
@@ -956,6 +957,8 @@
   cursor: pointer;
   box-shadow: 0 4px 16px rgba(45, 90, 57, 0.4);
   width: fit-content;
+  margin: 0.6rem auto 0 auto;
+  align-self: center;
   transition: transform 0.15s ease, box-shadow 0.25s ease;
 }
 
@@ -1364,13 +1367,14 @@
 /* ── MOBILE BREAKPOINTS ──────────────────────────────────────── */
 @media (max-width: 768px) {
   .register-hero-content {
-    padding-top: 13rem;
+    padding-top: 10.8rem;
+    padding-bottom: 0.75rem;
   }
 
   .register-highlight-banner {
     font-size: 0.92rem;
     gap: 0.3rem;
-    margin-bottom: 0.75rem;
+    margin-bottom: 0.5rem;
   }
 
   .register-welcome-img {
@@ -1380,13 +1384,14 @@
 
 @media (max-width: 480px) {
   .register-hero-content {
-    padding-top: 11.5rem;
+    padding-top: 9.8rem;
+    padding-bottom: 0.75rem;
   }
 
   .register-highlight-banner {
     font-size: 0.82rem;
     gap: 0.25rem;
-    margin-bottom: 0.65rem;
+    margin-bottom: 0.5rem;
   }
 
   .register-highlight-divider {
@@ -1411,7 +1416,8 @@
 
 @media (max-width: 360px) {
   .register-hero-content {
-    padding-top: 10.5rem;
+    padding-top: 8.8rem;
+    padding-bottom: 0.75rem;
   }
 
   .register-highlight-banner {

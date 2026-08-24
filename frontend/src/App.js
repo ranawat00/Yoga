@@ -25,6 +25,7 @@ const DailyYogaTogether = lazy(() => import('./components/DailyYogaTogether/Dail
 const BlogSection = lazy(() => import('./components/BlogSection/BlogSection'));
 const ScienceBackedBenefits = lazy(() => import('./components/ScienceBackedBenefits/ScienceBackedBenefits'));
 const RunningTicker = lazy(() => import('./components/RunningTicker/RunningTicker'));
+const HomeFAQ = lazy(() => import('./components/HomeFAQ/HomeFAQ'));
 
 // Lazy load full page views
 const AboutUs = lazy(() => import('./pages/AboutUsPage/AboutUsPage'));
@@ -40,6 +41,7 @@ const BlogPage = lazy(() => import('./pages/BlogPage/BlogPage'));
 const CheckoutModal = lazy(() => import('./layout/CheckoutModal/CheckoutModal'));
 const AuthModal = lazy(() => import('./layout/AuthModal/AuthModal'));
 const ProfileDrawer = lazy(() => import('./layout/ProfileDrawer/ProfileDrawer'));
+const RegisterModal = lazy(() => import('./layout/RegisterModal/RegisterModal'));
 
 const VIEW_TITLES = {
   home: 'Yoga Healers | Holistic Health & Satvic Wellness',
@@ -88,8 +90,9 @@ function AppContent() {
     return () => window.removeEventListener('popstate', handlePopState);
   }, [setView]);
 
-  // Synchronize browser address bar URL and page title when `view` changes
+  // Synchronize browser address bar URL, page title, and scroll lock reset when `view` changes
   useEffect(() => {
+    document.body.style.overflow = '';
     const targetPath = VIEW_TO_PATH[view] || '/';
     if (window.location.pathname !== targetPath) {
       window.history.pushState({ view }, '', targetPath);
@@ -104,8 +107,8 @@ function AppContent() {
   useEffect(() => {
     const observerOptions = {
       root: null,
-      rootMargin: '100px',
-      threshold: 0.05
+      rootMargin: '150px',
+      threshold: 0
     };
 
     const observer = new IntersectionObserver((entries) => {
@@ -129,14 +132,21 @@ function AppContent() {
         if (!el.classList.contains('scroll-zoom-init')) {
           el.classList.add('scroll-zoom-init');
         }
+        const rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight + 200) {
+          el.classList.add('scroll-in-view');
+        }
         observer.observe(el);
       });
     };
 
-    const timer = setTimeout(updateObservations, 150);
+    updateObservations();
+    const timer1 = setTimeout(updateObservations, 150);
+    const timer2 = setTimeout(updateObservations, 450);
 
     return () => {
-      clearTimeout(timer);
+      clearTimeout(timer1);
+      clearTimeout(timer2);
       observer.disconnect();
     };
   }, [view]);
@@ -188,6 +198,7 @@ function AppContent() {
             <Suspense fallback={null}><RunningTicker /></Suspense>
             <Suspense fallback={null}><BlogSection /></Suspense>
             <Suspense fallback={null}><ScienceBackedBenefits /></Suspense>
+            <Suspense fallback={null}><HomeFAQ /></Suspense>
           </>
         )}
       </main>
@@ -207,6 +218,11 @@ function AppContent() {
       {/* User Profile Drawer */}
       <Suspense fallback={null}>
         <ProfileDrawer />
+      </Suspense>
+
+      {/* Free Registration Modal */}
+      <Suspense fallback={null}>
+        <RegisterModal />
       </Suspense>
     </div>
   );

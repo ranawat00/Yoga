@@ -65,6 +65,7 @@ const getInitialView = () => {
 const initialState = {
   view: getInitialView(),
   isCheckoutOpen: false,
+  isRegisterModalOpen: false,
   notifications: [],
   viewingWorkshop: getInitialViewingWorkshop(),
   viewingBlog: getInitialViewingBlog(),
@@ -79,6 +80,9 @@ export const uiSlice = createSlice({
     },
     setIsCheckoutOpen: (state, action) => {
       state.isCheckoutOpen = action.payload;
+    },
+    setIsRegisterModalOpen: (state, action) => {
+      state.isRegisterModalOpen = action.payload;
     },
     addNotification: (state, action) => {
       const { message, type = 'success' } = action.payload;
@@ -112,10 +116,11 @@ export const uiSlice = createSlice({
   },
 });
 
-export const { setView, setIsCheckoutOpen, addNotification, removeNotification, setViewingWorkshop, setViewingBlog } = uiSlice.actions;
+export const { setView, setIsCheckoutOpen, setIsRegisterModalOpen, addNotification, removeNotification, setViewingWorkshop, setViewingBlog } = uiSlice.actions;
 
 export const selectView = (state) => state.ui.view;
 export const selectIsCheckoutOpen = (state) => state.ui.isCheckoutOpen;
+export const selectIsRegisterModalOpen = (state) => state.ui.isRegisterModalOpen;
 export const selectNotifications = (state) => state.ui.notifications;
 export const selectViewingWorkshop = (state) => state.ui.viewingWorkshop;
 export const selectViewingBlog = (state) => state.ui.viewingBlog;

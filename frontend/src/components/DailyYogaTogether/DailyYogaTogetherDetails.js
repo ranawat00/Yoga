@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
 import './DailyYogaTogetherDetails.css';
 import yogaBannerImg from '../../assets/Daily_yoga_together_details/banner.jpg';
@@ -48,6 +48,15 @@ export default function DailyYogaTogetherDetails() {
   const [activeFaq, setActiveFaq] = useState(null);
   const [selectedPlan, setSelectedPlan] = useState('3months');
 
+  const ritualsRef = useRef(null);
+
+  const scrollRituals = (direction) => {
+    if (ritualsRef.current) {
+      const scrollAmount = direction === 'left' ? -320 : 320;
+      ritualsRef.current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+    }
+  };
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -56,7 +65,11 @@ export default function DailyYogaTogetherDetails() {
   });
 
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({ top: 0, behavior: 'instant' });
+    document.body.style.overflow = '';
+    return () => {
+      document.body.style.overflow = '';
+    };
   }, []);
 
 
@@ -248,12 +261,12 @@ export default function DailyYogaTogetherDetails() {
                 onClick={handleOpenModal}
                 aria-label="Register Now"
               >
+                <span>REGISTER NOW</span>
                 <span className="hero-sage-arrow-circle">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" strokeWidth="3.2" strokeLinecap="round" strokeLinejoin="round">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" strokeWidth="3.2" strokeLinecap="round" strokeLinejoin="round">
                     <polyline points="9 18 15 12 9 6" />
                   </svg>
                 </span>
-                <span>REGISTER NOW</span>
               </button>
             </div>
           </div>
@@ -269,40 +282,67 @@ export default function DailyYogaTogetherDetails() {
           {/* Your Daily Rituals Section */}
           <div className="daily-yoga-rituals-section">
             <h2 className="rituals-section-heading">YOUR DAILY RITUALS</h2>
-            <div className="rituals-grid">
 
-              <div className="ritual-card">
-                <div className="ritual-image-container">
-                  <img src={details1} alt="Guided Asanas" className="ritual-icon-img" />
+            <div className="rituals-slider-wrapper">
+              <div className="rituals-grid" ref={ritualsRef}>
+
+                <div className="ritual-card">
+                  <div className="ritual-image-container">
+                    <img src={details1} alt="Guided Asanas" className="ritual-icon-img" />
+                  </div>
+                  <h3>GUIDED ASANAS</h3>
+                  <p>A guided sequence focusing on strength, flexibility, balance, and mobility for an agile, high-energy body</p>
                 </div>
-                <h3>GUIDED ASANAS</h3>
-                <p>A guided sequence focusing on strength, flexibility, balance, and mobility for an agile, high-energy body</p>
-              </div>
 
-              <div className="ritual-card">
-                <div className="ritual-image-container">
-                  <img src={details2} alt="Breathwork & Kriya" className="ritual-icon-img" />
+                <div className="ritual-card">
+                  <div className="ritual-image-container">
+                    <img src={details2} alt="Breathwork & Kriya" className="ritual-icon-img" />
+                  </div>
+                  <h3>BREATHWORK & KRIYA</h3>
+                  <p>Regulate your nervous system and cultivate mental resilience through breath-focused kriyas and pranayama. Designed to quiet the mind, heighten focus, and bring deep inner balance.</p>
                 </div>
-                <h3>BREATHWORK & KRIYA</h3>
-                <p>Regulate your nervous system and cultivate mental resilience through breath-focused kriyas and pranayama. Designed to quiet the mind, heighten focus, and bring deep inner balance.</p>
-              </div>
 
-              <div className="ritual-card">
-                <div className="ritual-image-container">
-                  <img src={details3} alt="Mindful Counselling" className="ritual-icon-img" />
+                <div className="ritual-card">
+                  <div className="ritual-image-container">
+                    <img src={details3} alt="Mindful Counselling" className="ritual-icon-img" />
+                  </div>
+                  <h3>MINDFUL COUNSELLING</h3>
+                  <p>Daily mindful counseling builds psychological strength, reduces stress, and strengthens mental resilience. Gain practical tools to manage PMOS, quiet the mind, and restore lasting emotional balance every day.</p>
                 </div>
-                <h3>MINDFUL COUNSELLING</h3>
-                <p>Daily mindful counseling builds psychological strength, reduces stress, and strengthens mental resilience. Gain practical tools to manage PMOS, quiet the mind, and restore lasting emotional balance every day.</p>
-              </div>
 
-              <div className="ritual-card">
-                <div className="ritual-image-container">
-                  <img src={details4} alt="Daily Mindful Habits" className="ritual-icon-img" />
+                <div className="ritual-card">
+                  <div className="ritual-image-container">
+                    <img src={details4} alt="Daily Mindful Habits" className="ritual-icon-img" />
+                  </div>
+                  <h3>DAILY MINDFUL HABITS</h3>
+                  <p>Yoga doesn't end when you leave the mat. Discover easy-to-implement habits that help you navigate daily life with greater awareness, calm, and grounded focus.</p>
                 </div>
-                <h3>DAILY MINDFUL HABITS</h3>
-                <p>Yoga doesn't end when you leave the mat. Discover easy-to-implement habits that help you navigate daily life with greater awareness, calm, and grounded focus.</p>
-              </div>
 
+              </div>
+            </div>
+
+            {/* Centered Navigation Arrows Under Content */}
+            <div className="rituals-arrow-group-bottom">
+              <button
+                type="button"
+                className="rituals-slider-arrow prev"
+                onClick={() => scrollRituals('left')}
+                aria-label="Previous ritual"
+              >
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <polyline points="15 18 9 12 15 6" />
+                </svg>
+              </button>
+              <button
+                type="button"
+                className="rituals-slider-arrow next"
+                onClick={() => scrollRituals('right')}
+                aria-label="Next ritual"
+              >
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <polyline points="9 18 15 12 9 6" />
+                </svg>
+              </button>
             </div>
           </div>
 
@@ -326,12 +366,12 @@ export default function DailyYogaTogetherDetails() {
               <p className="cta-description">Take the first step towards a healthier, balanced you</p>
             </div>
             <button className="hero-sage-register-btn" onClick={handleOpenModal} aria-label="Register Now">
+              <span>REGISTER NOW</span>
               <span className="hero-sage-arrow-circle">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" strokeWidth="3.2" strokeLinecap="round" strokeLinejoin="round">
                   <polyline points="9 18 15 12 9 6" />
                 </svg>
               </span>
-              <span>REGISTER NOW</span>
             </button>
           </div>
 
