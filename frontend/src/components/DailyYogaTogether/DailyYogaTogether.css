@@ -229,7 +229,7 @@
 
 @media (max-width: 768px) {
   .daily-yoga-together-section {
-    padding: 2.5rem 1.25rem 0 1.25rem;
+    padding: 2rem 1rem 0 1rem;
   }
 
   .daily-yoga-together-container {
@@ -237,33 +237,34 @@
   }
 
   .btn-label-text {
-    font-size: 0.88rem;
-    letter-spacing: 0.8px;
+    font-size: 0.78rem !important;
+    letter-spacing: 0.6px !important;
   }
 
   .btn-icon-wrapper {
-    width: 26px;
-    height: 26px;
+    width: 22px !important;
+    height: 22px !important;
   }
 
   .btn-icon-wrapper svg {
-    width: 14px;
-    height: 14px;
+    width: 11px !important;
+    height: 11px !important;
   }
 
   .daily-yoga-together-btn {
-    padding: 5px 18px 5px 5px;
-    gap: 8px;
+    padding: 4px 12px 4px 10px !important;
+    gap: 6px !important;
     border-width: 1px;
     top: 65%;
     left: 7%;
-    min-width: 140px;
+    min-width: 130px !important;
+    max-width: 165px !important;
   }
 }
 
 @media (max-width: 480px) {
   .daily-yoga-together-section {
-    padding: 2rem 1rem 0 1rem;
+    padding: 1.5rem 0.75rem 0 0.75rem;
   }
 
   .daily-yoga-together-container {
@@ -271,25 +272,26 @@
   }
 
   .btn-label-text {
-    font-size: 0.75rem;
-    letter-spacing: 0.6px;
+    font-size: 0.66rem !important;
+    letter-spacing: 0.5px !important;
   }
 
   .btn-icon-wrapper {
-    width: 22px;
-    height: 22px;
+    width: 19px !important;
+    height: 19px !important;
   }
 
   .btn-icon-wrapper svg {
-    width: 12px;
-    height: 12px;
+    width: 9px !important;
+    height: 9px !important;
   }
 
   .daily-yoga-together-btn {
-    padding: 4px 14px 4px 4px;
-    gap: 6px;
+    padding: 3px 9px 3px 8px !important;
+    gap: 5px !important;
     top: 65%;
     left: 6.5%;
-    min-width: 125px;
+    min-width: 105px !important;
+    max-width: 140px !important;
   }
 }
