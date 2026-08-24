@@ -13,6 +13,7 @@ import details7 from '../../assets/Daily_yoga_together_details/details7.jpg';
 import { useApp } from '../../hooks/useApp';
 import { createOrder, verifyPayment } from '../../api/payment';
 import { createOrderRecord } from '../../api/orders';
+import { submitRegistration } from '../../api/registrations';
 
 // Dynamic script loader for Razorpay Checkout
 const loadRazorpayScript = () => {
@@ -124,6 +125,16 @@ export default function DailyYogaTogetherDetails() {
     };
 
     try {
+      // Save registration details to DB
+      await submitRegistration({
+        name: formData.name,
+        phone: formData.phone,
+        email: orderPayload.email,
+        batch: planLabel,
+        workshopTitle: `Daily Yoga Together - ${planLabel}`,
+        source: 'Daily Yoga Together Details Page'
+      }).catch(err => console.error('Registration save error:', err));
+
       if (price > 0) {
         const res = await createOrder(price);
         if (!res.success) {

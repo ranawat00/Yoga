@@ -3,9 +3,6 @@ import React, { useState, useEffect } from 'react';
 import Logo from '../../common/Logo/Logo';
 import { useApp } from '../../hooks/useApp';
 import { WORKSHOPS_DATA } from '../../components/Workshops/Workshops';
-import detoxImg from '../../assets/workshops/workshop_detox.webp';
-import meditationImg from '../../assets/workshops/workshop_meditation.webp';
-import harmonalImg from '../../assets/workshops/third_wordshop.jpg';
 
 export default function Navbar() {
   const { setView, user, handleLogout, setIsProfileOpen, view, setViewingWorkshop } = useApp();
@@ -169,39 +166,18 @@ export default function Navbar() {
               Workshops {renderChevron()}
             </a>
             <div className="nav-dropdown workshops-mega">
-              <div className="mega-dropdown-card" onClick={(e) => handleDropdownClick('workshops', 'detox-21', e)}>
-                <div className="mega-card-img-wrapper">
-                  <img loading="lazy" src={detoxImg} alt="Heal Yourself Challenge" className="mega-card-img" />
+              {WORKSHOPS_DATA.map((w) => (
+                <div key={w.id} className="mega-dropdown-card" onClick={(e) => handleDropdownClick('workshops', w.id, e)}>
+                  <div className="mega-card-img-wrapper">
+                    <img loading="lazy" src={w.image} alt={w.title} className="mega-card-img" />
+                  </div>
+                  <div className="mega-card-body">
+                    <span className="mega-card-title">{w.title}</span>
+                    <span className="mega-card-desc">{w.duration} • {w.date} • ${w.price}</span>
+                  </div>
                 </div>
-                <div className="mega-card-body">
-                  <span className="mega-card-title">Heal Yourself Challenge</span>
-                  <span className="mega-card-desc">7 Days • 15th Jun • ₹990</span>
-                </div>
-              </div>
-              <div className="mega-dropdown-card" onClick={(e) => handleDropdownClick('workshops', 'mind-7', e)}>
-                <div className="mega-card-img-wrapper">
-                  <img loading="lazy" src={meditationImg} alt="Yoga Sadhana Beginner" className="mega-card-img" />
-                </div>
-                <div className="mega-card-body">
-                  <span className="mega-card-title">Yoga Sadhana Beginner</span>
-                  <span className="mega-card-desc">21 Days • 22nd Jun • ₹590</span>
-                </div>
-              </div>
-              <div className="mega-dropdown-card" onClick={(e) => handleDropdownClick('workshops', 'cook-3', e)}>
-                <div className="mega-card-img-wrapper">
-                  <img loading="lazy" src={harmonalImg} alt="Harmonal Wellness Program" className="mega-card-img" />
-                </div>
-                <div className="mega-card-body">
-                  <span className="mega-card-title">Harmonal Wellness Program</span>
-                  <span className="mega-card-desc">3 Months • 1st Sep • $299</span>
-                </div>
-              </div>
+              ))}
             </div>
-          </li>
-          <li>
-            <a href="/health-score" className={activeLink === 'health-score' ? 'active' : ''} onClick={(e) => handleLinkClick('health-score', e)}>
-              Health Score
-            </a>
           </li>
           <li>
             <a href="/internship" className={(activeLink === 'internship' || activeLink === 'careers') ? 'active' : ''} onClick={(e) => handleLinkClick('internship', e)}>
@@ -286,11 +262,6 @@ export default function Navbar() {
             <li>
               <a href="/workshops" className={activeLink === 'workshops' ? 'active-pill' : ''} onClick={(e) => handleLinkClick('workshops', e)}>
                 Workshops
-              </a>
-            </li>
-            <li>
-              <a href="/health-score" onClick={(e) => handleLinkClick('health-score', e)}>
-                Health Score
               </a>
             </li>
             <li>

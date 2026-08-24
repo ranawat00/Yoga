@@ -17,13 +17,6 @@ export default function Footer() {
     }, 500);
   };
 
-  const handleScrollTo = (id) => {
-    const el = document.getElementById(id);
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
   return (
     <footer className="footer" id="main-footer">
       {/* Soft Pure White Radial Glow at Very Top */}
@@ -89,9 +82,9 @@ export default function Footer() {
               <h4 className="footer-col-title">Explore</h4>
               <ul className="footer-nav-list">
                 <li><a href="/internship" onClick={(e) => { e.preventDefault(); setView('internship'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}>Internship</a></li>
-                <li><a href="/" onClick={(e) => { e.preventDefault(); handleScrollTo('home'); }}>Meet The Team</a></li>
                 <li><a href="/blog" onClick={(e) => { e.preventDefault(); setView('blog'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}>Blogs</a></li>
                 <li><a href="/contact" onClick={(e) => { e.preventDefault(); setView('contact'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}>Contact Us</a></li>
+                <li><a href="/registrations" onClick={(e) => { e.preventDefault(); setView('registrations'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}>DB Registrations</a></li>
               </ul>
             </div>
           </div>

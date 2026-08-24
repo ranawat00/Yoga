@@ -36,12 +36,12 @@ export default function DailyYogaTogether() {
               onClick={handleRegisterClick}
               aria-label="Register Now"
             >
+              <span className="btn-label-text">REGISTER NOW</span>
               <div className="btn-icon-wrapper">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ffffff" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#ffffff" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
                   <polyline points="9 18 15 12 9 6" />
                 </svg>
               </div>
-              <span className="btn-label-text">REGISTER NOW</span>
             </button>
           </div>
         </div>

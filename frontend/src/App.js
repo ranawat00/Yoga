@@ -36,6 +36,7 @@ const OrdersPage = lazy(() => import('./pages/OrdersPage/OrdersPage'));
 const RegisterFreePage = lazy(() => import('./pages/RegisterFreePage/RegisterFreePage'));
 const DailyYogaTogetherDetails = lazy(() => import('./components/DailyYogaTogether/DailyYogaTogetherDetails'));
 const BlogPage = lazy(() => import('./pages/BlogPage/BlogPage'));
+const RegistrationsPage = lazy(() => import('./pages/RegistrationsPage/RegistrationsPage'));
 
 // Lazy load modals/drawers
 const CheckoutModal = lazy(() => import('./layout/CheckoutModal/CheckoutModal'));
@@ -55,6 +56,7 @@ const VIEW_TITLES = {
   'register-free': 'Register for 5 Days Free Yoga Sessions | Yoga Healers',
   'daily-yoga-together-details': 'Daily Yoga Together | Yoga Healers',
   blog: 'Blog Articles | Yoga Healers',
+  registrations: 'Saved User Registrations | Yoga Healers',
 };
 
 function AppContent() {
@@ -183,6 +185,8 @@ function AppContent() {
           <Suspense fallback={<Loader />}><DailyYogaTogetherDetails /></Suspense>
         ) : view === 'blog' ? (
           <Suspense fallback={<Loader />}><BlogPage /></Suspense>
+        ) : view === 'registrations' ? (
+          <Suspense fallback={<Loader />}><RegistrationsPage /></Suspense>
         ) : (
           <>
             {/* Main Page Sections */}

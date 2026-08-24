@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 import { useApp } from '../../hooks/useApp';
+import { submitRegistration } from '../../api/registrations';
 import './RegisterModal.css';
 
 export default function RegisterModal() {
@@ -35,15 +36,30 @@ export default function RegisterModal() {
     }
 
     setIsSubmitting(true);
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setSuccessData({
+    try {
+      const res = await submitRegistration({
         name: formData.name,
-        email: formData.email || `${formData.name.toLowerCase().replace(/\s+/g, '')}@yogahealers.org`,
-        batch: formData.batch
+        phone: formData.phone,
+        email: formData.email,
+        batch: formData.batch,
+        source: 'Website Free Registration Modal'
       });
-      if (addNotification) addNotification('Free Registration Successful! Welcome to Yoga Healers.', 'success');
-    }, 800);
+
+      if (res.success) {
+        setSuccessData({
+          name: formData.name,
+          email: res.data?.email || formData.email || `${formData.name.toLowerCase().replace(/\s+/g, '')}@yogahealers.org`,
+          batch: formData.batch
+        });
+        if (addNotification) addNotification('Registration saved! Welcome to Yoga Healers.', 'success');
+      } else {
+        if (addNotification) addNotification(res.message || 'Registration failed. Please try again.', 'error');
+      }
+    } catch (err) {
+      if (addNotification) addNotification('Failed to connect to server. Please try again.', 'error');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return ReactDOM.createPortal(

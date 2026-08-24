@@ -11,6 +11,7 @@ export const VIEW_TO_PATH = {
   'register-free': '/register-free',
   'daily-yoga-together-details': '/daily-yoga-together-details',
   blog: '/blog',
+  registrations: '/registrations',
 };
 
 export const PATH_TO_VIEW = {
@@ -30,6 +31,7 @@ export const PATH_TO_VIEW = {
   '/daily-yoga-together-details': 'daily-yoga-together-details',
   '/blog': 'blog',
   '/blogs': 'blog',
+  '/registrations': 'registrations',
 };
 
 const getInitialViewingBlog = () => {

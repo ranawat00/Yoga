@@ -706,3 +706,320 @@
     padding: 1.5rem;
   }
 }
+
+/* ══════════════════════════════════════════════════════════════
+   Desktop Layout Enhancements (Modern Content & Image Layouts)
+   ══════════════════════════════════════════════════════════════ */
+@media (min-width: 992px) {
+  /* Hero Banner Layout */
+  .internship-banner-hero {
+    padding: 2rem 1.5rem 1rem;
+    background: transparent;
+  }
+
+  .internship-banner-container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .internship-banner-card {
+    border-radius: 20px;
+    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.07);
+    border: 1px solid #e2e8f0;
+    overflow: hidden;
+  }
+
+  /* Container Centering */
+  .internship-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  /* Why Should You Enroll - Modern 4-Column Grid */
+  .internship-why-enroll {
+    padding: 5rem 1.5rem;
+    background: #ffffff;
+  }
+
+  .why-enroll-heading {
+    font-size: 2.2rem;
+    margin-bottom: 3.5rem;
+    color: #1e293b;
+  }
+
+  .why-enroll-list {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.75rem;
+    max-width: 1200px;
+  }
+
+  .why-enroll-item {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+    padding: 2.2rem 1.5rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+  }
+
+  .why-enroll-item:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08);
+    border-color: #cbd5e1;
+    background: #ffffff;
+  }
+
+  .why-enroll-icon-wrapper {
+    height: 75px;
+    margin-bottom: 1rem;
+  }
+
+  .why-enroll-icon {
+    width: 110px;
+    height: 110px;
+    transform: scale(1.5);
+    transition: transform 0.3s ease;
+  }
+
+  .why-enroll-item:hover .why-enroll-icon {
+    transform: scale(1.6);
+  }
+
+  .why-enroll-text {
+    font-size: 0.95rem;
+    color: #475569;
+    line-height: 1.65;
+  }
+
+  /* What You Will Receive - Modern 3-Column Grid */
+  .internship-what-receive {
+    padding: 5rem 1.5rem;
+    background: #fafcfa;
+  }
+
+  .what-receive-heading {
+    font-size: 2.2rem;
+    margin-bottom: 3.5rem;
+    color: #1e293b;
+  }
+
+  .what-receive-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    max-width: 1200px;
+    margin-bottom: 3.5rem;
+  }
+
+  .what-receive-item {
+    background: #ffffff;
+    border: 1.5px solid #e2efe3;
+    border-radius: 18px;
+    padding: 2.5rem 1.75rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.03);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .what-receive-item:hover {
+    transform: translateY(-6px);
+    border-color: #6b9772;
+    box-shadow: 0 14px 32px rgba(107, 151, 114, 0.14);
+  }
+
+  .what-receive-icon-wrapper {
+    height: 75px;
+    margin-bottom: 1rem;
+  }
+
+  .what-receive-icon {
+    width: 110px;
+    height: 110px;
+    transform: scale(1.5);
+    transition: transform 0.3s ease;
+  }
+
+  .what-receive-item:hover .what-receive-icon {
+    transform: scale(1.6);
+  }
+
+  .what-receive-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #1e293b;
+    margin-bottom: 0.5rem;
+  }
+
+  .what-receive-desc {
+    font-size: 0.98rem;
+    color: #64748b;
+    line-height: 1.6;
+  }
+
+  .what-receive-footer-text {
+    font-size: 1rem;
+    max-width: 750px;
+    margin: 0 auto;
+    color: #475569;
+    font-weight: 500;
+  }
+
+  /* Understanding Our Commitment Fee - Modern Card Box */
+  .internship-commitment-fee {
+    padding: 5rem 1.5rem;
+    background: #ffffff;
+  }
+
+  .commitment-fee-heading {
+    font-size: 2.2rem;
+    margin-bottom: 3rem;
+    color: #1e293b;
+  }
+
+  .commitment-fee-content {
+    max-width: 900px;
+    margin: 0 auto;
+    background: linear-gradient(145deg, #f8fafc 0%, #f1f5f9 100%);
+    border: 1px solid #e2e8f0;
+    border-radius: 20px;
+    padding: 3.25rem 3.5rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+    text-align: center;
+  }
+
+  .commitment-fee-lead {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #1e293b;
+    line-height: 1.6;
+  }
+
+  .commitment-fee-body {
+    font-size: 1.02rem;
+    color: #475569;
+    line-height: 1.75;
+  }
+
+  /* Desktop FAQ Section */
+  .internship-faq-section {
+    padding: 5rem 2rem;
+    background-color: #f7fcf4;
+    border-top: 1px solid #e2efe3;
+  }
+
+  .internship-faq-section .internship-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+
+  .faq-header-wrapper-custom {
+    text-align: center;
+    margin-bottom: 2.75rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .faq-small-title {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #333333;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    background: rgba(107, 151, 114, 0.12);
+    padding: 0.35rem 0.85rem;
+    border-radius: 50px;
+    margin-bottom: 0.75rem;
+    display: inline-block;
+  }
+
+  .faq-large-title {
+    font-size: 1.75rem;
+    font-weight: 900;
+    color: #1a251b;
+    margin: 0;
+    letter-spacing: -0.5px;
+    font-family: var(--font-display, 'Plus Jakarta Sans', sans-serif);
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  .faq-list {
+    max-width: 100%;
+    margin: 0 auto;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    text-align: left;
+  }
+
+  .faq-item-box {
+    background: #ffffff;
+    border: 1.5px solid #e2efe3;
+    border-radius: 12px;
+    padding: 1.6rem 2.2rem;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden;
+    width: 100%;
+  }
+
+  .faq-item-box:hover {
+    border-color: #a8d5ad;
+    box-shadow: 0 6px 18px rgba(107, 151, 114, 0.12);
+  }
+
+  .faq-item-box.active {
+    background: #ffffff;
+    border-color: #6b9772;
+    box-shadow: 0 8px 24px rgba(107, 151, 114, 0.15);
+  }
+
+  .faq-question-title {
+    font-family: var(--font-heading, 'Plus Jakarta Sans', sans-serif);
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #1e293b;
+    margin: 0;
+    line-height: 1.45;
+  }
+
+  .faq-chevron {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: #f0f7f1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #5c8862;
+    flex-shrink: 0;
+    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.3s ease;
+  }
+
+  .faq-item-box.active .faq-chevron {
+    background: #6b9772;
+    color: #ffffff;
+  }
+
+  .faq-item-body p {
+    font-family: var(--font-body, 'Plus Jakarta Sans', sans-serif);
+    font-size: 1.02rem;
+    color: #475569;
+    line-height: 1.65;
+    margin: 0;
+    padding-top: 0.8rem;
+    border-top: 1px solid #f0f7f1;
+  }
+}

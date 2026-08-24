@@ -186,7 +186,7 @@ export default function InternshipPage() {
         <div className="internship-container">
           <div className="faq-header-wrapper-custom">
             <span className="faq-small-title">FAQ</span>
-
+            <h2 className="faq-large-title">FREQUENTLY ASKED QUESTIONS</h2>
           </div>
           <div className="faq-list">
             {INTERNSHIP_FAQS.map((faq, index) => {

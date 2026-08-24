@@ -46,6 +46,7 @@ app.use('/api/auth', require('./routes/authRoutes'));
 app.use('/api/payment', require('./routes/paymentRoutes'));
 app.use('/api/orders', require('./routes/orderRoutes'));
 app.use('/api/reviews', require('./routes/reviewRoutes'));
+app.use('/api/registrations', require('./routes/registrationRoutes'));
 
 const errorHandler = require('./middleware/errorMiddleware');
 const ErrorResponse = require('./utils/ErrorResponse');

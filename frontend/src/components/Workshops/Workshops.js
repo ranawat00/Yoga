@@ -352,19 +352,6 @@ export default function Workshops({ isStandalone = false }) {
     <section id="workshops" className={`workshops ${isStandalone ? 'is-standalone' : ''} ${viewingWorkshop ? 'viewing-details' : ''}`}>
       {!viewingWorkshop ? (
         <div className="section-container" style={{ display: 'flex', flexDirection: 'column' }}>
-          {isStandalone && (
-            <button className="back-btn" style={{ marginBottom: '2rem', alignSelf: 'flex-start' }} onClick={() => {
-              setViewingWorkshop(null);
-              setView('home');
-              window.scrollTo({ top: 0, behavior: 'smooth' });
-            }}>
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                <line x1="19" y1="12" x2="5" y2="12"></line>
-                <polyline points="12 19 5 12 12 5"></polyline>
-              </svg>
-              Back to Home
-            </button>
-          )}
           <h2 className="section-title">Upcoming Workshops</h2>
           <p className="section-subtitle">
             Learn and grow from anywhere—attend our online workshop right from the comfort of your home
