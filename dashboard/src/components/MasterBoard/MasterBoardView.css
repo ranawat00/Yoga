@@ -1,0 +1,533 @@
+/* Master Board Component Styles */
+.masterboard-view {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.masterboard-loading {
+  padding: 40px;
+  text-align: center;
+  font-size: 1.1rem;
+  color: #5c8862;
+  font-weight: 600;
+}
+
+/* Topbar & Filter Controls */
+.masterboard-topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.topbar-info h2 {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #333333;
+  margin: 0 0 6px 0;
+}
+
+.topbar-info p {
+  color: #666666;
+  font-size: 0.92rem;
+  margin: 0;
+}
+
+.topbar-filter-section {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10px;
+}
+
+.filter-group {
+  display: flex;
+  background: #ffffff;
+  padding: 4px;
+  border-radius: 10px;
+  border: 1px solid #e2ece4;
+}
+
+.filter-btn {
+  background: transparent;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #666666;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.filter-btn:hover {
+  color: #5c8862;
+}
+
+.filter-btn.active {
+  background: #5c8862;
+  color: #ffffff;
+  box-shadow: 0 2px 8px rgba(92, 136, 98, 0.25);
+}
+
+/* Custom Calendar Date Picker Styles */
+.custom-date-range-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #ffffff;
+  padding: 8px 12px;
+  border-radius: 10px;
+  border: 1px solid #e2ece4;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+  animation: slideDown 0.2s ease-out forwards;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.date-input-group {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.date-input-group label {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #555555;
+}
+
+.date-input-group input[type="date"] {
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  padding: 5px 10px;
+  font-size: 0.82rem;
+  font-family: inherit;
+  color: #333333;
+  outline: none;
+  background: #f9fafb;
+}
+
+.date-input-group input[type="date"]:focus {
+  border-color: #5c8862;
+  background: #ffffff;
+  box-shadow: 0 0 0 2px rgba(92, 136, 98, 0.15);
+}
+
+.apply-date-btn {
+  background: #5c8862;
+  color: #ffffff;
+  border: none;
+  padding: 6px 14px;
+  border-radius: 6px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.apply-date-btn:hover {
+  background: #4a7050;
+  box-shadow: 0 2px 8px rgba(92, 136, 98, 0.25);
+}
+
+/* Metrics Cards Grid */
+.mb-metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.mb-metric-card {
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 22px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.03);
+  border: 1px solid #eef3ef;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.mb-metric-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+}
+
+.metric-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+.metric-label {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #666666;
+}
+
+.metric-icon {
+  font-size: 1.25rem;
+  background: #f4f8f5;
+  padding: 8px;
+  border-radius: 10px;
+}
+
+.metric-value {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #222222;
+  margin-bottom: 12px;
+}
+
+.metric-footer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.badge-growth {
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 6px;
+}
+
+.badge-growth.positive {
+  background: #e8f5e9;
+  color: #2e7d32;
+}
+
+.subtext {
+  font-size: 0.78rem;
+  color: #888888;
+}
+
+.user-ratio-pill {
+  font-size: 0.78rem;
+  font-weight: 600;
+  background: #eaf3ec;
+  color: #5c8862;
+  padding: 4px 10px;
+  border-radius: 12px;
+}
+
+/* Charts Grid & Layout */
+.mb-charts-row,
+.mb-bottom-row {
+  display: grid;
+  grid-template-columns: 1.8fr 1.2fr;
+  gap: 20px;
+}
+
+@media (max-width: 1024px) {
+  .mb-charts-row,
+  .mb-bottom-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+.mb-chart-card {
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 24px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.03);
+  border: 1px solid #eef3ef;
+}
+
+.card-title-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+
+.card-title-bar h3 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #333333;
+  margin: 0 0 4px 0;
+}
+
+.card-subtitle {
+  font-size: 0.82rem;
+  color: #888888;
+}
+
+/* SVG Line Chart Styling */
+.graph-legend {
+  display: flex;
+  gap: 16px;
+  font-size: 0.82rem;
+  color: #555555;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.legend-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.revenue-dot {
+  background: #5c8862;
+}
+
+.orders-dot {
+  background: #88a88e;
+}
+
+.svg-chart-wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.trend-svg {
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.data-node circle {
+  transition: r 0.2s ease, fill 0.2s ease;
+  cursor: pointer;
+}
+
+.data-node:hover circle {
+  r: 7;
+  fill: #5c8862;
+}
+
+.x-axis-labels {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 10px 0 10px;
+}
+
+.x-label {
+  font-size: 0.8rem;
+  color: #777777;
+  font-weight: 500;
+}
+
+/* User Breakdown Card */
+.user-stats-visual {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding-top: 10px;
+}
+
+.visual-donut-container {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  background: conic-gradient(#5c8862 0% 68%, #d5e5d8 68% 100%);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  box-shadow: 0 4px 12px rgba(92, 136, 98, 0.15);
+}
+
+.donut-center {
+  width: 100px;
+  height: 100px;
+  background: #ffffff;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.donut-total {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #333333;
+}
+
+.donut-label {
+  font-size: 0.72rem;
+  color: #888888;
+}
+
+.user-types-breakdown {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.user-type-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
+.user-type-title {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #444444;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.type-indicator {
+  width: 10px;
+  height: 10px;
+  border-radius: 3px;
+}
+
+.new-user-indicator {
+  background: #5c8862;
+}
+
+.existing-user-indicator {
+  background: #d5e5d8;
+}
+
+.user-type-count {
+  font-size: 0.84rem;
+  font-weight: 600;
+  color: #555555;
+}
+
+.progress-bar-bg {
+  width: 100%;
+  height: 8px;
+  background: #f0f4f2;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  border-radius: 4px;
+  transition: width 0.6s ease;
+}
+
+.new-users-fill {
+  background: #5c8862;
+}
+
+.existing-users-fill {
+  background: #a2c4a8;
+}
+
+/* Workshop Registration Bars */
+.workshop-bars-list {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.workshop-bar-item {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.bar-info {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.88rem;
+}
+
+.workshop-name {
+  font-weight: 600;
+  color: #333333;
+}
+
+.workshop-count {
+  color: #666666;
+  font-size: 0.82rem;
+  font-weight: 500;
+}
+
+/* Live Events Stream */
+.event-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.event-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px;
+  border-radius: 8px;
+  background: #fcfdfe;
+  border: 1px solid #f0f4f2;
+  transition: background 0.2s ease;
+}
+
+.event-item:hover {
+  background: #f4f8f5;
+}
+
+.event-badge {
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 4px 8px;
+  border-radius: 6px;
+  white-space: nowrap;
+}
+
+.event-badge.registration {
+  background: #eaf3ec;
+  color: #5c8862;
+}
+
+.event-badge.order {
+  background: #fff4e5;
+  color: #d97706;
+}
+
+.event-badge.user {
+  background: #eff6ff;
+  color: #2563eb;
+}
+
+.event-details {
+  flex: 1;
+}
+
+.event-title {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #333333;
+}
+
+.event-desc {
+  font-size: 0.78rem;
+  color: #777777;
+}
+
+.event-time {
+  font-size: 0.74rem;
+  color: #999999;
+  white-space: nowrap;
+}

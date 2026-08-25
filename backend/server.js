@@ -14,6 +14,9 @@ const cookieParser = require('cookie-parser');
 
 const app = express();
 
+// Disable ETag caching to ensure API always responds with 200 OK
+app.set('etag', false);
+
 // Enable response compression
 app.use(compression());
 
@@ -47,6 +50,8 @@ app.use('/api/payment', require('./routes/paymentRoutes'));
 app.use('/api/orders', require('./routes/orderRoutes'));
 app.use('/api/reviews', require('./routes/reviewRoutes'));
 app.use('/api/registrations', require('./routes/registrationRoutes'));
+app.use('/api/dashboard', require('./routes/dashboardRoutes'));
+app.use('/api/coupons', require('./routes/couponRoutes'));
 
 const errorHandler = require('./middleware/errorMiddleware');
 const ErrorResponse = require('./utils/ErrorResponse');

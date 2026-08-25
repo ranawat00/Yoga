@@ -9,6 +9,33 @@ export default function RegisterModal() {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [successData, setSuccessData] = useState(null);
+  const [couponCode, setCouponCode] = useState('');
+  const [couponDiscount, setCouponDiscount] = useState(null);
+  const [isValidatingCoupon, setIsValidatingCoupon] = useState(false);
+
+  const handleApplyCoupon = async () => {
+    if (!couponCode) return;
+    setIsValidatingCoupon(true);
+    try {
+      const response = await fetch('http://localhost:5000/api/coupons/validate', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ code: couponCode, amount: 499, workshopTitle: '5 Days Online Live Yoga Workshop' })
+      });
+      const json = await response.json();
+      if (json.success) {
+        setCouponDiscount(json);
+        if (addNotification) addNotification(json.message, 'success');
+      } else {
+        setCouponDiscount(null);
+        if (addNotification) addNotification(json.message || 'Invalid coupon code', 'error');
+      }
+    } catch (err) {
+      if (addNotification) addNotification('Error validating coupon code', 'error');
+    } finally {
+      setIsValidatingCoupon(false);
+    }
+  };
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
@@ -42,6 +69,7 @@ export default function RegisterModal() {
         phone: formData.phone,
         email: formData.email,
         batch: formData.batch,
+        couponCode: couponDiscount ? couponCode : '',
         source: 'Website Free Registration Modal'
       });
 
@@ -139,6 +167,40 @@ export default function RegisterModal() {
                     onChange={handleInputChange}
                   />
                 </div>
+
+                {/* Coupon Code Input */}
+                <div className="practice-input-wrapper" style={{ marginTop: '0.75rem', display: 'flex', gap: '8px' }}>
+                  <input
+                    type="text"
+                    placeholder="Coupon Code (e.g. YOGA20)"
+                    value={couponCode}
+                    onChange={(e) => setCouponCode(e.target.value.toUpperCase())}
+                    style={{ textTransform: 'uppercase', flex: 1 }}
+                  />
+                  <button
+                    type="button"
+                    onClick={handleApplyCoupon}
+                    disabled={isValidatingCoupon || !couponCode}
+                    style={{
+                      background: 'rgba(255, 255, 255, 0.25)',
+                      border: '1.2px solid rgba(255, 255, 255, 0.4)',
+                      color: '#ffffff',
+                      borderRadius: '50px',
+                      padding: '0 18px',
+                      fontSize: '0.85rem',
+                      fontWeight: '700',
+                      cursor: 'pointer'
+                    }}
+                  >
+                    {isValidatingCoupon ? '...' : 'APPLY'}
+                  </button>
+                </div>
+
+                {couponDiscount && (
+                  <div style={{ background: 'rgba(255, 255, 255, 0.2)', padding: '8px 14px', borderRadius: '12px', color: '#ffffff', fontSize: '0.82rem', textAlign: 'center', marginTop: '6px' }}>
+                    ✨ {couponDiscount.message}
+                  </div>
+                )}
 
                 {/* Select Batch */}
                 <div className="practice-input-wrapper" style={{ marginTop: '0.25rem' }}>

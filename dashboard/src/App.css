@@ -1,0 +1,34 @@
+.dashboard-app-container {
+  display: flex;
+  min-height: 100vh;
+  width: 100%;
+  background-color: #faf6ee;
+}
+
+.dashboard-main-area {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+}
+
+.dashboard-content-body {
+  padding: 30px;
+  flex: 1;
+}
+
+.dashboard-placeholder-card {
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 28px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.03);
+  border: 1px solid #eef3ef;
+  color: #333333;
+}
+
+.dashboard-placeholder-card h3 {
+  margin-top: 0;
+  margin-bottom: 12px;
+  color: #333333;
+  font-size: 1.25rem;
+}

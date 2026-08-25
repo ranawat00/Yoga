@@ -1,6 +1,5 @@
 import React from 'react';
 import './DailyYogaTogether.css';
-import yogaBannerImg from '../../assets/daily_yoga_together/yoga_banner.jpg';
 import { useApp } from '../../hooks/useApp';
 
 export default function DailyYogaTogether() {
@@ -14,37 +13,33 @@ export default function DailyYogaTogether() {
 
   return (
     <section className="daily-yoga-together-section">
-      <div
-        className="daily-yoga-together-container"
-        onClick={handleRegisterClick}
-        style={{ cursor: 'pointer' }}
-        role="button"
-        tabIndex="0"
-        aria-label="View Daily Yoga Together details"
-      >
-        <div className="daily-yoga-together-image-wrapper">
-          {/* Full Uncropped Banner Image */}
-          <img
-            src={yogaBannerImg}
-            alt="Daily Yoga Together - Join The Movement"
-            className="daily-yoga-together-img"
-            loading="lazy"
-          />
-          <div className="daily-yoga-together-overlay-content">
-            <button
-              className="daily-yoga-together-btn"
-              onClick={handleRegisterClick}
-              aria-label="Register Now"
-            >
-              <span className="btn-label-text">REGISTER NOW</span>
-              <div className="btn-icon-wrapper">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#ffffff" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-                  <polyline points="9 18 15 12 9 6" />
-                </svg>
-              </div>
-            </button>
-          </div>
+      <div className="daily-yoga-together-container">
+        <h2 className="daily-yoga-together-title">
+          ONE MEMBERSHIP,<br />ULTIMATE REWARDS
+        </h2>
+
+        <p className="daily-yoga-together-description">
+          Step into an extraordinary realm of privilege reserved for the discerning few. As a member, you unlock exclusive access to bespoke experiences, private invitations, and unparalleled personalization. Indulge in a world where luxury knows no bounds and every moment is curated to perfection.
+        </p>
+
+        <div className="daily-yoga-together-btn-wrapper">
+          <button
+            className="daily-yoga-together-join-btn"
+            onClick={handleRegisterClick}
+            aria-label="Join Now"
+          >
+            <span>JOIN NOW</span>
+            <span className="daily-yoga-together-btn-arrow">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#4C1D95" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round">
+                <polyline points="9 18 15 12 9 6" />
+              </svg>
+            </span>
+          </button>
         </div>
+
+        <p className="daily-yoga-together-tagline">
+          Elevate your lifestyle — your exceptional journey begins now.
+        </p>
       </div>
     </section>
   );

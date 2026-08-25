@@ -6,7 +6,7 @@ const ErrorResponse = require('../utils/ErrorResponse');
 // @access  Public
 exports.createRegistration = async (req, res, next) => {
   try {
-    const { name, phone, email, batch, workshopTitle, countryCode, city, source } = req.body;
+    const { name, phone, email, batch, workshopTitle, countryCode, city, source, couponCode } = req.body;
 
     if (!name || !phone) {
       return next(new ErrorResponse('Please provide your name and phone number', 400));
@@ -20,7 +20,8 @@ exports.createRegistration = async (req, res, next) => {
       workshopTitle: workshopTitle || '5 Days Online Live Yoga Workshop',
       countryCode: countryCode || '+91',
       city: city || '',
-      source: source || 'Website Registration Modal'
+      source: source || 'Website Registration Modal',
+      couponCode: couponCode || ''
     });
 
     res.status(201).json({

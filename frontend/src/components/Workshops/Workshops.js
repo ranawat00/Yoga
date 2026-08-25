@@ -210,8 +210,42 @@ export default function Workshops({ isStandalone = false }) {
     }
   };
 
+  const [couponCodeInput, setCouponCodeInput] = useState('');
+  const [couponDiscount, setCouponDiscount] = useState(null);
+  const [isValidatingCoupon, setIsValidatingCoupon] = useState(false);
+
+  const handleApplyCoupon = async () => {
+    if (!couponCodeInput || !selectedWorkshop) return;
+    setIsValidatingCoupon(true);
+    try {
+      const response = await fetch('http://localhost:5000/api/coupons/validate', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          code: couponCodeInput,
+          amount: selectedWorkshop.price,
+          workshopTitle: selectedWorkshop.title
+        })
+      });
+      const json = await response.json();
+      if (json.success) {
+        setCouponDiscount(json);
+        addNotification(json.message, 'success');
+      } else {
+        setCouponDiscount(null);
+        addNotification(json.message || 'Invalid coupon code', 'error');
+      }
+    } catch (err) {
+      addNotification('Error validating coupon code', 'error');
+    } finally {
+      setIsValidatingCoupon(false);
+    }
+  };
+
   const handleOpenModal = (workshop) => {
     setSelectedWorkshop(workshop);
+    setCouponCodeInput('');
+    setCouponDiscount(null);
     setFormData({
       name: '',
       email: '',
@@ -238,11 +272,12 @@ export default function Workshops({ isStandalone = false }) {
     }
     setIsSubmitting(true);
 
-    const price = selectedWorkshop.price;
+    const price = couponDiscount ? couponDiscount.data.finalAmount : selectedWorkshop.price;
     const orderPayload = {
       name: formData.name,
       email: formData.email,
       phone: formData.phone,
+      couponCode: couponDiscount ? couponDiscount.data.code : '',
       address: 'Online Class / Live Workshop',
       city: 'Virtual',
       pincode: '000000',
@@ -251,13 +286,13 @@ export default function Workshops({ isStandalone = false }) {
           product: {
             id: selectedWorkshop.id,
             title: `${selectedWorkshop.title} (${formData.batch})`,
-            price: selectedWorkshop.price,
+            price: price,
             image: ''
           },
           quantity: 1
         }
       ],
-      subtotal: price,
+      subtotal: selectedWorkshop.price,
       shipping: 0,
       gst: 0,
       total: price
@@ -598,6 +633,35 @@ export default function Workshops({ isStandalone = false }) {
                       />
                     </div>
 
+                    {/* Coupon Code Field */}
+                    <div className="form-group">
+                      <label className="form-label">Coupon Code (Optional)</label>
+                      <div style={{ display: 'flex', gap: '8px' }}>
+                        <input
+                          type="text"
+                          className="form-control"
+                          placeholder="e.g. YOGA20 or HEALTH200"
+                          value={couponCodeInput}
+                          onChange={(e) => setCouponCodeInput(e.target.value.toUpperCase())}
+                          style={{ textTransform: 'uppercase', flex: 1 }}
+                        />
+                        <button
+                          type="button"
+                          className="btn btn-blue"
+                          onClick={handleApplyCoupon}
+                          disabled={isValidatingCoupon || !couponCodeInput}
+                          style={{ padding: '0 1rem', fontSize: '0.85rem', whiteSpace: 'nowrap' }}
+                        >
+                          {isValidatingCoupon ? '...' : 'APPLY'}
+                        </button>
+                      </div>
+                      {couponDiscount && (
+                        <div style={{ background: '#eaf3ec', color: '#5c8862', padding: '6px 12px', borderRadius: '6px', fontSize: '0.82rem', marginTop: '6px', fontWeight: 600 }}>
+                          ✨ {couponDiscount.message}
+                        </div>
+                      )}
+                    </div>
+
                     {selectedWorkshop.id !== 'cook-3' ? (
                       <div className="form-group">
                         <label className="form-label" htmlFor="reg-batch">Preferred Live Batch</label>
@@ -646,7 +710,7 @@ export default function Workshops({ isStandalone = false }) {
                       Cancel
                     </button>
                     <button type="submit" className="btn btn-blue" disabled={isSubmitting} style={{ padding: '0.6rem 1.5rem' }}>
-                      {isSubmitting ? 'Registering...' : `Pay & Register ($${selectedWorkshop.price})`}
+                      {isSubmitting ? 'Registering...' : `Pay & Register ($${couponDiscount ? couponDiscount.data.finalAmount : selectedWorkshop.price})`}
                     </button>
                   </div>
                 </form>

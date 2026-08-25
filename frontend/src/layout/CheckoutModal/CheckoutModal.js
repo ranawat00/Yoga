@@ -45,6 +45,10 @@ export default function CheckoutModal() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isMobileSummaryOpen, setIsMobileSummaryOpen] = useState(false);
 
+  // Coupon state
+  const [couponCodeInput, setCouponCodeInput] = useState('');
+  const [appliedCoupon, setAppliedCoupon] = useState(null);
+  const [couponDiscountAmount, setCouponDiscountAmount] = useState(0);
 
   // Receipt/Success states
   const [orderedItems, setOrderedItems] = useState([]);
@@ -55,7 +59,31 @@ export default function CheckoutModal() {
   const subtotal = cartItems.reduce((acc, item) => acc + (item.product.price * item.quantity), 0);
   const shipping = subtotal > 1000 ? 0 : 50; // free shipping above 1000
   const gst = Math.round(subtotal * 0.05); // 5% Satvic tax
-  const total = subtotal + shipping + gst;
+  const rawTotal = subtotal + shipping + gst;
+  const total = Math.max(0, rawTotal - couponDiscountAmount);
+
+  const handleApplyCoupon = async () => {
+    if (!couponCodeInput) return;
+    try {
+      const res = await fetch('http://localhost:5000/api/coupons/validate', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ code: couponCodeInput, amount: rawTotal })
+      });
+      const json = await res.json();
+      if (json.success) {
+        setAppliedCoupon(json.data.code);
+        setCouponDiscountAmount(json.data.discountAmount);
+        addNotification(json.message, 'success');
+      } else {
+        setAppliedCoupon(null);
+        setCouponDiscountAmount(0);
+        addNotification(json.message || 'Invalid coupon code', 'error');
+      }
+    } catch (err) {
+      addNotification('Failed to validate coupon code', 'error');
+    }
+  };
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -691,9 +719,23 @@ export default function CheckoutModal() {
 
               {/* Promo Code Input */}
               <div className="promo-code-container">
-                <input type="text" className="form-control promo-input" placeholder="Promo code" />
-                <button type="button" className="btn-promo-apply">Apply</button>
+                <input 
+                  type="text" 
+                  className="form-control promo-input" 
+                  placeholder="Promo code (e.g. YOGA20)" 
+                  value={couponCodeInput}
+                  onChange={(e) => setCouponCodeInput(e.target.value.toUpperCase())}
+                />
+                <button type="button" className="btn-promo-apply" onClick={handleApplyCoupon}>
+                  Apply
+                </button>
               </div>
+
+              {appliedCoupon && (
+                <div style={{ background: '#eaf3ec', color: '#5c8862', padding: '8px 12px', borderRadius: '8px', fontSize: '0.84rem', fontWeight: 600, marginTop: '8px', textAlign: 'center' }}>
+                  🏷️ Coupon '{appliedCoupon}' applied (-₹{couponDiscountAmount})
+                </div>
+              )}
 
               {/* Price Details Breakdown */}
               <div className="summary-pricing-table">
@@ -711,6 +753,12 @@ export default function CheckoutModal() {
                   <span>GST (5%)</span>
                   <span>₹{gst.toLocaleString()}</span>
                 </div>
+                {couponDiscountAmount > 0 && (
+                  <div className="pricing-row" style={{ color: '#5c8862', fontWeight: 600 }}>
+                    <span>Coupon Discount</span>
+                    <span>-₹{couponDiscountAmount.toLocaleString()}</span>
+                  </div>
+                )}
                 <div className="pricing-divider"></div>
                 <div className="pricing-row total-row">
                   <span>Total Amount</span>

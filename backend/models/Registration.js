@@ -36,6 +36,10 @@ const registrationSchema = new mongoose.Schema({
     type: String,
     default: 'Website Registration Modal'
   },
+  couponCode: {
+    type: String,
+    default: ''
+  },
   status: {
     type: String,
     enum: ['REGISTERED', 'CONTACTED', 'COMPLETED', 'CANCELLED'],
