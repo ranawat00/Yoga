@@ -387,7 +387,7 @@ export default function Workshops({ isStandalone = false }) {
     <section id="workshops" className={`workshops ${isStandalone ? 'is-standalone' : ''} ${viewingWorkshop ? 'viewing-details' : ''}`}>
       {!viewingWorkshop ? (
         <div className="section-container" style={{ display: 'flex', flexDirection: 'column' }}>
-          <h2 className="section-title">Upcoming Workshops</h2>
+          <h2 className="section-title">UPCOMING WORKSHOPS</h2>
           <p className="section-subtitle">
             Learn and grow from anywhere—attend our online workshop right from the comfort of your home
           </p>
@@ -401,11 +401,29 @@ export default function Workshops({ isStandalone = false }) {
             <div className="workshops-list" ref={sliderRef} onScroll={handleSliderScroll}>
               {displayedWorkshops.map((w) => (
                 <div key={w.id} className="workshop-card-horizontal">
-                  <div className="workshop-img-container">
+                  <div
+                    className="workshop-img-container"
+                    onClick={() => {
+                      setViewingWorkshop(w);
+                      setView('workshops');
+                      window.scrollTo({ top: 0, behavior: 'smooth' });
+                    }}
+                    title={`View details for ${w.title}`}
+                  >
                     <img loading="lazy" src={w.image} alt={w.title} className="workshop-img" />
                   </div>
                   <div className="workshop-content-horizontal">
-                    <h3 className="workshop-title">{w.title}</h3>
+                    <h3
+                      className="workshop-title"
+                      onClick={() => {
+                        setViewingWorkshop(w);
+                        setView('workshops');
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                      }}
+                      title={`View details for ${w.title}`}
+                    >
+                      {w.title}
+                    </h3>
                     {w.subtitle && <p className="workshop-card-subtitle">{w.subtitle}</p>}
 
                     <div className="workshop-rating-row">

@@ -67,7 +67,7 @@ export default function ScienceBackedBenefits() {
 
         {/* Header — title only, centered */}
         <div className="sbb-header">
-          <h2 className="sbb-main-title">Science Backed Benefits</h2>
+          <h2 className="sbb-main-title">SCIENCE-BACKED BENEFITS OF THE YHO WELLNESS WORKSHOP</h2>
         </div>
 
         {/* Greige Box — slide content + arrows centered below */}

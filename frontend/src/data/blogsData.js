@@ -1,4 +1,4 @@
-import blogBannerImg from '../assets/blog/blog_banner.jpg';
+import blog1Img from '../assets/blog/blog1.jpg';
 import blog2Img from '../assets/blog/blog2.jpg';
 import blog3Img from '../assets/blog/blog3.jpg';
 import blog4Img from '../assets/blog/blog4.jpg';
@@ -14,7 +14,7 @@ export const BLOGS_DATA = [
     title: 'Mental Health - A Silent Pandemic',
     subtitle: 'Nurturing Mental Strength in the Age of Acceleration',
     excerpt: 'We live in an era defined by extraordinary innovation. Artificial Intelligence speeds up our tasks, digital transformation connects us globally in milliseconds, and opportunities to learn and grow are everywhere. Yet, alongside this fast-paced shift to put speed and achievement first, a quiet phenomenon has emerged: the silent pandemic of neglected mental health.',
-    image: blogBannerImg,
+    image: blog1Img,
     category: 'Mental Wellness',
     readTime: '5 min read',
     type: 'mental-health'

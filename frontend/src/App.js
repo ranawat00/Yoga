@@ -25,6 +25,7 @@ const DailyYogaTogether = lazy(() => import('./components/DailyYogaTogether/Dail
 const BlogSection = lazy(() => import('./components/BlogSection/BlogSection'));
 const ScienceBackedBenefits = lazy(() => import('./components/ScienceBackedBenefits/ScienceBackedBenefits'));
 const RunningTicker = lazy(() => import('./components/RunningTicker/RunningTicker'));
+const HomeVideoSlider = lazy(() => import('./components/HomeVideoSlider/HomeVideoSlider'));
 const HomeFAQ = lazy(() => import('./components/HomeFAQ/HomeFAQ'));
 
 // Lazy load full page views
@@ -202,6 +203,7 @@ function AppContent() {
             <Suspense fallback={null}><RunningTicker /></Suspense>
             <Suspense fallback={null}><BlogSection /></Suspense>
             <Suspense fallback={null}><ScienceBackedBenefits /></Suspense>
+            <Suspense fallback={null}><HomeVideoSlider /></Suspense>
             <Suspense fallback={null}><HomeFAQ /></Suspense>
           </>
         )}

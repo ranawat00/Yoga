@@ -15,7 +15,7 @@ export default function DailyYogaTogether() {
     <section className="daily-yoga-together-section">
       <div className="daily-yoga-together-container">
         <h2 className="daily-yoga-together-title">
-          ONE MEMBERSHIP,<br />ULTIMATE REWARDS
+          ONE MEMBERSHIP ULTIMATE REWARDS
         </h2>
 
         <p className="daily-yoga-together-description">
@@ -30,7 +30,7 @@ export default function DailyYogaTogether() {
           >
             <span>JOIN NOW</span>
             <span className="daily-yoga-together-btn-arrow">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#4C1D95" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round">
                 <polyline points="9 18 15 12 9 6" />
               </svg>
             </span>

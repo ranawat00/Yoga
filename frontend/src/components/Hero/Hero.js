@@ -105,7 +105,7 @@ export default function Hero() {
               window.scrollTo({ top: 0, behavior: 'smooth' });
             }}
           >
-            <span>Register for Free</span>
+            <span>Explore More</span>
             <span className="hero-sage-arrow-circle">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
                 <line x1="5" y1="12" x2="19" y2="12"></line>
