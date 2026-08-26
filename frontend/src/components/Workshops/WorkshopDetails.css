@@ -120,33 +120,49 @@
   margin: 0;
   width: calc(100% - 32px);
   max-width: 280px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  box-sizing: border-box !important;
+  min-height: 44px !important;
+  height: 44px !important;
+  padding: 0 0.4rem 0 1.5rem !important;
+  background: linear-gradient(135deg, #b2d4af 0%, #c8e4c5 25%, #dcefd9 50%, #edf6eb 75%, #f6faf5 100%) !important;
+  background-size: 300% 300% !important;
+  color: #1b3819 !important;
+  border: 2px solid rgba(255, 255, 255, 0.95) !important;
+  box-shadow: 0 10px 32px rgba(92, 123, 87, 0.4), inset 0 2px 4px rgba(255, 255, 255, 0.8), inset 0 -2px 6px rgba(27, 56, 25, 0.15) !important;
   animation: waterFlow 4s linear infinite, bannerButtonShake 5s ease-in-out infinite;
 }
 
 .banner-overlay-btn span {
-  font-size: 0.95rem;
-  font-weight: 700;
-  color: #000000;
+  font-size: 1.05rem !important;
+  font-weight: 800 !important;
+  color: #1b3819 !important;
+  line-height: 1 !important;
 }
 
 .banner-overlay-btn .btn-arrow-circle {
-  width: 36px;
-  height: 36px;
-  background-color: #ffffff;
-  color: #0b6845;
+  width: 34px !important;
+  height: 34px !important;
+  min-width: 34px !important;
+  min-height: 34px !important;
+  background: linear-gradient(135deg, #5c7b57 0%, #466442 100%) !important;
+  color: #ffffff !important;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-shrink: 0;
   transition: transform 0.2s ease;
+  box-shadow: 0 3px 10px rgba(40, 70, 40, 0.35), inset 0 1px 1px rgba(255, 255, 255, 0.4) !important;
 }
 
 .banner-overlay-btn .btn-arrow-circle svg {
-  width: 18px;
-  height: 18px;
+  width: 20px !important;
+  height: 20px !important;
+  color: #ffffff !important;
+  stroke: #ffffff !important;
 }
 
 .banner-overlay-btn:hover {
@@ -240,19 +256,23 @@
 
 /* Register Now Button */
 .details-register-btn {
-  display: inline-flex;
-  align-items: center;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  box-sizing: border-box !important;
   gap: 1.2rem;
-  background-image: linear-gradient(90deg, #4ade80, #22c55e, #86efac, #4ade80);
-  background-size: 300% 100%;
-  color: #000000;
-  border: none;
-  padding: 0.35rem 0.35rem 0.35rem 1.8rem;
+  background: linear-gradient(135deg, #b2d4af 0%, #c8e4c5 25%, #dcefd9 50%, #edf6eb 75%, #f6faf5 100%) !important;
+  background-size: 300% 300% !important;
+  color: #1b3819 !important;
+  border: 2px solid rgba(255, 255, 255, 0.95) !important;
+  min-height: 44px !important;
+  height: 44px !important;
+  padding: 0 0.4rem 0 1.5rem !important;
   border-radius: 50px;
   font-weight: 800;
-  font-size: 1.05rem;
+  font-size: 1.05rem !important;
   cursor: pointer;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 10px 32px rgba(92, 123, 87, 0.4), inset 0 2px 4px rgba(255, 255, 255, 0.8), inset 0 -2px 6px rgba(27, 56, 25, 0.15) !important;
   transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
 }
 
@@ -921,11 +941,30 @@
   }
 
   .banner-overlay-btn {
-    width: calc(100% - 24px);
-    max-width: 270px;
-    border-radius: 50px;
-    margin: 0;
-    padding: 0.15rem 0.3rem 0.15rem 1rem;
+    width: calc(100% - 24px) !important;
+    max-width: 280px !important;
+    border-radius: 50px !important;
+    margin: 0 !important;
+    min-height: 48px !important;
+    height: 48px !important;
+    padding: 0 0.4rem 0 1.4rem !important;
+  }
+
+  .banner-overlay-btn span {
+    font-size: 0.98rem !important;
+    font-weight: 800 !important;
+  }
+
+  .banner-overlay-btn .btn-arrow-circle {
+    width: 36px !important;
+    height: 36px !important;
+    min-width: 36px !important;
+    min-height: 36px !important;
+  }
+
+  .banner-overlay-btn .btn-arrow-circle svg {
+    width: 18px !important;
+    height: 18px !important;
   }
 
   /* Features dark section on mobile */
