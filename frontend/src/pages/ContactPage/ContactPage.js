@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useApp } from '../../hooks/useApp';
 import contactUsImg from '../../assets/contact_us/contactUs.jpg';
-import contactUs2Img from '../../assets/contact_us/contactus2.jpg';
+import contactUs2Img from '../../assets/contact_us/contactus2.png';
 import MediaLogos from '../../components/MediaLogos/MediaLogos';
 import './ContactPage.css';
 
@@ -220,9 +220,9 @@ export default function ContactPage() {
 
             <div className="contact-hero-image-wrapper">
               <div className="contact-hero-image-frame">
-                <img 
-                  src={contactUsImg} 
-                  alt="Live with Gratitude - Yoga Healers" 
+                <img
+                  src={contactUsImg}
+                  alt="Live with Gratitude - Yoga Healers"
                   className="contact-banner-img"
                   loading="eager"
                   decoding="async"
