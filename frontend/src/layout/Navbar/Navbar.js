@@ -45,6 +45,10 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [view]);
 
+  const handlePreloadContact = () => {
+    import('../../pages/ContactPage/ContactPage');
+  };
+
   const handleLinkClick = (id, e) => {
     e.preventDefault();
     setMobileMenuOpen(false);
@@ -212,7 +216,12 @@ export default function Navbar() {
           </div>
 
           {/* Contact Us Pill Button */}
-          <button className="contact-btn" onClick={(e) => handleLinkClick('contact', e)}>
+          <button 
+            className="contact-btn" 
+            onMouseEnter={handlePreloadContact}
+            onTouchStart={handlePreloadContact}
+            onClick={(e) => handleLinkClick('contact', e)}
+          >
             Contact Us
           </button>
 
@@ -275,7 +284,13 @@ export default function Navbar() {
               </a>
             </li>
             <li>
-              <a href="/contact" className={activeLink === 'contact' ? 'active-pill' : ''} onClick={(e) => handleLinkClick('contact', e)}>
+              <a 
+                href="/contact" 
+                className={activeLink === 'contact' ? 'active-pill' : ''} 
+                onMouseEnter={handlePreloadContact}
+                onTouchStart={handlePreloadContact}
+                onClick={(e) => handleLinkClick('contact', e)}
+              >
                 Contact Us
               </a>
             </li>

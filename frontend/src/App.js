@@ -79,6 +79,15 @@ function AppContent() {
     window.scrollTo(0, 0);
   }, []);
 
+  // Background chunk preloading for instant 0ms page navigation
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      import('./pages/ContactPage/ContactPage');
+      import('./pages/AboutUsPage/AboutUsPage');
+    }, 1000);
+    return () => clearTimeout(timer);
+  }, []);
+
 
 
   // Listen for browser Back / Forward navigation events
