@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useApp } from '../../hooks/useApp';
 import contactUsImg from '../../assets/contact_us/contactUs.jpg';
-import contactUs2Img from '../../assets/contact_us/contactus2.png';
+import contactUs2Img from '../../assets/contact_us/contactus2.jpg';
 import MediaLogos from '../../components/MediaLogos/MediaLogos';
 import './ContactPage.css';
 
