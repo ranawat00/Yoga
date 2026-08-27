@@ -1,6 +1,7 @@
 const Order = require('../models/Order');
 const Registration = require('../models/Registration');
 const User = require('../models/User');
+const Traffic = require('../models/Traffic');
 
 // Helper to disable caching so dev tools always report status 200 OK
 const disableCache = (res) => {
@@ -53,6 +54,9 @@ exports.getDashboardOverview = async (req, res) => {
     const totalOrders = await safeDbCall(() => Order.countDocuments(dateFilter), 0);
     const totalRegistrations = await safeDbCall(() => Registration.countDocuments(dateFilter), 0);
     const totalUsers = await safeDbCall(() => User.countDocuments(dateFilter), 0);
+    const totalPageViews = await safeDbCall(() => Traffic.countDocuments(dateFilter), 0);
+    const uniqueVisitorsAgg = await safeDbCall(() => Traffic.distinct('visitorId', dateFilter), []);
+    const uniqueVisitors = uniqueVisitorsAgg.length;
 
     const thirtyDaysAgo = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000);
     const newUsersCount = await safeDbCall(() => User.countDocuments({ ...dateFilter, createdAt: { $gte: thirtyDaysAgo } }), 0);
@@ -173,7 +177,9 @@ exports.getDashboardOverview = async (req, res) => {
         registrationsGrowth: totalRegistrations > 0 ? '+100%' : '0%',
         totalUsers,
         newUsersCount,
-        existingUsersCount
+        existingUsersCount,
+        totalPageViews,
+        uniqueVisitors
       },
       monthlyTrends,
       workshopStats,

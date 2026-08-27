@@ -12,7 +12,10 @@ const {
   updateDetails,
   verifyToken,
   refreshToken,
-  logoutAllDevices
+  logoutAllDevices,
+  registerAdmin,
+  loginAdmin,
+  logoutAdmin
 } = require('../controllers/authController');
 
 // Import validators & middleware
@@ -24,6 +27,12 @@ const {
 } = require('../validators/authValidator');
 const validate = require('../middleware/validationMiddleware');
 const { protect } = require('../middleware/authMiddleware');
+
+// Admin Auth Routes
+router.post('/admin/register', registerAdmin);
+router.post('/admin/signup', registerAdmin);
+router.post('/admin/login', loginAdmin);
+router.post('/admin/logout', logoutAdmin);
 
 // Define API routes with middleware validations
 router.post('/signup', signupValidator, validate, registerUser);

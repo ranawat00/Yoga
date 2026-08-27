@@ -1,0 +1,257 @@
+.traffic-view-container {
+  padding: 24px;
+  max-width: 1400px;
+  margin: 0 auto;
+  font-family: inherit;
+}
+
+.traffic-header-bar {
+  margin-bottom: 24px;
+}
+
+.traffic-header-bar h2 {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #1a2e1d;
+  margin-bottom: 4px;
+}
+
+.traffic-header-bar p {
+  font-size: 0.95rem;
+  color: #6b7280;
+}
+
+/* KPI Cards Grid */
+.traffic-kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 18px;
+  margin-bottom: 28px;
+}
+
+.traffic-kpi-card {
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 20px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+  border: 1px solid #eaf0eb;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.traffic-kpi-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.07);
+}
+
+.traffic-kpi-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.traffic-kpi-label {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.traffic-kpi-icon {
+  font-size: 1.4rem;
+  background: #f0f7f2;
+  width: 42px;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+}
+
+.traffic-kpi-val {
+  font-size: 1.9rem;
+  font-weight: 800;
+  color: #1a2e1d;
+  margin-bottom: 6px;
+}
+
+.traffic-kpi-sub {
+  font-size: 0.82rem;
+  color: #4b5563;
+  font-weight: 500;
+}
+
+/* Analytics Row Grid */
+.traffic-analytics-row {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 24px;
+  margin-bottom: 28px;
+}
+
+@media (max-width: 992px) {
+  .traffic-analytics-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+.traffic-card-block {
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 22px;
+  border: 1px solid #eaf0eb;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+}
+
+.traffic-card-block h3 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #1a2e1d;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.top-pages-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.top-page-item {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.top-page-info {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #374151;
+}
+
+.page-hits-badge {
+  background: #eaf3ec;
+  color: #5c8862;
+  padding: 2px 8px;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.progress-bg {
+  width: 100%;
+  height: 8px;
+  background: #f3f4f6;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #5c8862, #88a88e);
+  border-radius: 6px;
+  transition: width 0.4s ease;
+}
+
+/* Device Breakdown */
+.device-bars-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 10px;
+}
+
+.device-item {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.device-label-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #374151;
+}
+
+/* Recent Logs Table */
+.recent-logs-section {
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 22px;
+  border: 1px solid #eaf0eb;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+}
+
+.logs-table-wrapper {
+  overflow-x: auto;
+}
+
+.traffic-logs-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 12px;
+  text-align: left;
+}
+
+.traffic-logs-table th {
+  background: #f9fafb;
+  color: #4b5563;
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 12px 16px;
+  border-bottom: 2px solid #e5e7eb;
+}
+
+.traffic-logs-table td {
+  padding: 14px 16px;
+  font-size: 0.88rem;
+  color: #1f2937;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.traffic-logs-table tr:hover {
+  background: #f9fbf9;
+}
+
+.device-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+.device-badge.desktop {
+  background: #eff6ff;
+  color: #1d4ed8;
+}
+
+.device-badge.mobile {
+  background: #fdf2f8;
+  color: #be185d;
+}
+
+.device-badge.tablet {
+  background: #fff7ed;
+  color: #c2410c;
+}
+
+.visitor-id-tag {
+  font-family: monospace;
+  background: #f3f4f6;
+  padding: 3px 7px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  color: #4b5563;
+}

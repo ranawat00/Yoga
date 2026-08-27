@@ -2,11 +2,25 @@ import React, { useState, useEffect } from 'react';
 import DashboardSidebar from './components/Sidebar/DashboardSidebar';
 import DashboardHeader from './components/Header/DashboardHeader';
 import MasterBoardView from './components/MasterBoard/MasterBoardView';
+import TrafficView from './components/Traffic/TrafficView';
 import DataTable from './components/DataTable/DataTable';
 import CouponModal from './components/Coupons/CouponModal';
+import AdminAuthView from './components/Auth/AdminAuthView';
+import LogoutModal from './components/LogoutModal/LogoutModal';
 import './App.css';
 
 function App() {
+  const [isAuthenticated, setIsAuthenticated] = useState(() => {
+    return !!localStorage.getItem('adminToken');
+  });
+  const [currentUser, setCurrentUser] = useState(() => {
+    try {
+      const stored = localStorage.getItem('adminUser');
+      return stored ? JSON.parse(stored) : null;
+    } catch (e) {
+      return null;
+    }
+  });
   const [activeTab, setActiveTab] = useState('masterboard');
   const [searchQuery, setSearchQuery] = useState('');
   const [tableData, setTableData] = useState([]);
@@ -14,9 +28,12 @@ function App() {
   const [isCouponModalOpen, setIsCouponModalOpen] = useState(false);
   const [editingCoupon, setEditingCoupon] = useState(null);
   const [copiedCode, setCopiedCode] = useState(null);
+  const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false);
+  const [logoutLoading, setLogoutLoading] = useState(false);
 
   const fetchTabData = async (tab) => {
-    if (tab === 'masterboard' || tab === 'settings') return;
+    if (!isAuthenticated) return;
+    if (tab === 'masterboard' || tab === 'traffic' || tab === 'settings') return;
 
     setLoading(true);
     const endpoint = tab === 'coupons' ? '/api/coupons' : (tab === 'inquiries' ? '/api/contact' : `/api/dashboard/${tab}`);
@@ -41,6 +58,7 @@ function App() {
 
   const getHeaderTitle = () => {
     if (activeTab === 'masterboard') return 'Master Board Overview';
+    if (activeTab === 'traffic') return 'Live Website Traffic Analytics';
     if (activeTab === 'inquiries') return 'Contact Form Messages & Inquiries';
     return activeTab.charAt(0).toUpperCase() + activeTab.slice(1);
   };
@@ -264,19 +282,62 @@ function App() {
     }
   ];
 
+  const handleLogoutClick = () => {
+    setIsLogoutModalOpen(true);
+  };
+
+  const handleConfirmLogout = async () => {
+    setLogoutLoading(true);
+    try {
+      await fetch('/api/auth/admin/logout', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' }
+      });
+    } catch (err) {
+      console.error('Logout API call error:', err);
+    } finally {
+      setLogoutLoading(false);
+    }
+    localStorage.removeItem('adminToken');
+    localStorage.removeItem('adminUser');
+    localStorage.removeItem('token');
+    sessionStorage.clear();
+    setCurrentUser(null);
+    setIsLogoutModalOpen(false);
+    setIsAuthenticated(false);
+  };
+
+  if (!isAuthenticated) {
+    return (
+      <AdminAuthView 
+        onLoginSuccess={(userData) => {
+          if (userData) setCurrentUser(userData);
+          setIsAuthenticated(true);
+        }} 
+      />
+    );
+  }
+
   return (
     <div className="dashboard-app-container">
-      <DashboardSidebar activeTab={activeTab} setActiveTab={setActiveTab} />
+      <DashboardSidebar 
+        activeTab={activeTab} 
+        setActiveTab={setActiveTab} 
+        currentUser={currentUser}
+        onLogout={handleLogoutClick} 
+      />
       
       <main className="dashboard-main-area">
         <DashboardHeader 
           title={getHeaderTitle()} 
           searchQuery={searchQuery}
           onSearchChange={setSearchQuery}
+          onLogout={handleLogoutClick}
         />
         
         <div className="dashboard-content-body">
           {activeTab === 'masterboard' && <MasterBoardView />}
+          {activeTab === 'traffic' && <TrafficView />}
 
           {activeTab === 'orders' && (
             <DataTable
@@ -372,6 +433,13 @@ function App() {
         }}
         onSave={handleCouponSaved}
         initialData={editingCoupon}
+      />
+
+      <LogoutModal
+        isOpen={isLogoutModalOpen}
+        onClose={() => setIsLogoutModalOpen(false)}
+        onConfirm={handleConfirmLogout}
+        loading={logoutLoading}
       />
     </div>
   );

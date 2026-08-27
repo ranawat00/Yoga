@@ -2,6 +2,7 @@ import React, { lazy, Suspense, useEffect } from 'react';
 import { AppProvider } from './redux/AppProvider';
 import { useApp } from './hooks/useApp';
 import { VIEW_TO_PATH, PATH_TO_VIEW } from './redux/slices/uiSlice';
+import { useTrafficTracker } from './hooks/useTrafficTracker';
 
 // Layout Components
 import Navbar from './layout/Navbar/Navbar';
@@ -63,6 +64,9 @@ const VIEW_TITLES = {
 function AppContent() {
   // Main application view controller
   const { isCheckoutOpen, view, setView, setViewingWorkshop } = useApp();
+
+  // Automatic website traffic tracking hook
+  useTrafficTracker(view);
 
   // Reset viewingWorkshop if we navigate away from workshops view
   useEffect(() => {

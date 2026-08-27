@@ -168,11 +168,16 @@ const MasterBoardView = () => {
         <div className="mb-metric-card revenue-card">
           <div className="metric-header">
             <span className="metric-label">Total Revenue</span>
-            <span className="metric-icon">💰</span>
+            <div className="metric-icon-badge green">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                <line x1="12" y1="1" x2="12" y2="23"></line>
+                <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+              </svg>
+            </div>
           </div>
           <div className="metric-value">₹{(summary.totalRevenue || 0).toLocaleString('en-IN')}</div>
           <div className="metric-footer">
-            <span className="badge-growth positive">{summary.revenueGrowth}</span>
+            <span className="badge-growth positive">↑ {summary.revenueGrowth}</span>
             <span className="subtext">Live earnings</span>
           </div>
         </div>
@@ -180,36 +185,72 @@ const MasterBoardView = () => {
         <div className="mb-metric-card orders-card">
           <div className="metric-header">
             <span className="metric-label">Total Orders</span>
-            <span className="metric-icon">🛍️</span>
+            <div className="metric-icon-badge amber">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+                <line x1="3" y1="6" x2="21" y2="6"></line>
+                <path d="M16 10a4 4 0 0 1-8 0"></path>
+              </svg>
+            </div>
           </div>
           <div className="metric-value">{summary.totalOrders || 0}</div>
           <div className="metric-footer">
-            <span className="badge-growth positive">{summary.ordersGrowth}</span>
+            <span className="badge-growth positive">↑ {summary.ordersGrowth}</span>
             <span className="subtext">Completed orders</span>
           </div>
         </div>
 
         <div className="mb-metric-card registrations-card">
           <div className="metric-header">
-            <span className="metric-label">Workshop Registrations</span>
-            <span className="metric-icon">🧘</span>
+            <span className="metric-label">Workshop Signups</span>
+            <div className="metric-icon-badge blue">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
+                <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
+              </svg>
+            </div>
           </div>
           <div className="metric-value">{(summary.totalRegistrations || 0).toLocaleString('en-IN')}</div>
           <div className="metric-footer">
-            <span className="badge-growth positive">{summary.registrationsGrowth}</span>
+            <span className="badge-growth positive">↑ {summary.registrationsGrowth}</span>
             <span className="subtext">Active signups</span>
           </div>
         </div>
 
         <div className="mb-metric-card users-card">
           <div className="metric-header">
-            <span className="metric-label">Total Platform Users</span>
-            <span className="metric-icon">👥</span>
+            <span className="metric-label">Platform Users</span>
+            <div className="metric-icon-badge purple">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                <circle cx="9" cy="7" r="4"></circle>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+              </svg>
+            </div>
           </div>
           <div className="metric-value">{(summary.totalUsers || 0).toLocaleString('en-IN')}</div>
           <div className="metric-footer">
             <span className="user-ratio-pill">
               {summary.totalUsers > 0 ? Math.round((summary.newUsersCount / summary.totalUsers) * 100) : 0}% New Users
+            </span>
+          </div>
+        </div>
+
+        <div className="mb-metric-card traffic-card">
+          <div className="metric-header">
+            <span className="metric-label">Website Traffic</span>
+            <div className="metric-icon-badge cyan">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                <circle cx="12" cy="12" r="3"></circle>
+              </svg>
+            </div>
+          </div>
+          <div className="metric-value">{(summary.totalPageViews || 0).toLocaleString('en-IN')} Views</div>
+          <div className="metric-footer">
+            <span className="user-ratio-pill">
+              {(summary.uniqueVisitors || 0).toLocaleString('en-IN')} Unique Visitors
             </span>
           </div>
         </div>

@@ -53,6 +53,7 @@ app.use('/api/registrations', require('./routes/registrationRoutes'));
 app.use('/api/dashboard', require('./routes/dashboardRoutes'));
 app.use('/api/coupons', require('./routes/couponRoutes'));
 app.use('/api/contact', require('./routes/contactRoutes'));
+app.use('/api/traffic', require('./routes/trafficRoutes'));
 
 const errorHandler = require('./middleware/errorMiddleware');
 const ErrorResponse = require('./utils/ErrorResponse');
