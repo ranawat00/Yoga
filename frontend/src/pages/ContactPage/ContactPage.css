@@ -3,7 +3,7 @@
 ═══════════════════════════════════════════════════════════ */
 @keyframes heroBannerReveal {
   0% {
-    opacity: 0;
+    opacity: 1;
     transform: scale(1.015);
   }
   100% {
@@ -302,7 +302,8 @@
   object-position: center;
   display: block;
   border-radius: 18px;
-  animation: heroBannerReveal 0.75s ease-out forwards;
+  opacity: 1;
+  transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
 /* 2. Media Logos Marquee Section (Desktop Spacing) */

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useApp } from '../../hooks/useApp';
 import contactUsImg from '../../assets/contact_us/contactUs.jpg';
 import contactUs2Img from '../../assets/contact_us/contactus2.png';
@@ -66,6 +66,12 @@ export default function ContactPage() {
     message: ''
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    const img = new Image();
+    img.src = contactUsImg;
+  }, []);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -214,7 +220,13 @@ export default function ContactPage() {
 
             <div className="contact-hero-image-wrapper">
               <div className="contact-hero-image-frame">
-                <img src={contactUsImg} alt="Live with Gratitude - Yoga Healers" className="contact-banner-img" />
+                <img 
+                  src={contactUsImg} 
+                  alt="Live with Gratitude - Yoga Healers" 
+                  className="contact-banner-img"
+                  loading="eager"
+                  decoding="async"
+                />
               </div>
             </div>
 
