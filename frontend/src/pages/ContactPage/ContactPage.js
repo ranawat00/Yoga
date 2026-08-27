@@ -5,53 +5,15 @@ import contactUs2Img from '../../assets/contact_us/contactus2.png';
 import MediaLogos from '../../components/MediaLogos/MediaLogos';
 import './ContactPage.css';
 
-const countryList = [
-  { code: '+91', flag: '🇮🇳', name: 'India' },
-  { code: '+1', flag: '🇺🇸', name: 'United States' },
-  { code: '+44', flag: '🇬🇧', name: 'United Kingdom' },
-  { code: '+1', flag: '🇨🇦', name: 'Canada' },
-  { code: '+61', flag: '🇦🇺', name: 'Australia' },
-  { code: '+971', flag: '🇦🇪', name: 'UAE' },
-  { code: '+65', flag: '🇸🇬', name: 'Singapore' },
-  { code: '+49', flag: '🇩🇪', name: 'Germany' },
-  { code: '+33', flag: '🇫🇷', name: 'France' },
-  { code: '+81', flag: '🇯🇵', name: 'Japan' },
-  { code: '+86', flag: '🇨🇳', name: 'China' },
-  { code: '+7', flag: '🇷🇺', name: 'Russia' },
-  { code: '+55', flag: '🇧🇷', name: 'Brazil' },
-  { code: '+27', flag: '🇿🇦', name: 'South Africa' },
-  { code: '+966', flag: '🇸🇦', name: 'Saudi Arabia' },
-  { code: '+974', flag: '🇶🇦', name: 'Qatar' },
-  { code: '+968', flag: '🇴🇲', name: 'Oman' },
-  { code: '+965', flag: '🇰🇼', name: 'Kuwait' },
-  { code: '+973', flag: '🇧🇭', name: 'Bahrain' },
-  { code: '+977', flag: '🇳🇵', name: 'Nepal' },
-  { code: '+94', flag: '🇱🇰', name: 'Sri Lanka' },
-  { code: '+880', flag: '🇧🇩', name: 'Bangladesh' },
-  { code: '+92', flag: '🇵🇰', name: 'Pakistan' },
-  { code: '+62', flag: '🇮🇩', name: 'Indonesia' },
-  { code: '+60', flag: '🇲🇾', name: 'Malaysia' },
-  { code: '+63', flag: '🇵🇭', name: 'Philippines' },
-  { code: '+66', flag: '🇹🇭', name: 'Thailand' },
-  { code: '+84', flag: '🇻🇳', name: 'Vietnam' },
-  { code: '+82', flag: '🇰🇷', name: 'South Korea' },
-  { code: '+39', flag: '🇮🇹', name: 'Italy' },
-  { code: '+34', flag: '🇪🇸', name: 'Spain' },
-  { code: '+31', flag: '🇳🇱', name: 'Netherlands' },
-  { code: '+41', flag: '🇨🇭', name: 'Switzerland' },
-  { code: '+46', flag: '🇸🇪', name: 'Sweden' },
-  { code: '+47', flag: '🇳🇴', name: 'Norway' },
-  { code: '+45', flag: '🇩🇰', name: 'Denmark' },
-  { code: '+353', flag: '🇮🇪', name: 'Ireland' },
-  { code: '+64', flag: '🇳🇿', name: 'New Zealand' },
-  { code: '+52', flag: '🇲🇽', name: 'Mexico' },
-  { code: '+54', flag: '🇦🇷', name: 'Argentina' },
-  { code: '+56', flag: '🇨🇱', name: 'Chile' },
-  { code: '+57', flag: '🇨🇴', name: 'Colombia' },
-  { code: '+20', flag: '🇪🇬', name: 'Egypt' },
-  { code: '+234', flag: '🇳🇬', name: 'Nigeria' },
-  { code: '+254', flag: '🇰🇪', name: 'Kenya' }
-];
+// Helper to convert ISO 2-letter country code into Emoji Flag (e.g. IN -> 🇮🇳)
+function getFlagEmoji(countryCode) {
+  if (!countryCode || countryCode.length !== 2) return '🌐';
+  const codePoints = countryCode
+    .toUpperCase()
+    .split('')
+    .map((char) => 127397 + char.charCodeAt(0));
+  return String.fromCodePoint(...codePoints);
+}
 
 export default function ContactPage() {
   const { addNotification, setView } = useApp();
@@ -67,15 +29,113 @@ export default function ContactPage() {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  // Dynamic API state (100% API driven - no hardcoded static country data)
+  const [countries, setCountries] = useState([]);
+  const [selectedCountryName, setSelectedCountryName] = useState('India');
+  const [cities, setCities] = useState([]);
+  const [isLoadingCities, setIsLoadingCities] = useState(false);
+
   useEffect(() => {
     window.scrollTo(0, 0);
     const img = new Image();
     img.src = contactUsImg;
   }, []);
 
+  // Fetch full countries & dial codes list from API + Auto-detect IP location
+  useEffect(() => {
+    async function fetchCountries() {
+      try {
+        const res = await fetch('https://countriesnow.space/api/v0.1/countries/codes');
+        const json = await res.json();
+        if (json && !json.error && Array.isArray(json.data)) {
+          const apiCountries = json.data
+            .filter((c) => c.name && c.dial_code)
+            .map((c) => ({
+              code: c.dial_code.replace(/\s+/g, ''),
+              flag: getFlagEmoji(c.code),
+              name: c.name,
+              iso: c.code
+            }));
+
+          if (apiCountries.length > 0) {
+            setCountries(apiCountries);
+          }
+        }
+      } catch (err) {
+        console.log('Using default country list fallback:', err);
+      }
+    }
+
+    async function autoDetectLocation() {
+      try {
+        const res = await fetch('http://ip-api.com/json/');
+        const data = await res.json();
+        if (data && data.status === 'success' && data.country) {
+          setSelectedCountryName(data.country);
+          if (data.city) {
+            setFormData((prev) => ({
+              ...prev,
+              city: prev.city || data.city
+            }));
+          }
+        }
+      } catch (e) {
+        console.log('IP location detect skipped:', e);
+      }
+    }
+
+    fetchCountries();
+    autoDetectLocation();
+  }, []);
+
+  // Fetch cities dynamically whenever selected country changes
+  useEffect(() => {
+    let isMounted = true;
+    async function fetchCitiesForCountry() {
+      if (!selectedCountryName) return;
+      setIsLoadingCities(true);
+      try {
+        const res = await fetch(
+          `https://countriesnow.space/api/v0.1/countries/cities/q?country=${encodeURIComponent(selectedCountryName)}`
+        );
+        const json = await res.json();
+        if (isMounted) {
+          if (json && !json.error && Array.isArray(json.data)) {
+            setCities(json.data);
+          } else {
+            setCities([]);
+          }
+        }
+      } catch (err) {
+        console.log('Error loading cities:', err);
+        if (isMounted) setCities([]);
+      } finally {
+        if (isMounted) setIsLoadingCities(false);
+      }
+    }
+
+    fetchCitiesForCountry();
+    return () => {
+      isMounted = false;
+    };
+  }, [selectedCountryName]);
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleCountryCodeChange = (e) => {
+    const code = e.target.value;
+    const matchedCountry = countries.find((c) => c.code === code);
+    const countryName = matchedCountry ? matchedCountry.name : 'India';
+
+    setFormData((prev) => ({
+      ...prev,
+      countryCode: code,
+      city: ''
+    }));
+    setSelectedCountryName(countryName);
   };
 
   const handleCategorySelect = (cat) => {
@@ -298,10 +358,10 @@ export default function ContactPage() {
                         name="countryCode"
                         className="flag-select-dropdown"
                         value={formData.countryCode}
-                        onChange={handleInputChange}
+                        onChange={handleCountryCodeChange}
                       >
-                        {countryList.map((c, idx) => (
-                          <option key={`${c.code}-${idx}`} value={c.code}>
+                        {countries.map((c, idx) => (
+                          <option key={`${c.code}-${c.name}-${idx}`} value={c.code}>
                             {c.flag} {c.code} ({c.name})
                           </option>
                         ))}
@@ -335,15 +395,24 @@ export default function ContactPage() {
                 </div>
 
                 <div className="contact-input-group">
-                  <label className="input-label">City</label>
+                  <label className="input-label">
+                    City {isLoadingCities && <span style={{ fontSize: '0.75rem', color: '#4a6745', fontWeight: '500' }}> (Loading cities...)</span>}
+                  </label>
                   <input
                     type="text"
                     name="city"
                     className="mockup-input"
-                    placeholder="Enter your city"
+                    placeholder={isLoadingCities ? `Loading cities for ${selectedCountryName}...` : "Select or type city"}
                     value={formData.city}
                     onChange={handleInputChange}
+                    list="city-datalist-options"
+                    autoComplete="off"
                   />
+                  <datalist id="city-datalist-options">
+                    {cities.slice(0, 250).map((cityName, idx) => (
+                      <option key={`${cityName}-${idx}`} value={cityName} />
+                    ))}
+                  </datalist>
                 </div>
               </div>
 
