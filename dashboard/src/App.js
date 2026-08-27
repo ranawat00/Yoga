@@ -19,7 +19,7 @@ function App() {
     if (tab === 'masterboard' || tab === 'settings') return;
 
     setLoading(true);
-    const endpoint = tab === 'coupons' ? '/api/coupons' : `/api/dashboard/${tab}`;
+    const endpoint = tab === 'coupons' ? '/api/coupons' : (tab === 'inquiries' ? '/api/contact' : `/api/dashboard/${tab}`);
     try {
       const response = await fetch(endpoint);
       const json = await response.json();
@@ -41,6 +41,7 @@ function App() {
 
   const getHeaderTitle = () => {
     if (activeTab === 'masterboard') return 'Master Board Overview';
+    if (activeTab === 'inquiries') return 'Contact Form Messages & Inquiries';
     return activeTab.charAt(0).toUpperCase() + activeTab.slice(1);
   };
 
@@ -73,6 +74,25 @@ function App() {
     try {
       await fetch(`/api/coupons/${id}`, { method: 'DELETE' });
       fetchTabData('coupons');
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  const handleToggleInquiryStatus = async (id) => {
+    try {
+      await fetch(`/api/contact/${id}/status`, { method: 'PUT' });
+      fetchTabData('inquiries');
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  const handleDeleteInquiry = async (id) => {
+    if (!window.confirm('Are you sure you want to delete this contact message?')) return;
+    try {
+      await fetch(`/api/contact/${id}`, { method: 'DELETE' });
+      fetchTabData('inquiries');
     } catch (err) {
       console.error(err);
     }
@@ -196,6 +216,54 @@ function App() {
     }
   ];
 
+  const inquiryColumns = [
+    { key: 'id', label: 'MSG ID' },
+    { key: 'name', label: 'Contact Name' },
+    { key: 'email', label: 'Email ID' },
+    { key: 'phone', label: 'Phone' },
+    { 
+      key: 'category', 
+      label: 'Category', 
+      render: (val) => <span style={{ background: '#ede9fe', color: '#6b00d7', padding: '3px 8px', borderRadius: '4px', fontWeight: 600, fontSize: '0.82rem' }}>{val || 'General'}</span> 
+    },
+    { 
+      key: 'message', 
+      label: 'Message', 
+      render: (val) => <span title={val} style={{ maxWidth: '200px', display: 'inline-block', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{val}</span> 
+    },
+    { key: 'city', label: 'City' },
+    { key: 'date', label: 'Date' },
+    { 
+      key: 'status', 
+      label: 'Status', 
+      render: (val) => (
+        <span className={`status-pill ${val === 'Resolved' ? 'active' : 'pending'}`}>
+          {val || 'Pending'}
+        </span>
+      ) 
+    },
+    {
+      key: '_id',
+      label: 'Actions',
+      render: (id, row) => (
+        <div style={{ display: 'flex', gap: '6px' }}>
+          <button 
+            style={{ padding: '4px 10px', borderRadius: '6px', border: '1px solid #5c8862', cursor: 'pointer', background: '#eaf3ec', color: '#5c8862', fontWeight: 600, fontSize: '0.8rem' }}
+            onClick={() => handleToggleInquiryStatus(row._id || id)}
+          >
+            {row.status === 'Resolved' ? 'Reopen' : '✓ Resolve'}
+          </button>
+          <button 
+            style={{ padding: '4px 10px', borderRadius: '6px', border: 'none', background: '#fee2e2', color: '#991b1b', cursor: 'pointer', fontWeight: 600, fontSize: '0.8rem' }}
+            onClick={() => handleDeleteInquiry(row._id || id)}
+          >
+            Delete
+          </button>
+        </div>
+      )
+    }
+  ];
+
   return (
     <div className="dashboard-app-container">
       <DashboardSidebar activeTab={activeTab} setActiveTab={setActiveTab} />
@@ -231,6 +299,18 @@ function App() {
               globalSearchQuery={searchQuery}
               onSearchChange={setSearchQuery}
               searchPlaceholder="Search registrations by name, phone or workshop..."
+            />
+          )}
+
+          {activeTab === 'inquiries' && (
+            <DataTable
+              title="Contact Form Messages & Inquiries"
+              columns={inquiryColumns}
+              data={tableData}
+              loading={loading}
+              globalSearchQuery={searchQuery}
+              onSearchChange={setSearchQuery}
+              searchPlaceholder="Search inquiries by name, email, phone or message..."
             />
           )}
 

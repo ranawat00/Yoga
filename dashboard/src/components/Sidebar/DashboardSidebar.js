@@ -8,6 +8,7 @@ const DashboardSidebar = ({ activeTab, setActiveTab }) => {
     { id: 'registrations', label: 'Registrations', icon: '📝' },
     { id: 'orders', label: 'Orders', icon: '🛍️' },
     { id: 'coupons', label: 'Coupons', icon: '🏷️' },
+    { id: 'inquiries', label: 'Inquiries', icon: '📬' },
     { id: 'users', label: 'Users', icon: '👥' },
     { id: 'settings', label: 'Settings', icon: '⚙️' },
   ];
