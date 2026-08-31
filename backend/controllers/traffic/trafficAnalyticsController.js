@@ -1,4 +1,4 @@
-const Traffic = require('../models/Traffic');
+const Traffic = require('../../models/Traffic');
 
 const disableCache = (res) => {
   res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
@@ -20,7 +20,6 @@ exports.logPageView = async (req, res) => {
     const clientIp = req.headers['x-forwarded-for'] || req.socket.remoteAddress || '127.0.0.1';
     const userAgent = req.headers['user-agent'] || '';
 
-    // Normalize page name
     const formattedPage = page.charAt(0).toUpperCase() + page.slice(1);
 
     const newVisit = await Traffic.create({
@@ -48,19 +47,14 @@ exports.getTrafficStats = async (req, res) => {
     const now = new Date();
     const startOfToday = new Date(now.getFullYear(), now.getMonth(), now.getDate());
 
-    // 1. Total Page Views
     const totalPageViews = await Traffic.countDocuments();
-
-    // 2. Unique Visitors Count
     const uniqueVisitorsAgg = await Traffic.distinct('visitorId');
     const uniqueVisitors = uniqueVisitorsAgg.length;
 
-    // 3. Today's Views & Unique Visitors
     const todayViews = await Traffic.countDocuments({ createdAt: { $gte: startOfToday } });
     const todayUniqueVisitorsAgg = await Traffic.distinct('visitorId', { createdAt: { $gte: startOfToday } });
     const todayVisitors = todayUniqueVisitorsAgg.length;
 
-    // 4. Device Breakdown
     const desktopViews = await Traffic.countDocuments({ device: 'Desktop' });
     const mobileViews = await Traffic.countDocuments({ device: 'Mobile' });
     const tabletViews = await Traffic.countDocuments({ device: 'Tablet' });
@@ -75,7 +69,6 @@ exports.getTrafficStats = async (req, res) => {
       tabletPercent: Math.round((tabletViews / deviceTotal) * 100)
     };
 
-    // 5. Top Visited Pages Aggregation
     const topPagesAgg = await Traffic.aggregate([
       { $group: { _id: '$page', count: { $sum: 1 } } },
       { $sort: { count: -1 } },
@@ -88,7 +81,6 @@ exports.getTrafficStats = async (req, res) => {
       percentage: Math.round((p.count / deviceTotal) * 100)
     }));
 
-    // 6. Recent Visitor Stream Log
     const recentLogsRaw = await Traffic.find().sort({ createdAt: -1 }).limit(25);
     const recentLogs = recentLogsRaw.map((log) => ({
       id: log._id.toString(),

@@ -1,7 +1,7 @@
-const Order = require('../models/Order');
-const Registration = require('../models/Registration');
-const User = require('../models/User');
-const Traffic = require('../models/Traffic');
+const Order = require('../../models/Order');
+const Registration = require('../../models/Registration');
+const User = require('../../models/User');
+const Traffic = require('../../models/Traffic');
 
 // Helper to disable caching so dev tools always report status 200 OK
 const disableCache = (res) => {
@@ -20,7 +20,10 @@ const safeDbCall = async (fn, fallback = []) => {
   }
 };
 
-// 1. GET /api/dashboard/overview (Custom Date Range Filter Support)
+/**
+ * @desc    GET /api/dashboard/overview (Custom Date Range Filter Support)
+ * @access  Public / Admin
+ */
 exports.getDashboardOverview = async (req, res) => {
   disableCache(res);
   try {
@@ -189,96 +192,5 @@ exports.getDashboardOverview = async (req, res) => {
     res.status(200).json({ success: true, data: analyticsData });
   } catch (error) {
     res.status(500).json({ success: false, message: 'Server Error', error: error.message });
-  }
-};
-
-// 2. GET /api/dashboard/orders (Dynamic Database Query)
-exports.getDashboardOrders = async (req, res) => {
-  disableCache(res);
-  try {
-    const orders = await safeDbCall(() => Order.find().sort({ createdAt: -1 }), []);
-
-    const data = orders.map(ord => ({
-      id: ord._id.toString().slice(-6).toUpperCase(),
-      customer: ord.name || 'Customer',
-      email: ord.email || 'N/A',
-      items: ord.items ? ord.items.map(i => i.product?.title || 'Yoga Package').join(', ') : 'Yoga Package',
-      total: ord.total || 0,
-      payment: ord.paymentMethod || 'Online',
-      status: ord.status || 'Completed',
-      date: ord.createdAt ? new Date(ord.createdAt).toISOString().split('T')[0] : new Date().toISOString().split('T')[0]
-    }));
-
-    res.status(200).json({ success: true, count: data.length, data });
-  } catch (error) {
-    res.status(500).json({ success: false, message: 'Failed to fetch orders', error: error.message });
-  }
-};
-
-// 3. GET /api/dashboard/registrations (Dynamic Database Query)
-exports.getDashboardRegistrations = async (req, res) => {
-  disableCache(res);
-  try {
-    const registrations = await safeDbCall(() => Registration.find().sort({ createdAt: -1 }), []);
-
-    const data = registrations.map((reg, index) => ({
-      id: `REG-${100 + index}`,
-      name: reg.name || 'Participant',
-      phone: reg.phone || 'N/A',
-      email: reg.email || 'N/A',
-      workshop: reg.workshopTitle || '5-Day Online Yoga',
-      batch: reg.batch || 'Morning Batch',
-      couponCode: reg.couponCode || '',
-      date: reg.createdAt ? new Date(reg.createdAt).toISOString().split('T')[0] : new Date().toISOString().split('T')[0],
-      status: reg.status || 'REGISTERED'
-    }));
-
-    res.status(200).json({ success: true, count: data.length, data });
-  } catch (error) {
-    res.status(500).json({ success: false, message: 'Failed to fetch registrations', error: error.message });
-  }
-};
-
-// 4. GET /api/dashboard/users (Dynamic Database Query)
-exports.getDashboardUsers = async (req, res) => {
-  disableCache(res);
-  try {
-    const users = await safeDbCall(() => User.find().sort({ createdAt: -1 }), []);
-
-    const data = users.map(usr => ({
-      id: usr._id.toString().slice(-6).toUpperCase(),
-      name: usr.name || 'User',
-      email: usr.email || 'N/A',
-      role: usr.role || 'user',
-      dateJoined: usr.createdAt ? new Date(usr.createdAt).toISOString().split('T')[0] : new Date().toISOString().split('T')[0],
-      status: 'Active'
-    }));
-
-    res.status(200).json({ success: true, count: data.length, data });
-  } catch (error) {
-    res.status(500).json({ success: false, message: 'Failed to fetch users', error: error.message });
-  }
-};
-
-// 5. GET /api/dashboard/workshops (Dynamic Aggregation from Registrations)
-exports.getDashboardWorkshops = async (req, res) => {
-  disableCache(res);
-  try {
-    const workshopAgg = await safeDbCall(() => Registration.aggregate([
-      { $group: { _id: '$workshopTitle', count: { $sum: 1 } } },
-      { $sort: { count: -1 } }
-    ]), []);
-
-    const data = workshopAgg.map((w, idx) => ({
-      id: idx + 1,
-      title: w._id || 'Yoga Workshop',
-      registrationsCount: w.count,
-      status: 'Active',
-      category: 'Health & Wellness'
-    }));
-
-    res.status(200).json({ success: true, count: data.length, data });
-  } catch (error) {
-    res.status(500).json({ success: false, message: 'Failed to fetch workshops', error: error.message });
   }
 };

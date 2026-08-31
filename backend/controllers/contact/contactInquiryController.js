@@ -1,4 +1,4 @@
-const Contact = require('../models/Contact');
+const Contact = require('../../models/Contact');
 
 const disableCache = (res) => {
   res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');

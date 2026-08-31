@@ -1,7 +1,6 @@
-const Coupon = require('../models/Coupon');
-const ErrorResponse = require('../utils/ErrorResponse');
+const Coupon = require('../../models/Coupon');
+const ErrorResponse = require('../../utils/ErrorResponse');
 
-// Helper to safely call DB with fallback
 const safeDbCall = async (fn, fallback) => {
   try {
     return await fn();
@@ -11,9 +10,11 @@ const safeDbCall = async (fn, fallback) => {
   }
 };
 
-// @desc    Get all coupons (Admin/Dashboard)
-// @route   GET /api/coupons
-// @access  Public / Admin
+/**
+ * @desc    Get all coupons (Admin/Dashboard)
+ * @route   GET /api/coupons
+ * @access  Public / Admin
+ */
 exports.getCoupons = async (req, res, next) => {
   try {
     res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate');
@@ -29,9 +30,11 @@ exports.getCoupons = async (req, res, next) => {
   }
 };
 
-// @desc    Create new coupon (Admin/Dashboard)
-// @route   POST /api/coupons
-// @access  Public / Admin
+/**
+ * @desc    Create new coupon (Admin/Dashboard)
+ * @route   POST /api/coupons
+ * @access  Public / Admin
+ */
 exports.createCoupon = async (req, res, next) => {
   try {
     const { code, discountType, discountValue, minAmount, maxDiscount, usageLimit, applicableWorkshop, expiryDate } = req.body;
@@ -42,7 +45,6 @@ exports.createCoupon = async (req, res, next) => {
 
     const cleanCode = code.trim().toUpperCase();
 
-    // Check if code exists
     const existing = await safeDbCall(() => Coupon.findOne({ code: cleanCode }), null);
     if (existing) {
       return next(new ErrorResponse(`Coupon code '${cleanCode}' already exists`, 400));
@@ -83,9 +85,11 @@ exports.createCoupon = async (req, res, next) => {
   }
 };
 
-// @desc    Update coupon details
-// @route   PUT /api/coupons/:id
-// @access  Public / Admin
+/**
+ * @desc    Update coupon details
+ * @route   PUT /api/coupons/:id
+ * @access  Public / Admin
+ */
 exports.updateCoupon = async (req, res, next) => {
   try {
     const { code, discountType, discountValue, minAmount, maxDiscount, usageLimit, applicableWorkshop, expiryDate } = req.body;
@@ -112,9 +116,11 @@ exports.updateCoupon = async (req, res, next) => {
   }
 };
 
-// @desc    Toggle coupon active status
-// @route   PUT /api/coupons/:id/toggle
-// @access  Public / Admin
+/**
+ * @desc    Toggle coupon active status
+ * @route   PUT /api/coupons/:id/toggle
+ * @access  Public / Admin
+ */
 exports.toggleCouponStatus = async (req, res, next) => {
   try {
     const coupon = await safeDbCall(() => Coupon.findById(req.params.id), null);
@@ -125,124 +131,25 @@ exports.toggleCouponStatus = async (req, res, next) => {
       return res.status(200).json({ success: true, data: coupon });
     }
 
-    const sample = sampleCoupons.find(c => c._id === req.params.id);
-    if (sample) {
-      sample.isActive = !sample.isActive;
-      return res.status(200).json({ success: true, data: sample });
-    }
-
     return next(new ErrorResponse('Coupon not found', 404));
   } catch (err) {
     next(err);
   }
 };
 
-// @desc    Delete coupon
-// @route   DELETE /api/coupons/:id
-// @access  Public / Admin
+/**
+ * @desc    Delete coupon
+ * @route   DELETE /api/coupons/:id
+ * @access  Public / Admin
+ */
 exports.deleteCoupon = async (req, res, next) => {
   try {
     const coupon = await safeDbCall(() => Coupon.findById(req.params.id), null);
     if (coupon) {
       await coupon.deleteOne();
     }
-    const idx = sampleCoupons.findIndex(c => c._id === req.params.id);
-    if (idx !== -1) sampleCoupons.splice(idx, 1);
 
     res.status(200).json({ success: true, message: 'Coupon deleted successfully' });
-  } catch (err) {
-    next(err);
-  }
-};
-
-// @desc    Validate coupon code during workshop checkout/registration
-// @route   POST /api/coupons/validate
-// @access  Public
-exports.validateCoupon = async (req, res, next) => {
-  try {
-    const { code, amount = 0, workshopTitle = '' } = req.body;
-
-    if (!code) {
-      return next(new ErrorResponse('Please enter a coupon code', 400));
-    }
-
-    const cleanCode = code.trim().toUpperCase();
-
-    // Query Coupon from MongoDB
-    let coupon = await safeDbCall(() => Coupon.findOne({ code: cleanCode }), null);
-
-    if (!coupon) {
-      return res.status(200).json({
-        success: false,
-        message: `Invalid coupon code '${cleanCode}'. Please check and try again.`
-      });
-    }
-
-    if (!coupon.isActive) {
-      return res.status(200).json({
-        success: false,
-        message: `Coupon code '${cleanCode}' is currently inactive.`
-      });
-    }
-
-    if (coupon.expiryDate && new Date(coupon.expiryDate) < new Date()) {
-      return res.status(200).json({
-        success: false,
-        message: `Coupon code '${cleanCode}' has expired.`
-      });
-    }
-
-    if (coupon.usageLimit && coupon.usedCount >= coupon.usageLimit) {
-      return res.status(200).json({
-        success: false,
-        message: `Coupon code '${cleanCode}' limit has been reached.`
-      });
-    }
-
-    if (amount < coupon.minAmount) {
-      return res.status(200).json({
-        success: false,
-        message: `Minimum order amount of ₹${coupon.minAmount} required for coupon '${cleanCode}'.`
-      });
-    }
-
-    if (coupon.applicableWorkshop !== 'ALL' && workshopTitle && !workshopTitle.toLowerCase().includes(coupon.applicableWorkshop.toLowerCase())) {
-      return res.status(200).json({
-        success: false,
-        message: `Coupon '${cleanCode}' is valid only for workshop: ${coupon.applicableWorkshop}`
-      });
-    }
-
-    // Calculate discount amount
-    let discountAmount = 0;
-    if (coupon.discountType === 'percentage') {
-      discountAmount = Math.round((amount * coupon.discountValue) / 100);
-      if (coupon.maxDiscount && discountAmount > coupon.maxDiscount) {
-        discountAmount = coupon.maxDiscount;
-      }
-    } else {
-      discountAmount = coupon.discountValue;
-    }
-
-    // Ensure discount does not exceed total price
-    if (discountAmount > amount) {
-      discountAmount = amount;
-    }
-
-    const finalAmount = Math.max(0, amount - discountAmount);
-
-    res.status(200).json({
-      success: true,
-      message: `Coupon '${cleanCode}' applied successfully! You saved ₹${discountAmount}.`,
-      data: {
-        code: cleanCode,
-        discountType: coupon.discountType,
-        discountValue: coupon.discountValue,
-        discountAmount,
-        originalAmount: amount,
-        finalAmount
-      }
-    });
   } catch (err) {
     next(err);
   }

@@ -19,12 +19,25 @@ const UserSchema = new mongoose.Schema({
     trim: true,
     lowercase: true
   },
+  phone: {
+    type: String,
+    trim: true
+  },
   password: {
     type: String,
-    required: [true, 'Please add a password'],
+    required: function () {
+      return !this.authProvider || this.authProvider === 'local';
+    },
     minlength: [6, 'Password must be at least 6 characters long'],
     select: false // Do not return password by default in queries
   },
+  authProvider: {
+    type: String,
+    enum: ['local', 'google', 'facebook'],
+    default: 'local'
+  },
+  googleId: String,
+  facebookId: String,
   resetPasswordToken: String,
   resetPasswordExpire: Date,
   refreshTokens: [
@@ -64,13 +77,21 @@ const UserSchema = new mongoose.Schema({
   studentId: {
     type: String,
     trim: true
+  },
+  studentName: {
+    type: String,
+    trim: true
+  },
+  referralId: {
+    type: String,
+    trim: true
   }
 });
 
 // Encrypt password using bcrypt before saving user
 UserSchema.pre('save', async function (next) {
-  if (!this.isModified('password')) {
-    next();
+  if (!this.isModified('password') || !this.password) {
+    return next();
   }
 
   const salt = await bcrypt.genSalt(10);

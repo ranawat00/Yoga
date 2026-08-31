@@ -72,10 +72,8 @@ exports.verifyPayment = async (req, res, next) => {
       });
     }
 
-    // Generate signature payload
     const payload = `${razorpay_order_id}|${razorpay_payment_id}`;
 
-    // Verify signature
     const expectedSignature = crypto
       .createHmac('sha256', keySecret)
       .update(payload)

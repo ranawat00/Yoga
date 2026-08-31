@@ -2,6 +2,7 @@ import './ProfileDrawer.css';
 import React, { useState, useEffect } from 'react';
 import { useApp } from '../../hooks/useApp';
 import { updateDetails } from '../../api/auth';
+import Logo from '../../common/Logo/Logo';
 
 export default function ProfileDrawer() {
   const { 
@@ -13,7 +14,6 @@ export default function ProfileDrawer() {
     handleLogout,
     handleLogoutAll,
     addNotification,
-    authRole,
     setAuthRole,
     setIsAuthOpen
   } = useApp();
@@ -82,7 +82,7 @@ export default function ProfileDrawer() {
           </button>
         </div>
 
-        {user ? (
+        {user && user.role !== 'student' ? (
           <>
             <div className="profile-drawer-body">
               {/* User Details Box */}
@@ -95,13 +95,6 @@ export default function ProfileDrawer() {
                   <div className="profile-details-info">
                     <h4>{user.name}</h4>
                     <p className="profile-email-text">{user.email}</p>
-                    {user.role === 'student' && (
-                      <div className="student-badge-container">
-                        <span className="student-badge">🎓 Student</span>
-                        {user.schoolName && <p className="student-school-text">🏫 {user.schoolName}</p>}
-                        {user.studentId && <p className="student-id-text">ID: {user.studentId}</p>}
-                      </div>
-                    )}
                     <p className="profile-date-joined">Joined: {formatDate(user.createdAt)}</p>
                     <button className="btn-edit-profile-trigger" onClick={() => setIsEditing(true)}>
                       Edit Profile
@@ -162,6 +155,27 @@ export default function ProfileDrawer() {
                   <span className="arrow-orders-link">→</span>
                 </button>
               </div>
+
+              {/* YHO Club Option */}
+              <div 
+                className="profile-yho-club-card"
+                onClick={() => {
+                  setIsProfileOpen(false);
+                  setView('yho-club');
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }}
+              >
+                <div className="yho-club-info">
+                  <div className="yho-club-badge-logo">
+                    <Logo size={34} />
+                  </div>
+                  <div className="yho-club-text">
+                    <span className="yho-club-title">YHO Club</span>
+                    <span className="yho-club-desc">Student & Parent Portal</span>
+                  </div>
+                </div>
+                <span className="arrow-orders-link">→</span>
+              </div>
             </div>
 
             {/* Footer Actions */}
@@ -182,56 +196,90 @@ export default function ProfileDrawer() {
           </>
         ) : (
           <div className="profile-drawer-body">
-            {/* Guest Details Box */}
-            <div className="profile-guest-card animate-fade-in">
-              <div className="profile-guest-avatar">
-                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                  <circle cx="12" cy="7" r="4"></circle>
-                </svg>
+            {user && user.role === 'student' ? (
+              <div className="profile-guest-card animate-fade-in" style={{ borderColor: 'rgba(99, 102, 241, 0.3)', background: 'linear-gradient(145deg, #f8fafc, #eef2ff)' }}>
+                <div className="profile-guest-avatar" style={{ background: 'linear-gradient(135deg, #6366f1, #8b5cf6)', color: '#fff' }}>
+                  🎓
+                </div>
+                <h4 className="profile-guest-title" style={{ color: '#1e1b4b' }}>Logged in on Student Portal</h4>
+                <p className="profile-guest-desc" style={{ color: '#475569', fontWeight: 600, marginBottom: '4px' }}>
+                  {user.name}
+                </p>
+                <p className="profile-guest-desc" style={{ color: '#64748b', fontSize: '0.84rem' }}>
+                  {user.email} {user.studentId ? `• ID: ${user.studentId}` : ''}
+                </p>
+                
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', width: '100%', marginTop: '14px' }}>
+                  <button 
+                    className="profile-guest-login-btn" 
+                    style={{ background: 'linear-gradient(135deg, #6366f1, #4f46e5)' }}
+                    onClick={() => {
+                      setIsProfileOpen(false);
+                      setView('yho-club');
+                      window.scrollTo({ top: 0, behavior: 'smooth' });
+                    }}
+                  >
+                    Open YHO Club Portal →
+                  </button>
+                  <button 
+                    className="btn-profile-logout"
+                    style={{ width: '100%', justifyContent: 'center', marginTop: '4px' }}
+                    onClick={() => {
+                      handleLogout();
+                      setIsProfileOpen(false);
+                    }}
+                  >
+                    Log Out Student
+                  </button>
+                </div>
               </div>
-              <h4 className="profile-guest-title">Welcome, Guest</h4>
-              <p className="profile-guest-desc">
-                Log in to track your orders, book healing workshops, and get your satvic health score.
-              </p>
-              <button 
-                className="profile-guest-login-btn" 
-                onClick={() => {
-                  setAuthRole('user');
-                  setIsProfileOpen(false);
-                  setIsAuthOpen(true);
-                }}
-              >
-                Log In / Sign Up
-              </button>
-            </div>
+            ) : (
+              <div className="profile-guest-card animate-fade-in">
+                <div className="profile-guest-avatar">
+                  <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="12" cy="7" r="4"></circle>
+                  </svg>
+                </div>
+                <h4 className="profile-guest-title">Welcome, Guest</h4>
+                <p className="profile-guest-desc">
+                  Log in to track your orders, book healing workshops, and get your satvic health score.
+                </p>
+                <button 
+                  className="profile-guest-login-btn" 
+                  onClick={() => {
+                    setAuthRole('user');
+                    setIsProfileOpen(false);
+                    setIsAuthOpen(true);
+                  }}
+                >
+                  Log In / Sign Up
+                </button>
+              </div>
+            )}
 
             {/* Divider */}
             <div className="drawer-section-divider"></div>
 
-            {/* Student Mode Switch Toggle */}
-            <div className="profile-student-toggle-card">
-              <div className="student-toggle-info">
-                <span className="student-toggle-title">🎓 Student Mode</span>
-                <span className="student-toggle-desc">Toggle to log in or register as a student</span>
+            {/* YHO Club Card */}
+            <div 
+              className="profile-yho-club-card"
+              onClick={() => {
+                setIsProfileOpen(false);
+                setView('yho-club');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }}
+            >
+              <div className="yho-club-info">
+                <div className="yho-club-badge-logo">
+                  <Logo size={34} />
+                </div>
+                <div className="yho-club-text">
+                  <span className="yho-club-title">YHO Club</span>
+                  <span className="yho-club-desc">Student & Parent Mental Wellness Space</span>
+                </div>
               </div>
-              <label className="switch">
-                <input 
-                  type="checkbox" 
-                  checked={authRole === 'student'} 
-                  onChange={(e) => {
-                    const checked = e.target.checked;
-                    if (checked) {
-                      setAuthRole('student');
-                      setIsProfileOpen(false);
-                      setIsAuthOpen(true);
-                    } else {
-                      setAuthRole('user');
-                    }
-                  }} 
-                />
-                <span className="slider"></span>
-              </label>
+              <span className="arrow-orders-link">→</span>
             </div>
           </div>
         )}

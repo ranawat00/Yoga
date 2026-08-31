@@ -52,6 +52,7 @@ app.use('/api/reviews', require('./routes/reviewRoutes'));
 app.use('/api/registrations', require('./routes/registrationRoutes'));
 app.use('/api/dashboard', require('./routes/dashboardRoutes'));
 app.use('/api/coupons', require('./routes/couponRoutes'));
+app.use('/api/referrals', require('./routes/referralRoutes'));
 app.use('/api/contact', require('./routes/contactRoutes'));
 app.use('/api/traffic', require('./routes/trafficRoutes'));
 

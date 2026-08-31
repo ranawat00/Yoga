@@ -4,7 +4,7 @@ const {
   createRegistration,
   getRegistrations,
   deleteRegistration
-} = require('../controllers/registrationController');
+} = require('../controllers/registration');
 
 router.route('/')
   .post(createRegistration)

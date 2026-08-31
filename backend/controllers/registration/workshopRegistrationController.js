@@ -1,9 +1,11 @@
-const Registration = require('../models/Registration');
-const ErrorResponse = require('../utils/ErrorResponse');
+const Registration = require('../../models/Registration');
+const ErrorResponse = require('../../utils/ErrorResponse');
 
-// @desc    Create new registration and save in DB
-// @route   POST /api/registrations
-// @access  Public
+/**
+ * @desc    Create new registration and save in DB
+ * @route   POST /api/registrations
+ * @access  Public
+ */
 exports.createRegistration = async (req, res, next) => {
   try {
     const { name, phone, email, batch, workshopTitle, countryCode, city, source, couponCode } = req.body;
@@ -34,9 +36,11 @@ exports.createRegistration = async (req, res, next) => {
   }
 };
 
-// @desc    Get all registrations
-// @route   GET /api/registrations
-// @access  Public / Admin
+/**
+ * @desc    Get all registrations
+ * @route   GET /api/registrations
+ * @access  Public / Admin
+ */
 exports.getRegistrations = async (req, res, next) => {
   try {
     const registrations = await Registration.find().sort({ createdAt: -1 });
@@ -51,9 +55,11 @@ exports.getRegistrations = async (req, res, next) => {
   }
 };
 
-// @desc    Delete registration by ID
-// @route   DELETE /api/registrations/:id
-// @access  Public / Admin
+/**
+ * @desc    Delete registration by ID
+ * @route   DELETE /api/registrations/:id
+ * @access  Public / Admin
+ */
 exports.deleteRegistration = async (req, res, next) => {
   try {
     const registration = await Registration.findById(req.params.id);

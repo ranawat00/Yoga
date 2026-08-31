@@ -5,7 +5,7 @@ const {
   getContactSubmissions,
   updateContactStatus,
   deleteContactSubmission
-} = require('../controllers/contactController');
+} = require('../controllers/contact');
 
 router.route('/')
   .post(createContactSubmission)

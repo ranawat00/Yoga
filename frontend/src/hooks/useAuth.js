@@ -43,17 +43,13 @@ export function useAuth() {
     restoreSession();
   }, [dispatch]);
 
-  const handleLogin = async (email, password, role = 'user', studentId = '') => {
+  const handleLogin = async (email, password, role = 'user') => {
     if (!email || !password) {
-      dispatch(addNotification({ message: 'Please fill in all fields.', type: 'error' }));
-      return false;
-    }
-    if (role === 'student' && !studentId) {
-      dispatch(addNotification({ message: 'Please fill in your Student ID / Roll Number.', type: 'error' }));
+      dispatch(addNotification({ message: 'Please enter your email and password.', type: 'error' }));
       return false;
     }
     try {
-      const data = await authApi.login(email, password, role, studentId);
+      const data = await authApi.login(email, password, role);
       if (data.success) {
         localStorage.setItem('token', data.token);
         localStorage.setItem('refreshToken', data.refreshToken);
@@ -72,17 +68,21 @@ export function useAuth() {
     }
   };
 
-  const handleSignup = async (name, email, password, role = 'user', schoolName = '', studentId = '') => {
+  const handleSignup = async (name, email, password, role = 'user', schoolName = '', studentId = '', referralId = '', studentName = '', phone = '') => {
     if (!name || !email || !password) {
-      dispatch(addNotification({ message: 'Please fill in all fields.', type: 'error' }));
+      dispatch(addNotification({ message: 'Please fill in all mandatory fields.', type: 'error' }));
       return false;
     }
-    if (role === 'student' && (!schoolName || !studentId)) {
-      dispatch(addNotification({ message: 'Please fill in school name and student ID.', type: 'error' }));
+    if (role === 'student' && (!schoolName || !studentId || !referralId)) {
+      dispatch(addNotification({ message: 'College/University Name, Student ID, and Referral ID are all mandatory for student sign up.', type: 'error' }));
+      return false;
+    }
+    if (role === 'parent' && (!studentName || !studentId)) {
+      dispatch(addNotification({ message: 'Student Name and Student ID are mandatory for parent sign up.', type: 'error' }));
       return false;
     }
     try {
-      const data = await authApi.signup(name, email, password, role, schoolName, studentId);
+      const data = await authApi.signup(name, email, password, role, schoolName, studentId, referralId, studentName, phone);
       if (data.success) {
         localStorage.setItem('token', data.token);
         localStorage.setItem('refreshToken', data.refreshToken);
@@ -147,6 +147,36 @@ export function useAuth() {
     }
   };
 
+  const handleSocialAuth = async (provider, socialData = {}) => {
+    try {
+      const payload = {
+        email: socialData.email || `${provider}_user_${Date.now()}@example.com`,
+        name: socialData.name || `${provider.charAt(0).toUpperCase() + provider.slice(1)} User`,
+        role: authRole || 'user',
+        [`${provider}Id`]: socialData.id || `${provider}_id_${Date.now()}`
+      };
+
+      const apiCall = provider === 'google' ? authApi.googleAuth : authApi.facebookAuth;
+      const data = await apiCall(payload);
+
+      if (data.success) {
+        localStorage.setItem('token', data.token);
+        localStorage.setItem('refreshToken', data.refreshToken);
+        dispatch(setUser(data.user));
+        dispatch(setIsAuthOpen(false));
+        dispatch(addNotification({ message: `Successfully authenticated with ${provider.charAt(0).toUpperCase() + provider.slice(1)}! Welcome, ${data.user.name}.`, type: 'success' }));
+        return true;
+      } else {
+        dispatch(addNotification({ message: data.message || `${provider} authentication failed.`, type: 'error' }));
+        return false;
+      }
+    } catch (error) {
+      console.error(`${provider} authentication error:`, error);
+      dispatch(addNotification({ message: 'Connection to authentication server failed.', type: 'error' }));
+      return false;
+    }
+  };
+
   return {
     user,
     setUser: (val) => dispatch(setUser(val)),
@@ -158,6 +188,7 @@ export function useAuth() {
     setAuthRole: (val) => dispatch(setAuthRole(val)),
     handleLogin,
     handleSignup,
+    handleSocialAuth,
     handleLogout,
     handleLogoutAll,
     handleForgotPassword,

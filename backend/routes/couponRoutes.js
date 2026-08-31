@@ -7,7 +7,7 @@ const {
   toggleCouponStatus,
   deleteCoupon,
   validateCoupon
-} = require('../controllers/couponController');
+} = require('../controllers/coupon');
 
 // Public validation endpoint for workshop checkout
 router.post('/validate', validateCoupon);

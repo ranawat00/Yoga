@@ -1,4 +1,4 @@
-const Review = require('../models/Review');
+const Review = require('../../models/Review');
 
 // Mock reviews to seed initially if there are no reviews in database
 const MOCK_REVIEWS = {
@@ -63,14 +63,12 @@ exports.getReviews = async (req, res, next) => {
 
     let reviews = await Review.find({ workshopId }).sort({ createdAt: -1 });
 
-    // Seed mock reviews if database contains none for this workshop
     if (reviews.length === 0 && MOCK_REVIEWS[workshopId]) {
       const seeded = MOCK_REVIEWS[workshopId].map(r => ({
         ...r,
         workshopId
       }));
       reviews = await Review.insertMany(seeded);
-      // Sort them again
       reviews.sort((a, b) => b.createdAt - a.createdAt);
     }
 

@@ -18,10 +18,10 @@ export const fetchMe = (token) =>
  * @param {string} [studentId]
  * @returns {Promise<object>} response data
  */
-export const login = (email, password, role, studentId) => 
+export const login = (email, password, role) => 
   apiClient('/auth/login', {
     method: 'POST',
-    body: JSON.stringify({ email, password, role, studentId })
+    body: JSON.stringify({ email, password, role })
   });
 
 /**
@@ -32,12 +32,15 @@ export const login = (email, password, role, studentId) =>
  * @param {string} [role]
  * @param {string} [schoolName]
  * @param {string} [studentId]
+ * @param {string} [referralId]
+ * @param {string} [studentName]
+ * @param {string} [phone]
  * @returns {Promise<object>} response data
  */
-export const signup = (name, email, password, role, schoolName, studentId) => 
+export const signup = (name, email, password, role, schoolName, studentId, referralId, studentName, phone) => 
   apiClient('/auth/signup', {
     method: 'POST',
-    body: JSON.stringify({ name, email, password, role, schoolName, studentId })
+    body: JSON.stringify({ name, email, password, role, schoolName, studentId, referralId, studentName, phone })
   });
 
 /**
@@ -81,4 +84,35 @@ export const updateDetails = (name, email) =>
   apiClient('/auth/updatedetails', {
     method: 'PUT',
     body: JSON.stringify({ name, email })
+  });
+
+/**
+ * Authenticate with Google
+ * @param {object} payload - { email, name, googleId, role }
+ */
+export const googleAuth = (payload) =>
+  apiClient('/auth/google', {
+    method: 'POST',
+    body: JSON.stringify(payload)
+  });
+
+/**
+ * Authenticate with Facebook
+ * @param {object} payload - { email, name, facebookId, role }
+ */
+export const facebookAuth = (payload) =>
+  apiClient('/auth/facebook', {
+    method: 'POST',
+    body: JSON.stringify(payload)
+  });
+
+/**
+ * Validate student referral ID code
+ * @param {string} referralId
+ * @returns {Promise<object>} response data
+ */
+export const validateReferral = (referralId) =>
+  apiClient('/referrals/validate', {
+    method: 'POST',
+    body: JSON.stringify({ referralId })
   });

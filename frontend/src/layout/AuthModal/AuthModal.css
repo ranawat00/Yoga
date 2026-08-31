@@ -215,6 +215,31 @@
   color: var(--color-blue);
 }
 
+/* Password Eye Toggle Button */
+.password-toggle-btn {
+  position: absolute;
+  right: 0.9rem;
+  background: transparent;
+  border: none;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.25rem;
+  border-radius: 4px;
+  transition: var(--transition-smooth);
+  z-index: 2;
+}
+
+.password-toggle-btn:hover {
+  color: var(--color-navy);
+}
+
+.input-wrapper input.has-toggle {
+  padding-right: 2.8rem;
+}
+
 /* Form Options */
 .form-options {
   display: flex;
@@ -276,6 +301,54 @@
 
 .auth-submit-btn:active {
   transform: translateY(0);
+}
+
+/* Responsive Google Auth Button & Divider in Auth Modal */
+.auth-social-divider-modal {
+  display: flex;
+  align-items: center;
+  margin: 0.85rem 0 0.5rem 0;
+  gap: 0.6rem;
+}
+
+.auth-divider-line {
+  flex: 1;
+  height: 1px;
+  background-color: #e2ece5;
+}
+
+.auth-social-divider-modal span {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--color-text-muted);
+  letter-spacing: 1px;
+}
+
+.auth-google-btn-modal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  width: 100%;
+  padding: 0.8rem 1rem;
+  border-radius: 50px;
+  background-color: #FFFFFF;
+  border: 1.5px solid #E2ECE5;
+  color: var(--color-navy);
+  font-size: 0.92rem;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  touch-action: manipulation;
+}
+
+.auth-google-btn-modal:hover {
+  background-color: #F8FAFC;
+  border-color: #CBD5E1;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+  transform: translateY(-1px);
 }
 
 /* Footer Toggle Text */
