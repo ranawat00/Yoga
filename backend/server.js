@@ -55,6 +55,7 @@ app.use('/api/coupons', require('./routes/couponRoutes'));
 app.use('/api/referrals', require('./routes/referralRoutes'));
 app.use('/api/contact', require('./routes/contactRoutes'));
 app.use('/api/traffic', require('./routes/trafficRoutes'));
+app.use('/api/institutions', require('./routes/institutionRoutes'));
 
 const errorHandler = require('./middleware/errorMiddleware');
 const ErrorResponse = require('./utils/ErrorResponse');

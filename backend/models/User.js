@@ -33,11 +33,12 @@ const UserSchema = new mongoose.Schema({
   },
   authProvider: {
     type: String,
-    enum: ['local', 'google', 'facebook'],
+    enum: ['local', 'google', 'facebook', 'apple'],
     default: 'local'
   },
   googleId: String,
   facebookId: String,
+  appleId: String,
   resetPasswordToken: String,
   resetPasswordExpire: Date,
   refreshTokens: [

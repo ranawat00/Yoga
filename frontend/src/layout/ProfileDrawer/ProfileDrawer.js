@@ -14,8 +14,7 @@ export default function ProfileDrawer() {
     handleLogout,
     handleLogoutAll,
     addNotification,
-    setAuthRole,
-    setIsAuthOpen
+    setAuthRole
   } = useApp();
 
   const [isEditing, setIsEditing] = useState(false);
@@ -250,7 +249,8 @@ export default function ProfileDrawer() {
                   onClick={() => {
                     setAuthRole('user');
                     setIsProfileOpen(false);
-                    setIsAuthOpen(true);
+                    setView('login');
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
                   }}
                 >
                   Log In / Sign Up

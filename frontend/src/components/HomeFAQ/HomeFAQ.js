@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './HomeFAQ.css';
-import faqImg from '../../assets/FAQ/faq.jpg';
+import faqImg from '../../assets/FAQ/faq.png';
 import { useApp } from '../../hooks/useApp';
 
 const HOME_FAQS = [

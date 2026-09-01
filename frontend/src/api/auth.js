@@ -107,6 +107,16 @@ export const facebookAuth = (payload) =>
   });
 
 /**
+ * Authenticate with Apple
+ * @param {object} payload - { email, name, appleId, role }
+ */
+export const appleAuth = (payload) =>
+  apiClient('/auth/apple', {
+    method: 'POST',
+    body: JSON.stringify(payload)
+  });
+
+/**
  * Validate student referral ID code
  * @param {string} referralId
  * @returns {Promise<object>} response data

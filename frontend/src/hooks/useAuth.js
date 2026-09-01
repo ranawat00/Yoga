@@ -11,7 +11,7 @@ import {
   selectIsProfileOpen,
   selectAuthRole,
 } from '../redux/slices/authSlice';
-import { addNotification } from '../redux/slices/uiSlice';
+import { addNotification, setView } from '../redux/slices/uiSlice';
 import * as authApi from '../api/auth';
 
 export function useAuth() {
@@ -54,7 +54,7 @@ export function useAuth() {
         localStorage.setItem('token', data.token);
         localStorage.setItem('refreshToken', data.refreshToken);
         dispatch(setUser(data.user));
-        dispatch(setIsAuthOpen(false));
+        dispatch(setView('home'));
         dispatch(addNotification({ message: `Welcome back, ${data.user.name}!`, type: 'success' }));
         return true;
       } else {
@@ -73,8 +73,8 @@ export function useAuth() {
       dispatch(addNotification({ message: 'Please fill in all mandatory fields.', type: 'error' }));
       return false;
     }
-    if (role === 'student' && (!schoolName || !studentId || !referralId)) {
-      dispatch(addNotification({ message: 'College/University Name, Student ID, and Referral ID are all mandatory for student sign up.', type: 'error' }));
+    if (role === 'student' && (!schoolName || !studentId)) {
+      dispatch(addNotification({ message: 'College/University Name and Student ID are mandatory for student sign up.', type: 'error' }));
       return false;
     }
     if (role === 'parent' && (!studentName || !studentId)) {
@@ -87,7 +87,7 @@ export function useAuth() {
         localStorage.setItem('token', data.token);
         localStorage.setItem('refreshToken', data.refreshToken);
         dispatch(setUser(data.user));
-        dispatch(setIsAuthOpen(false));
+        dispatch(setView('home'));
         dispatch(addNotification({ message: `Account created successfully! Welcome, ${data.user.name}.`, type: 'success' }));
         return true;
       } else {
@@ -156,14 +156,18 @@ export function useAuth() {
         [`${provider}Id`]: socialData.id || `${provider}_id_${Date.now()}`
       };
 
-      const apiCall = provider === 'google' ? authApi.googleAuth : authApi.facebookAuth;
+      const apiCall = provider === 'google' 
+        ? authApi.googleAuth 
+        : provider === 'facebook' 
+        ? authApi.facebookAuth 
+        : authApi.appleAuth;
       const data = await apiCall(payload);
 
       if (data.success) {
         localStorage.setItem('token', data.token);
         localStorage.setItem('refreshToken', data.refreshToken);
         dispatch(setUser(data.user));
-        dispatch(setIsAuthOpen(false));
+        dispatch(setView('home'));
         dispatch(addNotification({ message: `Successfully authenticated with ${provider.charAt(0).toUpperCase() + provider.slice(1)}! Welcome, ${data.user.name}.`, type: 'success' }));
         return true;
       } else {

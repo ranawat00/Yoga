@@ -5,6 +5,7 @@ import MasterBoardView from './components/MasterBoard/MasterBoardView';
 import TrafficView from './components/Traffic/TrafficView';
 import DataTable from './components/DataTable/DataTable';
 import CouponModal from './components/Coupons/CouponModal';
+import ReferralView from './components/Referrals/ReferralView';
 import AdminAuthView from './components/Auth/AdminAuthView';
 import LogoutModal from './components/LogoutModal/LogoutModal';
 import './App.css';
@@ -33,7 +34,7 @@ function App() {
 
   const fetchTabData = async (tab) => {
     if (!isAuthenticated) return;
-    if (tab === 'masterboard' || tab === 'traffic' || tab === 'settings') return;
+    if (tab === 'masterboard' || tab === 'traffic' || tab === 'settings' || tab === 'referrals') return;
 
     setLoading(true);
     const endpoint = tab === 'coupons' ? '/api/coupons' : (tab === 'inquiries' ? '/api/contact' : `/api/dashboard/${tab}`);
@@ -415,6 +416,8 @@ function App() {
               searchPlaceholder="Search coupon code..."
             />
           )}
+
+          {activeTab === 'referrals' && <ReferralView />}
 
           {activeTab === 'settings' && (
             <div className="dashboard-placeholder-card">

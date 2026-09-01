@@ -13,6 +13,8 @@ export const VIEW_TO_PATH = {
   blog: '/blog',
   registrations: '/registrations',
   'yho-club': '/yho-club',
+  login: '/login',
+  signup: '/signup',
 };
 
 export const PATH_TO_VIEW = {
@@ -34,6 +36,8 @@ export const PATH_TO_VIEW = {
   '/blogs': 'blog',
   '/registrations': 'registrations',
   '/yho-club': 'yho-club',
+  '/login': 'login',
+  '/signup': 'signup',
 };
 
 const getInitialViewingBlog = () => {

@@ -14,7 +14,8 @@ const {
   refreshToken,
   logoutAllDevices,
   googleAuth,
-  facebookAuth
+  facebookAuth,
+  appleAuth
 } = require('../controllers/auth');
 
 const {
@@ -57,6 +58,7 @@ router.put('/reset-password/:resettoken', resetPasswordValidator, validate, rese
 // ==========================================
 router.post('/google', googleAuth);
 router.post('/facebook', facebookAuth);
+router.post('/apple', appleAuth);
 
 // ==========================================
 // 🔒 PROTECTED ACCOUNT ROUTES

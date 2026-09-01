@@ -5,9 +5,9 @@ import MediaLogos from '../../components/MediaLogos/MediaLogos';
 import { useApp } from '../../hooks/useApp';
 
 export default function YHOClubPage() {
-  const { setIsAuthOpen, setAuthRole, handleSocialAuth } = useApp();
+  const { setView, setAuthRole, handleSocialAuth } = useApp();
 
-  // Listen for Google OAuth callback responses or popup messages
+  // Listen for Google and Apple OAuth callback responses or popup messages
   useEffect(() => {
     // 1. Check if current window received Google token in URL hash
     if (window.location.hash && window.location.hash.includes('access_token=')) {
@@ -37,7 +37,7 @@ export default function YHOClubPage() {
       }
     }
 
-    // 2. Listen for postMessage sent from Google OAuth popup window
+    // 2. Listen for postMessage sent from OAuth popup windows
     const handleMessage = async (event) => {
       if (event.data && event.data.type === 'GOOGLE_AUTH_SUCCESS' && event.data.user) {
         const { email, name, sub } = event.data.user;
@@ -113,14 +113,16 @@ export default function YHOClubPage() {
     }
   };
 
+
+
   const handleStudentLogin = () => {
     setAuthRole('student');
-    setIsAuthOpen(true);
+    setView('login');
   };
 
   const handleParentLogin = () => {
     setAuthRole('parent');
-    setIsAuthOpen(true);
+    setView('login');
   };
 
   return (
@@ -205,6 +207,8 @@ export default function YHOClubPage() {
               </svg>
               <span>Facebook</span>
             </button>
+
+
           </div>
         </div>
 

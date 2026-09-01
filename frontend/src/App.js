@@ -17,6 +17,7 @@ import Loader from './common/Loader/Loader';
 // Main / Feature Section Components
 import Hero from './components/Hero/Hero';
 import MediaLogos from './components/MediaLogos/MediaLogos';
+import OAuthCallbackHandler from './components/OAuthCallback/OAuthCallbackHandler';
 import './App.css';
 
 // Lazy load non-critical sections below the fold
@@ -43,7 +44,7 @@ const YHOClubPage = lazy(() => import('./pages/YHOClubPage/YHOClubPage'));
 
 // Lazy load modals/drawers
 const CheckoutModal = lazy(() => import('./layout/CheckoutModal/CheckoutModal'));
-const AuthModal = lazy(() => import('./layout/AuthModal/AuthModal'));
+const AuthPage = lazy(() => import('./pages/AuthPage/AuthPage'));
 const ProfileDrawer = lazy(() => import('./layout/ProfileDrawer/ProfileDrawer'));
 const RegisterModal = lazy(() => import('./layout/RegisterModal/RegisterModal'));
 
@@ -180,6 +181,9 @@ function AppContent() {
       {/* Global Toast Notifications */}
       <Notification />
 
+      {/* Google OAuth Redirect Handler */}
+      <OAuthCallbackHandler />
+
       {/* Navigation Bar */}
       <Navbar />
 
@@ -205,6 +209,8 @@ function AppContent() {
           <Suspense fallback={<Loader />}><RegistrationsPage /></Suspense>
         ) : view === 'yho-club' ? (
           <Suspense fallback={<Loader />}><YHOClubPage /></Suspense>
+        ) : (view === 'login' || view === 'signup') ? (
+          <Suspense fallback={<Loader />}><AuthPage /></Suspense>
         ) : (
           <>
             {/* Main Page Sections */}
@@ -231,11 +237,6 @@ function AppContent() {
       {/* Checkout Steps Modal */}
       <Suspense fallback={null}>
         {isCheckoutOpen && <CheckoutModal />}
-      </Suspense>
-
-      {/* Authentication Modal */}
-      <Suspense fallback={null}>
-        <AuthModal />
       </Suspense>
 
       {/* User Profile Drawer */}

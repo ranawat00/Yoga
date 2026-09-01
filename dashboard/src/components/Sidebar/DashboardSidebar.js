@@ -21,6 +21,7 @@ const DashboardSidebar = ({ activeTab, setActiveTab, currentUser, onLogout }) =>
     { id: 'registrations', label: 'Registrations', icon: '📝' },
     { id: 'orders', label: 'Orders', icon: '🛍️' },
     { id: 'coupons', label: 'Coupons', icon: '🏷️' },
+    { id: 'referrals', label: 'Referral Codes', icon: '🎫' },
     { id: 'inquiries', label: 'Inquiries', icon: '📬' },
     { id: 'users', label: 'Users', icon: '👥' },
     { id: 'settings', label: 'Settings', icon: '⚙️' },

@@ -84,3 +84,47 @@ exports.facebookAuth = async (req, res, next) => {
     next(error);
   }
 };
+
+/**
+ * @desc    Apple OAuth Login/Signup
+ * @route   POST /api/auth/apple
+ * @access  Public
+ */
+exports.appleAuth = async (req, res, next) => {
+  try {
+    const { email, name, appleId, role } = req.body;
+
+    if (!email && !appleId) {
+      return res.status(400).json({
+        success: false,
+        message: 'Apple authentication requires email or Apple ID'
+      });
+    }
+
+    const query = [];
+    if (email) query.push({ email });
+    if (appleId) query.push({ appleId });
+
+    let user = await User.findOne({ $or: query });
+
+    if (user) {
+      if (!user.appleId) {
+        user.appleId = appleId;
+        user.authProvider = user.authProvider || 'apple';
+        await user.save({ validateBeforeSave: false });
+      }
+    } else {
+      user = await User.create({
+        name: name || 'Apple User',
+        email: email || `${appleId || Date.now()}@privaterelay.appleid.com`,
+        appleId,
+        authProvider: 'apple',
+        role: role || 'user'
+      });
+    }
+
+    await sendTokenResponse(user, 200, res, req);
+  } catch (error) {
+    next(error);
+  }
+};
