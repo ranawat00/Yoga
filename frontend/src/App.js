@@ -111,7 +111,7 @@ function AppContent() {
 
   // Synchronize browser address bar URL, page title, and scroll lock reset when `view` changes
   useEffect(() => {
-    document.body.style.overflow = '';
+    document.body.style.overflow = view === 'yho-club' ? 'hidden' : '';
     const targetPath = VIEW_TO_PATH[view] || '/';
     if (window.location.pathname !== targetPath) {
       window.history.pushState({ view }, '', targetPath);
@@ -185,7 +185,7 @@ function AppContent() {
       <OAuthCallbackHandler />
 
       {/* Navigation Bar */}
-      <Navbar />
+      {view !== 'yho-club' && <Navbar />}
 
       {/* Conditionally Render Views with Smooth Transitions */}
       <main key={view} className="page-transition-container">
@@ -232,7 +232,7 @@ function AppContent() {
         )}
       </main>
       {/* Footer (Dark Navy) */}
-      <Footer />
+      {view !== 'yho-club' && <Footer />}
 
       {/* Checkout Steps Modal */}
       <Suspense fallback={null}>

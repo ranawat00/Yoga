@@ -1,439 +1,695 @@
-/* YHO Club Page Luxury Dark Aesthetic - Vertically Centered Content */
-.yho-club-page {
-  background-color: #060608;
-  color: #ffffff;
-  min-height: 100vh;
+/* ==========================================
+   YHO CLUB PORTAL - PREMIUM DESKTOP & MOBILE STYLING
+   ========================================== */
+
+/* Outer Layout & Ambient Dark Backdrop (Desktop) */
+.yho-club-page-wrapper {
+  position: relative;
+  background: linear-gradient(135deg, #09101F 0%, #0f172a 50%, #1e293b 100%);
+  color: #0f172a;
+  height: 100vh;
+  height: 100dvh;
+  max-height: 100vh;
+  max-height: 100dvh;
+  width: 100%;
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  text-align: center;
-  padding-top: 72px;
+  padding: 1.5rem;
   box-sizing: border-box;
-  overflow-y: auto;
-  position: relative;
-}
-
-/* Background Atmospheric Radial Glows */
-.yho-bg-glow-top {
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 100%;
-  max-width: 800px;
-  height: 380px;
-  background: radial-gradient(ellipse at 50% 0%, rgba(110, 39, 232, 0.28) 0%, rgba(9, 9, 11, 0) 75%);
-  pointer-events: none;
-  z-index: 0;
-}
-
-.yho-bg-glow-center {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 380px;
-  height: 380px;
-  background: radial-gradient(circle, rgba(140, 87, 75, 0.18) 0%, rgba(6, 6, 8, 0) 70%);
-  pointer-events: none;
-  z-index: 0;
-}
-
-.yho-club-container {
-  width: 100%;
-  max-width: 520px;
-  margin: auto;
-  padding: 0.75rem 1.25rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  flex: 1;
-  position: relative;
-  z-index: 1;
-}
-
-/* Official Logo Glass Badge */
-.yho-logo-wrapper {
-  margin-top: 1.75rem;
-  margin-bottom: 3.75rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.yho-logo-glass-badge {
-  background: rgba(255, 255, 255, 0.03);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 28px;
-  padding: 8px 20px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35), 0 0 25px rgba(110, 39, 232, 0.2);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.yho-logo-glass-badge:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 12px 38px rgba(0, 0, 0, 0.45), 0 0 30px rgba(110, 39, 232, 0.35);
-}
-
-.yho-logo-glass-badge .brand-logo-img {
-  max-width: 100%;
-  height: auto;
-  display: block;
-}
-
-/* Header Typography */
-.yho-header {
-  margin-bottom: 0.85rem;
-}
-
-.yho-welcome-pill {
-  display: inline-block;
-  background: linear-gradient(135deg, rgba(251, 191, 36, 0.15) 0%, rgba(255, 255, 255, 0.05) 100%);
-  border: 1px solid rgba(251, 191, 36, 0.35);
-  padding: 4px 14px;
-  border-radius: 30px;
-  margin-bottom: 0.4rem;
-  box-shadow: 0 2px 10px rgba(251, 191, 36, 0.15);
-}
-
-.yho-welcome-text {
-  font-size: 0.75rem;
-  font-weight: 800;
-  letter-spacing: 2.5px;
-  color: #fbbf24;
-  text-transform: uppercase;
-}
-
-.yho-main-title {
-  font-size: 3.2rem;
-  font-weight: 900;
-  background: linear-gradient(135deg, #FFFFFF 0%, #FBBF24 55%, #F59E0B 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  margin: 0 0 0.25rem 0;
-  letter-spacing: -0.5px;
-  line-height: 1.05;
-  filter: drop-shadow(0 4px 15px rgba(245, 158, 11, 0.25));
-}
-
-.yho-sub-tagline {
-  font-size: 0.85rem;
-  font-weight: 700;
-  color: #d1d5db;
-  letter-spacing: 1.8px;
-  text-transform: uppercase;
-  margin: 0;
-}
-
-/* Primary Action Buttons Container */
-.yho-actions-group {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.75rem;
-  margin-bottom: 0.85rem;
-}
-
-/* General Button Styles */
-.yho-btn {
-  width: 100%;
-  max-width: 360px;
-  padding: 0.85rem 1.5rem;
-  border-radius: 9999px;
-  font-size: 0.88rem;
-  font-weight: 800;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  cursor: pointer;
-  outline: none;
-  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-  position: relative;
   overflow: hidden;
 }
 
-.btn-content-inner {
+.yho-club-page-wrapper::-webkit-scrollbar,
+.yho-club-card::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
+/* Ambient Decorative Background Glow Blobs */
+.yho-bg-glow-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.65;
+}
+
+.orb-top-left {
+  top: -80px;
+  left: -80px;
+  width: 450px;
+  height: 450px;
+  background: radial-gradient(circle, rgba(0, 255, 163, 0.25) 0%, rgba(255, 255, 255, 0) 70%);
+}
+
+.orb-bottom-right {
+  bottom: -80px;
+  right: -80px;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.22) 0%, rgba(255, 255, 255, 0) 70%);
+}
+
+/* Centered Modal Card Container (Desktop) */
+.yho-club-card {
+  position: relative;
+  z-index: 1;
+  background-color: #ffffff;
+  width: 100%;
+  max-width: 440px;
+  max-height: 94vh;
+  max-height: 94dvh;
+  border-radius: 24px;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.4), 0 0 35px rgba(0, 255, 163, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  padding: 2.75rem 2.25rem 2rem 2.25rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  box-sizing: border-box;
+  margin: auto;
+  overflow-y: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  transition: all 0.3s ease;
+}
+
+/* Top Close / Exit Button */
+.yho-close-top-btn {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.25rem;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1px solid #e2e8f0;
+  background-color: #f8fafc;
+  color: #64748b;
+  font-size: 1rem;
+  font-weight: bold;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0.6rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  z-index: 10;
+}
+
+.yho-close-top-btn:hover {
+  background-color: #0f172a;
+  color: #ffffff;
+  border-color: #0f172a;
+  transform: scale(1.05);
+}
+
+/* Brand Logo Header: YHO + Target Symbol + CLUB */
+.yho-logo-brand-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 1.8rem;
+  margin-bottom: 1.25rem;
+}
+
+/* Card Body Container - Positions form & controls directly under logo */
+.yho-card-content-body {
+  width: 100%;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.yho-brand-top {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  font-size: 2.2rem;
+  font-weight: 900;
+  color: #0f172a;
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+
+.yho-brand-text {
+  font-weight: 900;
+  color: #0f172a;
+  font-family: Arial, -apple-system, sans-serif;
+}
+
+.yho-brand-target-o {
   position: relative;
-  z-index: 1;
+  width: 28px;
+  height: 28px;
+  border: 5px solid #0f172a;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  margin-left: 1px;
+  box-shadow: 0 0 12px rgba(0, 255, 163, 0.3);
 }
 
-.btn-content-inner svg {
-  flex-shrink: 0;
-  transition: transform 0.3s ease;
+.target-inner-dot {
+  width: 9px;
+  height: 9px;
+  background-color: #00FFA3;
+  border-radius: 50%;
+  box-shadow: 0 0 8px #00FFA3;
 }
 
-.yho-btn:hover .btn-content-inner svg {
-  transform: scale(1.15);
+.yho-brand-bottom {
+  font-size: 2.45rem;
+  font-weight: 900;
+  color: #0f172a;
+  letter-spacing: 0.08em;
+  line-height: 0.95;
+  margin-top: 2px;
+  font-family: Arial Black, Impact, 'Plus Jakarta Sans', sans-serif;
 }
 
-.yho-btn span {
-  position: relative;
-  z-index: 1;
+/* Typography Elements */
+.yho-card-headline {
+  font-size: 1.22rem;
+  font-weight: 800;
+  color: #0f172a;
+  text-align: center;
+  margin: 0 0 0.3rem 0;
+  letter-spacing: -0.02em;
 }
 
-.yho-btn:hover {
+.yho-card-subtext {
+  font-size: 0.84rem;
+  font-weight: 400;
+  color: #64748b;
+  text-align: center;
+  line-height: 1.45;
+  margin: 0 0 3.5rem 0;
+  max-width: 320px;
+}
+
+/* 3-Step Progress Bar Indicator (Sign Up Mode) */
+.yho-step-indicator-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  margin: 0.1rem 0 1.25rem 0;
+  width: 100%;
+}
+
+.yho-step-pill {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.76rem;
+  font-weight: 600;
+  color: #94a3b8;
+  padding: 0.28rem 0.6rem;
+  border-radius: 20px;
+  background-color: #f1f5f9;
+  border: 1px solid #e2e8f0;
+  transition: all 0.25s ease;
+}
+
+.yho-step-pill.active {
+  background: linear-gradient(135deg, #00FFA3 0%, #00e693 100%);
+  color: #000000;
+  font-weight: 800;
+  border-color: transparent;
+  box-shadow: 0 4px 12px rgba(0, 255, 163, 0.35);
+  transform: translateY(-1px);
+}
+
+.yho-step-pill.completed {
+  background-color: #e2e8f0;
+  color: #334155;
+}
+
+.yho-step-dot {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.1);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+}
+
+.yho-step-pill.active .yho-step-dot {
+  background-color: #000000;
+  color: #ffffff;
+}
+
+.yho-step-arrow {
+  color: #cbd5e1;
+  font-size: 0.75rem;
+  font-weight: bold;
+}
+
+/* Social Buttons Container (Log In Mode) */
+.yho-social-options-list {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+}
+
+.yho-social-option-btn {
+  width: 100%;
+  height: 46px;
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #334155;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.yho-social-option-btn:hover {
+  background-color: #ffffff;
+  border-color: #cbd5e1;
   transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
+  color: #0f172a;
 }
 
-.yho-btn:active {
+.yho-social-option-btn:active {
   transform: translateY(0);
 }
 
-/* White Student Login Button */
-.yho-btn-student {
-  background: #ffffff;
-  color: #09090b;
-  border: 1.5px solid #ffffff;
-  box-shadow: 0 4px 20px rgba(255, 255, 255, 0.2);
+.social-icon-svg {
+  flex-shrink: 0;
 }
 
-.yho-btn-student:hover {
-  background-color: #f8fafc;
-  box-shadow: 0 8px 28px rgba(255, 255, 255, 0.35);
-}
-
-/* Copper / Brown Parents Login Button */
-.yho-btn-parent {
-  background: linear-gradient(135deg, #d97706 0%, #b45309 100%);
-  color: #ffffff;
-  border: 1.5px solid rgba(251, 191, 36, 0.4);
-  box-shadow: 0 4px 20px rgba(217, 119, 6, 0.35);
-}
-
-.yho-btn-parent:hover {
-  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
-  box-shadow: 0 8px 28px rgba(245, 158, 11, 0.45);
-}
-
-/* Social Sign Up Divider & Buttons */
-.yho-social-group {
+/* Divider Line with 'or' text */
+.yho-divider-line {
   width: 100%;
-  max-width: 360px;
-  margin-bottom: 0.85rem;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 1.1rem;
+}
+
+.yho-divider-line::before,
+.yho-divider-line::after {
+  content: '';
+  flex: 1;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.yho-divider-line span {
+  padding: 0 0.85rem;
+  font-size: 0.78rem;
+  color: #94a3b8;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Form Layout */
+.yho-form-group {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.05rem;
+}
+
+.yho-inline-error-alert {
+  background-color: #fef2f2;
+  border: 1px solid #fecaca;
+  color: #b91c1c;
+  padding: 0.7rem 0.9rem;
+  border-radius: 10px;
+  font-size: 0.82rem;
+  font-weight: 500;
+  text-align: left;
+  box-shadow: 0 2px 8px rgba(220, 38, 38, 0.06);
+}
+
+.yho-field-block {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.yho-field-label {
+  font-size: 0.86rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 0.4rem;
+  letter-spacing: -0.01em;
+}
+
+.yho-text-input {
+  width: 100%;
+  height: 46px;
+  background-color: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 0 0.95rem;
+  font-size: 0.92rem;
+  color: #0f172a;
+  box-sizing: border-box;
+  outline: none;
+  transition: all 0.25s ease;
+}
+
+.yho-text-input:focus {
+  border-color: #00FFA3;
+  background-color: #ffffff;
+  box-shadow: 0 0 0 4px rgba(0, 255, 163, 0.25);
+}
+
+.yho-text-input::placeholder {
+  color: #94a3b8;
+}
+
+.yho-input-hint-text {
+  font-size: 0.76rem;
+  color: #64748b;
+  margin: 0.3rem 0 0 0;
+  text-align: left;
+}
+
+/* Step Navigation Buttons Row */
+.yho-step-nav-buttons {
+  display: flex;
+  gap: 0.7rem;
+  width: 100%;
+  margin-top: 0.4rem;
+}
+
+.yho-step-back-btn {
+  height: 48px;
+  padding: 0 1.2rem;
+  background-color: #f1f5f9;
+  border: 1px solid #e2e8f0;
+  color: #334155;
+  border-radius: 12px;
+  font-size: 0.88rem;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+}
+
+.yho-step-back-btn:hover {
+  background-color: #e2e8f0;
+  color: #0f172a;
+}
+
+/* Bright Electric Cyan Submit Button */
+.yho-cyan-submit-btn {
+  width: 100%;
+  height: 48px;
+  background: linear-gradient(135deg, #00FFA3 0%, #00e693 100%);
+  color: #000000;
+  border: none;
+  border-radius: 12px;
+  font-size: 0.94rem;
+  font-weight: 800;
+  cursor: pointer;
+  margin-top: 0.3rem;
+  letter-spacing: 0.01em;
+  box-shadow: 0 4px 14px rgba(0, 255, 163, 0.35);
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.yho-cyan-submit-btn:hover {
+  background: linear-gradient(135deg, #05ffaa 0%, #00d688 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 255, 163, 0.48);
+}
+
+.yho-cyan-submit-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 12px rgba(0, 255, 163, 0.3);
+}
+
+.yho-cyan-submit-btn:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* Card Footer Row */
+.yho-card-footer-row {
+  margin-top: 1.4rem;
+  font-size: 0.88rem;
+  color: #475569;
+  text-align: center;
+}
+
+.yho-toggle-mode-link {
+  background: none;
+  border: none;
+  color: #00c97e;
+  font-weight: 700;
+  cursor: pointer;
+  padding: 0;
+  margin-left: 0.3rem;
+  font-size: inherit;
+  transition: color 0.2s ease;
+}
+
+.yho-toggle-mode-link:hover {
+  color: #009960;
+  text-decoration: underline;
+}
+
+/* Institution Auto-Complete Dropdown */
+.yho-input-spinner {
+  position: absolute;
+  right: 12px;
+  top: 36px;
+  font-size: 0.76rem;
+  font-weight: 600;
+  color: #00c97e;
+}
+
+.yho-suggestions-list {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+  margin-top: 4px;
+  padding: 0.3rem 0;
+  list-style: none;
+  max-height: 160px;
+  overflow-y: auto;
+  z-index: 50;
+}
+
+.yho-suggestions-list li {
+  padding: 0.65rem 0.9rem;
+  font-size: 0.85rem;
+  color: #334155;
+  cursor: pointer;
+  border-bottom: 1px solid #f1f5f9;
+  text-align: left;
+  transition: all 0.15s ease;
+}
+
+.yho-suggestions-list li:last-child {
+  border-bottom: none;
+}
+
+.yho-suggestions-list li:hover {
+  background-color: #f1f5f9;
+  color: #0f172a;
+  font-weight: 600;
+}
+
+/* Logged-In Student Portal View */
+.yho-student-portal-wrapper {
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.yho-social-divider {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  text-align: center;
-  margin-bottom: 0.55rem;
-}
-
-.yho-social-divider::before,
-.yho-social-divider::after {
-  content: '';
-  flex: 1;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
-}
-
-.yho-social-divider span {
-  padding: 0 0.65rem;
-  font-size: 0.7rem;
-  font-weight: 700;
-  letter-spacing: 1.5px;
-  color: #94a3b8;
-  text-transform: uppercase;
-}
-
-.yho-social-buttons {
-  display: flex;
-  gap: 0.5rem;
-  width: 100%;
-  justify-content: space-between;
-}
-
-.yho-social-btn {
-  flex: 1;
+.yho-avatar-bubble {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #00FFA3 0%, #00e693 100%);
+  color: #000000;
+  font-size: 1.75rem;
+  font-weight: 900;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0.45rem;
-  padding: 0.65rem 0.6rem;
-  border-radius: 9999px;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 6px 20px rgba(0, 255, 163, 0.45);
+}
+
+.yho-student-badge {
+  background-color: #ecfdf5;
+  border: 1px solid #a7f3d0;
+  color: #047857;
+  padding: 0.38rem 0.9rem;
+  border-radius: 20px;
+  font-size: 0.83rem;
+  font-weight: 700;
+  margin: 0.5rem 0 1.25rem 0;
+}
+
+.yho-details-card {
+  width: 100%;
+  background-color: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 1rem 1.15rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  box-sizing: border-box;
+  margin-bottom: 1.3rem;
+}
+
+.yho-detail-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.86rem;
+  border-bottom: 1px dashed #e2e8f0;
+  padding-bottom: 0.45rem;
+}
+
+.yho-detail-row:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.detail-label {
+  color: #64748b;
+  font-weight: 500;
+}
+
+.detail-value {
+  color: #0f172a;
+  font-weight: 700;
+  text-align: right;
+}
+
+.yho-logout-btn {
+  width: 100%;
+  height: 46px;
+  background-color: #0f172a;
   color: #ffffff;
-  font-family: inherit;
-  font-size: 0.82rem;
+  border: none;
+  border-radius: 12px;
+  font-size: 0.9rem;
   font-weight: 700;
   cursor: pointer;
   transition: all 0.25s ease;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
 }
 
-.yho-social-btn:hover {
-  background: rgba(255, 255, 255, 0.12);
-  border-color: rgba(255, 255, 255, 0.3);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1);
+.yho-logout-btn:hover {
+  background-color: #1e293b;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(15, 23, 42, 0.2);
 }
 
-.yho-btn-apple {
-  background: rgba(0, 0, 0, 0.6);
-  border-color: rgba(255, 255, 255, 0.25);
-}
-
-.yho-btn-apple:hover {
-  background: #000000;
-  border-color: #ffffff;
-  box-shadow: 0 4px 18px rgba(255, 255, 255, 0.2);
-}
-
-.yho-social-btn:active {
-  transform: translateY(0);
-}
-
-.yho-social-icon {
-  flex-shrink: 0;
-}
-
-/* Inspirational Quote Card */
-.yho-quote-card {
-  background: rgba(255, 255, 255, 0.025);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  border-radius: 16px;
-  padding: 0.65rem 1.15rem;
-  margin-bottom: 0.85rem;
-  max-width: 460px;
-  position: relative;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-}
-
-.yho-quote-icon {
-  font-family: Georgia, serif;
-  font-size: 1.6rem;
-  line-height: 1;
-  color: #6e27e8;
-  display: block;
-  margin-bottom: -0.5rem;
-}
-
-.yho-safe-space-quote {
-  font-size: 0.85rem;
-  font-weight: 400;
-  line-height: 1.4;
-  color: #d1d5db;
-  margin: 0;
-}
-
-/* Create Account Wrapper */
-.yho-create-account-wrapper {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  margin-bottom: 0.5rem;
-}
-
-/* Black Pill Button with Glowing White Border */
-.yho-btn-create {
-  background: rgba(18, 18, 24, 0.9);
-  color: #ffffff;
-  border: 1.5px solid rgba(255, 255, 255, 0.35);
-  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.3);
-}
-
-.yho-btn-create:hover {
-  background: rgba(28, 28, 36, 1);
-  border-color: #ffffff;
-  box-shadow: 0 6px 24px rgba(255, 255, 255, 0.2);
-}
-
-/* MediaLogos Component Wrapper for As Featured On */
-.yho-media-logos-wrapper {
-  width: 100%;
-  margin-top: auto;
-  position: relative;
-  z-index: 1;
-}
-
-/* Mobile Responsiveness Fine-Tuning */
+/* Responsive Mobile Adjustments */
 @media (max-width: 640px) {
-  .yho-club-page {
-    padding-top: 60px;
+  .yho-club-page-wrapper {
+    padding: 0;
+    height: 100vh;
+    height: 100dvh;
+    max-height: 100vh;
+    max-height: 100dvh;
+    align-items: flex-start;
+    overflow: hidden;
+    background: #ffffff;
   }
 
-  .yho-club-container {
-    padding: 0.5rem 1rem;
-    margin: auto;
-  }
-
-  .yho-logo-glass-badge {
-    padding: 6px 16px;
-    border-radius: 20px;
-  }
-
-  .yho-main-title {
-    font-size: 2.2rem;
-  }
-
-  .yho-welcome-pill {
-    padding: 3px 10px;
-    margin-bottom: 0.3rem;
-  }
-
-  .yho-welcome-text {
-    font-size: 0.7rem;
-    letter-spacing: 2px;
-  }
-
-  .yho-sub-tagline {
-    font-size: 0.78rem;
-    letter-spacing: 1.5px;
-  }
-
-  .yho-actions-group {
-    gap: 0.6rem;
-    margin-bottom: 0.75rem;
-  }
-
-  .yho-btn {
+  .yho-club-card {
+    width: 100%;
     max-width: 100%;
-    padding: 0.75rem 1.2rem;
+    height: 100vh;
+    height: 100dvh;
+    max-height: 100vh;
+    max-height: 100dvh;
+    padding: 3rem 1.4rem 1.5rem 1.4rem;
+    border-radius: 0;
+    margin: 0;
+    overflow: hidden;
+    box-shadow: none;
+    border: none;
+    justify-content: flex-start;
+  }
+
+  .yho-logo-brand-block {
+    margin-top: 2.2rem;
+    margin-bottom: 1.35rem;
+  }
+
+  .yho-brand-top {
+    font-size: 2.1rem;
+  }
+
+  .yho-brand-target-o {
+    width: 26px;
+    height: 26px;
+    border-width: 4px;
+  }
+
+  .target-inner-dot {
+    width: 8px;
+    height: 8px;
+  }
+
+  .yho-brand-bottom {
+    font-size: 2.3rem;
+  }
+
+  .yho-card-headline {
+    font-size: 1.12rem;
+  }
+
+  .yho-card-subtext {
     font-size: 0.82rem;
-    letter-spacing: 1.2px;
+    line-height: 1.4;
+    margin-bottom: 3.5rem;
   }
 
-  .yho-social-buttons {
-    gap: 0.5rem;
+  .yho-social-option-btn {
+    height: 44px;
+    font-size: 0.88rem;
   }
 
-  .yho-social-btn {
-    padding: 0.6rem 0.75rem;
-    font-size: 0.8rem;
+  .yho-text-input {
+    height: 44px;
+    font-size: 0.9rem;
   }
 
-  .yho-quote-card {
-    padding: 0.55rem 0.85rem;
-    margin-bottom: 0.75rem;
-    border-radius: 12px;
-  }
-
-  .yho-quote-icon {
-    font-size: 1.35rem;
-    margin-bottom: -0.4rem;
-  }
-
-  .yho-safe-space-quote {
-    font-size: 0.8rem;
-    line-height: 1.35;
-  }
-
-  .yho-media-logos-wrapper {
-    margin-top: auto;
+  .yho-cyan-submit-btn {
+    height: 46px;
+    font-size: 0.9rem;
   }
 }

@@ -1,52 +1,55 @@
 import { apiClient } from './client';
 
 /**
- * Fetch current user context using the bearer token.
- * @param {string} [token] - Optional token override
- * @returns {Promise<object>} response data
+ * Fetch current authenticated user context.
+ * @param {string} [token] - Optional Bearer token override
+ * @returns {Promise<object>}
  */
 export const fetchMe = (token) => 
   apiClient('/auth/me', {
-    headers: token ? { 'Authorization': `Bearer ${token}` } : {}
+    headers: token ? { Authorization: `Bearer ${token}` } : {}
   });
 
 /**
- * Log in a user with email and password.
- * @param {string} email 
- * @param {string} password 
- * @param {string} [role]
- * @param {string} [studentId]
- * @returns {Promise<object>} response data
+ * Authenticate user with credentials.
+ * Accepts either a structured payload object or positional arguments.
+ * @param {Object|string} credentials - Credentials object { email, password, role } or email string
+ * @param {string} [password] 
+ * @param {string} [role] 
+ * @returns {Promise<object>}
  */
-export const login = (email, password, role) => 
-  apiClient('/auth/login', {
+export const login = (credentials, password, role) => {
+  const payload = typeof credentials === 'object' && credentials !== null
+    ? credentials 
+    : { email: credentials, password, role };
+
+  return apiClient('/auth/login', {
     method: 'POST',
-    body: JSON.stringify({ email, password, role })
+    body: JSON.stringify(payload)
   });
+};
 
 /**
- * Sign up a new user.
- * @param {string} name 
- * @param {string} email 
- * @param {string} password 
- * @param {string} [role]
- * @param {string} [schoolName]
- * @param {string} [studentId]
- * @param {string} [referralId]
- * @param {string} [studentName]
- * @param {string} [phone]
- * @returns {Promise<object>} response data
+ * Register a new user account.
+ * Accepts either a single structured payload object or legacy positional arguments.
+ * @param {Object|string} data - User data object or name string
+ * @returns {Promise<object>}
  */
-export const signup = (name, email, password, role, schoolName, studentId, referralId, studentName, phone) => 
-  apiClient('/auth/signup', {
+export const signup = (data, email, password, role, schoolName, studentId, referralId, studentName, phone) => {
+  const payload = typeof data === 'object' && data !== null
+    ? data
+    : { name: data, email, password, role, schoolName, studentId, referralId, studentName, phone };
+
+  return apiClient('/auth/signup', {
     method: 'POST',
-    body: JSON.stringify({ name, email, password, role, schoolName, studentId, referralId, studentName, phone })
+    body: JSON.stringify(payload)
   });
+};
 
 /**
- * Log out the current user.
- * @param {string} [refreshToken] - Optional refresh token to revoke on the server
- * @returns {Promise<object>} response data
+ * Log out user and invalidate refresh token session.
+ * @param {string} [refreshToken] 
+ * @returns {Promise<object>}
  */
 export const logout = (refreshToken) => 
   apiClient('/auth/logout', { 
@@ -55,8 +58,8 @@ export const logout = (refreshToken) =>
   });
 
 /**
- * Log out of all active devices / revoke all sessions.
- * @returns {Promise<object>} response data
+ * Revoke all active sessions across devices.
+ * @returns {Promise<object>}
  */
 export const logoutAllDevices = () =>
   apiClient('/auth/logout-all', {
@@ -64,31 +67,36 @@ export const logoutAllDevices = () =>
   });
 
 /**
- * Request a password reset email.
+ * Initiate password reset workflow.
  * @param {string} email 
- * @returns {Promise<object>} response data
+ * @returns {Promise<object>}
  */
 export const forgotPassword = (email) => 
   apiClient('/auth/forgot-password', {
     method: 'POST',
-    body: JSON.stringify({ email })
+    body: JSON.stringify({ email: String(email || '').trim().toLowerCase() })
   });
 
 /**
- * Update user details (name and email).
- * @param {string} name 
- * @param {string} email 
- * @returns {Promise<object>} response data
+ * Update user profile details.
+ * @param {Object|string} details - Profile object { name, email } or name string
+ * @param {string} [email]
+ * @returns {Promise<object>}
  */
-export const updateDetails = (name, email) =>
-  apiClient('/auth/updatedetails', {
+export const updateDetails = (details, email) => {
+  const payload = typeof details === 'object' && details !== null
+    ? details
+    : { name: details, email };
+
+  return apiClient('/auth/updatedetails', {
     method: 'PUT',
-    body: JSON.stringify({ name, email })
+    body: JSON.stringify(payload)
   });
+};
 
 /**
- * Authenticate with Google
- * @param {object} payload - { email, name, googleId, role }
+ * Authenticate with OAuth Provider (Google, Facebook, Apple)
+ * @param {Object} payload 
  */
 export const googleAuth = (payload) =>
   apiClient('/auth/google', {
@@ -96,20 +104,12 @@ export const googleAuth = (payload) =>
     body: JSON.stringify(payload)
   });
 
-/**
- * Authenticate with Facebook
- * @param {object} payload - { email, name, facebookId, role }
- */
 export const facebookAuth = (payload) =>
   apiClient('/auth/facebook', {
     method: 'POST',
     body: JSON.stringify(payload)
   });
 
-/**
- * Authenticate with Apple
- * @param {object} payload - { email, name, appleId, role }
- */
 export const appleAuth = (payload) =>
   apiClient('/auth/apple', {
     method: 'POST',
@@ -117,12 +117,13 @@ export const appleAuth = (payload) =>
   });
 
 /**
- * Validate student referral ID code
- * @param {string} referralId
- * @returns {Promise<object>} response data
+ * Validate student invite/referral code.
+ * @param {string} referralId 
+ * @returns {Promise<object>}
  */
 export const validateReferral = (referralId) =>
   apiClient('/referrals/validate', {
     method: 'POST',
-    body: JSON.stringify({ referralId })
+    body: JSON.stringify({ referralId: String(referralId || '').trim().toUpperCase() })
   });
+

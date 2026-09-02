@@ -50,7 +50,7 @@ export default function AuthPage() {
 
   // Debounced Search Effect for Institutions
   useEffect(() => {
-    if (studentStep === 2 && schoolName.trim().length > 1 && showSuggestions) {
+    if (studentStep === 3 && schoolName.trim().length >= 1 && showSuggestions) {
       if (searchTimeoutRef.current) {
         clearTimeout(searchTimeoutRef.current);
       }
@@ -219,185 +219,106 @@ export default function AuthPage() {
   if (authRole === 'student') {
     return (
       <div className="auth-page-container student-theme">
-        <div className="auth-modal-card student-stepwise-card">
-          
-          {/* Top Navigation: Back Arrow */}
-          <button 
-            className="student-back-btn" 
-            onClick={() => {
-              if (studentStep > 1 && activeTab === 'signup') {
-                setStudentStep(studentStep - 1);
-              } else {
-                handleClose();
-              }
-            }}
-            aria-label="Go Back"
-            style={{ position: 'absolute', top: '1.25rem', left: '1.25rem', zIndex: 10 }}
-          >
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-              <line x1="19" y1="12" x2="5" y2="12"></line>
-              <polyline points="12 19 5 12 12 5"></polyline>
-            </svg>
-          </button>
-
-          {/* Removed Log In / Sign Up Tabs */}
-
-          {activeTab === 'login' ? (
-            /* ================= LOGIN FLOW ================= */
-            <div className="student-step-container animate-fade-in" style={{ paddingTop: '5rem' }}>
-
-              {/* Heading */}
-              <h1 style={{
-                fontSize: '2rem',
-                fontWeight: 800,
-                color: '#ffffff',
-                letterSpacing: '-0.03em',
-                lineHeight: 1.15,
-                marginBottom: '0.45rem',
-                textAlign: 'center'
-              }}>
-                Welcome Back
-              </h1>
-              <p style={{ color: '#71717a', fontSize: '0.85rem', marginBottom: '2rem', fontWeight: 400, textAlign: 'center', whiteSpace: 'nowrap' }}>
-                Log in to continue your yoga journey
+        <div className="student-widescreen-card-wrapper">
+          {/* Desktop Left Showcase Side */}
+          <div className="student-desktop-hero">
+            <div>
+              <div className="hero-logo-wrap">
+                <Logo size={44} />
+                <span className="hero-badge">Student Portal</span>
+              </div>
+              <h2 className="hero-heading">
+                Step into Drug-Free Health & Wisdom
+              </h2>
+              <p className="hero-subtext">
+                Join thousands of students on a transformative journey towards natural vitality, mindfulness, and holistic well-being.
               </p>
+            </div>
 
-              <form onSubmit={handleSubmit} className="student-step-form">
-                <div className="student-input-group">
-                  <label htmlFor="student-email-login" className="student-input-label">Email</label>
-                  <input 
-                    type="email" 
-                    id="student-email-login"
-                    className="student-email-field"
-                    placeholder="name@example.com"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    required
-                    autoFocus
-                  />
+            <div className="hero-feature-list">
+              <div className="hero-feature-card">
+                <div className="feature-icon-badge">🌿</div>
+                <div>
+                  <h4 className="feature-title">Natural Lifestyle Protocols</h4>
+                  <p className="feature-desc">Practical daily routines tailored specifically for modern student life.</p>
                 </div>
-                
-                <div className="student-input-group">
-                  <label htmlFor="student-pass-login" className="student-input-label">Password</label>
-                  <div className="input-wrapper" style={{ display: 'flex' }}>
-                    <input 
-                      type={showPassword ? 'text' : 'password'} 
-                      id="student-pass-login" 
-                      placeholder="••••••••"
-                      className="student-email-field has-toggle"
-                      value={password} 
-                      onChange={(e) => setPassword(e.target.value)} 
-                      required 
-                    />
-                    <button 
-                      type="button" 
-                      className="password-toggle-btn"
-                      onClick={() => setShowPassword(!showPassword)}
-                    >
-                      {showPassword ? '🙈' : '👁️'}
-                    </button>
-                  </div>
-                </div>
+              </div>
 
-                {/* Forgot Password */}
-                <div style={{ textAlign: 'right', marginTop: '-0.4rem', marginBottom: '1.2rem' }}>
-                  <button
-                    type="button"
-                    onClick={() => setActiveTab('forgot')}
-                    style={{ background: 'none', border: 'none', color: '#00e676', fontSize: '0.82rem', fontWeight: 600, cursor: 'pointer', padding: 0 }}
-                  >
-                    Forgot password?
-                  </button>
+              <div className="hero-feature-card">
+                <div className="feature-icon-badge">🎓</div>
+                <div>
+                  <h4 className="feature-title">Campus & Institute Network</h4>
+                  <p className="feature-desc">Connect with registered universities and health ambassadors.</p>
                 </div>
+              </div>
 
-                <button type="submit" className="student-continue-btn">
-                  Log In
-                </button>
-              </form>
-              
-              <div style={{ textAlign: 'center', marginTop: '1.75rem', fontSize: '0.88rem', color: '#52525b' }}>
-                Don't have an account?{' '}
-                <button type="button" onClick={() => handleSwitchTab('signup')} style={{ background: 'none', border: 'none', color: '#00e676', fontWeight: 700, cursor: 'pointer', padding: 0 }}>Sign Up</button>
+              <div className="hero-feature-card">
+                <div className="feature-icon-badge">⚡</div>
+                <div>
+                  <h4 className="feature-title">Daily Live Yoga & Workshops</h4>
+                  <p className="feature-desc">Interactive guidance from certified Yoga Healers.</p>
+                </div>
               </div>
             </div>
-          ) : (
-            /* ================= SIGNUP FLOW ================= */
-            studentStep === 1 ? (
-              /* SIGNUP STEP 1: Details & Password */
-              <div className="student-step-container animate-fade-in" style={{ paddingTop: '4rem' }}>
-                <h1 className="student-step-title" style={{ marginBottom: '1.5rem', whiteSpace: 'nowrap', fontSize: '1.85rem' }}>
-                  Create your account
-                </h1>
 
-                <form onSubmit={handleStudentStep1Continue} className="student-step-form">
-                  <div className="student-input-group">
-                    <label htmlFor="student-name-signup" className="student-input-label">Full Name</label>
-                    <input 
-                      type="text" 
-                      id="student-name-signup"
-                      className="student-email-field"
-                      placeholder="Enter your name"
-                      value={name}
-                      onChange={(e) => setName(e.target.value)}
-                      required
-                      autoFocus
-                    />
-                  </div>
+            <div className="hero-footer-note">
+              <span className="dot-pulse"></span> Verified Free Access for Students
+            </div>
+          </div>
 
-                  <div className="student-input-group">
-                    <label htmlFor="student-id-signup" className="student-input-label">Student ID / Roll Number</label>
-                    <input 
-                      type="text" 
-                      id="student-id-signup"
-                      className="student-email-field"
-                      placeholder="Enter student ID or roll number"
-                      value={studentId}
-                      onChange={(e) => setStudentId(e.target.value)}
-                      required
-                    />
-                  </div>
-                  
-                  <div className="student-input-group">
-                    <label htmlFor="student-phone-signup" className="student-input-label">Mobile Number</label>
-                    <input 
-                      type="tel" 
-                      id="student-phone-signup"
-                      className="student-email-field"
-                      placeholder="Enter your mobile number"
-                      value={phone}
-                      onChange={(e) => setPhone(e.target.value)}
-                      required
-                    />
-                  </div>
-
-                  {stepError && (
-                    <div className="student-step-error">⚠️ {stepError}</div>
-                  )}
-
-                  <button type="submit" className="student-continue-btn" style={{ marginTop: '1rem' }}>
-                    Continue
-                  </button>
-                </form>
-                
-                <div style={{ textAlign: 'center', marginTop: '1.5rem', fontSize: '0.92rem', color: '#a1a1aa' }}>
-                  Already have an account? <button type="button" onClick={() => handleSwitchTab('login')} style={{ background: 'none', border: 'none', color: '#00e676', fontWeight: 600, cursor: 'pointer', padding: 0 }}>Log In</button>
-                </div>
-                
-                <div className="student-step-indicator">Step 1 of 3</div>
+          {/* Right Form Card */}
+          <div className="auth-modal-card student-stepwise-card">
+            {/* Top Step Progress Line */}
+            {activeTab === 'signup' && (
+              <div className="student-progress-bar-wrap">
+                <div 
+                  className="student-progress-bar-fill" 
+                  style={{ width: `${(studentStep / 3) * 100}%` }}
+                ></div>
               </div>
-            ) : studentStep === 2 ? (
-              /* SIGNUP STEP 2: Email & Password */
-              <div className="student-step-container animate-fade-in" style={{ paddingTop: '4rem' }}>
-                <h1 className="student-step-title" style={{ marginBottom: '1.5rem', whiteSpace: 'nowrap', fontSize: '1.6rem' }}>
-                  Enter your email to get started
-                </h1>
+            )}
 
-                <form onSubmit={handleStudentStep2Continue} className="student-step-form">
+            {/* Header Nav */}
+            <div className="student-card-nav-header">
+              <button 
+                className="student-back-btn" 
+                onClick={() => {
+                  if (studentStep > 1 && activeTab === 'signup') {
+                    setStudentStep(studentStep - 1);
+                  } else {
+                    handleClose();
+                  }
+                }}
+                aria-label="Go Back"
+              >
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <line x1="19" y1="12" x2="5" y2="12"></line>
+                  <polyline points="12 19 5 12 12 5"></polyline>
+                </svg>
+                <span>Back</span>
+              </button>
+
+              {activeTab === 'signup' && (
+                <span className="student-nav-step-badge">Step {studentStep} of 3</span>
+              )}
+            </div>
+
+            {activeTab === 'login' ? (
+              /* ================= LOGIN FLOW ================= */
+              <div className="student-step-container animate-fade-in">
+                <h1 className="student-step-title" style={{ textAlign: 'center', marginBottom: '0.45rem' }}>
+                  Welcome Back
+                </h1>
+                <p style={{ color: '#71717a', fontSize: '0.9rem', marginBottom: '1.75rem', fontWeight: 400, textAlign: 'center' }}>
+                  Log in to continue your yoga journey
+                </p>
+
+                <form onSubmit={handleSubmit} className="student-step-form">
                   <div className="student-input-group">
-                    <label htmlFor="student-email-signup" className="student-input-label">Student Email Address</label>
+                    <label htmlFor="student-email-login" className="student-input-label">Email</label>
                     <input 
                       type="email" 
-                      id="student-email-signup"
+                      id="student-email-login"
                       className="student-email-field"
                       placeholder="name@example.com"
                       value={email}
@@ -406,13 +327,13 @@ export default function AuthPage() {
                       autoFocus
                     />
                   </div>
-
+                  
                   <div className="student-input-group">
-                    <label htmlFor="student-pass-signup" className="student-input-label">Password</label>
+                    <label htmlFor="student-pass-login" className="student-input-label">Password</label>
                     <div className="input-wrapper" style={{ display: 'flex' }}>
                       <input 
                         type={showPassword ? 'text' : 'password'} 
-                        id="student-pass-signup" 
+                        id="student-pass-login" 
                         placeholder="••••••••"
                         className="student-email-field has-toggle"
                         value={password} 
@@ -429,183 +350,309 @@ export default function AuthPage() {
                     </div>
                   </div>
 
-                  <div className="student-input-group">
-                    <label htmlFor="student-confpass-signup" className="student-input-label">Confirm Password</label>
-                    <div className="input-wrapper" style={{ display: 'flex' }}>
-                      <input 
-                        type={showConfirmPassword ? 'text' : 'password'} 
-                        id="student-confpass-signup" 
-                        placeholder="••••••••"
-                        className="student-email-field has-toggle"
-                        value={confirmPassword} 
-                        onChange={(e) => setConfirmPassword(e.target.value)} 
-                        required 
-                      />
-                      <button 
-                        type="button" 
-                        className="password-toggle-btn"
-                        onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                      >
-                        {showConfirmPassword ? '🙈' : '👁️'}
-                      </button>
-                    </div>
-                  </div>
-
-                  {/* Invite Code Toggle Link */}
-                  <div className="student-invite-toggle-wrap">
-                    <button 
-                      type="button" 
-                      className="student-invite-link"
-                      onClick={() => setShowInviteInput(!showInviteInput)}
+                  {/* Forgot Password */}
+                  <div style={{ textAlign: 'right', marginTop: '-0.2rem', marginBottom: '1.2rem' }}>
+                    <button
+                      type="button"
+                      onClick={() => setActiveTab('forgot')}
+                      style={{ background: 'none', border: 'none', color: '#00e676', fontSize: '0.82rem', fontWeight: 600, cursor: 'pointer', padding: 0 }}
                     >
-                      I have an invite code
+                      Forgot password?
                     </button>
-                    {showInviteInput && (
-                      <div className="student-invite-input-animate">
-                        <div style={{ position: 'relative' }}>
-                          <input 
-                            type="text" 
-                            className="student-invite-field"
-                            placeholder="Enter your referral / invite code"
-                            value={referralId}
-                            onChange={async (e) => {
-                              const val = e.target.value.toUpperCase();
-                              setReferralId(val);
-                              if (val.length >= 5) {
-                                try {
-                                  const res = await fetch('/api/referrals/validate', {
-                                    method: 'POST',
-                                    headers: { 'Content-Type': 'application/json' },
-                                    body: JSON.stringify({ referralId: val })
-                                  });
-                                  const data = await res.json();
-                                  setStepError(data.valid ? '' : data.message);
-                                  if (data.valid && data.data?.collegeName) {
-                                    setSchoolName(data.data.collegeName);
-                                  }
-                                } catch {}
-                              } else {
-                                setStepError('');
-                              }
-                            }}
-                            style={{ textTransform: 'uppercase', letterSpacing: '0.08em', fontWeight: 700 }}
-                          />
-                          {referralId && !stepError && (
-                            <span style={{ position: 'absolute', right: '0.75rem', top: '50%', transform: 'translateY(-50%)', color: '#00e676', fontSize: '1rem' }}>✓</span>
-                          )}
-                        </div>
-                        {stepError && <p style={{ color: '#ef4444', fontSize: '0.8rem', marginTop: '0.4rem', marginBottom: 0 }}>{stepError}</p>}
-                        {!stepError && referralId.length >= 5 && schoolName && (
-                          <p style={{ color: '#00e676', fontSize: '0.8rem', marginTop: '0.4rem', marginBottom: 0 }}>✓ Valid code for {schoolName}</p>
-                        )}
-                      </div>
-                    )}
                   </div>
 
-                  {/* Checkbox Options */}
-                  <div className="student-checkbox-group">
-                    <div className="student-checkbox-row" onClick={() => setKeepInLoop(!keepInLoop)}>
-                      <div className={`student-radio-icon ${keepInLoop ? 'checked' : ''}`}>
-                        <div className="radio-inner-dot"></div>
-                      </div>
-                      <span className="student-checkbox-label">Keep me in the loop with emails about updates & more</span>
-                    </div>
-                    <div className="student-checkbox-row" onClick={() => setAgreeTerms(!agreeTerms)}>
-                      <div className={`student-radio-icon ${agreeTerms ? 'checked' : ''}`}>
-                        <div className="radio-inner-dot"></div>
-                      </div>
-                      <span className="student-checkbox-label">
-                        By clicking Continue, you agree to our <a href="#terms" onClick={(e) => e.stopPropagation()}>Terms of Service</a> & <a href="#privacy" onClick={(e) => e.stopPropagation()}>Privacy Policy</a>
-                      </span>
-                    </div>
-                  </div>
-
-                  {stepError && (
-                    <div className="student-step-error">⚠️ {stepError}</div>
-                  )}
-
-                  <button type="submit" className="student-continue-btn" style={{ marginTop: '1rem' }}>
-                    Continue
+                  <button type="submit" className="student-continue-btn">
+                    Log In
                   </button>
                 </form>
                 
-                <div className="student-step-indicator">Step 2 of 3</div>
+                <div style={{ textAlign: 'center', marginTop: '1.75rem', fontSize: '0.88rem', color: '#71717a' }}>
+                  Don't have an account?{' '}
+                  <button type="button" onClick={() => handleSwitchTab('signup')} style={{ background: 'none', border: 'none', color: '#00e676', fontWeight: 700, cursor: 'pointer', padding: 0 }}>Sign Up</button>
+                </div>
               </div>
             ) : (
-              /* SIGNUP STEP 3: Institution Search */
-              <div className="student-step-container animate-fade-in" style={{ paddingTop: '4rem' }}>
-                <h1 className="student-step-title" style={{ marginBottom: '0.5rem' }}>
-                  Where do you study?
-                </h1>
-                <p style={{ color: '#a1a1aa', fontSize: '0.95rem', marginBottom: '1.5rem' }}>
-                  Use the search below to select your institution
-                </p>
+              /* ================= SIGNUP FLOW ================= */
+              studentStep === 1 ? (
+                /* SIGNUP STEP 1: Details & Password */
+                <div className="student-step-container animate-fade-in">
+                  <h1 className="student-step-title">
+                    Create your account
+                  </h1>
 
-                <form 
-                  onSubmit={(e) => {
-                    e.preventDefault();
-                    if (!schoolName || schoolName.trim() === '') {
-                      setStepError('Please select or search your institution to continue.');
-                      return;
-                    }
-                    setStepError('');
-                    handleSubmit(e); // This creates the account
-                  }} 
-                  className="student-step-form"
-                >
-                  <div className="student-search-input-group" style={{ position: 'relative' }}>
-                    <svg className="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <circle cx="11" cy="11" r="8"></circle>
-                      <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                    </svg>
-                    <input 
-                      type="text" 
-                      className="student-search-field"
-                      placeholder="Search your institution"
-                      value={schoolName}
-                      onChange={(e) => {
-                        setSchoolName(e.target.value);
-                        setShowSuggestions(true);
-                      }}
-                      onFocus={() => setShowSuggestions(true)}
-                      required
-                      autoFocus
-                    />
-                    {/* Dropdown Menu */}
-                    {showSuggestions && (searchSuggestions.length > 0 || isSearching) && (
-                      <ul className="institution-dropdown-list">
-                        {isSearching ? (
-                          <li className="institution-dropdown-item loading">Searching...</li>
-                        ) : (
-                          searchSuggestions.map((inst, index) => (
-                            <li 
-                              key={index} 
-                              className="institution-dropdown-item"
-                              onClick={() => handleSelectInstitution(inst.name)}
-                            >
-                              <span className="inst-name">{inst.name}</span>
-                              {inst.country && <span className="inst-country">{inst.country}</span>}
-                            </li>
-                          ))
-                        )}
-                      </ul>
-                    )}
-                  </div>
-
-                  {stepError && (
-                    <div className="student-step-error">
-                      ⚠️ {stepError}
+                  <form onSubmit={handleStudentStep1Continue} className="student-step-form">
+                    <div className="student-input-group">
+                      <label htmlFor="student-name-signup" className="student-input-label">Full Name</label>
+                      <input 
+                        type="text" 
+                        id="student-name-signup"
+                        className="student-email-field"
+                        placeholder="Enter your name"
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                        required
+                        autoFocus
+                      />
                     </div>
-                  )}
 
-                  <button type="submit" className="student-continue-btn" style={{ marginTop: '1.5rem' }}>
-                    Create Student Account
-                  </button>
-                </form>
-                <div className="student-step-indicator">Step 3 of 3</div>
-              </div>
-            )
-          )}
+                    <div className="student-input-group">
+                      <label htmlFor="student-id-signup" className="student-input-label">Student ID / Roll Number</label>
+                      <input 
+                        type="text" 
+                        id="student-id-signup"
+                        className="student-email-field"
+                        placeholder="Enter student ID or roll number"
+                        value={studentId}
+                        onChange={(e) => setStudentId(e.target.value)}
+                        required
+                      />
+                    </div>
+                    
+                    <div className="student-input-group">
+                      <label htmlFor="student-phone-signup" className="student-input-label">Mobile Number</label>
+                      <input 
+                        type="tel" 
+                        id="student-phone-signup"
+                        className="student-email-field"
+                        placeholder="Enter your mobile number"
+                        value={phone}
+                        onChange={(e) => setPhone(e.target.value)}
+                        required
+                      />
+                    </div>
+
+                    {stepError && (
+                      <div className="student-step-error">⚠️ {stepError}</div>
+                    )}
+
+                    <button type="submit" className="student-continue-btn" style={{ marginTop: '0.75rem' }}>
+                      Continue
+                    </button>
+                  </form>
+                  
+                  <div style={{ textAlign: 'center', marginTop: '1.5rem', fontSize: '0.88rem', color: '#71717a' }}>
+                    Already have an account? <button type="button" onClick={() => handleSwitchTab('login')} style={{ background: 'none', border: 'none', color: '#00e676', fontWeight: 600, cursor: 'pointer', padding: 0 }}>Log In</button>
+                  </div>
+                </div>
+              ) : studentStep === 2 ? (
+                /* SIGNUP STEP 2: Email & Password */
+                <div className="student-step-container animate-fade-in">
+                  <h1 className="student-step-title">
+                    Enter your email to get started
+                  </h1>
+
+                  <form onSubmit={handleStudentStep2Continue} className="student-step-form">
+                    <div className="student-input-group">
+                      <label htmlFor="student-email-signup" className="student-input-label">Student Email Address</label>
+                      <input 
+                        type="email" 
+                        id="student-email-signup"
+                        className="student-email-field"
+                        placeholder="name@example.com"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        required
+                        autoFocus
+                      />
+                    </div>
+
+                    <div className="student-input-group">
+                      <label htmlFor="student-pass-signup" className="student-input-label">Password</label>
+                      <div className="input-wrapper" style={{ display: 'flex' }}>
+                        <input 
+                          type={showPassword ? 'text' : 'password'} 
+                          id="student-pass-signup" 
+                          placeholder="••••••••"
+                          className="student-email-field has-toggle"
+                          value={password} 
+                          onChange={(e) => setPassword(e.target.value)} 
+                          required 
+                        />
+                        <button 
+                          type="button" 
+                          className="password-toggle-btn"
+                          onClick={() => setShowPassword(!showPassword)}
+                        >
+                          {showPassword ? '🙈' : '👁️'}
+                        </button>
+                      </div>
+                    </div>
+
+                    <div className="student-input-group">
+                      <label htmlFor="student-confpass-signup" className="student-input-label">Confirm Password</label>
+                      <div className="input-wrapper" style={{ display: 'flex' }}>
+                        <input 
+                          type={showConfirmPassword ? 'text' : 'password'} 
+                          id="student-confpass-signup" 
+                          placeholder="••••••••"
+                          className="student-email-field has-toggle"
+                          value={confirmPassword} 
+                          onChange={(e) => setConfirmPassword(e.target.value)} 
+                          required 
+                        />
+                        <button 
+                          type="button" 
+                          className="password-toggle-btn"
+                          onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                        >
+                          {showConfirmPassword ? '🙈' : '👁️'}
+                        </button>
+                      </div>
+                    </div>
+
+                    {/* Invite Code Toggle Link */}
+                    <div className="student-invite-toggle-wrap">
+                      <button 
+                        type="button" 
+                        className="student-invite-link"
+                        onClick={() => setShowInviteInput(!showInviteInput)}
+                      >
+                        I have an invite code
+                      </button>
+                      {showInviteInput && (
+                        <div className="student-invite-input-animate">
+                          <div style={{ position: 'relative' }}>
+                            <input 
+                              type="text" 
+                              className="student-invite-field"
+                              placeholder="Enter your referral / invite code"
+                              value={referralId}
+                              onChange={async (e) => {
+                                const val = e.target.value.toUpperCase();
+                                setReferralId(val);
+                                if (val.length >= 5) {
+                                  try {
+                                    const res = await fetch('/api/referrals/validate', {
+                                      method: 'POST',
+                                      headers: { 'Content-Type': 'application/json' },
+                                      body: JSON.stringify({ referralId: val })
+                                    });
+                                    const data = await res.json();
+                                    setStepError(data.valid ? '' : data.message);
+                                    if (data.valid && data.data?.collegeName) {
+                                      setSchoolName(data.data.collegeName);
+                                    }
+                                  } catch {}
+                                } else {
+                                  setStepError('');
+                                }
+                              }}
+                              style={{ textTransform: 'uppercase', letterSpacing: '0.08em', fontWeight: 700 }}
+                            />
+                            {referralId && !stepError && (
+                              <span style={{ position: 'absolute', right: '0.75rem', top: '50%', transform: 'translateY(-50%)', color: '#00e676', fontSize: '1rem' }}>✓</span>
+                            )}
+                          </div>
+                          {stepError && <p style={{ color: '#ef4444', fontSize: '0.8rem', marginTop: '0.4rem', marginBottom: 0 }}>{stepError}</p>}
+                          {!stepError && referralId.length >= 5 && schoolName && (
+                            <p style={{ color: '#00e676', fontSize: '0.8rem', marginTop: '0.4rem', marginBottom: 0 }}>✓ Valid code for {schoolName}</p>
+                          )}
+                        </div>
+                      )}
+                    </div>
+
+                    {/* Checkbox Options */}
+                    <div className="student-checkbox-group">
+                      <div className="student-checkbox-row" onClick={() => setKeepInLoop(!keepInLoop)}>
+                        <div className={`student-radio-icon ${keepInLoop ? 'checked' : ''}`}>
+                          <div className="radio-inner-dot"></div>
+                        </div>
+                        <span className="student-checkbox-label">Keep me in the loop with emails about updates & more</span>
+                      </div>
+                      <div className="student-checkbox-row" onClick={() => setAgreeTerms(!agreeTerms)}>
+                        <div className={`student-radio-icon ${agreeTerms ? 'checked' : ''}`}>
+                          <div className="radio-inner-dot"></div>
+                        </div>
+                        <span className="student-checkbox-label">
+                          By clicking Continue, you agree to our <a href="#terms" onClick={(e) => e.stopPropagation()}>Terms of Service</a> & <a href="#privacy" onClick={(e) => e.stopPropagation()}>Privacy Policy</a>
+                        </span>
+                      </div>
+                    </div>
+
+                    {stepError && (
+                      <div className="student-step-error">⚠️ {stepError}</div>
+                    )}
+
+                    <button type="submit" className="student-continue-btn" style={{ marginTop: '0.75rem' }}>
+                      Continue
+                    </button>
+                  </form>
+                </div>
+              ) : (
+                /* SIGNUP STEP 3: Institution Search */
+                <div className="student-step-container animate-fade-in">
+                  <h1 className="student-step-title" style={{ marginBottom: '0.4rem' }}>
+                    Where do you study?
+                  </h1>
+                  <p style={{ color: '#a1a1aa', fontSize: '0.92rem', marginBottom: '1.5rem' }}>
+                    Use the search below to select your institution
+                  </p>
+
+                  <form 
+                    onSubmit={(e) => {
+                      e.preventDefault();
+                      if (!schoolName || schoolName.trim() === '') {
+                        setStepError('Please select or search your institution to continue.');
+                        return;
+                      }
+                      setStepError('');
+                      handleSubmit(e); // This creates the account
+                    }} 
+                    className="student-step-form"
+                  >
+                    <div className="student-search-input-group" style={{ position: 'relative' }}>
+                      <svg className="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                      </svg>
+                      <input 
+                        type="text" 
+                        className="student-search-field"
+                        placeholder="Search your institution"
+                        value={schoolName}
+                        onChange={(e) => {
+                          setSchoolName(e.target.value);
+                          setShowSuggestions(true);
+                        }}
+                        onFocus={() => setShowSuggestions(true)}
+                        required
+                        autoFocus
+                      />
+                      {/* Dropdown Menu */}
+                      {showSuggestions && (searchSuggestions.length > 0 || isSearching) && (
+                        <ul className="institution-dropdown-list">
+                          {isSearching ? (
+                            <li className="institution-dropdown-item loading">Searching...</li>
+                          ) : (
+                            searchSuggestions.map((inst, index) => (
+                              <li 
+                                key={index} 
+                                className="institution-dropdown-item"
+                                onClick={() => handleSelectInstitution(inst.name)}
+                              >
+                                <span className="inst-name">{inst.name}</span>
+                                {inst.country && <span className="inst-country">{inst.country}</span>}
+                              </li>
+                            ))
+                          )}
+                        </ul>
+                      )}
+                    </div>
+
+                    {stepError && (
+                      <div className="student-step-error">
+                        ⚠️ {stepError}
+                      </div>
+                    )}
+
+                    <button type="submit" className="student-continue-btn" style={{ marginTop: '1.25rem' }}>
+                      Create Student Account
+                    </button>
+                  </form>
+                </div>
+              )
+            )}
+          </div>
         </div>
       </div>
     );

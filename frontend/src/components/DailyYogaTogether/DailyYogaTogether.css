@@ -68,15 +68,15 @@
 .daily-yoga-together-join-btn {
   display: inline-flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 1.5rem;
+  justify-content: center;
+  gap: 0;
   background: linear-gradient(135deg, #b2d4af 0%, #c8e4c5 25%, #dcefd9 50%, #edf6eb 75%, #f6faf5 100%) !important;
   background-size: 300% 300% !important;
   color: #1b3819 !important;
   text-shadow: none;
   border: 2px solid rgba(255, 255, 255, 0.95);
   border-radius: 50px;
-  padding: 0.55rem 0.75rem 0.55rem 2.8rem;
+  padding: 0.75rem 2.8rem;
   font-family: var(--font-body, 'Plus Jakarta Sans', sans-serif);
   font-size: clamp(1.0rem, 2.5vw, 1.12rem);
   font-weight: 800;
@@ -91,6 +91,13 @@
   animation: heroLiquidGradient 5s ease infinite, heroPeriodicShake 4s ease-in-out infinite !important;
   position: relative;
   overflow: hidden;
+  text-align: center;
+}
+
+.daily-yoga-together-join-btn > span:first-child {
+  flex: 1;
+  text-align: center;
+  display: block;
 }
 
 /* Sweeping Light Ray Flare inside the button */
@@ -129,6 +136,10 @@
 }
 
 .daily-yoga-together-btn-arrow {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -140,12 +151,11 @@
   flex-shrink: 0;
   transition: transform 0.25s ease, background 0.25s ease, color 0.25s ease, box-shadow 0.25s ease;
   box-shadow: 0 3px 10px rgba(40, 70, 40, 0.35), inset 0 1px 1px rgba(255, 255, 255, 0.4);
-  position: relative;
   z-index: 2;
 }
 
 .daily-yoga-together-join-btn:hover .daily-yoga-together-btn-arrow {
-  transform: translateX(4px) scale(1.1);
+  transform: translateY(-50%) translateX(2px) scale(1.08);
   background: linear-gradient(135deg, #466442 0%, #365032 100%);
   color: #ffffff;
   box-shadow: 0 4px 14px rgba(40, 70, 40, 0.5);
@@ -185,7 +195,7 @@
 
   .daily-yoga-together-join-btn {
     font-size: 1.02rem;
-    padding: 0.5rem 0.65rem 0.5rem 2.2rem;
+    padding: 0.65rem 2.4rem;
     min-width: 280px;
     max-width: 360px;
   }
@@ -193,6 +203,7 @@
   .daily-yoga-together-btn-arrow {
     width: 30px;
     height: 30px;
+    right: 7px;
   }
 
   .daily-yoga-together-tagline {
@@ -207,14 +218,15 @@
 
   .daily-yoga-together-join-btn {
     font-size: 0.96rem;
-    padding: 0.45rem 0.55rem 0.45rem 1.8rem;
+    padding: 0.6rem 2rem;
     min-width: 250px;
     max-width: 320px;
-    gap: 1rem;
+    gap: 0;
   }
 
   .daily-yoga-together-btn-arrow {
     width: 26px;
     height: 26px;
+    right: 6px;
   }
 }

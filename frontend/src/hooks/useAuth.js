@@ -11,7 +11,7 @@ import {
   selectIsProfileOpen,
   selectAuthRole,
 } from '../redux/slices/authSlice';
-import { addNotification, setView } from '../redux/slices/uiSlice';
+import { addNotification, setView, selectView } from '../redux/slices/uiSlice';
 import * as authApi from '../api/auth';
 
 export function useAuth() {
@@ -20,6 +20,7 @@ export function useAuth() {
   const isAuthOpen = useAppSelector(selectIsAuthOpen);
   const isProfileOpen = useAppSelector(selectIsProfileOpen);
   const authRole = useAppSelector(selectAuthRole);
+  const currentView = useAppSelector(selectView);
 
   // Restore user session on mount
   useEffect(() => {
@@ -54,7 +55,9 @@ export function useAuth() {
         localStorage.setItem('token', data.token);
         localStorage.setItem('refreshToken', data.refreshToken);
         dispatch(setUser(data.user));
-        dispatch(setView('home'));
+        if (currentView !== 'yho-club') {
+          dispatch(setView('home'));
+        }
         dispatch(addNotification({ message: `Welcome back, ${data.user.name}!`, type: 'success' }));
         return true;
       } else {
@@ -87,7 +90,9 @@ export function useAuth() {
         localStorage.setItem('token', data.token);
         localStorage.setItem('refreshToken', data.refreshToken);
         dispatch(setUser(data.user));
-        dispatch(setView('home'));
+        if (currentView !== 'yho-club') {
+          dispatch(setView('home'));
+        }
         dispatch(addNotification({ message: `Account created successfully! Welcome, ${data.user.name}.`, type: 'success' }));
         return true;
       } else {
@@ -152,7 +157,7 @@ export function useAuth() {
       const payload = {
         email: socialData.email || `${provider}_user_${Date.now()}@example.com`,
         name: socialData.name || `${provider.charAt(0).toUpperCase() + provider.slice(1)} User`,
-        role: authRole || 'user',
+        role: authRole || 'student',
         [`${provider}Id`]: socialData.id || `${provider}_id_${Date.now()}`
       };
 
@@ -167,7 +172,9 @@ export function useAuth() {
         localStorage.setItem('token', data.token);
         localStorage.setItem('refreshToken', data.refreshToken);
         dispatch(setUser(data.user));
-        dispatch(setView('home'));
+        if (currentView !== 'yho-club') {
+          dispatch(setView('home'));
+        }
         dispatch(addNotification({ message: `Successfully authenticated with ${provider.charAt(0).toUpperCase() + provider.slice(1)}! Welcome, ${data.user.name}.`, type: 'success' }));
         return true;
       } else {

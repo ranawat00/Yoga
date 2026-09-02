@@ -25,7 +25,10 @@ const VIDEOS_DATA = [
 export default function HomeVideoSlider() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
+  const [playingState, setPlayingState] = useState({ 1: true, 2: true, 3: true });
+
   const sliderRef = useRef(null);
+  const videoRefs = useRef({});
 
   const goNext = useCallback(() => {
     setCurrentIndex((prev) => (prev + 1) % VIDEOS_DATA.length);
@@ -41,6 +44,45 @@ export default function HomeVideoSlider() {
     const interval = setInterval(goNext, 4500);
     return () => clearInterval(interval);
   }, [isPaused, goNext]);
+
+  // Smooth initial autoplay setup once on mount
+  useEffect(() => {
+    VIDEOS_DATA.forEach((item) => {
+      const el = videoRefs.current[item.id];
+      if (el) {
+        el.muted = true;
+        const playPromise = el.play();
+        if (playPromise !== undefined) {
+          playPromise
+            .then(() => {
+              setPlayingState((prev) => ({ ...prev, [item.id]: true }));
+            })
+            .catch(() => {
+              setPlayingState((prev) => ({ ...prev, [item.id]: false }));
+            });
+        }
+      }
+    });
+  }, []);
+
+  // Toggle video play / pause on click
+  const togglePlayPause = (id, e) => {
+    if (e) e.stopPropagation();
+    const videoEl = videoRefs.current[id];
+    if (!videoEl) return;
+
+    if (videoEl.paused) {
+      videoEl
+        .play()
+        .then(() => {
+          setPlayingState((prev) => ({ ...prev, [id]: true }));
+        })
+        .catch((err) => console.error('Video play failed:', err));
+    } else {
+      videoEl.pause();
+      setPlayingState((prev) => ({ ...prev, [id]: false }));
+    }
+  };
 
   // Synchronize scroll position with currentIndex
   useEffect(() => {
@@ -75,8 +117,7 @@ export default function HomeVideoSlider() {
     <section className="home-video-section" id="home-video-slider">
       <div className="home-video-container">
         <div className="home-video-header">
-          <span className="home-video-badge">OUR WELLNESS JOURNEY</span>
-          <h2 className="home-video-main-title">EXPLORE OUR WELLNESS VIDEOS</h2>
+          <span className="home-video-badge">AFFIRMATIONS FOR YOU</span>
         </div>
 
         <div
@@ -101,28 +142,42 @@ export default function HomeVideoSlider() {
           >
             {VIDEOS_DATA.map((item) => (
               <div key={item.id} className="home-video-card">
-                <div className="home-video-media-wrapper">
+                <div
+                  className="home-video-media-wrapper"
+                  onClick={(e) => togglePlayPause(item.id, e)}
+                >
                   <video
                     className="home-video-player"
-                    autoPlay
+                    ref={(el) => {
+                      if (el) videoRefs.current[item.id] = el;
+                    }}
+                    src={item.video}
                     muted
                     loop
                     playsInline
-                    controls
                     preload="auto"
-                    ref={(el) => {
-                      if (el) {
-                        el.muted = true;
-                        const playPromise = el.play();
-                        if (playPromise !== undefined) {
-                          playPromise.catch(() => {});
-                        }
-                      }
-                    }}
+                    onPlay={() => setPlayingState((prev) => ({ ...prev, [item.id]: true }))}
+                    onPause={() => setPlayingState((prev) => ({ ...prev, [item.id]: false }))}
+                  />
+
+                  {/* Interactive Play / Pause Overlay Button */}
+                  <button
+                    type="button"
+                    className={`home-video-play-btn ${playingState[item.id] ? 'is-playing' : 'is-paused'}`}
+                    onClick={(e) => togglePlayPause(item.id, e)}
+                    aria-label={playingState[item.id] ? 'Pause video' : 'Play video'}
                   >
-                    <source src={item.video} type="video/mp4" />
-                    Your browser does not support the video tag.
-                  </video>
+                    {playingState[item.id] ? (
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <rect x="6" y="4" width="4" height="16" rx="1.5" />
+                        <rect x="14" y="4" width="4" height="16" rx="1.5" />
+                      </svg>
+                    ) : (
+                      <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" style={{ marginLeft: '3px' }}>
+                        <polygon points="5,3 19,12 5,21" />
+                      </svg>
+                    )}
+                  </button>
                 </div>
                 <div className="home-video-card-content">
                   <h3 className="home-video-card-title">{item.title}</h3>

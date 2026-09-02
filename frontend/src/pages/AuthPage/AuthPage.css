@@ -1,10 +1,11 @@
 .auth-page-container {
   width: 100%;
-  min-height: calc(100vh - 80px);
+  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 2rem 1rem;
+  padding: 6.5rem 1rem 3rem;
+  box-sizing: border-box;
 }
 
 .auth-page-container.default-theme {
@@ -12,13 +13,550 @@
 }
 
 .auth-page-container.student-theme {
-  background: #050508;
+  background: #06070a;
   background-image:
-    radial-gradient(ellipse 80% 50% at 50% -10%, rgba(0, 230, 118, 0.12) 0%, transparent 60%),
-    radial-gradient(ellipse 60% 40% at 80% 80%, rgba(99, 102, 241, 0.08) 0%, transparent 50%);
-  align-items: flex-start;
-  padding-top: 4rem;
+    radial-gradient(circle at 15% 20%, rgba(0, 230, 118, 0.15) 0%, transparent 45%),
+    radial-gradient(circle at 85% 80%, rgba(16, 185, 129, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 50% 50%, rgba(5, 5, 8, 0.8) 0%, transparent 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 6.5rem 1.5rem 3.5rem;
+  box-sizing: border-box;
 }
+
+/* ==========================================================================
+   Student Step-Wise Process Styles (Desktop Widescreen Split Layout)
+   ========================================================================== */
+
+.student-widescreen-card-wrapper {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  max-width: 960px;
+  min-height: 560px;
+  background: rgba(18, 18, 24, 0.85);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 24px;
+  box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.7), 0 0 40px rgba(0, 230, 118, 0.08);
+  overflow: hidden;
+  position: relative;
+}
+
+/* Left Showcase Hero Panel (Desktop) */
+.student-desktop-hero {
+  flex: 1.1;
+  padding: 3.5rem 3rem;
+  background: linear-gradient(145deg, rgba(0, 230, 118, 0.08) 0%, rgba(10, 14, 12, 0.95) 100%);
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+}
+
+.hero-logo-wrap {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  margin-bottom: 1.75rem;
+}
+
+.hero-badge {
+  background: rgba(0, 230, 118, 0.12);
+  color: #00e676;
+  border: 1px solid rgba(0, 230, 118, 0.3);
+  padding: 0.3rem 0.8rem;
+  border-radius: 50px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.hero-heading {
+  font-size: 2.1rem;
+  font-weight: 800;
+  color: #ffffff;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  margin-bottom: 1rem;
+}
+
+.hero-subtext {
+  color: #94a3b8;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+}
+
+.hero-feature-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  margin: 1.5rem 0;
+}
+
+.hero-feature-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 1rem 1.15rem;
+  border-radius: 14px;
+  transition: all 0.25s ease;
+}
+
+.hero-feature-card:hover {
+  background: rgba(0, 230, 118, 0.06);
+  border-color: rgba(0, 230, 118, 0.25);
+  transform: translateX(4px);
+}
+
+.feature-icon-badge {
+  font-size: 1.3rem;
+  background: rgba(255, 255, 255, 0.06);
+  width: 40px;
+  height: 40px;
+  min-width: 40px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.feature-title {
+  color: #ffffff;
+  font-size: 0.95rem;
+  font-weight: 700;
+  margin-bottom: 0.2rem;
+}
+
+.feature-desc {
+  color: #71717a;
+  font-size: 0.82rem;
+  line-height: 1.4;
+}
+
+.hero-footer-note {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: #00e676;
+  font-size: 0.84rem;
+  font-weight: 600;
+  margin-top: 1rem;
+}
+
+.dot-pulse {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #00e676;
+  box-shadow: 0 0 10px #00e676;
+  animation: pulseDot 1.8s infinite;
+}
+
+@keyframes pulseDot {
+  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(0, 230, 118, 0.7); }
+  70% { transform: scale(1); box-shadow: 0 0 0 8px rgba(0, 230, 118, 0); }
+  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(0, 230, 118, 0); }
+}
+
+/* Right Form Card */
+.student-stepwise-card {
+  flex: 1;
+  max-width: 480px !important;
+  width: 100% !important;
+  padding: 2.75rem 2.25rem 2.25rem !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  position: relative !important;
+}
+
+/* Progress bar inside student card */
+.student-progress-bar-wrap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.student-progress-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #00e676 0%, #00ff66 100%);
+  box-shadow: 0 0 10px rgba(0, 230, 118, 0.6);
+  transition: width 0.35s ease;
+}
+
+/* Header Nav Inside Card */
+.student-card-nav-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.75rem;
+}
+
+.student-back-btn {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #e4e4e7;
+  cursor: pointer;
+  padding: 0.45rem 0.85rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  border-radius: 50px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.student-back-btn:hover {
+  background: rgba(0, 230, 118, 0.12);
+  color: #00e676;
+  border-color: rgba(0, 230, 118, 0.3);
+  transform: translateX(-2px);
+}
+
+.student-nav-step-badge {
+  color: #00e676;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  background: rgba(0, 230, 118, 0.1);
+  padding: 0.25rem 0.75rem;
+  border-radius: 50px;
+  border: 1px solid rgba(0, 230, 118, 0.2);
+}
+
+.student-step-title {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #ffffff;
+  line-height: 1.18;
+  letter-spacing: -0.03em;
+  margin-bottom: 1.25rem;
+  font-family: inherit;
+}
+
+.student-step-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.student-input-group {
+  position: relative;
+  background: #1c1d22;
+  border-radius: 14px;
+  padding: 0.7rem 1.1rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: border-color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+  margin-bottom: 1rem;
+}
+
+.student-input-group:focus-within {
+  border-color: #00e676;
+  background: #23252c;
+  box-shadow: 0 0 0 3px rgba(0, 230, 118, 0.15);
+}
+
+.student-input-label {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #a1a1aa;
+  margin-bottom: 0.15rem;
+}
+
+.student-email-field {
+  width: 100%;
+  background: transparent !important;
+  border: none !important;
+  outline: none !important;
+  color: #ffffff !important;
+  font-size: 1rem;
+  font-weight: 400;
+  font-family: inherit;
+  padding: 0.15rem 0 0 0 !important;
+}
+
+.student-email-field.has-toggle {
+  padding-right: 2rem !important;
+}
+
+.student-email-field[type="password"] {
+  letter-spacing: 0.15em;
+  font-size: 1rem;
+}
+
+.student-email-field::placeholder {
+  color: #52525b;
+  letter-spacing: normal;
+  font-size: 0.95rem;
+}
+
+.student-invite-toggle-wrap {
+  margin-bottom: 1.4rem;
+}
+
+.student-invite-link {
+  background: transparent;
+  border: none;
+  color: #00e676;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  cursor: pointer;
+  padding: 0;
+  transition: opacity 0.2s ease;
+}
+
+.student-invite-link:hover {
+  opacity: 0.85;
+}
+
+.student-invite-input-animate {
+  margin-top: 0.75rem;
+  animation: slideDownAuth 0.25s ease-out forwards;
+}
+
+.student-invite-field {
+  width: 100%;
+  background: #141518;
+  border: 1px solid #3f3f46;
+  border-radius: 12px;
+  padding: 0.75rem 1rem;
+  color: #ffffff;
+  font-size: 0.92rem;
+  outline: none;
+}
+
+.student-invite-field:focus {
+  border-color: #00e676;
+}
+
+.student-checkbox-group {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.student-checkbox-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+  cursor: pointer;
+  user-select: none;
+}
+
+.student-radio-icon {
+  width: 20px;
+  height: 20px;
+  min-width: 20px;
+  border-radius: 50%;
+  border: 2px solid #00e676;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  margin-top: 2px;
+  background: transparent;
+}
+
+.student-radio-icon.checked {
+  border-color: #00e676;
+}
+
+.radio-inner-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #00e676;
+  opacity: 0;
+  transform: scale(0.5);
+  transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.student-radio-icon.checked .radio-inner-dot {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.student-checkbox-label {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #d4d4d8;
+  line-height: 1.45;
+}
+
+.student-checkbox-label a {
+  color: #00e676;
+  text-decoration: underline;
+}
+
+.student-step-error {
+  color: #ef4444;
+  font-size: 0.88rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.student-continue-btn {
+  width: 100%;
+  background: #00e676 !important;
+  color: #000000 !important;
+  font-weight: 800 !important;
+  font-size: 1.05rem !important;
+  padding: 0.95rem 1.5rem !important;
+  border-radius: 9999px !important;
+  border: none !important;
+  cursor: pointer !important;
+  transition: all 0.25s ease !important;
+  box-shadow: 0 4px 20px rgba(0, 230, 118, 0.4) !important;
+  font-family: inherit !important;
+}
+
+.student-continue-btn:hover {
+  background: #00ff66 !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 25px rgba(0, 255, 102, 0.55) !important;
+}
+
+.student-continue-btn:active {
+  transform: translateY(0) !important;
+}
+
+/* Step 3 Institution Search Styles */
+.student-search-input-group {
+  display: flex;
+  align-items: center;
+  background: #1c1d22;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 14px;
+  padding: 0.85rem 1.1rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  margin-bottom: 1.25rem;
+}
+
+.student-search-input-group:focus-within {
+  border-color: #00e676;
+  box-shadow: 0 0 0 3px rgba(0, 230, 118, 0.18);
+}
+
+.search-icon {
+  color: #71717a;
+  margin-right: 0.75rem;
+  min-width: 20px;
+}
+
+.student-search-input-group:focus-within .search-icon {
+  color: #00e676;
+}
+
+.student-search-field {
+  width: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #ffffff;
+  font-size: 1rem;
+  font-family: inherit;
+}
+
+.student-search-field::placeholder {
+  color: #71717a;
+}
+
+/* Institution Dropdown Styles */
+.institution-dropdown-list {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  width: 100%;
+  background: #18191e;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 14px;
+  list-style: none;
+  padding: 0.5rem 0;
+  margin: 0;
+  max-height: 250px;
+  overflow-y: auto;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.85);
+  z-index: 100;
+  animation: slideDownAuth 0.2s ease-out forwards;
+}
+
+.institution-dropdown-item {
+  padding: 0.8rem 1.1rem;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #e4e4e7;
+  transition: background 0.2s ease;
+}
+
+.institution-dropdown-item:hover {
+  background: rgba(0, 230, 118, 0.1);
+  color: #00e676;
+}
+
+.institution-dropdown-item .inst-name {
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.institution-dropdown-item .inst-country {
+  font-size: 0.75rem;
+  color: #a1a1aa;
+  background: rgba(255, 255, 255, 0.07);
+  padding: 0.2rem 0.5rem;
+  border-radius: 6px;
+}
+
+.institution-dropdown-item.loading {
+  color: #a1a1aa;
+  font-style: italic;
+  cursor: default;
+}
+.institution-dropdown-item.loading:hover {
+  background: transparent;
+}
+
+@media (max-width: 900px) {
+  .auth-page-container.student-theme {
+    padding: 5.5rem 1rem 2.5rem !important;
+  }
+
+  .student-widescreen-card-wrapper {
+    flex-direction: column;
+    max-width: 485px;
+    min-height: auto;
+    border-radius: 20px;
+  }
+  
+  .student-desktop-hero {
+    display: none;
+  }
+  
+  .student-stepwise-card {
+    padding: 2.25rem 1.5rem !important;
+  }
+}
+
 
 /* Auth Card */
 .auth-modal-card {

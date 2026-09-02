@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { searchInstitutions, seedInstitutions } = require('../controllers/institutionController');
+const { searchInstitutions, seedInstitutions } = require('../controllers/institution');
 
 // Route to search institutions by name query (e.g. /api/institutions/search?q=harvard)
 router.get('/search', searchInstitutions);

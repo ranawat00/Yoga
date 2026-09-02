@@ -77,12 +77,15 @@ exports.registerUser = async (req, res, next) => {
         });
       }
 
-      // Find student in DB
+      // Sanitize regex input to prevent ReDoS vulnerabilities
+      const escapeRegex = (str) => str.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&');
+
+      // Find student in DB (lean query for performance)
       const existingStudent = await User.findOne({
         role: 'student',
         studentId: studentId.trim(),
-        name: { $regex: new RegExp(`^${studentName.trim()}$`, 'i') }
-      });
+        name: { $regex: new RegExp(`^${escapeRegex(studentName.trim())}$`, 'i') }
+      }).lean();
 
       if (!existingStudent) {
         return res.status(400).json({
