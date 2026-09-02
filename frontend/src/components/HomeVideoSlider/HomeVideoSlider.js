@@ -26,6 +26,8 @@ export default function HomeVideoSlider() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const [playingState, setPlayingState] = useState({ 1: true, 2: true, 3: true });
+  const [mutedState, setMutedState] = useState({ 1: true, 2: true, 3: true });
+  const [modalVideo, setModalVideo] = useState(null);
 
   const sliderRef = useRef(null);
   const videoRefs = useRef({});
@@ -40,10 +42,10 @@ export default function HomeVideoSlider() {
 
   // Automatic slide transition every 4.5 seconds
   useEffect(() => {
-    if (isPaused) return;
+    if (isPaused || modalVideo) return;
     const interval = setInterval(goNext, 4500);
     return () => clearInterval(interval);
-  }, [isPaused, goNext]);
+  }, [isPaused, modalVideo, goNext]);
 
   // Smooth initial autoplay setup once on mount
   useEffect(() => {
@@ -82,6 +84,39 @@ export default function HomeVideoSlider() {
       videoEl.pause();
       setPlayingState((prev) => ({ ...prev, [id]: false }));
     }
+  };
+
+  // Toggle sound ON / OFF (Mute / Unmute)
+  const toggleSound = (id, e) => {
+    if (e) e.stopPropagation();
+    const videoEl = videoRefs.current[id];
+    if (!videoEl) return;
+
+    const newMuted = !videoEl.muted;
+    videoEl.muted = newMuted;
+    setMutedState((prev) => ({ ...prev, [id]: newMuted }));
+
+    if (!newMuted && videoEl.paused) {
+      videoEl
+        .play()
+        .then(() => {
+          setPlayingState((prev) => ({ ...prev, [id]: true }));
+        })
+        .catch((err) => console.error('Video play failed on unmute:', err));
+    }
+  };
+
+  // Open Fullscreen Expand Modal
+  const openModal = (item, e) => {
+    if (e) e.stopPropagation();
+    const videoEl = videoRefs.current[item.id];
+    if (videoEl) videoEl.pause();
+    setModalVideo(item);
+  };
+
+  // Close Fullscreen Modal
+  const closeModal = () => {
+    setModalVideo(null);
   };
 
   // Synchronize scroll position with currentIndex
@@ -152,7 +187,7 @@ export default function HomeVideoSlider() {
                       if (el) videoRefs.current[item.id] = el;
                     }}
                     src={item.video}
-                    muted
+                    muted={mutedState[item.id]}
                     loop
                     playsInline
                     preload="auto"
@@ -160,7 +195,49 @@ export default function HomeVideoSlider() {
                     onPause={() => setPlayingState((prev) => ({ ...prev, [item.id]: false }))}
                   />
 
-                  {/* Interactive Play / Pause Overlay Button */}
+                  {/* Top Controls Bar: Sound ON/OFF & Fullscreen */}
+                  <div className="home-video-top-controls">
+                    <button
+                      type="button"
+                      className="home-video-control-chip"
+                      onClick={(e) => openModal(item, e)}
+                      title="Watch Fullscreen"
+                      aria-label="Expand video"
+                    >
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" />
+                      </svg>
+                      <span>Expand</span>
+                    </button>
+
+                    <button
+                      type="button"
+                      className={`home-video-control-chip sound-chip ${mutedState[item.id] ? 'is-muted' : 'is-unmuted'}`}
+                      onClick={(e) => toggleSound(item.id, e)}
+                      title={mutedState[item.id] ? 'Turn Sound ON' : 'Turn Sound OFF'}
+                      aria-label={mutedState[item.id] ? 'Turn Sound ON' : 'Turn Sound OFF'}
+                    >
+                      {mutedState[item.id] ? (
+                        <>
+                          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                            <line x1="1" y1="1" x2="23" y2="23"></line>
+                            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                          </svg>
+                          <span>Sound OFF</span>
+                        </>
+                      ) : (
+                        <>
+                          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                            <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                          </svg>
+                          <span>Sound ON</span>
+                        </>
+                      )}
+                    </button>
+                  </div>
+
+                  {/* Center Interactive Play / Pause Overlay Button */}
                   <button
                     type="button"
                     className={`home-video-play-btn ${playingState[item.id] ? 'is-playing' : 'is-paused'}`}
@@ -208,6 +285,27 @@ export default function HomeVideoSlider() {
           ))}
         </div>
       </div>
+
+      {/* Fullscreen Video Modal view */}
+      {modalVideo && (
+        <div className="home-video-modal-backdrop" onClick={closeModal}>
+          <div className="home-video-modal-content" onClick={(e) => e.stopPropagation()}>
+            <button className="home-video-modal-close" onClick={closeModal} aria-label="Close modal">
+              ✕
+            </button>
+            <video
+              className="home-video-modal-player"
+              src={modalVideo.video}
+              autoPlay
+              controls
+              playsInline
+            />
+            <div className="home-video-modal-footer">
+              <h3 className="home-video-modal-title">{modalVideo.title}</h3>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 }
