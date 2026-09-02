@@ -47,41 +47,84 @@ export default function HomeVideoSlider() {
     return () => clearInterval(interval);
   }, [isPaused, modalVideo, goNext]);
 
-  // Smooth initial autoplay setup once on mount
+  // Smooth initial autoplay setup on mount (play only the active first video)
   useEffect(() => {
-    VIDEOS_DATA.forEach((item) => {
+    VIDEOS_DATA.forEach((item, idx) => {
       const el = videoRefs.current[item.id];
       if (el) {
         el.muted = true;
-        const playPromise = el.play();
-        if (playPromise !== undefined) {
-          playPromise
-            .then(() => {
-              setPlayingState((prev) => ({ ...prev, [item.id]: true }));
-            })
-            .catch(() => {
-              setPlayingState((prev) => ({ ...prev, [item.id]: false }));
-            });
+        if (idx === 0) {
+          const playPromise = el.play();
+          if (playPromise !== undefined) {
+            playPromise
+              .then(() => {
+                setPlayingState((prev) => ({ ...prev, [item.id]: true }));
+              })
+              .catch(() => {
+                setPlayingState((prev) => ({ ...prev, [item.id]: false }));
+              });
+          }
+        } else {
+          el.pause();
+          setPlayingState((prev) => ({ ...prev, [item.id]: false }));
         }
       }
     });
   }, []);
 
-  // Toggle video play / pause on click
+  // When currentIndex changes (slide transition), pause all other videos and play active slide video
+  useEffect(() => {
+    const activeItem = VIDEOS_DATA[currentIndex];
+    if (!activeItem || modalVideo) return;
+
+    VIDEOS_DATA.forEach((item) => {
+      const el = videoRefs.current[item.id];
+      if (el) {
+        if (item.id === activeItem.id) {
+          el.play()
+            .then(() => {
+              setPlayingState((prev) => ({ ...prev, [item.id]: true }));
+            })
+            .catch(() => {});
+        } else {
+          el.pause();
+          setPlayingState((prev) => ({ ...prev, [item.id]: false }));
+        }
+      }
+    });
+  }, [currentIndex, modalVideo]);
+
+  // Toggle video play / pause on click (Ensures single-video playback: pauses all other videos)
   const togglePlayPause = (id, e) => {
     if (e) e.stopPropagation();
-    const videoEl = videoRefs.current[id];
-    if (!videoEl) return;
+    const targetVideoEl = videoRefs.current[id];
+    if (!targetVideoEl) return;
 
-    if (videoEl.paused) {
-      videoEl
+    if (targetVideoEl.paused) {
+      // Pause all other videos first
+      VIDEOS_DATA.forEach((item) => {
+        if (item.id !== id) {
+          const otherEl = videoRefs.current[item.id];
+          if (otherEl && !otherEl.paused) {
+            otherEl.pause();
+          }
+        }
+      });
+
+      targetVideoEl
         .play()
         .then(() => {
-          setPlayingState((prev) => ({ ...prev, [id]: true }));
+          setPlayingState(() => {
+            const next = {};
+            VIDEOS_DATA.forEach((item) => {
+              next[item.id] = (item.id === id);
+            });
+            return next;
+          });
         })
         .catch((err) => console.error('Video play failed:', err));
     } else {
-      videoEl.pause();
+      targetVideoEl.pause();
       setPlayingState((prev) => ({ ...prev, [id]: false }));
     }
   };
@@ -97,10 +140,26 @@ export default function HomeVideoSlider() {
     setMutedState((prev) => ({ ...prev, [id]: newMuted }));
 
     if (!newMuted && videoEl.paused) {
+      // Pause all other videos when unmuting & playing
+      VIDEOS_DATA.forEach((item) => {
+        if (item.id !== id) {
+          const otherEl = videoRefs.current[item.id];
+          if (otherEl && !otherEl.paused) {
+            otherEl.pause();
+          }
+        }
+      });
+
       videoEl
         .play()
         .then(() => {
-          setPlayingState((prev) => ({ ...prev, [id]: true }));
+          setPlayingState(() => {
+            const next = {};
+            VIDEOS_DATA.forEach((item) => {
+              next[item.id] = (item.id === id);
+            });
+            return next;
+          });
         })
         .catch((err) => console.error('Video play failed on unmute:', err));
     }
