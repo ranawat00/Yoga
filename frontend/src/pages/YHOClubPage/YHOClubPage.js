@@ -4,7 +4,7 @@ import { useApp } from '../../hooks/useApp';
 import { searchInstitutionsAPI } from '../../api/institutions';
 
 export default function YHOClubPage() {
-  const { user, setView, handleSocialAuth, handleLogin, handleSignup, handleLogout, addNotification } = useApp();
+  const { user, setView, handleSocialAuth, handleLogin, handleSignup, handleLogout } = useApp();
   const [isLogin, setIsLogin] = useState(true);
   const [studentStep, setStudentStep] = useState(1); // 1: Personal Info, 2: Credentials, 3: Search Institute
 
