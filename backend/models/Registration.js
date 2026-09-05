@@ -18,7 +18,7 @@ const registrationSchema = new mongoose.Schema({
   },
   batch: {
     type: String,
-    default: 'Morning Batch (6:00 AM - 7:15 AM IST)'
+    default: 'Morning Batch (6:00 AM - 7:15 AM ET)'
   },
   workshopTitle: {
     type: String,

@@ -512,8 +512,9 @@
 .register-success-img {
   width: 65px;
   height: 65px;
-  border-radius: 8px;
+  border-radius: 50%;
   object-fit: cover;
+  border: 2px solid #e2e8f0;
 }
 
 .register-success-info {

@@ -40,7 +40,7 @@ export default function RegisterModal() {
     name: '',
     phone: '',
     email: '',
-    batch: 'Morning Batch (6:00 AM - 7:15 AM IST)'
+    batch: 'Morning Batch (6:00 AM - 7:15 AM ET)'
   });
 
   if (!isRegisterModalOpen) return null;
@@ -123,7 +123,7 @@ export default function RegisterModal() {
 
             <div className="practice-modal-header">
               <h2 className="practice-modal-title">Register for Free Workshop</h2>
-              <p style={{ color: 'rgba(255,255,255,0.85)', fontSize: '0.9rem', marginTop: '0.35rem', marginBottom: 0 }}>5 Days Online Live Yoga Workshop</p>
+              <p className="practice-modal-subtitle">5 Days Online Live Yoga Workshop</p>
             </div>
 
             <form onSubmit={handleFormSubmit}>
@@ -158,7 +158,7 @@ export default function RegisterModal() {
                 </div>
 
                 {/* Email Input */}
-                <div className="practice-input-wrapper" style={{ marginTop: '1.25rem' }}>
+                <div className="practice-input-wrapper">
                   <input
                     type="email"
                     name="email"
@@ -169,64 +169,45 @@ export default function RegisterModal() {
                 </div>
 
                 {/* Coupon Code Input */}
-                <div className="practice-input-wrapper" style={{ marginTop: '0.75rem', display: 'flex', gap: '8px' }}>
+                <div className="practice-coupon-wrapper">
                   <input
                     type="text"
-                    placeholder="Coupon Code (e.g. YOGA20)"
+                    placeholder="Coupon Code"
                     value={couponCode}
                     onChange={(e) => setCouponCode(e.target.value.toUpperCase())}
-                    style={{ textTransform: 'uppercase', flex: 1 }}
+                    className="practice-coupon-input"
                   />
                   <button
                     type="button"
                     onClick={handleApplyCoupon}
                     disabled={isValidatingCoupon || !couponCode}
-                    style={{
-                      background: 'rgba(255, 255, 255, 0.25)',
-                      border: '1.2px solid rgba(255, 255, 255, 0.4)',
-                      color: '#ffffff',
-                      borderRadius: '50px',
-                      padding: '0 18px',
-                      fontSize: '0.85rem',
-                      fontWeight: '700',
-                      cursor: 'pointer'
-                    }}
+                    className="practice-coupon-btn"
                   >
                     {isValidatingCoupon ? '...' : 'APPLY'}
                   </button>
                 </div>
 
                 {couponDiscount && (
-                  <div style={{ background: 'rgba(255, 255, 255, 0.2)', padding: '8px 14px', borderRadius: '12px', color: '#ffffff', fontSize: '0.82rem', textAlign: 'center', marginTop: '6px' }}>
+                  <div className="practice-coupon-message">
                     ✨ {couponDiscount.message}
                   </div>
                 )}
 
                 {/* Select Batch */}
-                <div className="practice-input-wrapper" style={{ marginTop: '0.25rem' }}>
+                <div className="practice-input-wrapper">
                   <select
                     name="batch"
                     value={formData.batch}
                     onChange={handleInputChange}
-                    style={{
-                      width: '100%',
-                      padding: '0.85rem 1.5rem',
-                      background: 'rgba(255, 255, 255, 0.15)',
-                      border: '1.2px solid rgba(255, 255, 255, 0.35)',
-                      borderRadius: '50px',
-                      color: '#FFFFFF',
-                      fontSize: '0.95rem',
-                      outline: 'none',
-                      cursor: 'pointer'
-                    }}
+                    className="practice-batch-select"
                   >
-                    <option value="Morning Batch (6:00 AM - 7:15 AM IST)" style={{ color: '#333' }}>Morning Batch (6:00 AM - 7:15 AM IST)</option>
-                    <option value="Evening Batch (6:00 PM - 7:15 PM IST)" style={{ color: '#333' }}>Evening Batch (6:00 PM - 7:15 PM IST)</option>
+                    <option value="Morning Batch (6:00 AM - 7:15 AM ET)">Morning Batch (6:00 AM - 7:15 AM ET)</option>
+                    <option value="Evening Batch (6:00 PM - 7:15 PM ET)">Evening Batch (6:00 PM - 7:15 PM ET)</option>
                   </select>
                 </div>
 
                 {/* Join Now Button */}
-                <button type="submit" className="practice-join-btn" disabled={isSubmitting} style={{ marginTop: '1rem' }}>
+                <button type="submit" className="practice-join-btn" disabled={isSubmitting}>
                   <span style={{
                     width: '26px',
                     height: '26px',
@@ -245,7 +226,7 @@ export default function RegisterModal() {
                   <span>{isSubmitting ? 'REGISTERING...' : 'REGISTER FREE NOW'}</span>
                 </button>
 
-                <p className="practice-modal-note" style={{ textAlign: 'center', fontSize: '0.8rem', color: 'rgba(255,255,255,0.75)', marginTop: '0.75rem', marginBottom: 0 }}>
+                <p className="practice-modal-note">
                   100% Free • No Credit Card Required
                 </p>
               </div>

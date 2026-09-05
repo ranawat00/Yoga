@@ -10,6 +10,7 @@ const {
 const { getCoupons } = require('../controllers/coupon');
 const { getReferralCodes } = require('../controllers/referral');
 const { getContactSubmissions } = require('../controllers/contact');
+const { getApplications } = require('../controllers/internship');
 
 // Master Board Analytics Overview
 router.get('/overview', getDashboardOverview);
@@ -22,5 +23,6 @@ router.get('/workshops', getDashboardWorkshops);
 router.get('/coupons', getCoupons);
 router.get('/referrals', getReferralCodes);
 router.get('/inquiries', getContactSubmissions);
+router.get('/internships', getApplications);
 
 module.exports = router;

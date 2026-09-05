@@ -104,8 +104,99 @@ const INTERNSHIP_FAQS = [
 export default function InternshipPage() {
   const [openFaq, setOpenFaq] = useState(null);
 
+  // Apply Now Form State
+  const [formData, setFormData] = useState({
+    name: '',
+    phone: '',
+    city: '',
+    applyFor: 'Yoga Instructor Intern',
+    resume: null
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitSuccess, setSubmitSuccess] = useState(false);
+  const [submitError, setSubmitError] = useState('');
+  const [resumeFileName, setResumeFileName] = useState('');
+
   const toggleFaq = (index) => {
     setOpenFaq(openFaq === index ? null : index);
+  };
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+    if (submitError) setSubmitError('');
+  };
+
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    // Check size limit (max 5MB)
+    if (file.size > 5 * 1024 * 1024) {
+      setSubmitError('File size exceeds 5MB limit. Please upload a smaller file.');
+      return;
+    }
+
+    setResumeFileName(file.name);
+    const reader = new FileReader();
+    reader.onload = () => {
+      setFormData((prev) => ({
+        ...prev,
+        resume: {
+          fileName: file.name,
+          fileType: file.type,
+          fileData: reader.result
+        }
+      }));
+      setSubmitError('');
+    };
+    reader.onerror = () => {
+      setSubmitError('Failed to read file. Please try selecting another resume file.');
+    };
+    reader.readAsDataURL(file);
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (!formData.name.trim() || !formData.phone.trim() || !formData.city.trim() || !formData.applyFor.trim()) {
+      setSubmitError('Please fill out all required fields (Name, Phone, City, Position).');
+      return;
+    }
+
+    setIsSubmitting(true);
+    setSubmitError('');
+
+    try {
+      const response = await fetch('/api/internships/apply', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData)
+      });
+
+      const data = await response.json();
+
+      if (response.ok && data.success) {
+        setSubmitSuccess(true);
+        setFormData({
+          name: '',
+          phone: '',
+          city: '',
+          applyFor: 'Yoga Instructor Intern',
+          resume: null
+        });
+        setResumeFileName('');
+        setTimeout(() => setSubmitSuccess(false), 6000);
+      } else {
+        setSubmitError(data.message || 'Failed to submit application. Please try again.');
+      }
+    } catch (err) {
+      console.error('Internship application error:', err);
+      setSubmitError('Network error. Please check your connection and try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -125,6 +216,196 @@ export default function InternshipPage() {
 
       {/* Featured In / Media Logos Section */}
       <MediaLogos />
+
+      {/* Apply Now Form Section */}
+      <section className="internship-apply-section" id="apply-now">
+        <div className="internship-container">
+          <div className="internship-apply-card">
+            <div className="card-top-accent"></div>
+            <div className="apply-header">
+              <div className="apply-badge">
+                <span className="badge-dot"></span>
+                <span>JOIN OUR TEAM</span>
+              </div>
+              <h2 className="apply-title">Apply For <span className="title-accent">Internship</span></h2>
+              <p className="apply-subtitle">Take your first step toward real-world hands-on experience and professional growth.</p>
+            </div>
+
+            {submitSuccess && (
+              <div className="apply-alert apply-alert-success">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                  <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                </svg>
+                <span>Thank you! Your application has been submitted successfully. Our team will review your resume and contact you soon.</span>
+              </div>
+            )}
+
+            {submitError && (
+              <div className="apply-alert apply-alert-error">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <line x1="12" y1="8" x2="12" y2="12"></line>
+                  <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                </svg>
+                <span>{submitError}</span>
+              </div>
+            )}
+
+            <form className="internship-apply-form" onSubmit={handleSubmit}>
+              <div className="apply-form-grid">
+                {/* Full Name */}
+                <div className="apply-field-group">
+                  <label htmlFor="apply-name">Full Name <span className="req">*</span></label>
+                  <div className="input-with-icon">
+                    <svg className="field-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                      <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
+                    <input
+                      type="text"
+                      id="apply-name"
+                      name="name"
+                      value={formData.name}
+                      onChange={handleInputChange}
+                      placeholder="Enter your full name"
+                      required
+                    />
+                  </div>
+                </div>
+
+                {/* Contact Number */}
+                <div className="apply-field-group">
+                  <label htmlFor="apply-phone">Contact Number <span className="req">*</span></label>
+                  <div className="input-with-icon">
+                    <svg className="field-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                    </svg>
+                    <input
+                      type="tel"
+                      id="apply-phone"
+                      name="phone"
+                      value={formData.phone}
+                      onChange={handleInputChange}
+                      placeholder="+91 98765 43210"
+                      required
+                    />
+                  </div>
+                </div>
+
+                {/* City */}
+                <div className="apply-field-group">
+                  <label htmlFor="apply-city">City <span className="req">*</span></label>
+                  <div className="input-with-icon">
+                    <svg className="field-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                      <circle cx="12" cy="10" r="3"></circle>
+                    </svg>
+                    <input
+                      type="text"
+                      id="apply-city"
+                      name="city"
+                      value={formData.city}
+                      onChange={handleInputChange}
+                      placeholder="Enter your city"
+                      required
+                    />
+                  </div>
+                </div>
+
+                {/* Apply For */}
+                <div className="apply-field-group">
+                  <label htmlFor="apply-position">Apply For <span className="req">*</span></label>
+                  <div className="input-with-icon">
+                    <svg className="field-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+                      <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+                    </svg>
+                    <select
+                      id="apply-position"
+                      name="applyFor"
+                      value={formData.applyFor}
+                      onChange={handleInputChange}
+                      className="apply-select"
+                      required
+                    >
+                      <option value="Yoga Instructor Intern">Yoga Instructor Intern</option>
+                      <option value="Psychology & Behavioral Health Intern">Psychology & Behavioral Health Intern</option>
+                      <option value="Wellness & Nutrition Coach Intern">Wellness & Nutrition Coach Intern</option>
+                      <option value="Digital Marketing & Growth Intern">Digital Marketing & Growth Intern</option>
+                      <option value="Content Creator & Media Intern">Content Creator & Media Intern</option>
+                      <option value="Operations & Community Intern">Operations & Community Intern</option>
+                    </select>
+                  </div>
+                </div>
+
+                {/* Resume Upload */}
+                <div className="apply-field-group apply-field-full">
+                  <label htmlFor="apply-resume">Upload Resume (PDF, DOC, DOCX, Max 5MB)</label>
+                  <div className={`apply-file-dropzone ${resumeFileName ? 'file-active' : ''}`}>
+                    <input
+                      type="file"
+                      id="apply-resume"
+                      accept=".pdf,.doc,.docx,.png,.jpg,.jpeg"
+                      onChange={handleFileChange}
+                      className="apply-file-input"
+                    />
+                    <div className="apply-file-content">
+                      {resumeFileName ? (
+                        <div className="apply-file-selected">
+                          <div className="file-success-badge">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                              <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                            </svg>
+                          </div>
+                          <span className="file-name">{resumeFileName}</span>
+                          <span className="change-file">Click or drag to replace file</span>
+                        </div>
+                      ) : (
+                        <div className="file-empty-state">
+                          <div className="upload-icon-circle">
+                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                              <polyline points="17 8 12 3 7 8"></polyline>
+                              <line x1="12" y1="3" x2="12" y2="15"></line>
+                            </svg>
+                          </div>
+                          <p className="file-prompt"><strong>Click to upload your resume</strong> or drag & drop</p>
+                          <span className="file-hint">Supported formats: PDF, DOC, DOCX, PNG, JPG (Up to 5MB)</span>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="apply-submit-wrapper">
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className={`apply-submit-btn ${isSubmitting ? 'submitting' : ''}`}
+                >
+                  {isSubmitting ? (
+                    <>
+                      <span className="apply-spinner"></span>
+                      Submitting Application...
+                    </>
+                  ) : (
+                    <>
+                      Submit Application
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                        <polyline points="12 5 19 12 12 19"></polyline>
+                      </svg>
+                    </>
+                  )}
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
 
       {/* Why Should You Enroll Section */}
       <section className="internship-why-enroll">

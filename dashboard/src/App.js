@@ -37,7 +37,7 @@ function App() {
     if (tab === 'masterboard' || tab === 'traffic' || tab === 'settings' || tab === 'referrals') return;
 
     setLoading(true);
-    const endpoint = tab === 'coupons' ? '/api/coupons' : (tab === 'inquiries' ? '/api/contact' : `/api/dashboard/${tab}`);
+    const endpoint = tab === 'coupons' ? '/api/coupons' : (tab === 'inquiries' ? '/api/contact' : (tab === 'internships' ? '/api/internships' : `/api/dashboard/${tab}`));
     try {
       const response = await fetch(endpoint);
       const json = await response.json();
@@ -55,12 +55,14 @@ function App() {
 
   useEffect(() => {
     fetchTabData(activeTab);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeTab]);
 
   const getHeaderTitle = () => {
     if (activeTab === 'masterboard') return 'Master Board Overview';
     if (activeTab === 'traffic') return 'Live Website Traffic Analytics';
     if (activeTab === 'inquiries') return 'Contact Form Messages & Inquiries';
+    if (activeTab === 'internships') return 'Internship Applications & Resumes';
     return activeTab.charAt(0).toUpperCase() + activeTab.slice(1);
   };
 
@@ -112,6 +114,29 @@ function App() {
     try {
       await fetch(`/api/contact/${id}`, { method: 'DELETE' });
       fetchTabData('inquiries');
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  const handleDownloadResume = (resume, name) => {
+    if (!resume || !resume.fileData) {
+      alert('No resume file attached for this applicant.');
+      return;
+    }
+    const link = document.createElement('a');
+    link.href = resume.fileData;
+    link.download = resume.fileName || `${name.replace(/\s+/g, '_')}_Resume`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
+  const handleDeleteInternship = async (id) => {
+    if (!window.confirm('Are you sure you want to delete this internship application?')) return;
+    try {
+      await fetch(`/api/internships/${id}`, { method: 'DELETE' });
+      fetchTabData('internships');
     } catch (err) {
       console.error(err);
     }
@@ -283,6 +308,60 @@ function App() {
     }
   ];
 
+  const internshipColumns = [
+    { key: 'name', label: 'Full Name' },
+    { key: 'phone', label: 'Phone / Contact' },
+    { key: 'city', label: 'City' },
+    {
+      key: 'applyFor',
+      label: 'Applied Position',
+      render: (val) => <span style={{ background: '#e0f2fe', color: '#0369a1', padding: '3px 8px', borderRadius: '4px', fontWeight: 600, fontSize: '0.82rem' }}>{val}</span>
+    },
+    {
+      key: 'createdAt',
+      label: 'Applied Date',
+      render: (val) => val ? new Date(val).toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' }) : '-'
+    },
+    {
+      key: 'resume',
+      label: 'Resume Document',
+      render: (val, row) => val && val.fileData ? (
+        <button
+          onClick={() => handleDownloadResume(val, row.name)}
+          style={{
+            padding: '5px 12px',
+            borderRadius: '6px',
+            border: '1.5px solid #166534',
+            background: '#f0fdf4',
+            color: '#166534',
+            fontWeight: 700,
+            fontSize: '0.82rem',
+            cursor: 'pointer',
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '5px'
+          }}
+        >
+          📥 Download Resume
+        </button>
+      ) : (
+        <span style={{ color: '#9ca3af', fontStyle: 'italic', fontSize: '0.85rem' }}>No Resume</span>
+      )
+    },
+    {
+      key: '_id',
+      label: 'Actions',
+      render: (id, row) => (
+        <button
+          style={{ padding: '4px 10px', borderRadius: '6px', border: 'none', background: '#fee2e2', color: '#991b1b', cursor: 'pointer', fontWeight: 600, fontSize: '0.8rem' }}
+          onClick={() => handleDeleteInternship(row._id || id)}
+        >
+          Delete
+        </button>
+      )
+    }
+  ];
+
   const handleLogoutClick = () => {
     setIsLogoutModalOpen(true);
   };
@@ -373,6 +452,18 @@ function App() {
               globalSearchQuery={searchQuery}
               onSearchChange={setSearchQuery}
               searchPlaceholder="Search inquiries by name, email, phone or message..."
+            />
+          )}
+
+          {activeTab === 'internships' && (
+            <DataTable
+              title="Internship Applications & Resumes"
+              columns={internshipColumns}
+              data={tableData}
+              loading={loading}
+              globalSearchQuery={searchQuery}
+              onSearchChange={setSearchQuery}
+              searchPlaceholder="Search internship applications by applicant name, phone, city, or position..."
             />
           )}
 

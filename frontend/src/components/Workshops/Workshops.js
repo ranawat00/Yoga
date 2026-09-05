@@ -38,7 +38,7 @@ export const WORKSHOPS_DATA = [
     language: 'English',
     price: 149,
     startInDays: '3 Days',
-    description: 'Master your breath with the Ultimate Clear Lung Challenge—backed by 14+ years of proven expert guidance.',
+    description: 'Join the Awaken Plus Challenge today and discover how good your body was designed to feel.',
     image: detoxImg
   },
   {

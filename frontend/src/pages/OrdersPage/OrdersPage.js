@@ -135,7 +135,7 @@ export default function OrdersPage() {
                         })}
                       </div>
                     </div>
- 
+
                     {/* Delivery & Shipping Info */}
                     <div className="order-body-delivery">
                       <h4>Delivery Address</h4>
@@ -145,14 +145,14 @@ export default function OrdersPage() {
                         <p className="delivery-text">{order.address || ''}</p>
                         <p className="delivery-city">{order.city || ''} - {order.pincode || ''}</p>
                       </div>
-                      
+
                       <div className="delivery-payment-meta">
                         <p>Payment Method: <strong>{order.paymentMethod || ''}</strong></p>
                         <p>Reference: <code className="ref-code">{(order.paymentId || '').substring(0, 18)}...</code></p>
                       </div>
                     </div>
                   </div>
- 
+
                   {/* Summary / Invoice Totals Footer */}
                   <div className="order-page-card-footer">
                     <div className="invoice-row">

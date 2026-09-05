@@ -221,7 +221,7 @@ export default function ContactPage() {
               <div className="contact-quote-section">
                 <div className="contact-quote-card">
                   <p className="gratitude-quote">
-                    "Gratitude isn't <strong>just</strong> something you feel—it's something you pass on. Live with so much appreciation for what you have that your words uplift, your actions inspire, and everyone around you starts seeing the good in their own lives."
+                    "Gratitude isn't just something you feel—it's something you pass on. Live with so much appreciation for what you have that your words uplift, your actions inspire, and everyone around you starts seeing the good in their own lives."
                   </p>
                 </div>
               </div>

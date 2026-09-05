@@ -78,8 +78,8 @@ export default function RegistrationsPage() {
               onChange={(e) => setSelectedBatch(e.target.value)}
             >
               <option value="ALL">All Batches / Plans</option>
-              <option value="Morning Batch (6:00 AM - 7:15 AM IST)">Morning Batch</option>
-              <option value="Evening Batch (6:00 PM - 7:15 PM IST)">Evening Batch</option>
+              <option value="Morning Batch (6:00 AM - 7:15 AM ET)">Morning Batch</option>
+              <option value="Evening Batch (6:00 PM - 7:15 PM ET)">Evening Batch</option>
               <option value="Monthly Plan">Monthly Plan</option>
               <option value="3 Months Plan">3 Months Plan</option>
               <option value="Annual Plan">Annual Plan</option>

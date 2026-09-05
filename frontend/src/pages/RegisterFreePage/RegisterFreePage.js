@@ -13,10 +13,10 @@ import mentor_5 from '../../assets/mentors/mentor_5.png';
 import mentor_6 from '../../assets/mentors/mentor_6.png';
 
 // Success story images
-import success_1 from '../../assets/success_stories/success_sangeeta_1781259751051.webp';
-import success_2 from '../../assets/success_stories/success_debjani_1781259727411.webp';
-import success_3 from '../../assets/success_stories/success_vedant_1781259770410.webp';
-import success_4 from '../../assets/success_stories/success_eczema_1781259707181.webp';
+import success_1 from '../../assets/success_stories/smita_avatar.png';
+import success_2 from '../../assets/success_stories/debjani_avatar.png';
+import success_3 from '../../assets/success_stories/vedant_avatar.png';
+import success_4 from '../../assets/success_stories/aarti_avatar.png';
 
 import MediaLogos from '../../components/MediaLogos/MediaLogos';
 import './RegisterFreePage.css';

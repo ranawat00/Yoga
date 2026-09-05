@@ -2,7 +2,7 @@ import './Hero.css';
 import React, { useState, useEffect, useRef } from 'react';
 import heroVideo from '../../assets/hero/yoga_hero.mp4';
 import heroBanner from '../../assets/hero/hero_banner.jpg';
-import heroDesktop from '../../assets/hero/hero_desktop.jpg';
+import heroDesktop from '../../assets/hero/hero_desktop1.jpg';
 import { useApp } from '../../hooks/useApp';
 // Trigger fresh Vercel build
 

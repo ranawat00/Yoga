@@ -18,7 +18,7 @@ exports.createRegistration = async (req, res, next) => {
       name,
       phone,
       email: email || `${name.toLowerCase().replace(/\s+/g, '')}@yogahealers.org`,
-      batch: batch || 'Morning Batch (6:00 AM - 7:15 AM IST)',
+      batch: batch || 'Morning Batch (6:00 AM - 7:15 AM ET)',
       workshopTitle: workshopTitle || '5 Days Online Live Yoga Workshop',
       countryCode: countryCode || '+91',
       city: city || '',

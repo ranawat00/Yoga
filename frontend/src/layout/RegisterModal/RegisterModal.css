@@ -5,9 +5,9 @@
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: rgba(9, 16, 31, 0.75);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  background-color: rgba(9, 16, 31, 0.78);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   z-index: 99999;
   display: flex;
   align-items: center;
@@ -20,22 +20,41 @@
 .daily-yoga-modal {
   background: linear-gradient(135deg, #1e5e4e 0%, #154539 100%);
   width: 100%;
-  max-width: 440px;
-  border-radius: 24px;
-  padding: 2.25rem 1.75rem;
+  max-width: 450px;
+  min-height: 520px;
+  max-height: 92vh;
+  overflow-y: auto;
+  border-radius: 26px;
+  padding: 2.5rem 1.85rem 2.25rem 1.85rem;
   position: relative;
-  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.4);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  transform: translateY(-30px);
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.22);
   box-sizing: border-box;
   color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  /* Smooth Custom Scrollbar */
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
+}
+
+.daily-yoga-modal::-webkit-scrollbar {
+  width: 5px;
+}
+
+.daily-yoga-modal::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 10px;
 }
 
 /* Close Button */
 .modal-close-btn-custom {
   position: absolute;
-  top: 1.25rem;
-  right: 1.25rem;
-  background: rgba(255, 255, 255, 0.15);
+  top: 1.15rem;
+  right: 1.15rem;
+  background: rgba(255, 255, 255, 0.18);
   border: none;
   width: 34px;
   height: 34px;
@@ -46,47 +65,57 @@
   justify-content: center;
   color: #ffffff;
   transition: all 0.2s ease;
+  z-index: 10;
 }
 
 .modal-close-btn-custom:hover {
-  background: rgba(255, 255, 255, 0.3);
-  transform: scale(1.05);
+  background: rgba(255, 255, 255, 0.32);
+  transform: scale(1.06);
 }
 
 /* Header */
 .practice-modal-header {
   text-align: center;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.6rem;
+  padding-right: 1.5rem;
 }
 
 .practice-modal-title {
-  font-size: 1.65rem;
+  font-size: clamp(1.3rem, 4.8vw, 1.65rem);
   font-weight: 700;
   color: #FFFFFF;
   margin: 0;
-  letter-spacing: 0.3px;
+  letter-spacing: 0.2px;
   font-family: 'Plus Jakarta Sans', sans-serif;
+  line-height: 1.25;
+}
+
+.practice-modal-subtitle {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: clamp(0.82rem, 3.2vw, 0.92rem);
+  margin-top: 0.35rem;
+  margin-bottom: 0;
 }
 
 /* Body & Form */
 .practice-modal-body {
   display: flex;
   flex-direction: column;
+  gap: 1.1rem;
 }
 
 .practice-input-wrapper {
-  margin-bottom: 1rem;
   width: 100%;
 }
 
 .practice-input-wrapper input {
   width: 100%;
-  padding: 0.9rem 1.5rem;
+  padding: 0.95rem 1.35rem;
   background: rgba(255, 255, 255, 0.15);
   border: 1.2px solid rgba(255, 255, 255, 0.35);
   border-radius: 50px;
   color: #FFFFFF;
-  font-size: 0.98rem;
+  font-size: clamp(0.88rem, 3.2vw, 0.98rem);
   outline: none;
   box-sizing: border-box;
   transition: border-color 0.2s, background 0.2s;
@@ -108,9 +137,8 @@
   background: rgba(255, 255, 255, 0.15);
   border: 1.2px solid rgba(255, 255, 255, 0.35);
   border-radius: 50px;
-  padding: 0 0.5rem 0 1.25rem;
+  padding: 0 0.5rem 0 1.1rem;
   box-sizing: border-box;
-  margin-bottom: 1rem;
   transition: border-color 0.2s, background 0.2s;
 }
 
@@ -122,17 +150,17 @@
 .practice-country-select {
   display: flex;
   align-items: center;
-  gap: 0.35rem;
-  padding-right: 0.75rem;
+  gap: 0.3rem;
+  padding-right: 0.6rem;
   border-right: 1px solid rgba(255, 255, 255, 0.3);
-  margin-right: 0.75rem;
-  font-size: 0.9rem;
+  margin-right: 0.6rem;
+  font-size: 0.88rem;
   color: #FFFFFF;
   flex-shrink: 0;
 }
 
 .practice-flag {
-  font-size: 1.1rem;
+  font-size: 1rem;
 }
 
 .practice-code {
@@ -140,7 +168,7 @@
 }
 
 .practice-arrow {
-  font-size: 0.65rem;
+  font-size: 0.6rem;
   opacity: 0.8;
 }
 
@@ -150,25 +178,109 @@
   border: none;
   outline: none;
   color: #FFFFFF;
-  font-size: 0.98rem;
-  padding: 0.9rem 0;
+  font-size: clamp(0.88rem, 3.2vw, 0.98rem);
+  padding: 0.95rem 0;
 }
 
 .practice-phone-input-wrapper input::placeholder {
   color: rgba(255, 255, 255, 0.75);
 }
 
+/* Coupon Row */
+.practice-coupon-wrapper {
+  display: flex;
+  gap: 8px;
+  width: 100%;
+}
+
+.practice-coupon-input {
+  flex: 1;
+  text-transform: uppercase;
+  padding: 0.95rem 1.35rem;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1.2px solid rgba(255, 255, 255, 0.35);
+  border-radius: 50px;
+  color: #FFFFFF;
+  font-size: clamp(0.85rem, 3.1vw, 0.94rem);
+  outline: none;
+  box-sizing: border-box;
+}
+
+.practice-coupon-input::placeholder {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.practice-coupon-btn {
+  background: rgba(255, 255, 255, 0.25);
+  border: 1.2px solid rgba(255, 255, 255, 0.4);
+  color: #ffffff;
+  border-radius: 50px;
+  padding: 0 18px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+  flex-shrink: 0;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+}
+
+.practice-coupon-btn:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.38);
+}
+
+.practice-coupon-message {
+  background: rgba(255, 255, 255, 0.2);
+  padding: 8px 14px;
+  border-radius: 12px;
+  color: #ffffff;
+  font-size: 0.82rem;
+  text-align: center;
+}
+
+/* Batch Select Dropdown */
+.practice-batch-select {
+  width: 100%;
+  padding: 0.95rem 2.6rem 0.95rem 1.35rem;
+  background-color: rgba(255, 255, 255, 0.15);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='2.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1.25rem center;
+  background-size: 14px 14px;
+  border: 1.2px solid rgba(255, 255, 255, 0.35);
+  border-radius: 50px;
+  color: #FFFFFF;
+  font-size: clamp(0.85rem, 3.1vw, 0.95rem);
+  outline: none;
+  cursor: pointer;
+  box-sizing: border-box;
+  text-overflow: ellipsis;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  transition: border-color 0.2s, background-color 0.2s;
+}
+
+.practice-batch-select:focus {
+  border-color: #FFFFFF;
+  background-color: rgba(255, 255, 255, 0.22);
+}
+
+.practice-batch-select option {
+  color: #333333;
+  background: #ffffff;
+}
+
 /* Submit Button */
 .practice-join-btn {
   width: 100%;
-  padding: 0.9rem 1.5rem;
+  padding: 0.98rem 1.5rem;
   background: linear-gradient(135deg, #5c8862 0%, #2d5a39 50%, #1e4228 100%);
   background-size: 200% 200%;
   border: 1px solid rgba(255, 255, 255, 0.35);
   border-radius: 50px;
   color: #FFFFFF;
   font-family: 'Outfit', 'Plus Jakarta Sans', sans-serif;
-  font-size: 1.05rem;
+  font-size: clamp(0.95rem, 3.5vw, 1.05rem);
   font-weight: 700;
   letter-spacing: 0.5px;
   cursor: pointer;
@@ -177,6 +289,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-top: 0.6rem;
 }
 
 .practice-join-btn:hover {
@@ -187,4 +300,39 @@
 
 .practice-join-btn:active {
   transform: scale(0.98);
+}
+
+.practice-modal-note {
+  text-align: center;
+  font-size: clamp(0.76rem, 2.8vw, 0.84rem);
+  color: rgba(255, 255, 255, 0.78);
+  margin-top: 0.85rem;
+  margin-bottom: 0;
+}
+
+/* Mobile Adjustments */
+@media (max-width: 480px) {
+  .modal-overlay {
+    padding: 0.6rem;
+  }
+
+  .daily-yoga-modal {
+    padding: 1.85rem 1.2rem 1.5rem 1.2rem;
+    border-radius: 22px;
+    transform: translateY(-15px);
+    min-height: 480px;
+    max-height: 94vh;
+  }
+
+  .modal-close-btn-custom {
+    top: 1rem;
+    right: 1rem;
+    width: 32px;
+    height: 32px;
+  }
+
+  .practice-modal-header {
+    margin-bottom: 1.2rem;
+    padding-right: 1.25rem;
+  }
 }

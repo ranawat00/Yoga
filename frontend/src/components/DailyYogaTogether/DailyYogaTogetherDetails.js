@@ -62,7 +62,7 @@ export default function DailyYogaTogetherDetails() {
     name: '',
     email: '',
     phone: '',
-    batch: 'Morning Batch (6:00 AM - 7:15 AM IST)'
+    batch: 'Morning Batch (6:00 AM - 7:15 AM ET)'
   });
 
   useEffect(() => {
