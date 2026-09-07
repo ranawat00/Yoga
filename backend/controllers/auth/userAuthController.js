@@ -12,7 +12,7 @@ const { sendTokenResponse } = require('../../utils/authHelpers');
  */
 exports.registerUser = async (req, res, next) => {
   try {
-    const { name, email, password, phone, role, schoolName, studentId, studentName, referralId } = req.body;
+    let { name, email, password, phone, role, schoolName, studentId, studentName, referralId } = req.body;
 
     // Check if user already exists
     const userExists = await User.findOne({ email });
@@ -26,45 +26,52 @@ exports.registerUser = async (req, res, next) => {
 
     let verifiedReferral = null;
 
-    // Mandatory validation & DB cross-referencing for student sign up
+    // Validation & DB cross-referencing for student sign up
     if (role === 'student') {
-      if (!schoolName || !studentId || !referralId) {
+      if (!schoolName || !schoolName.trim()) {
         return res.status(400).json({
           success: false,
-          message: 'College/University Name, Student ID, and Referral ID are required for student registration.'
+          message: 'College/University Name is required for student registration.'
         });
       }
 
-      // Check if referralId exists in Database
-      const cleanRefCode = referralId.trim().toUpperCase();
-      verifiedReferral = await Referral.findOne({ referralCode: cleanRefCode });
-
-      if (!verifiedReferral) {
-        return res.status(400).json({
-          success: false,
-          message: `Student Sign-Up Failed: Referral ID "${referralId}" is invalid. Student accounts can only be created with an active Referral ID created by Admin.`
-        });
+      // Auto-generate student ID if not provided by frontend
+      if (!studentId || !studentId.trim()) {
+        studentId = `STU-${Date.now()}-${Math.floor(Math.random() * 1000)}`;
       }
 
-      if (!verifiedReferral.isActive) {
-        return res.status(400).json({
-          success: false,
-          message: `Student Sign-Up Failed: Referral ID "${referralId}" is currently deactivated by Admin.`
-        });
-      }
+      // Validate referral code ONLY if provided
+      if (referralId && referralId.trim()) {
+        const cleanRefCode = referralId.trim().toUpperCase();
+        verifiedReferral = await Referral.findOne({ referralCode: cleanRefCode });
 
-      if (verifiedReferral.expiryDate && new Date(verifiedReferral.expiryDate) < new Date()) {
-        return res.status(400).json({
-          success: false,
-          message: `Student Sign-Up Failed: Referral ID "${referralId}" has expired.`
-        });
-      }
+        if (!verifiedReferral) {
+          return res.status(400).json({
+            success: false,
+            message: `Student Sign-Up Failed: Referral ID "${referralId}" is invalid.`
+          });
+        }
 
-      if (verifiedReferral.maxUses && verifiedReferral.usedCount >= verifiedReferral.maxUses) {
-        return res.status(400).json({
-          success: false,
-          message: `Student Sign-Up Failed: Referral ID "${referralId}" limit has been reached.`
-        });
+        if (!verifiedReferral.isActive) {
+          return res.status(400).json({
+            success: false,
+            message: `Student Sign-Up Failed: Referral ID "${referralId}" is currently deactivated by Admin.`
+          });
+        }
+
+        if (verifiedReferral.expiryDate && new Date(verifiedReferral.expiryDate) < new Date()) {
+          return res.status(400).json({
+            success: false,
+            message: `Student Sign-Up Failed: Referral ID "${referralId}" has expired.`
+          });
+        }
+
+        if (verifiedReferral.maxUses && verifiedReferral.usedCount >= verifiedReferral.maxUses) {
+          return res.status(400).json({
+            success: false,
+            message: `Student Sign-Up Failed: Referral ID "${referralId}" limit has been reached.`
+          });
+        }
       }
     }
 

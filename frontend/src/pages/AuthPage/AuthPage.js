@@ -121,27 +121,30 @@ export default function AuthPage() {
   const handleGoogleSignIn = () => {
     const clientId = process.env.REACT_APP_GOOGLE_CLIENT_ID || '651592002683-v97jd6mn9ha5g16ve8iv4jg3q340cv07.apps.googleusercontent.com';
     
-    if (clientId) {
-      const redirectUri = encodeURIComponent(`${window.location.origin}`);
-      const scope = encodeURIComponent('openid profile email');
-      const googleAuthUrl = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${clientId}&redirect_uri=${redirectUri}&response_type=token&scope=${scope}&prompt=select_account`;
-      
-      const popupWidth = 500;
-      const popupHeight = 650;
-      // Use screen dimensions to properly center the popup on the display
-      const left = Math.round((window.screen.width - popupWidth) / 2);
-      const top = Math.round((window.screen.height - popupHeight) / 2);
-      
-      const popup = window.open(
-        googleAuthUrl,
-        'GoogleSignIn',
-        `width=${popupWidth},height=${popupHeight},left=${left},top=${top},scrollbars=yes,status=1,resizable=yes`
-      );
-      
-      // Fallback: if popup was blocked, do full redirect
-      if (!popup || popup.closed || typeof popup.closed === 'undefined') {
-        window.location.href = googleAuthUrl;
-      }
+    if (!clientId) {
+      alert('Google Sign-In requires a valid Google Cloud OAuth Client ID.\n\nPlease set REACT_APP_GOOGLE_CLIENT_ID in frontend/.env');
+      return;
+    }
+
+    const redirectUri = encodeURIComponent(`${window.location.origin}`);
+    const scope = encodeURIComponent('openid profile email');
+    const googleAuthUrl = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${clientId}&redirect_uri=${redirectUri}&response_type=token&scope=${scope}&prompt=select_account`;
+    
+    const popupWidth = 500;
+    const popupHeight = 650;
+    // Use screen dimensions to properly center the popup on the display
+    const left = Math.round((window.screen.width - popupWidth) / 2);
+    const top = Math.round((window.screen.height - popupHeight) / 2);
+    
+    const popup = window.open(
+      googleAuthUrl,
+      'GoogleSignIn',
+      `width=${popupWidth},height=${popupHeight},left=${left},top=${top},scrollbars=yes,status=1,resizable=yes`
+    );
+    
+    // Fallback: if popup was blocked, do full redirect
+    if (!popup || popup.closed || typeof popup.closed === 'undefined') {
+      window.location.href = googleAuthUrl;
     }
   };
 

@@ -108,7 +108,11 @@ export default function YHOClubAuth() {
 
   // Social Sign-in handlers
   const handleGoogleSignIn = () => {
-    const clientId = process.env.REACT_APP_GOOGLE_CLIENT_ID || '1029384756-dummyclientid.apps.googleusercontent.com';
+    const clientId = process.env.REACT_APP_GOOGLE_CLIENT_ID || '651592002683-v97jd6mn9ha5g16ve8iv4jg3q340cv07.apps.googleusercontent.com';
+    if (!clientId) {
+      alert('Google Sign-In requires a valid Google Cloud OAuth Client ID.\n\nPlease set REACT_APP_GOOGLE_CLIENT_ID in frontend/.env');
+      return;
+    }
     const redirectUri = window.location.origin;
     const scope = encodeURIComponent('email profile openid');
     const responseType = 'token';

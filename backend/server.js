@@ -20,9 +20,23 @@ app.set('etag', false);
 // Enable response compression
 app.use(compression());
 
-// Enable CORS with dynamic configurations from env
+// Enable CORS with dynamic multi-origin support for dev ports (3000, 3001, etc.)
+const allowedOrigins = [
+  'http://localhost:3000',
+  'http://localhost:3001',
+  'http://127.0.0.1:3000',
+  'http://127.0.0.1:3001',
+  process.env.FRONTEND_URL
+].filter(Boolean);
+
 const corsOptions = {
-  origin: process.env.FRONTEND_URL || 'http://localhost:3000',
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin) || process.env.NODE_ENV !== 'production') {
+      callback(null, true);
+    } else {
+      callback(new Error('CORS Not Allowed'));
+    }
+  },
   credentials: true,
   optionsSuccessStatus: 200
 };

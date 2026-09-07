@@ -1,10 +1,10 @@
 const Razorpay = require('razorpay');
 const crypto = require('crypto');
 
-const keyId = process.env.RAZORPAY_KEY_ID ? process.env.RAZORPAY_KEY_ID.trim() : '';
-const keySecret = process.env.RAZORPAY_KEY_SECRET ? process.env.RAZORPAY_KEY_SECRET.trim() : '';
+const keyId = process.env.RAZORPAY_KEY_ID ? process.env.RAZORPAY_KEY_ID.trim() : 'rzp_test_dummy_key_id';
+const keySecret = process.env.RAZORPAY_KEY_SECRET ? process.env.RAZORPAY_KEY_SECRET.trim() : 'dummy_key_secret';
 
-// Initialize Razorpay client
+// Initialize Razorpay client safely with fallbacks for development
 const razorpay = new Razorpay({
   key_id: keyId,
   key_secret: keySecret
