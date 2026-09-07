@@ -2,18 +2,10 @@
    YHO CLUB PORTAL - PREMIUM DESKTOP & MOBILE STYLING
    ========================================== */
 
-/* Portal wrapper — resets any inherited main-site layout */
-.yho-club-portal-wrapper {
-  width: 100%;
-  min-height: 100vh;
-  background: #000000;
-  position: relative;
-}
-
-/* Outer Layout & Backdrop */
+/* Outer Layout & Ambient Dark Backdrop (Desktop) */
 .yho-club-page-wrapper {
   position: relative;
-  background: #000000;
+  background: linear-gradient(135deg, #09101F 0%, #0f172a 50%, #1e293b 100%);
   color: #0f172a;
   height: 100vh;
   height: 100dvh;
@@ -719,8 +711,7 @@
 
   .yho-text-input {
     height: 44px;
-    font-size: 16px;
-    /* Prevents auto-zoom on iOS Safari mobile browsers */
+    font-size: 16px; /* Prevents auto-zoom on iOS Safari mobile browsers */
   }
 
   .yho-cyan-submit-btn {

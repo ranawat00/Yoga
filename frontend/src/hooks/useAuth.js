@@ -55,9 +55,9 @@ export function useAuth() {
         localStorage.setItem('token', data.token);
         localStorage.setItem('refreshToken', data.refreshToken);
         dispatch(setUser(data.user));
-        if (currentView !== 'yho-club') {
-          dispatch(setView('home'));
-        }
+        // If we are on yho-club page OR the user is a student — ALWAYS go to yho-club, never home
+        const goToYho = currentView === 'yho-club' || role === 'student' || data.user?.role === 'student';
+        dispatch(setView(goToYho ? 'yho-club' : 'home'));
         dispatch(addNotification({ message: `Welcome back, ${data.user.name}!`, type: 'success' }));
         return true;
       } else {
@@ -90,9 +90,8 @@ export function useAuth() {
         localStorage.setItem('token', data.token);
         localStorage.setItem('refreshToken', data.refreshToken);
         dispatch(setUser(data.user));
-        if (currentView !== 'yho-club') {
-          dispatch(setView('home'));
-        }
+        const goToYho = currentView === 'yho-club' || role === 'student' || data.user?.role === 'student';
+        dispatch(setView(goToYho ? 'yho-club' : 'home'));
         dispatch(addNotification({ message: `Account created successfully! Welcome, ${data.user.name}.`, type: 'success' }));
         return true;
       } else {
@@ -172,7 +171,9 @@ export function useAuth() {
         localStorage.setItem('token', data.token);
         localStorage.setItem('refreshToken', data.refreshToken);
         dispatch(setUser(data.user));
-        if (currentView !== 'yho-club') {
+        if (payload.role === 'student' || currentView === 'yho-club' || data.user?.role === 'student') {
+          dispatch(setView('yho-club'));
+        } else {
           dispatch(setView('home'));
         }
         dispatch(addNotification({ message: `Successfully authenticated with ${provider.charAt(0).toUpperCase() + provider.slice(1)}! Welcome, ${data.user.name}.`, type: 'success' }));

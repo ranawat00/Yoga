@@ -1,0 +1,685 @@
+/* ==========================================
+   YHO CLUB HOME PAGE — matches second screenshot
+   ========================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+.yho-home-root {
+  width: 100%;
+  min-height: 100vh;
+  background: #000000;
+  color: #ffffff;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  overflow-x: hidden;
+  padding-top: 64px;
+}
+
+/* ── HERO IMAGE SECTION ── */
+.yho-hero-section {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 9 / 13;
+  max-height: 68vh;
+  overflow: hidden;
+}
+
+.yho-hero-image-wrap {
+  position: absolute;
+  inset: 0;
+}
+
+.yho-hero-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+}
+
+/* gradient: transparent over students, smoothly fades into pure black at bottom */
+.yho-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.05) 0%,
+    rgba(0, 0, 0, 0.0) 30%,
+    rgba(0, 0, 0, 0.35) 60%,
+    rgba(0, 0, 0, 0.85) 88%,
+    #000000 100%
+  );
+  pointer-events: none;
+}
+
+/* ── CONTENT SECTION ── */
+.yho-content-section {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 540px;
+  margin: -48px auto 0;
+  padding: 0 1.25rem 2.5rem;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0;
+}
+
+/* Support pill — matches Image 2 white border on black */
+.yho-support-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(0, 0, 0, 0.5);
+  border: 1.5px solid #ffffff;
+  border-radius: 100px;
+  padding: 0.4rem 1.1rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 1.2rem;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.yho-pill-icon {
+  font-size: 0.95rem;
+}
+
+/* Main headline — matches Image 2 pure white bold */
+.yho-main-headline {
+  font-size: clamp(1.7rem, 5.5vw, 2.5rem);
+  font-weight: 900;
+  line-height: 1.12;
+  color: #ffffff;
+  margin: 0 0 0.4rem 0;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+}
+
+.yho-sub-headline {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #f1f5f9;
+  margin: 0 0 0.9rem 0;
+}
+
+.yho-description {
+  font-size: 0.9rem;
+  line-height: 1.65;
+  color: #94a3b8;
+  margin: 0 0 1.5rem 0;
+}
+
+/* Welcome chip */
+.yho-welcome-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(0, 255, 163, 0.35);
+  box-shadow: 0 2px 10px rgba(0, 255, 163, 0.12);
+  border-radius: 50px;
+  padding: 0.4rem 0.9rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 1.5rem;
+}
+
+.yho-welcome-avatar {
+  width: 26px;
+  height: 26px;
+  background: linear-gradient(135deg, #00FFA3, #00c6ff);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.78rem;
+  font-weight: 900;
+  color: #050811;
+}
+
+.yho-school-tag {
+  background: rgba(0, 255, 163, 0.15);
+  border-radius: 30px;
+  padding: 0.15rem 0.55rem;
+  font-size: 0.72rem;
+  color: #00FFA3;
+}
+
+/* ── STATS SLIDER (infinite marquee) ── */
+.yho-stats-slider-wrap {
+  width: 100%;
+  overflow: hidden;
+  margin-bottom: 1.5rem;
+  /* Fade edges for a premium feel */
+  -webkit-mask-image: linear-gradient(to right,
+      transparent 0%,
+      #000 12%,
+      #000 88%,
+      transparent 100%);
+  mask-image: linear-gradient(to right,
+      transparent 0%,
+      #000 12%,
+      #000 88%,
+      transparent 100%);
+}
+
+.yho-stats-track {
+  display: flex;
+  gap: 0.75rem;
+  width: max-content;
+  animation: yho-stats-scroll 14s linear infinite;
+}
+
+/* Pause on hover */
+.yho-stats-slider-wrap:hover .yho-stats-track {
+  animation-play-state: paused;
+}
+
+@keyframes yho-stats-scroll {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.yho-stat-slide {
+  flex-shrink: 0;
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 0.85rem 1.4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-width: 120px;
+  gap: 4px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.12);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  cursor: default;
+}
+
+.yho-stat-slide:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 212, 161, 0.2);
+}
+
+.yho-stat-value {
+  font-size: 1.05rem;
+  font-weight: 900;
+  color: #111827;
+  line-height: 1.1;
+}
+
+.yho-stat-label {
+  font-size: 0.62rem;
+  font-weight: 600;
+  color: #6b7280;
+  margin-top: 3px;
+  text-align: center;
+}
+
+.yho-workshop-card {
+  width: 100%;
+  background: #000000;
+  border: none;
+  border-radius: 18px;
+  padding: 1.5rem 0.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.yho-workshop-label {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: #ffffff;
+  margin: 0;
+  letter-spacing: 0.01em;
+}
+
+.yho-explore-btn {
+  width: 100%;
+  padding: 0.95rem 1.5rem;
+  background: linear-gradient(90deg, #00b4d8 0%, #00e676 100%);
+  color: #000000;
+  font-size: 1.05rem;
+  font-weight: 800;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  letter-spacing: 0.02em;
+  box-shadow: 0 6px 24px rgba(0, 230, 118, 0.35);
+}
+
+.yho-explore-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 32px rgba(0, 230, 118, 0.55);
+}
+
+.yho-explore-btn:active {
+  transform: translateY(0);
+}
+
+/* ── LOWER CREAM SECTION (Media Logos, Quick Actions) ── */
+.yho-cream-section {
+  width: 100%;
+  background-color: #faf6ee;
+  border-top-left-radius: 32px;
+  border-top-right-radius: 32px;
+  padding: 2.25rem 1.25rem 2.5rem;
+  box-sizing: border-box;
+  position: relative;
+  z-index: 3;
+}
+
+.yho-cream-inner {
+  width: 100%;
+  max-width: 540px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+  box-sizing: border-box;
+}
+
+/* ── "AS FEATURED ON" (in cream section) ── */
+.yho-media-logos-wrap {
+  width: 100%;
+  border-radius: 18px;
+  overflow: hidden;
+}
+
+.yho-media-logos-wrap .media-logos-section {
+  background-color: transparent !important;
+  border: none;
+  padding: 0.5rem 0 0.8rem 0;
+}
+
+.yho-media-logos-wrap .media-logos-label {
+  color: #9ca3af;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+}
+
+.yho-media-logos-wrap .media-logo-name {
+  color: #6b7280;
+}
+
+.yho-media-logos-wrap .media-logo-card:hover {
+  opacity: 0.9;
+}
+
+.yho-media-logos-wrap .media-logos-marquee-outer {
+  mask-image: linear-gradient(to right, transparent 0%, #000 6%, #000 94%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 6%, #000 94%, transparent 100%);
+}
+
+/* ── QUICK ACTIONS SECTION (in cream section) ── */
+.yho-quick-actions-wrap {
+  width: 100%;
+  background: transparent;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.yho-quick-actions-heading {
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: #111827;
+  margin: 0 0 1rem 0.25rem;
+  text-align: left;
+  letter-spacing: -0.01em;
+}
+
+.yho-quick-actions-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+  width: 100%;
+}
+
+.yho-quick-action-card {
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.04);
+  border-radius: 18px;
+  padding: 1.1rem 0.4rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  min-height: 102px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  outline: none;
+}
+
+.yho-quick-action-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+}
+
+.yho-quick-action-card:active {
+  transform: translateY(0);
+}
+
+.yho-quick-action-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.55rem;
+  color: #374151;
+}
+
+.yho-quick-action-title {
+  font-size: 0.73rem;
+  font-weight: 600;
+  color: #1f2937;
+  line-height: 1.25;
+  text-align: center;
+  word-break: break-word;
+}
+
+/* ── NEED SUPPORT SECTION (WHITE BACKGROUND) ── */
+.yho-support-section {
+  width: 100%;
+  background-color: #ffffff;
+  padding: 2.75rem 1.25rem 4.5rem;
+  box-sizing: border-box;
+  position: relative;
+  z-index: 3;
+}
+
+.yho-support-inner {
+  width: 100%;
+  max-width: 540px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.25rem;
+  box-sizing: border-box;
+}
+
+.yho-support-heading {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #111827;
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+.yho-coach-cta-btn {
+  width: 100%;
+  padding: 0.95rem 1.5rem;
+  background: linear-gradient(90deg, #00b4d8 0%, #00e676 100%);
+  color: #ffffff;
+  font-size: 1.05rem;
+  font-weight: 800;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  letter-spacing: 0.01em;
+  box-shadow: 0 6px 20px rgba(0, 230, 118, 0.35);
+  text-align: center;
+}
+
+.yho-coach-cta-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(0, 230, 118, 0.55);
+}
+
+.yho-coach-cta-btn:active {
+  transform: translateY(0);
+}
+
+/* 3x3 coaches grid */
+.yho-coaches-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+  width: 100%;
+  margin: 0.5rem 0 1rem;
+}
+
+.yho-coach-card {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #7ed957;
+  box-shadow: 0 4px 12px rgba(126, 217, 87, 0.2);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.yho-coach-card:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 8px 20px rgba(126, 217, 87, 0.35);
+}
+
+.yho-coach-avatar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Bottom visionary experts pill */
+.yho-programs-pill {
+  width: 100%;
+  background: #ffffff;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 100px;
+  padding: 0.75rem 1.25rem;
+  box-sizing: border-box;
+  text-align: center;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+}
+
+.yho-programs-pill span {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: #4b5563;
+  line-height: 1.4;
+}
+
+/* ── PLATFORM BANNER SECTION (Full Width Wellbeing Poster) ── */
+.yho-platform-section {
+  width: 100%;
+  background-color: #ffffff;
+  padding: 0;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  z-index: 3;
+}
+
+.yho-platform-inner {
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 0;
+}
+
+.yho-platform-card {
+  position: relative;
+  width: 100%;
+  border-radius: 0;
+  overflow: hidden;
+  box-shadow: none;
+  border: none;
+  background: transparent;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.yho-platform-banner-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
+.yho-platform-cta-btn {
+  position: absolute;
+  bottom: 5.2%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 86%;
+  max-width: 440px;
+  background: linear-gradient(90deg, #00c6ff 0%, #00e676 100%);
+  color: #ffffff;
+  font-size: 0.85rem;
+  font-weight: 800;
+  letter-spacing: 0.7px;
+  text-transform: uppercase;
+  padding: 0.95rem 1.4rem;
+  border-radius: 9999px;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(0, 230, 118, 0.42), 0 2px 8px rgba(0, 0, 0, 0.35);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+  text-align: center;
+  white-space: nowrap;
+  box-sizing: border-box;
+  z-index: 10;
+}
+
+.yho-platform-cta-btn:hover {
+  transform: translateX(-50%) translateY(-2px);
+  box-shadow: 0 12px 32px rgba(0, 230, 118, 0.6), 0 4px 12px rgba(0, 0, 0, 0.4);
+  filter: brightness(1.08);
+}
+
+.yho-platform-cta-btn:active {
+  transform: translateX(-50%) translateY(0);
+  box-shadow: 0 6px 16px rgba(0, 230, 118, 0.4);
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 480px) {
+  .yho-home-root {
+    padding-top: 58px;
+  }
+
+  .yho-hero-section {
+    aspect-ratio: 9 / 13;
+    max-height: 65vh;
+  }
+
+  .yho-content-section {
+    margin: -42px auto 0;
+    padding: 0 1rem 2rem;
+  }
+
+  .yho-stats-slider-wrap {
+    /* Slightly faster on small screens so more cards are visible */
+    -webkit-mask-image: linear-gradient(to right,
+        transparent 0%,
+        #000 8%,
+        #000 92%,
+        transparent 100%);
+    mask-image: linear-gradient(to right,
+        transparent 0%,
+        #000 8%,
+        #000 92%,
+        transparent 100%);
+  }
+
+  .yho-stats-track {
+    animation-duration: 10s;
+  }
+
+  .yho-stat-slide {
+    min-width: 100px;
+    padding: 0.75rem 1rem;
+  }
+
+
+  .yho-quick-actions-wrap {
+    padding: 1rem 0.75rem 1.2rem;
+  }
+
+  .yho-quick-actions-grid {
+    gap: 0.5rem;
+  }
+
+  .yho-quick-action-card {
+    padding: 0.85rem 0.3rem 0.75rem;
+    min-height: 90px;
+    border-radius: 14px;
+  }
+
+  .yho-quick-action-title {
+    font-size: 0.68rem;
+  }
+
+  .yho-support-section {
+    padding: 2rem 1rem 3.5rem;
+  }
+
+  .yho-coaches-grid {
+    gap: 0.85rem;
+  }
+
+  .yho-programs-pill {
+    padding: 0.65rem 0.85rem;
+  }
+
+  .yho-programs-pill span {
+    font-size: 0.74rem;
+  }
+
+  .yho-platform-section {
+    padding: 0;
+    background-color: #ffffff;
+  }
+
+  .yho-platform-card {
+    border-radius: 0;
+  }
+
+  .yho-platform-cta-btn {
+    font-size: 0.66rem;
+    padding: 0.72rem 0.6rem;
+    letter-spacing: 0.2px;
+    width: 90%;
+    bottom: 4.8%;
+  }
+}
+
+@media (min-width: 768px) {
+  .yho-hero-section {
+    aspect-ratio: 16 / 10;
+    max-height: 65vh;
+  }
+
+  .yho-content-section {
+    margin: -50px auto 0;
+    padding: 0 2rem 3.5rem;
+  }
+}

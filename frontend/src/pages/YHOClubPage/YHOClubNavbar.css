@@ -1,0 +1,291 @@
+/* ==========================================
+   YHO CLUB NAVBAR — matches screenshot 1 design
+   ========================================== */
+
+.yhon-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 64px;
+  background: rgba(8, 10, 18, 0.95);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  z-index: 1100;
+  display: flex;
+  align-items: center;
+  padding: 0 1.25rem;
+  box-sizing: border-box;
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.yhon-inner {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+/* ── BRAND ── */
+.yhon-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  cursor: pointer;
+  user-select: none;
+  flex-shrink: 0;
+}
+
+.yhon-logo-box {
+  width: 36px;
+  height: 36px;
+  border-radius: 9px;
+  background: linear-gradient(135deg, #00d4a1 0%, #00c6ff 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 14px rgba(0, 212, 161, 0.45);
+  flex-shrink: 0;
+}
+
+.yhon-logo-yh {
+  font-size: 0.95rem;
+  font-weight: 900;
+  color: #050811;
+  letter-spacing: 0.03em;
+}
+
+.yhon-brand-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+}
+
+.yhon-brand-title {
+  font-size: 1rem;
+  font-weight: 900;
+  color: #ffffff;
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+}
+
+.yhon-brand-sub {
+  font-size: 0.58rem;
+  font-weight: 700;
+  color: #00d4a1;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin-top: 3px;
+}
+
+/* ── NAV LINKS (desktop) ── */
+.yhon-links {
+  display: flex;
+  align-items: center;
+  gap: 1.75rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.yhon-link {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #94a3b8;
+  cursor: pointer;
+  transition: color 0.18s ease;
+  padding: 0.3rem 0;
+  position: relative;
+}
+
+.yhon-link:hover {
+  color: #ffffff;
+}
+
+.yhon-link--active {
+  color: #00d4a1;
+}
+
+.yhon-link--active::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: #00d4a1;
+  border-radius: 2px;
+}
+
+/* ── RIGHT ACTIONS ── */
+.yhon-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-shrink: 0;
+}
+
+.yhon-student-chip {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  background: rgba(0, 212, 161, 0.1);
+  border: 1px solid rgba(0, 212, 161, 0.22);
+  border-radius: 30px;
+  padding: 0.3rem 0.75rem 0.3rem 0.35rem;
+}
+
+.yhon-avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #00d4a1, #00c6ff);
+  color: #050811;
+  font-weight: 900;
+  font-size: 0.82rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.yhon-student-info {
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+}
+
+.yhon-student-name {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #f1f5f9;
+}
+
+.yhon-student-id {
+  font-size: 0.65rem;
+  font-weight: 600;
+  color: #00d4a1;
+  margin-top: 2px;
+}
+
+.yhon-logout-btn {
+  background: rgba(239, 68, 68, 0.14);
+  border: 1px solid rgba(239, 68, 68, 0.32);
+  color: #fca5a5;
+  border-radius: 8px;
+  padding: 0.42rem 0.85rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  font-family: inherit;
+}
+
+.yhon-logout-btn:hover {
+  background: rgba(239, 68, 68, 0.28);
+  color: #ffffff;
+  border-color: rgba(239, 68, 68, 0.6);
+}
+
+/* Hamburger */
+.yhon-hamburger {
+  display: none;
+  background: none;
+  border: none;
+  color: #ffffff;
+  font-size: 1.4rem;
+  cursor: pointer;
+  padding: 0.2rem 0.4rem;
+  line-height: 1;
+}
+
+/* ── MOBILE DROPDOWN MENU ── */
+.yhon-mobile-menu {
+  position: fixed;
+  top: 64px;
+  left: 0;
+  width: 100%;
+  background: rgba(8, 10, 18, 0.98);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  z-index: 1099;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 1.25rem 1.5rem;
+  box-sizing: border-box;
+  gap: 0.85rem;
+  animation: yhon-slide-in 0.22s ease-out;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+}
+
+@keyframes yhon-slide-in {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.yhon-mob-link {
+  font-size: 0.97rem;
+  font-weight: 600;
+  color: #cbd5e1;
+  cursor: pointer;
+  padding: 0.55rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  transition: color 0.15s ease;
+}
+
+.yhon-mob-link:hover {
+  color: #00d4a1;
+}
+
+.yhon-mob-logout {
+  background: rgba(239, 68, 68, 0.12);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  color: #fca5a5;
+  border-radius: 10px;
+  padding: 0.65rem 1rem;
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.2s ease;
+  font-family: inherit;
+  margin-top: 0.25rem;
+}
+
+.yhon-mob-logout:hover {
+  background: rgba(239, 68, 68, 0.25);
+  color: #ffffff;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 860px) {
+  .yhon-links {
+    display: none;
+  }
+
+  .yhon-hamburger {
+    display: block;
+  }
+}
+
+@media (max-width: 600px) {
+  .yhon-bar {
+    padding: 0 0.9rem;
+  }
+
+  /* Hide student info text on very small screens, keep avatar */
+  .yhon-student-info {
+    display: none;
+  }
+
+  .yhon-student-chip {
+    padding: 0.3rem;
+  }
+}

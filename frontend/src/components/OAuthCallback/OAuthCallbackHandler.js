@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { useAppDispatch } from '../../redux/hooks';
+import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { setUser } from '../../redux/slices/authSlice';
-import { setView, addNotification } from '../../redux/slices/uiSlice';
+import { setView, addNotification, selectView } from '../../redux/slices/uiSlice';
 
 /**
  * OAuthCallbackHandler
@@ -13,6 +13,7 @@ import { setView, addNotification } from '../../redux/slices/uiSlice';
  */
 const OAuthCallbackHandler = () => {
   const dispatch = useAppDispatch();
+  const currentView = useAppSelector(selectView);
   const [processing, setProcessing] = useState(false);
   const [error, setError] = useState(null);
 
@@ -64,7 +65,13 @@ const OAuthCallbackHandler = () => {
           localStorage.setItem('token', data.token);
           if (data.refreshToken) localStorage.setItem('refreshToken', data.refreshToken);
           dispatch(setUser(data.user));
-          dispatch(setView('home'));
+
+          // Check if OAuth was started from YHO Club portal
+          const fromYhoClub = sessionStorage.getItem('yho_google_auth') === 'true';
+          sessionStorage.removeItem('yho_google_auth');
+
+          const goToYho = fromYhoClub || currentView === 'yho-club' || data.user?.role === 'student';
+          dispatch(setView(goToYho ? 'yho-club' : 'home'));
           dispatch(addNotification({ message: `Welcome, ${data.user.name}! 🎉`, type: 'success' }));
         } else {
           setError(data.message || 'Google sign-in failed. Please try again.');
@@ -79,7 +86,7 @@ const OAuthCallbackHandler = () => {
         setTimeout(() => dispatch(setView('login')), 3000);
       })
       .finally(() => setProcessing(false));
-  }, [dispatch]);
+  }, [dispatch, currentView]);
 
   if (!processing && !error) return null;
 

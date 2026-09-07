@@ -109,9 +109,9 @@ function AppContent() {
     return () => window.removeEventListener('popstate', handlePopState);
   }, [setView]);
 
-  // Synchronize browser address bar URL, page title, and scroll lock reset when `view` changes
+  // Synchronize browser address bar URL, page title, and scroll reset when `view` changes
   useEffect(() => {
-    document.body.style.overflow = view === 'yho-club' ? 'hidden' : '';
+    document.body.style.overflow = '';
     const targetPath = VIEW_TO_PATH[view] || '/';
     if (window.location.pathname !== targetPath) {
       window.history.pushState({ view }, '', targetPath);
