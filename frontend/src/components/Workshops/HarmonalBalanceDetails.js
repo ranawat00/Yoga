@@ -101,7 +101,7 @@ export default function HarmonalBalanceDetails({ workshop, onBack, onRegister })
       <div className="details-banner-card-container">
         <div className="hero-banner-wrapper">
           <img src={banner} className="details-hero-banner-img" alt={workshop.title} />
-          <button className="details-register-btn banner-overlay-btn" onClick={onRegister}>
+          <button className="details-register-btn banner-overlay-btn harmonal-banner-overlay-btn" onClick={onRegister}>
             <span>Register now</span>
             <div className="btn-arrow-circle">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">

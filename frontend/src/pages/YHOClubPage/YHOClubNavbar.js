@@ -1,38 +1,25 @@
 import React, { useState } from 'react';
 import './YHOClubNavbar.css';
 import { useApp } from '../../hooks/useApp';
+import Logo from '../../common/Logo/Logo';
+import YHOClubProfileDrawer from './YHOClubProfileDrawer';
 
 export default function YHOClubNavbar() {
-  const { user, handleLogout, setView, setIsRegisterModalOpen } = useApp();
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { user, setView, setIsRegisterModalOpen } = useApp();
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
   const studentId = user
     ? (user.studentId || ('YHO-' + (user._id || '2026').slice(-6).toUpperCase()))
     : '';
-
-  const onLogout = async () => {
-    await handleLogout();
-    setMobileMenuOpen(false);
-    // After logout, stay on yho-club (will show auth screen since user = null)
-    setView('yho-club');
-  };
 
   return (
     <>
       <nav className="yhon-bar">
         <div className="yhon-inner">
 
-          {/* LEFT: Brand */}
+          {/* LEFT: Official Logo */}
           <div className="yhon-brand" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
-            <div className="yhon-logo-box">
-              <span className="yhon-logo-yh">YH</span>
-            </div>
-            <div className="yhon-brand-text">
-              <div className="yhon-brand-title">
-                <span>YH🎯 CLUB</span>
-              </div>
-              <span className="yhon-brand-sub">STUDENT PORTAL</span>
-            </div>
+            <Logo size={60} />
           </div>
 
           {/* CENTER: Nav links (desktop) */}
@@ -54,10 +41,16 @@ export default function YHOClubNavbar() {
             </li>
           </ul>
 
-          {/* RIGHT: Student badge + logout */}
+          {/* RIGHT: Profile Trigger (opens dedicated YHO Club Profile Drawer from right) */}
           <div className="yhon-actions">
             {user && (
-              <div className="yhon-student-chip">
+              <button
+                type="button"
+                className="yhon-student-chip"
+                onClick={() => setIsDrawerOpen(true)}
+                title="Open Student Profile"
+                aria-label="Open Student Profile Drawer"
+              >
                 <div className="yhon-avatar">
                   {user.name ? user.name.charAt(0).toUpperCase() : 'S'}
                 </div>
@@ -65,44 +58,28 @@ export default function YHOClubNavbar() {
                   <span className="yhon-student-name">{user.name}</span>
                   <span className="yhon-student-id">🎓 {studentId}</span>
                 </div>
-              </div>
+              </button>
             )}
 
-            <button type="button" className="yhon-logout-btn" onClick={onLogout}>
-              <span>Log Out</span>
-            </button>
-
-            {/* Mobile hamburger */}
+            {/* Mobile hamburger — opens dedicated Profile Drawer */}
             <button
               type="button"
               className="yhon-hamburger"
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              aria-label="Toggle menu"
+              onClick={() => setIsDrawerOpen(true)}
+              aria-label="Open Profile Drawer"
             >
-              {mobileMenuOpen ? '✕' : '☰'}
+              ☰
             </button>
           </div>
 
         </div>
       </nav>
 
-      {/* Mobile Dropdown */}
-      {mobileMenuOpen && (
-        <div className="yhon-mobile-menu">
-          <span className="yhon-mob-link" onClick={() => { window.scrollTo({ top: 0, behavior: 'smooth' }); setMobileMenuOpen(false); }}>
-            🏠 Home
-          </span>
-          <span className="yhon-mob-link" onClick={() => { setIsRegisterModalOpen && setIsRegisterModalOpen(true); setMobileMenuOpen(false); }}>
-            ✨ 5 Days Free Workshop
-          </span>
-          <span className="yhon-mob-link" onClick={() => { setView('home'); setMobileMenuOpen(false); }}>
-            🌐 Back to Main Site
-          </span>
-          <button type="button" className="yhon-mob-logout" onClick={onLogout}>
-            🚪 Log Out Student
-          </button>
-        </div>
-      )}
+      {/* Dedicated YHO Club Profile Drawer (Completely separate from main site drawer) */}
+      <YHOClubProfileDrawer
+        isOpen={isDrawerOpen}
+        onClose={() => setIsDrawerOpen(false)}
+      />
     </>
   );
 }

@@ -108,12 +108,21 @@ export default function YHOClubAuth() {
 
   // Social Sign-in handlers
   const handleGoogleSignIn = () => {
+    // If accessed via local IP (192.168.x.x), automatically redirect to localhost:3000 so Google OAuth succeeds
+    const isIpAddress = /^(\d{1,3}\.){3}\d{1,3}$/.test(window.location.hostname);
+    if (isIpAddress && window.location.hostname !== '127.0.0.1') {
+      sessionStorage.setItem('yho_auto_google_auth', 'true');
+      const targetPort = window.location.port ? `:${window.location.port}` : ':3000';
+      window.location.href = `${window.location.protocol}//localhost${targetPort}${window.location.pathname}${window.location.search}`;
+      return;
+    }
+
     const clientId = process.env.REACT_APP_GOOGLE_CLIENT_ID || '651592002683-v97jd6mn9ha5g16ve8iv4jg3q340cv07.apps.googleusercontent.com';
     if (!clientId) {
       alert('Google Sign-In requires a valid Google Cloud OAuth Client ID.\n\nPlease set REACT_APP_GOOGLE_CLIENT_ID in frontend/.env');
       return;
     }
-    const redirectUri = window.location.origin;
+    const redirectUri = encodeURIComponent(`${window.location.protocol}//localhost:${window.location.port || '3000'}`);
     const scope = encodeURIComponent('email profile openid');
     const responseType = 'token';
     const authUrl = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${clientId}&redirect_uri=${redirectUri}&response_type=${responseType}&scope=${scope}&prompt=select_account`;
@@ -124,6 +133,14 @@ export default function YHOClubAuth() {
     // Full-page redirect — no popup window
     window.location.href = authUrl;
   };
+
+  // Auto-launch Google Sign-In if we just redirected from local IP to localhost
+  useEffect(() => {
+    if (sessionStorage.getItem('yho_auto_google_auth') === 'true') {
+      sessionStorage.removeItem('yho_auto_google_auth');
+      handleGoogleSignIn();
+    }
+  }, []);
 
   const handleFacebookSignIn = () => {
     if (window.FB) {

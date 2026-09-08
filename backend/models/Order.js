@@ -63,12 +63,21 @@ const OrderSchema = new mongoose.Schema({
   },
   paymentMethod: {
     type: String,
-    enum: ['UPI', 'CARD', 'COD'],
+    enum: ['UPI', 'CARD', 'COD', 'PAYPAL', 'RAZORPAY'],
     required: true
   },
   paymentId: {
     type: String,
     required: true
+  },
+  status: {
+    type: String,
+    enum: ['Pending', 'Paid', 'Failed'],
+    default: 'Paid'
+  },
+  paymentDetails: {
+    type: Object,
+    default: {}
   },
   createdAt: {
     type: Date,

@@ -1,0 +1,537 @@
+/* ==========================================================
+   YHO CLUB DEDICATED STUDENT PROFILE DRAWER
+   Opens strictly from the RIGHT side
+   ========================================================== */
+
+/* Dark Backdrop Overlay */
+.yhod-backdrop {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.72);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 2500;
+  animation: yhodFadeIn 0.25s ease-out;
+}
+
+@keyframes yhodFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Right-Side Drawer Panel */
+.yhod-drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 390px;
+  max-width: 88vw;
+  height: 100vh;
+  height: 100dvh;
+  background: #080d19;
+  border-left: 1px solid rgba(0, 255, 163, 0.22);
+  box-shadow: -15px 0 50px rgba(0, 0, 0, 0.8), 0 0 35px rgba(0, 255, 163, 0.08);
+  display: flex;
+  flex-direction: column;
+  z-index: 2510;
+  overflow: hidden;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  color: #f8fafc;
+  animation: yhodSlideInRight 0.32s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes yhodSlideInRight {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+/* ── HEADER ── */
+.yhod-header {
+  padding: 1.25rem 1.4rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(15, 23, 42, 0.5);
+}
+
+.yhod-header-left {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.yhod-back-btn {
+  background: none;
+  border: none;
+  color: #00FFA3;
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 0;
+  margin-bottom: 3px;
+  font-family: inherit;
+  transition: transform 0.15s ease, color 0.15s ease;
+}
+
+.yhod-back-btn:hover {
+  color: #ffffff;
+  transform: translateX(-3px);
+}
+
+.yhod-portal-badge {
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  color: #00FFA3;
+  text-transform: uppercase;
+}
+
+.yhod-title {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #ffffff;
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+.yhod-close-btn {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.05);
+  color: #94a3b8;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.yhod-close-btn:hover {
+  background: rgba(239, 68, 68, 0.2);
+  color: #f87171;
+  border-color: rgba(239, 68, 68, 0.4);
+  transform: rotate(90deg);
+}
+
+/* ── BODY ── */
+.yhod-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem;
+}
+
+.yhod-body::-webkit-scrollbar {
+  width: 4px;
+}
+
+.yhod-body::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 4px;
+}
+
+/* ── PROFILE CARD ── */
+.yhod-profile-card {
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.04) 0%, rgba(0, 255, 163, 0.03) 100%);
+  border: 1px solid rgba(0, 255, 163, 0.25);
+  border-radius: 18px;
+  padding: 1.35rem;
+  display: flex;
+  align-items: center;
+  gap: 1.1rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
+}
+
+.yhod-avatar-wrap {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.yhod-avatar-fallback {
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #00FFA3, #00c6ff);
+  color: #050811;
+  font-size: 1.4rem;
+  font-weight: 900;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 16px rgba(0, 255, 163, 0.45);
+}
+
+.yhod-avatar-img {
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #00FFA3;
+  box-shadow: 0 0 16px rgba(0, 255, 163, 0.4);
+}
+
+.yhod-status-dot {
+  position: absolute;
+  bottom: 2px;
+  right: 2px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #10b981;
+  border: 2px solid #080d19;
+  box-shadow: 0 0 8px #10b981;
+}
+
+.yhod-user-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  overflow: hidden;
+}
+
+.yhod-user-name {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: #ffffff;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.yhod-user-email {
+  font-size: 0.78rem;
+  color: #94a3b8;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.yhod-id-pill {
+  margin-top: 5px;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: rgba(0, 255, 163, 0.1);
+  border: 1px solid rgba(0, 255, 163, 0.3);
+  border-radius: 6px;
+  padding: 0.2rem 0.55rem;
+  width: fit-content;
+}
+
+.yhod-id-label {
+  font-size: 0.62rem;
+  font-weight: 800;
+  color: #64748b;
+  letter-spacing: 0.05em;
+}
+
+.yhod-id-val {
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: #00FFA3;
+  letter-spacing: 0.04em;
+}
+
+.yhod-school-tag {
+  margin-top: 4px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #cbd5e1;
+}
+
+/* ── MENU SECTION ── */
+.yhod-menu-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.yhod-section-label {
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  color: #64748b;
+  margin: 0 0 0.3rem 0.3rem;
+  text-transform: uppercase;
+}
+
+.yhod-menu-item {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 14px;
+  padding: 0.85rem 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  cursor: pointer;
+  outline: none;
+  font-family: inherit;
+  text-align: left;
+  transition: all 0.2s ease;
+}
+
+.yhod-menu-item:hover {
+  background: rgba(0, 255, 163, 0.07);
+  border-color: rgba(0, 255, 163, 0.35);
+  transform: translateX(-3px);
+}
+
+.yhod-item-icon {
+  font-size: 1.25rem;
+  flex-shrink: 0;
+}
+
+.yhod-item-text {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.yhod-item-title {
+  font-size: 0.86rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.yhod-item-sub {
+  font-size: 0.72rem;
+  color: #94a3b8;
+}
+
+.yhod-item-arrow {
+  color: #64748b;
+  font-size: 1rem;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.yhod-menu-item:hover .yhod-item-arrow {
+  color: #00FFA3;
+  transform: translateX(3px);
+}
+
+/* ── COMMITMENT BOX ── */
+.yhod-commitment-box {
+  background: rgba(99, 102, 241, 0.06);
+  border: 1px dashed rgba(99, 102, 241, 0.3);
+  border-radius: 12px;
+  padding: 0.9rem 1rem;
+}
+
+.yhod-commitment-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 4px;
+}
+
+.yhod-commitment-title {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #a5b4fc;
+}
+
+.yhod-commitment-desc {
+  font-size: 0.72rem;
+  color: #94a3b8;
+  margin: 0;
+  line-height: 1.45;
+}
+
+/* ── FOOTER ── */
+.yhod-footer {
+  padding: 1rem 1.4rem 1.4rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(15, 23, 42, 0.5);
+}
+
+.yhod-logout-btn {
+  width: 100%;
+  background: linear-gradient(135deg, rgba(239, 68, 68, 0.15), rgba(220, 38, 38, 0.25));
+  border: 1.5px solid rgba(239, 68, 68, 0.45);
+  color: #fca5a5;
+  border-radius: 12px;
+  padding: 0.8rem 1.2rem;
+  font-size: 0.9rem;
+  font-weight: 800;
+  cursor: pointer;
+  outline: none;
+  font-family: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 15px rgba(239, 68, 68, 0.15);
+}
+
+.yhod-logout-btn:hover {
+  background: rgba(239, 68, 68, 0.35);
+  border-color: #ef4444;
+  color: #ffffff;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(239, 68, 68, 0.3);
+}
+
+.yhod-logout-icon {
+  font-size: 1.05rem;
+}
+
+/* ── PROFILE DETAILS VIEW ── */
+.yhod-menu-item--highlight {
+  background: linear-gradient(135deg, rgba(0, 255, 163, 0.07), rgba(0, 198, 255, 0.05));
+  border-color: rgba(0, 255, 163, 0.25);
+}
+
+.yhod-menu-item--highlight:hover {
+  background: linear-gradient(135deg, rgba(0, 255, 163, 0.14), rgba(0, 198, 255, 0.1));
+  border-color: #00FFA3;
+}
+
+.yhod-details-view {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  animation: yhodFadeIn 0.25s ease-out;
+}
+
+.yhod-details-header-card {
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.04) 0%, rgba(0, 255, 163, 0.05) 100%);
+  border: 1px solid rgba(0, 255, 163, 0.28);
+  border-radius: 20px;
+  padding: 1.4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.4);
+}
+
+.yhod-details-avatar-large {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #00FFA3, #00c6ff);
+  font-size: 1.9rem;
+  font-weight: 900;
+  color: #050811;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.75rem;
+  box-shadow: 0 0 25px rgba(0, 255, 163, 0.5);
+}
+
+.yhod-details-avatar-img {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2.5px solid #00FFA3;
+}
+
+.yhod-details-name {
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: #ffffff;
+  margin: 0 0 0.4rem 0;
+}
+
+.yhod-details-role-badge {
+  display: inline-block;
+  background: rgba(0, 255, 163, 0.12);
+  color: #00FFA3;
+  font-size: 0.74rem;
+  font-weight: 700;
+  padding: 0.28rem 0.75rem;
+  border-radius: 20px;
+  border: 1px solid rgba(0, 255, 163, 0.3);
+}
+
+.yhod-fields-list {
+  background: rgba(255, 255, 255, 0.025);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 0.4rem 1.1rem;
+}
+
+.yhod-field-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.8rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  gap: 0.75rem;
+}
+
+.yhod-field-row:last-child {
+  border-bottom: none;
+}
+
+.yhod-field-label {
+  font-size: 0.8rem;
+  color: #94a3b8;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+.yhod-field-value {
+  font-size: 0.84rem;
+  color: #f1f5f9;
+  font-weight: 700;
+  text-align: right;
+  word-break: break-all;
+}
+
+.yhod-field-value--highlight {
+  color: #00FFA3;
+  font-family: monospace;
+  font-size: 0.88rem;
+  letter-spacing: 0.04em;
+}
+
+.yhod-status-active-badge {
+  color: #10b981;
+  font-weight: 800;
+}
+
+.yhod-back-to-menu-btn {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #cbd5e1;
+  border-radius: 12px;
+  padding: 0.75rem 1rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+  outline: none;
+  font-family: inherit;
+  transition: all 0.2s ease;
+  margin-top: 0.25rem;
+}
+
+.yhod-back-to-menu-btn:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.2);
+}

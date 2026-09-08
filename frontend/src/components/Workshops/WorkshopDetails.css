@@ -111,9 +111,11 @@
   }
 }
 
-.banner-overlay-btn {
+.banner-overlay-btn,
+.awaken-banner-overlay-btn,
+.workshop-details-page .banner-overlay-btn {
   position: absolute;
-  bottom: 42%;
+  bottom: 42.5% !important;
   left: 50%;
   transform: translate(-50%, 50%);
   z-index: 30;
@@ -940,7 +942,9 @@
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
   }
 
-  .banner-overlay-btn {
+  .banner-overlay-btn,
+  .awaken-banner-overlay-btn {
+    bottom: 47% !important;
     width: calc(100% - 24px) !important;
     max-width: 280px !important;
     border-radius: 50px !important;

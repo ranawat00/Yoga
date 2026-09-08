@@ -1,0 +1,439 @@
+/* ==========================================================
+   YHO Club Dedicated Student Portal Footer
+   Refined from Main Website Footer Reference (Beautiful & Compact)
+   ========================================================== */
+
+.yhof-footer {
+  position: relative;
+  background: linear-gradient(
+    180deg,
+    #050811 0%,
+    #091224 25%,
+    #051c19 65%,
+    #020b08 100%
+  );
+  color: #ffffff;
+  padding: 0 1.5rem 1.8rem 1.5rem;
+  overflow: hidden;
+  font-family: inherit;
+  box-sizing: border-box;
+  border-top: 1px solid rgba(0, 255, 163, 0.2);
+  margin-top: 40px;
+}
+
+/* Soft Emerald Top Glow */
+.yhof-top-glow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 90px;
+  background: radial-gradient(
+    ellipse 80% 70px at 50% 0%,
+    rgba(0, 255, 163, 0.3) 0%,
+    rgba(0, 200, 83, 0.12) 50%,
+    transparent 100%
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Atmospheric Twinkling Starfield */
+.yhof-stars-container {
+  position: absolute;
+  top: 10%;
+  left: 0;
+  width: 100%;
+  height: 90%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.yhof-star {
+  position: absolute;
+  background: #00FFA3;
+  border-radius: 50%;
+  opacity: 0.6;
+  box-shadow: 0 0 4px rgba(0, 255, 163, 0.8);
+  animation: yhof-twinkle var(--duration, 3s) infinite ease-in-out;
+}
+
+.yhof-star-1 { top: 15%; left: 12%; width: 2px; height: 2px; --duration: 2.5s; }
+.yhof-star-2 { top: 25%; left: 88%; width: 2.5px; height: 2.5px; --duration: 3.8s; }
+.yhof-star-3 { top: 45%; left: 24%; width: 2px; height: 2px; --duration: 3.1s; }
+.yhof-star-4 { top: 60%; left: 76%; width: 2px; height: 2px; --duration: 2.7s; }
+.yhof-star-5 { top: 35%; left: 54%; width: 1.5px; height: 1.5px; --duration: 4.0s; }
+.yhof-star-6 { top: 75%; left: 40%; width: 2.5px; height: 2.5px; --duration: 3.3s; }
+
+@keyframes yhof-twinkle {
+  0%, 100% { opacity: 0.25; transform: scale(0.85); }
+  50% { opacity: 1; transform: scale(1.35); }
+}
+
+/* Outer Container */
+.yhof-container {
+  max-width: 1040px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 5;
+  padding-top: 2.4rem;
+}
+
+/* ── BRAND HEADER WITH GLASS BADGE & DIVIDER LINE ── */
+.yhof-brand-header {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 2rem;
+}
+
+.yhof-brand-left {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  cursor: pointer;
+  width: fit-content;
+}
+
+.yhof-logo-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(10px);
+  padding: 6px 10px;
+  border-radius: 12px;
+  border: 1px solid rgba(0, 255, 163, 0.25);
+  box-shadow: 0 0 14px rgba(0, 255, 163, 0.12);
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.yhof-brand-left:hover .yhof-logo-badge {
+  border-color: #00FFA3;
+  box-shadow: 0 0 20px rgba(0, 255, 163, 0.3);
+}
+
+.yhof-brand-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.yhof-domain-title {
+  font-size: 1.25rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+  color: #ffffff;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.yhof-tagline-sub {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  color: #00FFA3;
+  text-transform: uppercase;
+}
+
+.yhof-divider-line {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    rgba(0, 255, 163, 0.5) 0%,
+    rgba(255, 255, 255, 0.15) 60%,
+    transparent 100%
+  );
+}
+
+/* ── CONTENT GRID ── */
+.yhof-content-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  gap: 3.5rem;
+  align-items: start;
+  margin-bottom: 2rem;
+}
+
+/* Side-by-Side Links Group (Quick Links + Safe Space in 1 Line) */
+.yhof-nav-group {
+  display: flex;
+  flex-direction: row;
+  gap: 2.5rem;
+  width: 100%;
+}
+
+.yhof-nav-group .yhof-nav-col {
+  flex: 1;
+}
+
+.yhof-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.yhof-col-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0 0 1rem 0;
+  letter-spacing: 0.3px;
+}
+
+/* Nav Lists */
+.yhof-nav-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.yhof-nav-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  color: rgba(255, 255, 255, 0.82);
+  font-size: 0.9rem;
+  font-weight: 500;
+  font-family: inherit;
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.2s ease;
+  display: inline-block;
+}
+
+.yhof-nav-btn:hover {
+  color: #00FFA3;
+  transform: translateX(4px);
+  text-shadow: 0 0 8px rgba(0, 255, 163, 0.6);
+}
+
+.yhof-static-badge {
+  color: rgba(255, 255, 255, 0.65);
+  font-size: 0.86rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* ── NEWSLETTER COLUMN ── */
+.yhof-newsletter-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  width: 100%;
+}
+
+.yhof-input-wrap {
+  position: relative;
+  width: 100%;
+}
+
+.yhof-field {
+  width: 100%;
+  padding: 0.75rem 1.2rem;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 30px;
+  color: #ffffff;
+  font-family: inherit;
+  font-size: 0.88rem;
+  outline: none;
+  box-sizing: border-box;
+  transition: all 0.25s ease;
+}
+
+.yhof-field::placeholder {
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.yhof-field:focus {
+  border-color: #00FFA3;
+  background: rgba(255, 255, 255, 0.12);
+  box-shadow: 0 0 14px rgba(0, 255, 163, 0.2);
+}
+
+.yhof-btn-subscribe {
+  width: 100%;
+  padding: 0.75rem;
+  background: linear-gradient(135deg, #00FFA3 0%, #00C853 100%);
+  color: #04190e;
+  border: none;
+  border-radius: 30px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.yhof-btn-subscribe:hover {
+  filter: brightness(1.1);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 255, 163, 0.35);
+}
+
+.yhof-arrow {
+  font-size: 0.85rem;
+  transition: transform 0.2s ease;
+}
+
+.yhof-btn-subscribe:hover .yhof-arrow {
+  transform: translateX(4px);
+}
+
+/* ── CONNECT & SOCIAL SUBBLOCK UNDER NEWSLETTER ── */
+.yhof-social-subblock {
+  margin-top: 1.4rem;
+  padding-top: 1rem;
+  border-top: 1px dashed rgba(255, 255, 255, 0.14);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+}
+
+.yhof-helpline-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(0, 255, 163, 0.2);
+  padding: 5px 12px;
+  border-radius: 20px;
+  color: #e2e8f0;
+  font-size: 0.78rem;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.yhof-helpline-pill:hover {
+  background: rgba(0, 255, 163, 0.1);
+  border-color: #00FFA3;
+}
+
+.yhof-pulse-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #00FFA3;
+  box-shadow: 0 0 6px #00FFA3;
+  display: inline-block;
+}
+
+.yhof-social-row {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.yhof-social-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.25s ease;
+  text-decoration: none;
+}
+
+.yhof-social-btn svg {
+  width: 16px;
+  height: 16px;
+  fill: #ffffff;
+  transition: transform 0.2s ease;
+}
+
+.yhof-social-btn:hover {
+  background: #00FFA3;
+  border-color: #00FFA3;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 255, 163, 0.35);
+}
+
+.yhof-social-btn:hover svg {
+  fill: #03170c;
+  transform: scale(1.1);
+}
+
+/* ── BOTTOM BAR ── */
+.yhof-bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding-top: 1.2rem;
+  text-align: center;
+}
+
+.yhof-copyright {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.55);
+  margin: 0;
+}
+
+/* ── RESPONSIVENESS ── */
+@media (max-width: 820px) {
+  .yhof-content-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    margin-bottom: 1.6rem;
+  }
+}
+
+@media (max-width: 540px) {
+  .yhof-footer {
+    padding: 0 1rem 1.4rem 1rem;
+    margin-top: 30px;
+  }
+
+  .yhof-container {
+    padding-top: 1.8rem;
+  }
+
+  .yhof-brand-header {
+    margin-bottom: 1.4rem;
+  }
+
+  .yhof-brand-left {
+    gap: 0.8rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .yhof-domain-title {
+    font-size: 1.1rem;
+  }
+
+  .yhof-tagline-sub {
+    font-size: 0.62rem;
+    letter-spacing: 2px;
+  }
+
+  .yhof-nav-group {
+    gap: 1.2rem;
+  }
+
+  .yhof-col-title {
+    font-size: 0.92rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .yhof-nav-btn,
+  .yhof-static-badge {
+    font-size: 0.82rem;
+  }
+
+  .yhof-social-subblock {
+    margin-top: 1rem;
+    padding-top: 0.8rem;
+    justify-content: center;
+  }
+}

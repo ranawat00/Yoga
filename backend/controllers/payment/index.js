@@ -1,5 +1,7 @@
 const razorpayPaymentController = require('./razorpayPaymentController');
+const paypalPaymentController = require('./paypalPaymentController');
 
 module.exports = {
-  ...razorpayPaymentController
+  ...razorpayPaymentController,
+  ...paypalPaymentController
 };

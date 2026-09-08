@@ -119,6 +119,15 @@ export default function AuthPage() {
   };
 
   const handleGoogleSignIn = () => {
+    // If accessed via local IP (192.168.x.x), automatically redirect to localhost:3000 so Google OAuth succeeds
+    const isIpAddress = /^(\d{1,3}\.){3}\d{1,3}$/.test(window.location.hostname);
+    if (isIpAddress && window.location.hostname !== '127.0.0.1') {
+      sessionStorage.setItem('auth_auto_google_auth', 'true');
+      const targetPort = window.location.port ? `:${window.location.port}` : ':3000';
+      window.location.href = `${window.location.protocol}//localhost${targetPort}${window.location.pathname}${window.location.search}`;
+      return;
+    }
+
     const clientId = process.env.REACT_APP_GOOGLE_CLIENT_ID || '651592002683-v97jd6mn9ha5g16ve8iv4jg3q340cv07.apps.googleusercontent.com';
     
     if (!clientId) {
@@ -126,7 +135,7 @@ export default function AuthPage() {
       return;
     }
 
-    const redirectUri = encodeURIComponent(`${window.location.origin}`);
+    const redirectUri = encodeURIComponent(`${window.location.protocol}//localhost:${window.location.port || '3000'}`);
     const scope = encodeURIComponent('openid profile email');
     const googleAuthUrl = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${clientId}&redirect_uri=${redirectUri}&response_type=token&scope=${scope}&prompt=select_account`;
     
@@ -148,10 +157,13 @@ export default function AuthPage() {
     }
   };
 
-
-
-
-
+  // Auto-launch Google Sign-In if we just redirected from local IP to localhost
+  useEffect(() => {
+    if (sessionStorage.getItem('auth_auto_google_auth') === 'true') {
+      sessionStorage.removeItem('auth_auto_google_auth');
+      handleGoogleSignIn();
+    }
+  }, []);
   const handleClose = () => {
     setView('home');
     setAuthRole('user');

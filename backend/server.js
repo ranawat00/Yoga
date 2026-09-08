@@ -42,10 +42,18 @@ const corsOptions = {
 };
 app.use(cors(corsOptions));
 
-// Body parser (JSON & URL-encoded payload support with 15MB limit for base64 resumes)
-app.use(express.json({ limit: '15mb' }));
+// Body parser (JSON & URL-encoded payload support with rawBody capture for payment webhooks)
+app.use(express.json({
+  limit: '15mb',
+  verify: (req, res, buf) => {
+    req.rawBody = buf;
+  }
+}));
 app.use(express.urlencoded({ limit: '15mb', extended: true }));
 app.use(cookieParser());
+
+// Ignore browser favicon requests
+app.get('/favicon.ico', (req, res) => res.status(204).end());
 
 // Basic status check route
 app.get('/api/status', (req, res) => {

@@ -7,6 +7,7 @@ import MediaLogos from '../../components/MediaLogos/MediaLogos';
 import coachDoctorImg from '../../assets/yho_club/coach_doctor.png';
 import coachTrainerImg from '../../assets/yho_club/coach_trainer.png';
 import coachYogaImg from '../../assets/yho_club/coach_yoga.png';
+import YHOClubFooter from './YHOClubFooter';
 
 export default function YHOClubHome() {
   const { user, setIsRegisterModalOpen, setView } = useApp();
@@ -20,7 +21,7 @@ export default function YHOClubHome() {
   };
 
   const stats = [
-    { value: '20+', label: 'Million Students' },
+    { value: '20+', label: 'Students' },
     { value: '50+', label: 'Expert Coaches' },
     { value: '5', label: 'Days Free' },
     { value: '24/7', label: 'Peer Support' },
@@ -266,6 +267,9 @@ export default function YHOClubHome() {
           </div>
         </div>
       </section>
+
+      {/* ── FOOTER (Dedicated YHO Club Portal Footer) ── */}
+      <YHOClubFooter />
     </div>
   );
 }
