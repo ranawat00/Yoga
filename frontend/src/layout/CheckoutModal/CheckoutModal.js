@@ -4,6 +4,9 @@ import Logo from '../../common/Logo/Logo';
 import { useApp } from '../../hooks/useApp';
 import { createOrder, verifyPayment } from '../../api/payment';
 import { createOrderRecord } from '../../api/orders';
+import { RazorpayLogo, RazorpayIcon, PayPalLogo, PayPalIcon } from '../../common/PaymentLogos/PaymentLogos';
+import PayPalButton from '../../common/PaymentLogos/PayPalButton';
+import RazorpayButton from '../../common/PaymentLogos/RazorpayButton';
 
 // Dynamic script loader for Razorpay Checkout
 const loadRazorpayScript = () => {
@@ -116,8 +119,124 @@ export default function CheckoutModal() {
     }
   };
 
+  const handlePayPalSuccess = async (details) => {
+    setIsSubmitting(true);
+    setOrderedItems([...cartItems]);
+    setOrderTotals({ subtotal, shipping, gst, total });
+    setOrderDate(new Date().toLocaleDateString('en-IN', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit'
+    }));
+
+    const paymentId = details.id || `PAYPAL_${Date.now()}`;
+    const orderPayload = {
+      name: formData.name,
+      email: formData.email,
+      phone: formData.phone,
+      address: formData.address,
+      city: formData.city,
+      pincode: formData.pincode,
+      items: cartItems.map(item => ({
+        product: {
+          id: item.product.id || item.product._id,
+          title: item.product.title,
+          price: item.product.price,
+          image: item.product.image || ''
+        },
+        quantity: item.quantity
+      })),
+      subtotal,
+      shipping,
+      gst,
+      total,
+      paymentMethod: 'PAYPAL',
+      paymentId: paymentId
+    };
+
+    try {
+      const orderRes = await createOrderRecord(orderPayload);
+      if (orderRes.success) {
+        setOrderRef(paymentId);
+        setStep(3); // Go to Success Screen
+        onCheckoutSuccess(); // Clear cart
+        addNotification('Payment successful! Your order has been placed via PayPal.', 'success');
+      } else {
+        addNotification(orderRes.message || 'Payment verified but failed to save order details.', 'error');
+      }
+    } catch (err) {
+      console.error('Error saving PayPal order:', err);
+      addNotification(err.message || 'Error saving order details.', 'error');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const handleRazorpaySuccess = async (response) => {
+    setIsSubmitting(true);
+    setOrderedItems([...cartItems]);
+    setOrderTotals({ subtotal, shipping, gst, total });
+    setOrderDate(new Date().toLocaleDateString('en-IN', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit'
+    }));
+
+    const paymentId = response.razorpay_payment_id || `RZP_${Date.now()}`;
+    const orderPayload = {
+      name: formData.name,
+      email: formData.email,
+      phone: formData.phone,
+      address: formData.address,
+      city: formData.city,
+      pincode: formData.pincode,
+      items: cartItems.map(item => ({
+        product: {
+          id: item.product.id || item.product._id,
+          title: item.product.title,
+          price: item.product.price,
+          image: item.product.image || ''
+        },
+        quantity: item.quantity
+      })),
+      subtotal,
+      shipping,
+      gst,
+      total,
+      paymentMethod: formData.paymentMethod === 'CARD' ? 'CARD' : 'UPI',
+      paymentId: paymentId
+    };
+
+    try {
+      const orderRes = await createOrderRecord(orderPayload);
+      if (orderRes.success) {
+        setOrderRef(paymentId);
+        setStep(3); // Go to Success Screen
+        onCheckoutSuccess(); // Clear cart
+        addNotification('Payment successful! Your order has been placed via Razorpay.', 'success');
+      } else {
+        addNotification(orderRes.message || 'Payment verified but failed to save order details.', 'error');
+      }
+    } catch (err) {
+      console.error('Error saving Razorpay order:', err);
+      addNotification(err.message || 'Error saving order details.', 'error');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   const handlePlaceOrder = async (e) => {
     e.preventDefault();
+
+    if (formData.paymentMethod === 'PAYPAL' || formData.paymentMethod === 'UPI' || formData.paymentMethod === 'CARD') {
+      // Direct payments are handled through the respective Razorpay / PayPal buttons
+      return;
+    }
+
     setIsSubmitting(true);
 
     // Capture snapshot for receipt display
@@ -444,15 +563,12 @@ export default function CheckoutModal() {
                       className="payment-radio"
                     />
                     <div className="payment-card-content">
-                      <div className="payment-card-icon">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                          <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
-                          <line x1="12" y1="18" x2="12.01" y2="18"></line>
-                        </svg>
+                      <div className="payment-card-icon" style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
+                        <RazorpayIcon size={24} />
                       </div>
                       <div className="payment-card-info">
-                        <span className="payment-method-name">UPI / GPay / PhonePe</span>
-                        <span className="payment-method-desc">Instant digital transfer</span>
+                        <span className="payment-method-name">UPI (Razorpay)</span>
+                        <span className="payment-method-desc">GPay, PhonePe, Paytm</span>
                       </div>
                     </div>
                   </label>
@@ -468,15 +584,36 @@ export default function CheckoutModal() {
                       className="payment-radio"
                     />
                     <div className="payment-card-content">
-                      <div className="payment-card-icon">
+                      <div className="payment-card-icon" style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                           <rect x="2" y="5" width="20" height="14" rx="2" ry="2"></rect>
                           <line x1="2" y1="10" x2="22" y2="10"></line>
                         </svg>
                       </div>
                       <div className="payment-card-info">
-                        <span className="payment-method-name">Credit / Debit Card</span>
-                        <span className="payment-method-desc">Visa, Mastercard, RuPay</span>
+                        <span className="payment-method-name">Cards (Razorpay)</span>
+                        <span className="payment-method-desc">Visa, Master, RuPay</span>
+                      </div>
+                    </div>
+                  </label>
+
+                  {/* PayPal */}
+                  <label className={`payment-option-card paypal-card ${formData.paymentMethod === 'PAYPAL' ? 'selected' : ''}`}>
+                    <input
+                      type="radio"
+                      name="paymentMethod"
+                      value="PAYPAL"
+                      checked={formData.paymentMethod === 'PAYPAL'}
+                      onChange={handleInputChange}
+                      className="payment-radio"
+                    />
+                    <div className="payment-card-content">
+                      <div className="payment-card-icon paypal-icon" style={{ display: 'flex', alignItems: 'center' }}>
+                        <PayPalIcon size={24} />
+                      </div>
+                      <div className="payment-card-info">
+                        <span className="payment-method-name">PayPal</span>
+                        <span className="payment-method-desc">Intl Cards & Balance</span>
                       </div>
                     </div>
                   </label>
@@ -510,21 +647,103 @@ export default function CheckoutModal() {
                 {/* Conditional Form Render based on Payment Choice */}
                 <div className="payment-details-form animate-fade-in">
                   {formData.paymentMethod === 'UPI' && (
-                    <div className="cod-info-container">
-                      <div className="cod-info-icon">⚡</div>
-                      <div className="cod-info-text">
-                        <strong>UPI Payment via Razorpay</strong>
-                        <p>Pay instantly using GPay, PhonePe, Paytm, or any UPI app via the secure Razorpay gateway.</p>
+                    <div className="cod-info-container" style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
+                      <div style={{ display: 'flex', gap: '12px', alignItems: 'flex-start' }}>
+                        <div className="cod-info-icon" style={{ display: 'flex', alignItems: 'center' }}>
+                          <RazorpayIcon size={28} />
+                        </div>
+                        <div className="cod-info-text">
+                          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '4px' }}>
+                            <strong>UPI Instant Transfer</strong>
+                            <span style={{ display: 'inline-flex', padding: '2px 6px', background: 'rgba(12, 35, 64, 0.08)', borderRadius: '4px' }}>
+                              <RazorpayLogo height={14} />
+                            </span>
+                          </div>
+                          <p style={{ margin: 0 }}>Pay instantly using GPay, PhonePe, Paytm, or any UPI app via the secure Razorpay gateway.</p>
+                        </div>
+                      </div>
+
+                      <div style={{ width: '100%', borderTop: '1px solid rgba(12, 35, 64, 0.1)', paddingTop: '12px' }}>
+                        <RazorpayButton
+                          amount={total}
+                          currency="INR"
+                          description={`Yoga Healers Purchase (${cartItems.length} items)`}
+                          prefill={{
+                            name: formData.name,
+                            email: formData.email,
+                            contact: formData.phone
+                          }}
+                          onSuccess={handleRazorpaySuccess}
+                          onError={(err) => addNotification('Payment encountered an issue. Please try again.', 'error')}
+                          onDismiss={() => addNotification('Payment was cancelled.', 'info')}
+                          text={`Pay ₹${total.toLocaleString()} via UPI`}
+                        />
                       </div>
                     </div>
                   )}
 
                   {formData.paymentMethod === 'CARD' && (
-                    <div className="cod-info-container">
-                      <div className="cod-info-icon">💳</div>
-                      <div className="cod-info-text">
-                        <strong>Credit / Debit Card via Razorpay</strong>
-                        <p>Pay securely using Visa, Mastercard, RuPay, or Maestro card via the secure Razorpay gateway.</p>
+                    <div className="cod-info-container" style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
+                      <div style={{ display: 'flex', gap: '12px', alignItems: 'flex-start' }}>
+                        <div className="cod-info-icon" style={{ display: 'flex', alignItems: 'center' }}>
+                          <RazorpayIcon size={28} />
+                        </div>
+                        <div className="cod-info-text">
+                          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '4px' }}>
+                            <strong>Credit / Debit Card</strong>
+                            <span style={{ display: 'inline-flex', padding: '2px 6px', background: 'rgba(12, 35, 64, 0.08)', borderRadius: '4px' }}>
+                              <RazorpayLogo height={14} />
+                            </span>
+                          </div>
+                          <p style={{ margin: 0 }}>Pay securely using Visa, Mastercard, RuPay, or Maestro card via the secure Razorpay gateway.</p>
+                        </div>
+                      </div>
+
+                      <div style={{ width: '100%', borderTop: '1px solid rgba(12, 35, 64, 0.1)', paddingTop: '12px' }}>
+                        <RazorpayButton
+                          amount={total}
+                          currency="INR"
+                          description={`Yoga Healers Purchase (${cartItems.length} items)`}
+                          prefill={{
+                            name: formData.name,
+                            email: formData.email,
+                            contact: formData.phone
+                          }}
+                          onSuccess={handleRazorpaySuccess}
+                          onError={(err) => addNotification('Payment encountered an issue. Please try again.', 'error')}
+                          onDismiss={() => addNotification('Payment was cancelled.', 'info')}
+                          text={`Pay ₹${total.toLocaleString()} with Card`}
+                        />
+                      </div>
+                    </div>
+                  )}
+
+                  {formData.paymentMethod === 'PAYPAL' && (
+                    <div className="cod-info-container paypal-info-container" style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
+                      <div style={{ display: 'flex', gap: '12px', alignItems: 'flex-start' }}>
+                        <div className="cod-info-icon paypal-badge-icon">
+                          <PayPalIcon size={28} />
+                        </div>
+                        <div className="cod-info-text">
+                          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '4px' }}>
+                            <strong>PayPal & International Cards</strong>
+                            <span style={{ display: 'inline-flex', padding: '2px 6px', background: 'rgba(0, 121, 193, 0.1)', borderRadius: '4px' }}>
+                              <PayPalLogo height={15} />
+                            </span>
+                          </div>
+                          <p style={{ margin: 0 }}>Pay securely via your PayPal account or International Cards (Visa, Mastercard, Amex, Discover). Total ₹{total.toLocaleString()} converts to approx. <strong>${(total / 85).toFixed(2)} USD</strong> for global checkout.</p>
+                        </div>
+                      </div>
+
+                      <div style={{ width: '100%', borderTop: '1px solid rgba(0, 121, 193, 0.15)', paddingTop: '12px' }}>
+                        <PayPalButton
+                          amount={parseFloat((total / 85).toFixed(2))}
+                          currency="USD"
+                          description={`Yoga Healers Cart Order (${cartItems.length} items)`}
+                          onSuccess={handlePayPalSuccess}
+                          onError={(err) => addNotification((err && err.message) || 'PayPal payment encountered an issue. Please try again.', 'error')}
+                          onCancel={() => addNotification('PayPal payment was cancelled.', 'info')}
+                        />
                       </div>
                     </div>
                   )}
@@ -544,16 +763,22 @@ export default function CheckoutModal() {
                   <button type="button" className="checkout-btn-back" onClick={handleBackStep}>
                     Back
                   </button>
-                  <button type="submit" className="checkout-btn-next" disabled={isSubmitting}>
-                    {isSubmitting ? (
-                      <span className="submitting-spinner-container">
-                        <span className="spinner-loader"></span>
-                        Processing...
-                      </span>
-                    ) : (
-                      `Pay ₹${total.toLocaleString()}`
-                    )}
-                  </button>
+                  {formData.paymentMethod === 'COD' ? (
+                    <button type="submit" className="checkout-btn-next" disabled={isSubmitting}>
+                      {isSubmitting ? (
+                        <span className="submitting-spinner-container">
+                          <span className="spinner-loader"></span>
+                          Processing...
+                        </span>
+                      ) : (
+                        'Place Order (COD)'
+                      )}
+                    </button>
+                  ) : (
+                    <div style={{ fontSize: '0.85rem', color: formData.paymentMethod === 'PAYPAL' ? '#003087' : '#0C2340', display: 'flex', alignItems: 'center', gap: '6px', fontWeight: 500 }}>
+                      <span>👉 Complete checkout using the {formData.paymentMethod === 'PAYPAL' ? 'PayPal' : 'Razorpay'} button above</span>
+                    </div>
+                  )}
                 </div>
               </form>
             )}

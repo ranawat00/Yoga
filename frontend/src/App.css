@@ -178,31 +178,62 @@ section {
   gap: 1rem;
 }
 
-/* Mobile Responsive Form Alignment & Modal Layouts */
+/* Mobile & Tablet Responsive Form Alignment & Modal Layouts */
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
 @media (max-width: 600px) {
   .form-row {
     grid-template-columns: 1fr;
-    gap: 0.8rem;
+    gap: 0.6rem;
   }
 
   .modal-overlay {
-    padding: 0.75rem;
+    padding: 0.5rem;
   }
 
   .modal-content {
-    max-height: 94vh;
+    max-height: 92vh;
     border-radius: var(--border-radius-md);
+    -webkit-overflow-scrolling: touch;
   }
 
-  .modal-header,
-  .modal-body,
-  .modal-footer {
-    padding-left: 1.25rem;
-    padding-right: 1.25rem;
+  .modal-header {
+    padding: 1.25rem 1.25rem 0.5rem;
   }
 
   .modal-header h2 {
-    font-size: 1.5rem;
+    font-size: 1.35rem;
+  }
+
+  .modal-body {
+    padding: 0.75rem 1.25rem;
+  }
+
+  .modal-footer {
+    padding: 0 1.25rem max(1.25rem, env(safe-area-inset-bottom, 20px));
   }
 }
+
+/* PayPal Smart Button Wrapper - Clean & Responsive */
+.paypal-smart-button-wrapper {
+  width: 100%;
+  position: relative;
+  min-height: 46px;
+  z-index: 10;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.paypal-buttons-container {
+  width: 100% !important;
+  min-height: 46px !important;
+  touch-action: manipulation !important;
+  -webkit-tap-highlight-color: transparent !important;
+}
+
+
 

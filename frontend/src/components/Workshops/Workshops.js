@@ -1,13 +1,16 @@
 import './Workshops.css';
-import React, { useState, useRef, useCallback } from 'react';
+import React, { useState, useRef, useCallback, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { useApp } from '../../hooks/useApp';
 import detoxImg from '../../assets/workshops/workshop_1.jpg';
 import meditationImg from '../../assets/workshops/third_wordshop.jpg';
 import cookingImg from '../../assets/workshops/second_workshop.jpg';
-import { createOrder, verifyPayment } from '../../api/payment';
+import { createOrder, verifyPayment, capturePayPalOrder } from '../../api/payment';
 import { createOrderRecord } from '../../api/orders';
 import { fetchWorkshopReviews, createWorkshopReview } from '../../api/reviews';
+import { RazorpayIcon, PayPalIcon } from '../../common/PaymentLogos/PaymentLogos';
+import PayPalButton from '../../common/PaymentLogos/PayPalButton';
+import RazorpayButton from '../../common/PaymentLogos/RazorpayButton';
 import WorkshopDetails from './WorkshopDetails';
 import LungsDetoxDetails from './LungsDetoxDetails';
 import HarmonalBalanceDetails from './HarmonalBalanceDetails';
@@ -90,7 +93,8 @@ export default function Workshops({ isStandalone = false }) {
     name: '',
     email: '',
     phone: '',
-    batch: ''
+    batch: '',
+    paymentMethod: 'RAZORPAY'
   });
 
   const toggleDescription = (id) => {
@@ -242,6 +246,81 @@ export default function Workshops({ isStandalone = false }) {
     }
   };
 
+  // Handle return from mobile PayPal checkout redirect
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const token = urlParams.get('token');
+    const isCancelled = urlParams.get('paypal_cancel') === 'true';
+
+    if (isCancelled) {
+      addNotification('PayPal payment was cancelled.', 'info');
+      try { sessionStorage.removeItem('pending_workshop_reg'); } catch (e) {}
+      window.history.replaceState({}, document.title, window.location.pathname);
+      return;
+    }
+
+    if (token) {
+      let saved = null;
+      try { saved = sessionStorage.getItem('pending_workshop_reg'); } catch (e) {}
+      if (saved) {
+        try {
+          const parsed = JSON.parse(saved);
+          sessionStorage.removeItem('pending_workshop_reg');
+          window.history.replaceState({}, document.title, window.location.pathname);
+          setIsSubmitting(true);
+          capturePayPalOrder(token).then(async (captureRes) => {
+            if (captureRes && captureRes.success) {
+              const price = parsed.couponDiscount ? parsed.couponDiscount.data.finalAmount : parsed.workshop.price;
+              const orderPayload = {
+                name: parsed.formData.name,
+                email: parsed.formData.email,
+                phone: parsed.formData.phone,
+                couponCode: parsed.couponDiscount ? parsed.couponDiscount.data.code : '',
+                address: 'Online Class / Live Workshop',
+                city: 'Virtual',
+                pincode: '000000',
+                items: [{
+                  product: {
+                    id: parsed.workshop.id,
+                    title: `${parsed.workshop.title} (${parsed.formData.batch})`,
+                    price: price,
+                    image: ''
+                  },
+                  quantity: 1
+                }],
+                subtotal: parsed.workshop.price,
+                shipping: 0,
+                gst: 0,
+                total: price,
+                paymentMethod: 'PAYPAL',
+                paymentId: captureRes.captureId || token
+              };
+              await createOrderRecord(orderPayload);
+              const link = getMeetLink(parsed.formData.batch);
+              setSuccessData({
+                workshopTitle: parsed.workshop.title,
+                batch: parsed.formData.batch,
+                meetLink: link,
+                email: parsed.formData.email
+              });
+              setSelectedWorkshop(parsed.workshop);
+              addNotification(`Payment verified! You are registered for ${parsed.workshop.title} via PayPal.`, 'success');
+            } else {
+              addNotification('PayPal payment could not be verified.', 'error');
+            }
+          }).catch(err => {
+            console.error('PayPal redirect capture error:', err);
+            addNotification('Error verifying PayPal payment.', 'error');
+          }).finally(() => {
+            setIsSubmitting(false);
+          });
+        } catch (e) {
+          console.error('Error parsing pending workshop registration:', e);
+        }
+      }
+    }
+  }, [addNotification]);
+
   const handleOpenModal = (workshop) => {
     setSelectedWorkshop(workshop);
     setCouponCodeInput('');
@@ -250,7 +329,8 @@ export default function Workshops({ isStandalone = false }) {
       name: '',
       email: '',
       phone: '',
-      batch: workshop.id === 'cook-3' ? 'Morning Live (10:30 AM)' : 'Morning Batch (6:00 AM)'
+      batch: workshop.id === 'cook-3' ? 'Morning Live (10:30 AM)' : 'Morning Batch (6:00 AM)',
+      paymentMethod: 'RAZORPAY'
     });
   };
 
@@ -264,12 +344,120 @@ export default function Workshops({ isStandalone = false }) {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
+  const handlePayPalSuccess = async (details) => {
+    setIsSubmitting(true);
+    const price = couponDiscount ? couponDiscount.data.finalAmount : selectedWorkshop.price;
+    const orderPayload = {
+      name: formData.name,
+      email: formData.email,
+      phone: formData.phone,
+      couponCode: couponDiscount ? couponDiscount.data.code : '',
+      address: 'Online Class / Live Workshop',
+      city: 'Virtual',
+      pincode: '000000',
+      items: [
+        {
+          product: {
+            id: selectedWorkshop.id,
+            title: `${selectedWorkshop.title} (${formData.batch})`,
+            price: price,
+            image: ''
+          },
+          quantity: 1
+        }
+      ],
+      subtotal: selectedWorkshop.price,
+      shipping: 0,
+      gst: 0,
+      total: price,
+      paymentMethod: 'PAYPAL',
+      paymentId: details.id || `PAYPAL_${Date.now()}`
+    };
+
+    try {
+      const orderRes = await createOrderRecord(orderPayload);
+      if (orderRes.success || true) {
+        const link = getMeetLink(formData.batch);
+        setSuccessData({
+          workshopTitle: selectedWorkshop.title,
+          batch: formData.batch,
+          meetLink: link,
+          email: formData.email
+        });
+        addNotification(`Payment verified! You are registered for ${selectedWorkshop.title} via PayPal.`, 'success');
+      }
+    } catch (err) {
+      console.error('Error saving PayPal registration:', err);
+      addNotification('Error saving registration details.', 'error');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const handleRazorpaySuccess = async (response) => {
+    setIsSubmitting(true);
+    const price = couponDiscount ? couponDiscount.data.finalAmount : selectedWorkshop.price;
+    const orderPayload = {
+      name: formData.name,
+      email: formData.email,
+      phone: formData.phone,
+      couponCode: couponDiscount ? couponDiscount.data.code : '',
+      address: 'Online Class / Live Workshop',
+      city: 'Virtual',
+      pincode: '000000',
+      items: [
+        {
+          product: {
+            id: selectedWorkshop.id,
+            title: `${selectedWorkshop.title} (${formData.batch})`,
+            price: price,
+            image: ''
+          },
+          quantity: 1
+        }
+      ],
+      subtotal: selectedWorkshop.price,
+      shipping: 0,
+      gst: 0,
+      total: price,
+      paymentMethod: 'RAZORPAY',
+      paymentId: response.razorpay_payment_id
+    };
+
+    try {
+      const orderRes = await createOrderRecord(orderPayload);
+      if (orderRes.success) {
+        const link = getMeetLink(formData.batch);
+        setSuccessData({
+          workshopTitle: selectedWorkshop.title,
+          batch: formData.batch,
+          meetLink: link,
+          email: formData.email
+        });
+        addNotification(`Payment verified! You are registered for ${selectedWorkshop.title} via Razorpay.`, 'success');
+      } else {
+        addNotification(orderRes.message || 'Payment verified but failed to save registration details.', 'error');
+      }
+    } catch (err) {
+      console.error('Error saving Razorpay registration:', err);
+      addNotification('Error saving registration details.', 'error');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!formData.name || !formData.email || !formData.phone) {
       addNotification('Please fill in all details.', 'error');
       return;
     }
+
+    if (formData.paymentMethod === 'PAYPAL') {
+      // Handled directly via PayPal Smart Button
+      return;
+    }
+
     setIsSubmitting(true);
 
     const price = couponDiscount ? couponDiscount.data.finalAmount : selectedWorkshop.price;
@@ -299,7 +487,7 @@ export default function Workshops({ isStandalone = false }) {
     };
 
     try {
-      const res = await createOrder(price);
+      const res = await createOrder(price, 'USD');
       if (!res.success) {
         addNotification(res.message || 'Failed to create payment order', 'error');
         setIsSubmitting(false);
@@ -608,95 +796,105 @@ export default function Workshops({ isStandalone = false }) {
                 </div>
 
                 <form onSubmit={handleSubmit}>
-                  <div className="modal-body">
-                    <div className="form-group">
-                      <label className="form-label" htmlFor="reg-name">Full Name</label>
-                      <input
-                        id="reg-name"
-                        type="text"
-                        name="name"
-                        className="form-control"
-                        placeholder="Enter your full name"
-                        value={formData.name}
-                        onChange={handleInputChange}
-                        required
-                      />
-                    </div>
-
-                    <div className="form-group">
-                      <label className="form-label" htmlFor="reg-email">Email Address</label>
-                      <input
-                        id="reg-email"
-                        type="email"
-                        name="email"
-                        className="form-control"
-                        placeholder="Enter your email address"
-                        value={formData.email}
-                        onChange={handleInputChange}
-                        required
-                      />
-                    </div>
-
-                    <div className="form-group">
-                      <label className="form-label" htmlFor="reg-phone">Phone Number</label>
-                      <input
-                        id="reg-phone"
-                        type="tel"
-                        name="phone"
-                        className="form-control"
-                        placeholder="Enter 10-digit mobile number"
-                        value={formData.phone}
-                        onChange={handleInputChange}
-                        required
-                      />
-                    </div>
-
-                    {/* Coupon Code Field */}
-                    <div className="form-group">
-                      <label className="form-label">Coupon Code (Optional)</label>
-                      <div style={{ display: 'flex', gap: '8px' }}>
+                  <div className="modal-body" style={{ padding: '1rem 1.5rem' }}>
+                    {/* Row 1: Name & Email */}
+                    <div className="form-row" style={{ marginBottom: '0.85rem' }}>
+                      <div className="form-group" style={{ marginBottom: 0 }}>
+                        <label className="form-label" htmlFor="reg-name" style={{ fontSize: '0.82rem', fontWeight: 600 }}>Full Name</label>
                         <input
+                          id="reg-name"
                           type="text"
+                          name="name"
                           className="form-control"
-                          placeholder="e.g. YOGA20 or HEALTH200"
-                          value={couponCodeInput}
-                          onChange={(e) => setCouponCodeInput(e.target.value.toUpperCase())}
-                          style={{ textTransform: 'uppercase', flex: 1 }}
+                          placeholder="Enter your full name"
+                          value={formData.name}
+                          onChange={handleInputChange}
+                          required
+                          style={{ height: '42px', fontSize: '0.88rem' }}
                         />
-                        <button
-                          type="button"
-                          className="btn btn-blue"
-                          onClick={handleApplyCoupon}
-                          disabled={isValidatingCoupon || !couponCodeInput}
-                          style={{ padding: '0 1rem', fontSize: '0.85rem', whiteSpace: 'nowrap' }}
-                        >
-                          {isValidatingCoupon ? '...' : 'APPLY'}
-                        </button>
                       </div>
-                      {couponDiscount && (
-                        <div style={{ background: '#eaf3ec', color: '#5c8862', padding: '6px 12px', borderRadius: '6px', fontSize: '0.82rem', marginTop: '6px', fontWeight: 600 }}>
-                          ✨ {couponDiscount.message}
-                        </div>
-                      )}
+
+                      <div className="form-group" style={{ marginBottom: 0 }}>
+                        <label className="form-label" htmlFor="reg-email" style={{ fontSize: '0.82rem', fontWeight: 600 }}>Email Address</label>
+                        <input
+                          id="reg-email"
+                          type="email"
+                          name="email"
+                          className="form-control"
+                          placeholder="Enter your email address"
+                          value={formData.email}
+                          onChange={handleInputChange}
+                          required
+                          style={{ height: '42px', fontSize: '0.88rem' }}
+                        />
+                      </div>
                     </div>
 
+                    {/* Row 2: Phone & Coupon */}
+                    <div className="form-row" style={{ marginBottom: '0.85rem' }}>
+                      <div className="form-group" style={{ marginBottom: 0 }}>
+                        <label className="form-label" htmlFor="reg-phone" style={{ fontSize: '0.82rem', fontWeight: 600 }}>Phone Number</label>
+                        <input
+                          id="reg-phone"
+                          type="tel"
+                          name="phone"
+                          className="form-control"
+                          placeholder="10-digit mobile number"
+                          value={formData.phone}
+                          onChange={handleInputChange}
+                          required
+                          style={{ height: '42px', fontSize: '0.88rem' }}
+                        />
+                      </div>
+
+                      <div className="form-group" style={{ marginBottom: 0 }}>
+                        <label className="form-label" style={{ fontSize: '0.82rem', fontWeight: 600 }}>Coupon Code (Optional)</label>
+                        <div style={{ display: 'flex', gap: '6px' }}>
+                          <input
+                            type="text"
+                            className="form-control"
+                            placeholder="e.g. YOGA20"
+                            value={couponCodeInput}
+                            onChange={(e) => setCouponCodeInput(e.target.value.toUpperCase())}
+                            style={{ textTransform: 'uppercase', flex: 1, height: '42px', fontSize: '0.85rem' }}
+                          />
+                          <button
+                            type="button"
+                            className="btn btn-blue"
+                            onClick={handleApplyCoupon}
+                            disabled={isValidatingCoupon || !couponCodeInput}
+                            style={{ padding: '0 0.85rem', fontSize: '0.82rem', height: '42px', whiteSpace: 'nowrap' }}
+                          >
+                            {isValidatingCoupon ? '...' : 'APPLY'}
+                          </button>
+                        </div>
+                        {couponDiscount && (
+                          <div style={{ background: '#eaf3ec', color: '#5c8862', padding: '4px 8px', borderRadius: '4px', fontSize: '0.78rem', marginTop: '4px', fontWeight: 600 }}>
+                            ✨ {couponDiscount.message}
+                          </div>
+                        )}
+                      </div>
+                    </div>
+
+                    {/* Preferred Batch */}
                     {selectedWorkshop.id !== 'cook-3' ? (
-                      <div className="form-group">
-                        <label className="form-label" htmlFor="reg-batch">Preferred Live Batch</label>
+                      <div className="form-group" style={{ marginBottom: '0.85rem' }}>
+                        <label className="form-label" htmlFor="reg-batch" style={{ fontSize: '0.82rem', fontWeight: 600 }}>Preferred Live Batch</label>
                         <select
                           id="reg-batch"
                           name="batch"
                           className="form-control"
                           value={formData.batch}
                           onChange={handleInputChange}
+                          style={{ height: '42px', fontSize: '0.88rem' }}
                         >
                           <option value="Morning Batch (6:00 AM)">Morning Batch (6:00 AM - 7:30 AM IST)</option>
                           <option value="Evening Batch (6:00 PM)">Evening Batch (6:00 PM - 7:30 PM IST)</option>
                         </select>
                       </div>
                     ) : (
-                      <div className="form-group">
-                        <label className="form-label" htmlFor="reg-time">Batch Time</label>
+                      <div className="form-group" style={{ marginBottom: '0.85rem' }}>
+                        <label className="form-label" htmlFor="reg-time" style={{ fontSize: '0.82rem', fontWeight: 600 }}>Batch Time</label>
                         <input
                           id="reg-time"
                           type="text"
@@ -704,31 +902,149 @@ export default function Workshops({ isStandalone = false }) {
                           className="form-control"
                           value={formData.batch}
                           disabled
+                          style={{ height: '42px', fontSize: '0.88rem' }}
                         />
                       </div>
                     )}
 
+                    {/* Streamlined Live Class Meet Note */}
                     {formData.batch && (
-                      <div style={{ marginTop: '1rem', padding: '1rem', backgroundColor: 'var(--color-sand-dark)', borderRadius: 'var(--border-radius-sm)', fontSize: '0.85rem', border: '1px dashed var(--color-blue)' }}>
-                        <div style={{ fontWeight: 'bold', color: 'var(--color-blue)', marginBottom: '0.25rem' }}>
-                          Assigned Google Meet Link:
-                        </div>
-                        <div style={{ fontFamily: 'monospace', color: 'var(--color-text)', wordBreak: 'break-all' }}>
-                          {getMeetLink(formData.batch)}
-                        </div>
-                        <div style={{ fontSize: '0.75rem', color: 'var(--color-text-secondary)', marginTop: '0.4rem' }}>
-                          * The Meet link will activate automatically at class time and has been synced with this batch.
-                        </div>
+                      <div style={{
+                        marginBottom: '0.85rem',
+                        padding: '8px 12px',
+                        backgroundColor: 'rgba(31, 58, 82, 0.05)',
+                        borderRadius: '6px',
+                        fontSize: '0.8rem',
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '8px',
+                        border: '1px solid rgba(31, 58, 82, 0.1)',
+                        color: 'var(--color-navy)'
+                      }}>
+                        <span>📹</span>
+                        <span><strong>Google Meet Live Class:</strong> Instant calendar link will be provided upon payment.</span>
                       </div>
                     )}
+
+                    {/* Payment Gateway Selector */}
+                    <div className="form-group" style={{ marginBottom: '0.5rem' }}>
+                      <label className="form-label" style={{ fontWeight: 600, fontSize: '0.84rem', display: 'block', marginBottom: '0.4rem' }}>
+                        Select Payment Method
+                      </label>
+                      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(135px, 1fr))', gap: '10px' }}>
+                        <label style={{
+                          display: 'flex',
+                          alignItems: 'center',
+                          gap: '10px',
+                          padding: '10px 14px',
+                          border: formData.paymentMethod === 'RAZORPAY' ? '2px solid #2C5234' : '1px solid #D8D2C5',
+                          borderRadius: '8px',
+                          cursor: 'pointer',
+                          backgroundColor: formData.paymentMethod === 'RAZORPAY' ? '#F4F7F4' : '#FFFFFF',
+                          transition: 'all 0.2s ease'
+                        }}>
+                          <input
+                            type="radio"
+                            name="paymentMethod"
+                            value="RAZORPAY"
+                            checked={formData.paymentMethod === 'RAZORPAY'}
+                            onChange={handleInputChange}
+                            style={{ accentColor: '#2C5234' }}
+                          />
+                          <RazorpayIcon size={26} />
+                          <div>
+                            <div style={{ fontWeight: 600, fontSize: '0.88rem', color: '#1B3B2B' }}>Razorpay</div>
+                            <div style={{ fontSize: '0.72rem', color: '#666' }}>UPI, Cards, NetBanking</div>
+                          </div>
+                        </label>
+                        <label style={{
+                          display: 'flex',
+                          alignItems: 'center',
+                          gap: '10px',
+                          padding: '10px 14px',
+                          border: formData.paymentMethod === 'PAYPAL' ? '2px solid #0079C1' : '1px solid #D8D2C5',
+                          borderRadius: '8px',
+                          cursor: 'pointer',
+                          backgroundColor: formData.paymentMethod === 'PAYPAL' ? '#F0F7FD' : '#FFFFFF',
+                          transition: 'all 0.2s ease'
+                        }}>
+                          <input
+                            type="radio"
+                            name="paymentMethod"
+                            value="PAYPAL"
+                            checked={formData.paymentMethod === 'PAYPAL'}
+                            onChange={handleInputChange}
+                            style={{ accentColor: '#0079C1' }}
+                          />
+                          <PayPalIcon size={26} />
+                          <div>
+                            <div style={{ fontWeight: 600, fontSize: '0.88rem', color: '#003087' }}>PayPal</div>
+                            <div style={{ fontSize: '0.72rem', color: '#666' }}>Intl Cards & Balance</div>
+                          </div>
+                        </label>
+                      </div>
+                    </div>
                   </div>
 
-                  <div className="modal-footer">
-                    <button type="button" className="btn btn-outline" onClick={handleCloseModal} style={{ padding: '0.6rem 1.2rem' }}>
+                  <div className="modal-footer" style={{ flexDirection: 'column', alignItems: 'stretch' }}>
+                    {(!formData.name || !formData.email || !formData.phone) && (
+                      <div style={{
+                        padding: '10px 14px',
+                        background: '#FFF8E6',
+                        border: '1px solid #FFE08A',
+                        borderRadius: '8px',
+                        fontSize: '0.84rem',
+                        color: '#7A5B00',
+                        textAlign: 'center',
+                        lineHeight: 1.4,
+                        marginBottom: '8px'
+                      }}>
+                        👉 Please enter your <strong>Name, Email, and Phone</strong> above to complete checkout.
+                      </div>
+                    )}
+
+                    {formData.paymentMethod === 'PAYPAL' ? (
+                      <div style={{ width: '100%' }}>
+                        <PayPalButton
+                          amount={couponDiscount ? couponDiscount.data.finalAmount : selectedWorkshop.price}
+                          currency="USD"
+                          description={`Register: ${selectedWorkshop.title} (${formData.batch})`}
+                          disabled={!formData.name || !formData.email || !formData.phone || isSubmitting}
+                          onDisabledClick={() => addNotification('Please enter your Name, Email, and Phone above first.', 'warning')}
+                          onSuccess={handlePayPalSuccess}
+                          onError={(err) => addNotification((err && err.message) || 'PayPal payment encountered an issue. Please try again.', 'error')}
+                          onCancel={() => addNotification('PayPal payment was cancelled.', 'info')}
+                          onBeforeRedirect={() => {
+                            try {
+                              sessionStorage.setItem('pending_workshop_reg', JSON.stringify({
+                                workshop: selectedWorkshop,
+                                formData: formData,
+                                couponDiscount: couponDiscount
+                              }));
+                            } catch (e) {}
+                          }}
+                        />
+                      </div>
+                    ) : (
+                      <div style={{ width: '100%' }}>
+                        <RazorpayButton
+                          amount={couponDiscount ? couponDiscount.data.finalAmount : selectedWorkshop.price}
+                          currency="USD"
+                          description={`Register: ${selectedWorkshop.title} (${formData.batch})`}
+                          disabled={!formData.name || !formData.email || !formData.phone || isSubmitting}
+                          prefill={{
+                            name: formData.name,
+                            email: formData.email,
+                            contact: formData.phone
+                          }}
+                          onSuccess={handleRazorpaySuccess}
+                          onError={(err) => addNotification((err && err.message) || 'Razorpay payment encountered an issue. Please try again.', 'error')}
+                          onDismiss={() => addNotification('Registration payment cancelled.', 'info')}
+                        />
+                      </div>
+                    )}
+                    <button type="button" className="btn btn-outline" onClick={handleCloseModal} disabled={isSubmitting} style={{ padding: '0.6rem 1.2rem', width: '100%', marginTop: '6px' }}>
                       Cancel
-                    </button>
-                    <button type="submit" className="btn btn-blue" disabled={isSubmitting} style={{ padding: '0.6rem 1.5rem' }}>
-                      {isSubmitting ? 'Registering...' : `Pay & Register ($${couponDiscount ? couponDiscount.data.finalAmount : selectedWorkshop.price})`}
                     </button>
                   </div>
                 </form>

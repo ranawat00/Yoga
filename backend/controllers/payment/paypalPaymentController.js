@@ -1,24 +1,38 @@
 const crypto = require('crypto');
 const Order = require('../../models/Order');
 
-const paypalClientId = process.env.PAYPAL_CLIENT_ID ? process.env.PAYPAL_CLIENT_ID.trim() : '';
-const paypalClientSecret = process.env.PAYPAL_CLIENT_SECRET ? process.env.PAYPAL_CLIENT_SECRET.trim() : '';
-const paypalWebhookId = process.env.PAYPAL_WEBHOOK_ID ? process.env.PAYPAL_WEBHOOK_ID.trim() : '';
-const isPayPalConfigured = paypalClientId && paypalClientSecret && !paypalClientId.startsWith('your_');
-const paypalBaseUrl = process.env.PAYPAL_MODE === 'live' 
-  ? 'https://api-m.paypal.com' 
-  : 'https://api-m.sandbox.paypal.com';
+const FALLBACK_PAYPAL_CLIENT_ID = 'AeiWEDMcQ1OHOQET5yK4JCYBij9nAEHMSz0v92udo5Vob6K5pUkLpeSCxb12HWpmRLh_aRuAXj-kyg7i';
+const FALLBACK_PAYPAL_SECRET = 'EBBaGJzRXxAmGVptYnWopAVKuRa71ioiPc7ACx0wiXUEn2CZ1ffQ_CVmKJVsPR7Wl6aAbvTEB05qZnn2';
+
+function getPayPalConfig() {
+  const envId = process.env.PAYPAL_CLIENT_ID ? process.env.PAYPAL_CLIENT_ID.trim() : '';
+  const envSecret = process.env.PAYPAL_CLIENT_SECRET ? process.env.PAYPAL_CLIENT_SECRET.trim() : '';
+  
+  const clientId = (envId && !envId.startsWith('your_')) ? envId : FALLBACK_PAYPAL_CLIENT_ID;
+  const clientSecret = (envSecret && !envSecret.startsWith('your_')) ? envSecret : FALLBACK_PAYPAL_SECRET;
+  
+  const mode = process.env.PAYPAL_MODE === 'live' ? 'live' : 'sandbox';
+  const baseUrl = mode === 'live' ? 'https://api-m.paypal.com' : 'https://api-m.sandbox.paypal.com';
+  
+  return { clientId, clientSecret, baseUrl };
+}
+
+let cachedToken = null;
+let tokenExpiresAt = 0;
 
 /**
- * Helper to fetch PayPal OAuth2 Access Token
+ * Helper to fetch PayPal OAuth2 Access Token (cached in memory)
  */
 async function getPayPalAccessToken() {
-  if (!isPayPalConfigured) {
-    throw new Error('PayPal credentials not configured in environment.');
+  const { clientId, clientSecret, baseUrl } = getPayPalConfig();
+
+  const now = Date.now();
+  if (cachedToken && tokenExpiresAt > now + 60000) {
+    return { accessToken: cachedToken, baseUrl };
   }
 
-  const auth = Buffer.from(`${paypalClientId}:${paypalClientSecret}`).toString('base64');
-  const response = await fetch(`${paypalBaseUrl}/v1/oauth2/token`, {
+  const auth = Buffer.from(`${clientId}:${clientSecret}`).toString('base64');
+  const response = await fetch(`${baseUrl}/v1/oauth2/token`, {
     method: 'POST',
     body: 'grant_type=client_credentials',
     headers: {
@@ -31,7 +45,10 @@ async function getPayPalAccessToken() {
   if (!response.ok) {
     throw new Error(data.error_description || 'Failed to get PayPal access token');
   }
-  return data.access_token;
+
+  cachedToken = data.access_token;
+  tokenExpiresAt = Date.now() + (data.expires_in ? data.expires_in * 1000 : 3600000);
+  return { accessToken: cachedToken, baseUrl };
 }
 
 /**
@@ -47,19 +64,9 @@ exports.createPayPalOrder = async (req, res) => {
       return res.status(400).json({ success: false, message: 'Amount is required' });
     }
 
-    // In dev without credentials, provide mock order ID
-    if (!isPayPalConfigured) {
-      return res.status(200).json({
-        success: true,
-        orderId: `MOCK-PAYPAL-ORDER-${Date.now()}`,
-        status: 'CREATED',
-        note: 'Mock PayPal order created for development (set PAYPAL_CLIENT_ID and PAYPAL_CLIENT_SECRET in .env for live integration)'
-      });
-    }
+    const { accessToken, baseUrl } = await getPayPalAccessToken();
 
-    const accessToken = await getPayPalAccessToken();
-
-    const response = await fetch(`${paypalBaseUrl}/v2/checkout/orders`, {
+    const response = await fetch(`${baseUrl}/v2/checkout/orders`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -74,7 +81,12 @@ exports.createPayPalOrder = async (req, res) => {
               value: parseFloat(amount).toFixed(2)
             }
           }
-        ]
+        ],
+        application_context: {
+          brand_name: 'Yoga Healers Organics',
+          user_action: 'PAY_NOW',
+          shipping_preference: 'NO_SHIPPING'
+        }
       })
     });
 
@@ -83,10 +95,13 @@ exports.createPayPalOrder = async (req, res) => {
       return res.status(response.status).json({ success: false, error: data });
     }
 
+    const approveLink = (data.links || []).find(link => link.rel === 'approve');
+
     res.status(200).json({
       success: true,
       orderId: data.id,
       status: data.status,
+      approvalUrl: approveLink ? approveLink.href : null,
       links: data.links
     });
   } catch (error) {
@@ -108,19 +123,51 @@ exports.capturePayPalOrder = async (req, res) => {
       return res.status(400).json({ success: false, message: 'orderId is required' });
     }
 
-    if (orderId.startsWith('MOCK-') || !paypalClientId || !paypalClientSecret) {
-      return res.status(200).json({
-        success: true,
-        status: 'COMPLETED',
-        captureId: `MOCK-CAPTURE-${Date.now()}`,
-        message: 'Mock PayPal order successfully captured for development'
-      });
+    const { accessToken, baseUrl } = await getPayPalAccessToken();
+
+    const response = await fetch(`${baseUrl}/v2/checkout/orders/${orderId}/capture`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${accessToken}`
+      }
+    });
+
+    const data = await response.json();
+    if (!response.ok) {
+      return res.status(response.status).json({ success: false, error: data });
     }
 
-    const accessToken = await getPayPalAccessToken();
+    const captureId = (data.purchase_units && data.purchase_units[0] && data.purchase_units[0].payments && data.purchase_units[0].payments.captures && data.purchase_units[0].payments.captures[0] && data.purchase_units[0].payments.captures[0].id) || data.id;
 
-    const response = await fetch(`${paypalBaseUrl}/v2/checkout/orders/${orderId}/capture`, {
-      method: 'POST',
+    res.status(200).json({
+      success: true,
+      status: data.status,
+      captureId,
+      data
+    });
+  } catch (error) {
+    console.error('PayPal capture order error:', error);
+    res.status(500).json({ success: false, message: error.message || 'PayPal capture failed' });
+  }
+};
+
+/**
+ * @desc    Check status of a PayPal order
+ * @route   GET /api/payment/paypal/order-status/:orderId
+ * @access  Public
+ */
+exports.checkPayPalOrderStatus = async (req, res) => {
+  try {
+    const { orderId } = req.params;
+    if (!orderId) {
+      return res.status(400).json({ success: false, message: 'orderId is required' });
+    }
+
+    const { accessToken, baseUrl } = await getPayPalAccessToken();
+
+    const response = await fetch(`${baseUrl}/v2/checkout/orders/${orderId}`, {
+      method: 'GET',
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${accessToken}`
@@ -134,11 +181,13 @@ exports.capturePayPalOrder = async (req, res) => {
 
     res.status(200).json({
       success: true,
+      orderId: data.id,
+      status: data.status,
       data
     });
   } catch (error) {
-    console.error('PayPal capture order error:', error);
-    res.status(500).json({ success: false, message: error.message || 'PayPal capture failed' });
+    console.error('PayPal check order status error:', error);
+    res.status(500).json({ success: false, message: error.message || 'Failed to check order status' });
   }
 };
 

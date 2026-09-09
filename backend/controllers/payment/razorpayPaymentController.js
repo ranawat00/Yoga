@@ -18,7 +18,8 @@ const razorpay = new Razorpay({
  */
 exports.createOrder = async (req, res, next) => {
   try {
-    const { amount } = req.body; // Amount in INR (e.g. 500)
+    const { amount, currency = 'INR' } = req.body;
+    const targetCurrency = (currency || 'INR').toUpperCase();
 
     if (!amount || isNaN(amount) || amount <= 0) {
       return res.status(400).json({
@@ -28,8 +29,8 @@ exports.createOrder = async (req, res, next) => {
     }
 
     const options = {
-      amount: Math.round(amount * 100), // convert INR to paise
-      currency: 'INR',
+      amount: Math.round(amount * 100), // convert to smallest currency unit (paise / cents)
+      currency: targetCurrency,
       receipt: `receipt_order_${Date.now()}_${Math.floor(Math.random() * 1000)}`
     };
 

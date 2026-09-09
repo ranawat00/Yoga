@@ -42,7 +42,7 @@ exports.createOrder = async (req, res, next) => {
     }
 
     const formattedPaymentMethod = (paymentMethod || 'UPI').toUpperCase();
-    const validPaymentMethods = ['UPI', 'CARD', 'COD'];
+    const validPaymentMethods = ['UPI', 'CARD', 'COD', 'PAYPAL', 'RAZORPAY'];
     const finalPaymentMethod = validPaymentMethods.includes(formattedPaymentMethod) ? formattedPaymentMethod : 'UPI';
 
     const order = await Order.create({

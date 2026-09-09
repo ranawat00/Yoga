@@ -8,6 +8,7 @@ const {
   listRazorpayWebhooksApi,
   createPayPalOrder,
   capturePayPalOrder,
+  checkPayPalOrderStatus,
   handlePayPalWebhook,
   createPayPalWebhookApi,
   listPayPalWebhooksApi
@@ -24,6 +25,7 @@ router.get('/webhooks/razorpay', listRazorpayWebhooksApi);           // List Web
 // ── PayPal Payment & Webhook Routes ──
 router.post('/paypal/create-order', createPayPalOrder);
 router.post('/paypal/capture-order', capturePayPalOrder);
+router.get('/paypal/order-status/:orderId', checkPayPalOrderStatus);
 router.post('/paypal-webhook', handlePayPalWebhook);
 router.post('/register-webhook/paypal', createPayPalWebhookApi);     // Programmatic Webhook Creator
 router.get('/webhooks/paypal', listPayPalWebhooksApi);               // List Webhooks

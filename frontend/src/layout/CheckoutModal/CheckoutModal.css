@@ -212,12 +212,17 @@
   margin-bottom: 1.5rem;
 }
 
-@media (min-width: 640px) {
+@media (min-width: 768px) {
   .payment-options-grid {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
   }
 }
 
+@media (max-width: 767px) and (min-width: 440px) {
+  .payment-options-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
 
 .payment-option-card {
   position: relative;
@@ -238,6 +243,46 @@
   border-color: var(--color-green);
   background-color: rgba(44, 82, 52, 0.04);
   box-shadow: 0 0 0 1px var(--color-green);
+}
+
+.payment-option-card.paypal-card.selected {
+  border-color: #0079C1;
+  background-color: rgba(0, 121, 193, 0.05);
+  box-shadow: 0 0 0 1px #0079C1;
+}
+
+.payment-option-card.paypal-card:hover {
+  border-color: #0079C1;
+}
+
+.paypal-icon {
+  color: #0079C1 !important;
+}
+
+.paypal-info-container {
+  background-color: rgba(0, 121, 193, 0.05);
+  border-radius: var(--border-radius-sm);
+  padding: 0.8rem;
+  border-left: 3px solid #0079C1;
+}
+
+.paypal-badge-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.paypal-submit-btn {
+  background: linear-gradient(135deg, #0079C1 0%, #00457C 100%) !important;
+  color: #FFFFFF !important;
+  border: none !important;
+  box-shadow: 0 4px 14px rgba(0, 121, 193, 0.35) !important;
+}
+
+.paypal-submit-btn:hover {
+  background: linear-gradient(135deg, #005f99 0%, #003058 100%) !important;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(0, 121, 193, 0.45) !important;
 }
 
 .payment-radio {
