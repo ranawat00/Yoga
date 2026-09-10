@@ -149,9 +149,55 @@ function App() {
     { key: 'email', label: 'Email' },
     { key: 'items', label: 'Items' },
     { key: 'total', label: 'Total Amount' },
-    { key: 'payment', label: 'Payment Method' },
+    { 
+      key: 'payment', 
+      label: 'Payment Method',
+      render: (val) => (
+        <span style={{ 
+          background: '#f1f5f9', 
+          color: '#334155', 
+          fontWeight: 600, 
+          padding: '4px 10px', 
+          borderRadius: '8px', 
+          fontSize: '0.82rem',
+          display: 'inline-flex',
+          alignItems: 'center',
+          gap: '6px'
+        }}>
+          <span style={{ width: '7px', height: '7px', borderRadius: '50%', background: '#16a34a' }}></span>
+          {val || 'Online'}
+        </span>
+      )
+    },
     { key: 'date', label: 'Date' },
-    { key: 'status', label: 'Status' }
+    { 
+      key: 'status', 
+      label: 'Status',
+      render: (val) => {
+        const isPaid = !val || ['paid', 'completed', 'success', 'confirmed'].includes(String(val).toLowerCase());
+        return (
+          <span 
+            className="status-pill paid"
+            style={{
+              background: '#dcfce7',
+              color: '#15803d',
+              border: '1px solid #86efac',
+              fontWeight: 700,
+              padding: '4px 12px',
+              borderRadius: '9999px',
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '5px',
+              fontSize: '0.78rem',
+              letterSpacing: '0.4px',
+              textTransform: 'uppercase'
+            }}
+          >
+            <span style={{ fontSize: '0.85rem' }}>✓</span> {isPaid ? 'PAID' : val}
+          </span>
+        );
+      }
+    }
   ];
 
   const registrationColumns = [
@@ -167,7 +213,34 @@ function App() {
       render: (val) => val ? <span style={{ background: '#eaf3ec', color: '#5c8862', padding: '3px 8px', borderRadius: '4px', fontWeight: 600, fontSize: '0.82rem' }}>🏷️ {val}</span> : <span style={{ color: '#9ca3af' }}>-</span>
     },
     { key: 'date', label: 'Date' },
-    { key: 'status', label: 'Status' }
+    { 
+      key: 'status', 
+      label: 'Status',
+      render: (val) => {
+        const isPaid = !val || ['paid', 'completed', 'success', 'confirmed', 'registered'].includes(String(val).toLowerCase());
+        return (
+          <span 
+            className="status-pill paid"
+            style={{
+              background: '#dcfce7',
+              color: '#15803d',
+              border: '1px solid #86efac',
+              fontWeight: 700,
+              padding: '4px 12px',
+              borderRadius: '9999px',
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '5px',
+              fontSize: '0.78rem',
+              letterSpacing: '0.4px',
+              textTransform: 'uppercase'
+            }}
+          >
+            <span style={{ fontSize: '0.85rem' }}>✓</span> {isPaid ? 'PAID' : val}
+          </span>
+        );
+      }
+    }
   ];
 
   const userColumns = [

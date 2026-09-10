@@ -250,24 +250,32 @@ export default function Workshops({ isStandalone = false }) {
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
     const token = urlParams.get('token');
-    const isCancelled = urlParams.get('paypal_cancel') === 'true';
+    const isCancelled = urlParams.get('paypal_cancel') === 'true' || urlParams.get('paypal_status') === 'cancelled';
 
     if (isCancelled) {
       addNotification('PayPal payment was cancelled.', 'info');
-      try { sessionStorage.removeItem('pending_workshop_reg'); } catch (e) {}
+      try { 
+        sessionStorage.removeItem('pending_workshop_reg'); 
+        localStorage.removeItem('pending_workshop_reg');
+      } catch (e) {}
       window.history.replaceState({}, document.title, window.location.pathname);
       return;
     }
 
     if (token) {
       let saved = null;
-      try { saved = sessionStorage.getItem('pending_workshop_reg'); } catch (e) {}
+      try { 
+        saved = sessionStorage.getItem('pending_workshop_reg') || localStorage.getItem('pending_workshop_reg'); 
+      } catch (e) {}
+
+      window.history.replaceState({}, document.title, window.location.pathname);
+      setIsSubmitting(true);
+
       if (saved) {
         try {
           const parsed = JSON.parse(saved);
           sessionStorage.removeItem('pending_workshop_reg');
-          window.history.replaceState({}, document.title, window.location.pathname);
-          setIsSubmitting(true);
+          localStorage.removeItem('pending_workshop_reg');
           capturePayPalOrder(token).then(async (captureRes) => {
             if (captureRes && captureRes.success) {
               const price = parsed.couponDiscount ? parsed.couponDiscount.data.finalAmount : parsed.workshop.price;
@@ -316,7 +324,55 @@ export default function Workshops({ isStandalone = false }) {
           });
         } catch (e) {
           console.error('Error parsing pending workshop registration:', e);
+          setIsSubmitting(false);
         }
+      } else {
+        // Fallback capture when storage was cleared or in a fresh tab
+        capturePayPalOrder(token).then(async (captureRes) => {
+          if (captureRes && captureRes.success) {
+            const payer = captureRes.data?.payer || {};
+            const payerEmail = payer.email_address || 'student@yogahealers.org';
+            const payerName = `${payer.name?.given_name || 'Valued'} ${payer.name?.surname || 'Student'}`.trim();
+            const orderPayload = {
+              name: payerName,
+              email: payerEmail,
+              phone: '+91 99999 99999',
+              couponCode: '',
+              address: 'Online Class / Live Workshop',
+              city: 'Virtual',
+              pincode: '000000',
+              items: [{
+                product: {
+                  id: 'w1',
+                  title: 'Holistic Yoga Workshop',
+                  price: parseFloat(captureRes.data?.purchase_units?.[0]?.payments?.captures?.[0]?.amount?.value || 149),
+                  image: ''
+                },
+                quantity: 1
+              }],
+              subtotal: 149,
+              shipping: 0,
+              gst: 0,
+              total: parseFloat(captureRes.data?.purchase_units?.[0]?.payments?.captures?.[0]?.amount?.value || 149),
+              paymentMethod: 'PAYPAL',
+              paymentId: captureRes.captureId || token
+            };
+            await createOrderRecord(orderPayload);
+            setSuccessData({
+              workshopTitle: 'Holistic Yoga Workshop',
+              batch: 'Morning (6:30 AM - 7:30 AM)',
+              meetLink: 'https://meet.google.com/yho-yoga-workshop',
+              email: payerEmail
+            });
+            addNotification('Payment verified! Your workshop registration is confirmed via PayPal.', 'success');
+          } else {
+            addNotification('PayPal payment could not be verified.', 'error');
+          }
+        }).catch(err => {
+          console.error('PayPal fallback capture error:', err);
+        }).finally(() => {
+          setIsSubmitting(false);
+        });
       }
     }
   }, [addNotification]);
@@ -1016,11 +1072,13 @@ export default function Workshops({ isStandalone = false }) {
                           onCancel={() => addNotification('PayPal payment was cancelled.', 'info')}
                           onBeforeRedirect={() => {
                             try {
-                              sessionStorage.setItem('pending_workshop_reg', JSON.stringify({
+                              const data = JSON.stringify({
                                 workshop: selectedWorkshop,
                                 formData: formData,
                                 couponDiscount: couponDiscount
-                              }));
+                              });
+                              sessionStorage.setItem('pending_workshop_reg', data);
+                              localStorage.setItem('pending_workshop_reg', data);
                             } catch (e) {}
                           }}
                         />

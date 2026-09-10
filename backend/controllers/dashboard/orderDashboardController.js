@@ -31,7 +31,7 @@ exports.getDashboardOrders = async (req, res) => {
       items: ord.items ? ord.items.map(i => i.product?.title || 'Yoga Package').join(', ') : 'Yoga Package',
       total: ord.total || 0,
       payment: ord.paymentMethod || 'Online',
-      status: ord.status || 'Completed',
+      status: ord.status || 'Paid',
       date: ord.createdAt ? new Date(ord.createdAt).toISOString().split('T')[0] : new Date().toISOString().split('T')[0]
     }));
 

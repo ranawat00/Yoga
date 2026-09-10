@@ -179,16 +179,11 @@ export default function PayPalButton({
 
     // Only open popup on desktop; on phone view, we navigate the current mobile viewport
     // so PayPal loads 100% responsive according to the phone screen
-    if (!isMobile) {
-      try {
-        popupWin = window.open(
-          'about:blank',
-          'PayPalCheckoutWindow',
-          `width=${width},height=${height},left=${left},top=${top},status=no,toolbar=no,menubar=no,scrollbars=yes,resizable=yes`
-        );
-      } catch (e) {
-        console.warn('Popup creation error:', e);
-      }
+    // Open in a normal new tab so the user can easily Inspect (F12) Console & Network
+    try {
+      popupWin = window.open('about:blank', '_blank');
+    } catch (e) {
+      console.warn('Tab creation error:', e);
     }
 
     // Show initial loading screen inside the opened window while the order is generated
@@ -270,11 +265,13 @@ export default function PayPalButton({
         actualPayPalUrl += '&fundingSource=card';
       }
 
+      // Trigger before-redirect hook to preserve pending registration/order data
+      if (callbacksRef.current.onBeforeRedirect) {
+        callbacksRef.current.onBeforeRedirect();
+      }
+
       // STEP 3: Navigate to the ACTUAL PayPal Sandbox URL
       if (isMobile) {
-        if (callbacksRef.current.onBeforeRedirect) {
-          callbacksRef.current.onBeforeRedirect();
-        }
         // Direct navigation in the current phone viewport guarantees PayPal renders 100% responsive to phone view
         window.location.href = actualPayPalUrl;
         return;
@@ -291,22 +288,42 @@ export default function PayPalButton({
       // STEP 4: Store active checkout session
       setCheckoutSession({ orderId, approvalUrl: actualPayPalUrl, fundingSource });
 
-      // STEP 5: Watch for window close: when buyer finishes on PayPal and closes window, auto-capture
+      // STEP 5: Watch for window close or return redirect: auto-capture
       if (popupWin) {
         if (windowCheckTimerRef.current) clearInterval(windowCheckTimerRef.current);
         windowCheckTimerRef.current = setInterval(() => {
           try {
+            // If window was closed by user or after redirect: attempt capture
             if (popupWin.closed) {
               clearInterval(windowCheckTimerRef.current);
               if (handleCaptureRef.current) {
-                // Window was closed by user: attempt capture
                 handleCaptureRef.current(orderId, false);
               }
+              return;
+            }
+
+            // If popup redirected back to our domain after PayPal approval
+            try {
+              if (
+                popupWin.location &&
+                popupWin.location.href &&
+                (popupWin.location.href.includes('paypal_status=') ||
+                  popupWin.location.href.includes('token='))
+              ) {
+                popupWin.close();
+                clearInterval(windowCheckTimerRef.current);
+                if (handleCaptureRef.current) {
+                  handleCaptureRef.current(orderId, false);
+                }
+                return;
+              }
+            } catch (crossOriginErr) {
+              // Ignore cross-origin error while on sandbox.paypal.com
             }
           } catch (e) {
-            // cross-origin
+            // error
           }
-        }, 1500);
+        }, 1200);
       }
     } catch (err) {
       if (popupWin && !popupWin.closed) {

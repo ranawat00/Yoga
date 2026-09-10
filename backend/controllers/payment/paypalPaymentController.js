@@ -1,8 +1,8 @@
 const crypto = require('crypto');
 const Order = require('../../models/Order');
 
-const FALLBACK_PAYPAL_CLIENT_ID = 'AeiWEDMcQ1OHOQET5yK4JCYBij9nAEHMSz0v92udo5Vob6K5pUkLpeSCxb12HWpmRLh_aRuAXj-kyg7i';
-const FALLBACK_PAYPAL_SECRET = 'EBBaGJzRXxAmGVptYnWopAVKuRa71ioiPc7ACx0wiXUEn2CZ1ffQ_CVmKJVsPR7Wl6aAbvTEB05qZnn2';
+const FALLBACK_PAYPAL_CLIENT_ID = 'AbMDw4O7tb9liGtW0neIsRnIvrlP2dvpLnhTOItFWMT63XeQgsXd1pLRKpkMpoOZlUEhWgegBH6T_zrd';
+const FALLBACK_PAYPAL_SECRET = 'EMZb4y5BhqdBb-WgXkhpqsz7UrFxSvCCS3drg90u-icur9YHEE7mLrHzd8blWGsaL_SjZpuc0QzmKrsY';
 
 function getPayPalConfig() {
   const envId = process.env.PAYPAL_CLIENT_ID ? process.env.PAYPAL_CLIENT_ID.trim() : '';
@@ -85,7 +85,9 @@ exports.createPayPalOrder = async (req, res) => {
         application_context: {
           brand_name: 'Yoga Healers Organics',
           user_action: 'PAY_NOW',
-          shipping_preference: 'NO_SHIPPING'
+          shipping_preference: 'NO_SHIPPING',
+          return_url: `${process.env.FRONTEND_URL || 'http://localhost:3000'}/workshops?paypal_status=success`,
+          cancel_url: `${process.env.FRONTEND_URL || 'http://localhost:3000'}/workshops?paypal_status=cancelled`
         }
       })
     });
