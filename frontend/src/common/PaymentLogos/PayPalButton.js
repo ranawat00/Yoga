@@ -172,10 +172,6 @@ export default function PayPalButton({
         window.innerWidth <= 768);
 
     let popupWin = null;
-    const width = 500;
-    const height = 700;
-    const left = typeof window !== 'undefined' ? window.screenX + Math.max(0, (window.outerWidth - width) / 2) : 100;
-    const top = typeof window !== 'undefined' ? window.screenY + Math.max(0, (window.outerHeight - height) / 2) : 100;
 
     // Only open popup on desktop; on phone view, we navigate the current mobile viewport
     // so PayPal loads 100% responsive according to the phone screen
