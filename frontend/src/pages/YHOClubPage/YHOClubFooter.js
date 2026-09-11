@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './YHOClubFooter.css';
-import Logo from '../../common/Logo/Logo';
+import yhoClubLogo from '../../assets/yho_club/logo.png';
 import { useApp } from '../../hooks/useApp';
 
 export default function YHOClubFooter() {
@@ -45,7 +45,7 @@ export default function YHOClubFooter() {
         <div className="yhof-brand-header">
           <div className="yhof-brand-left" onClick={scrollToTop}>
             <div className="yhof-logo-badge">
-              <Logo size={42} />
+              <img src={yhoClubLogo} alt="YHO Club" className="yhof-brand-logo-img" />
             </div>
             <div className="yhof-brand-text">
               <span className="yhof-domain-title">yhocrew.org</span>

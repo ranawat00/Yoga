@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './YHOClubNavbar.css';
 import { useApp } from '../../hooks/useApp';
-import Logo from '../../common/Logo/Logo';
+import yhoClubLogo from '../../assets/yho_club/logo.png';
 import YHOClubProfileDrawer from './YHOClubProfileDrawer';
 
 export default function YHOClubNavbar() {
@@ -19,7 +19,7 @@ export default function YHOClubNavbar() {
 
           {/* LEFT: Official Logo */}
           <div className="yhon-brand" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
-            <Logo size={60} />
+            <img src={yhoClubLogo} alt="YHO Club" className="yhon-brand-logo-img" />
           </div>
 
           {/* CENTER: Nav links (desktop) */}

@@ -2,7 +2,7 @@ import './ProfileDrawer.css';
 import React, { useState, useEffect } from 'react';
 import { useApp } from '../../hooks/useApp';
 import { updateDetails } from '../../api/auth';
-import Logo from '../../common/Logo/Logo';
+import yhoClubLogo from '../../assets/yho_club/logo.png';
 
 export default function ProfileDrawer() {
   const { 
@@ -166,7 +166,7 @@ export default function ProfileDrawer() {
               >
                 <div className="yho-club-info">
                   <div className="yho-club-badge-logo">
-                    <Logo size={34} />
+                    <img src={yhoClubLogo} alt="YHO Club" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
                   </div>
                   <div className="yho-club-text">
                     <span className="yho-club-title">YHO Club</span>
@@ -272,7 +272,7 @@ export default function ProfileDrawer() {
             >
               <div className="yho-club-info">
                 <div className="yho-club-badge-logo">
-                  <Logo size={34} />
+                  <img src={yhoClubLogo} alt="YHO Club" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
                 </div>
                 <div className="yho-club-text">
                   <span className="yho-club-title">YHO Club</span>

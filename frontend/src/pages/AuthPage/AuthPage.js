@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useApp } from '../../hooks/useApp';
 import Logo from '../../common/Logo/Logo';
+import yhoClubLogo from '../../assets/yho_club/logo.png';
 import { searchInstitutionsAPI } from '../../api/institutions';
 import './AuthPage.css';
 
@@ -239,7 +240,7 @@ export default function AuthPage() {
           <div className="student-desktop-hero">
             <div>
               <div className="hero-logo-wrap">
-                <Logo size={44} />
+                <img src={yhoClubLogo} alt="YHO Club" style={{ width: '46px', height: '46px', objectFit: 'contain' }} />
                 <span className="hero-badge">Student Portal</span>
               </div>
               <h2 className="hero-heading">

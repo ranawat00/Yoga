@@ -1,0 +1,72 @@
+.yho-error-boundary-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 280px;
+  padding: 2.5rem 1.5rem;
+  width: 100%;
+}
+
+.yho-error-boundary-card {
+  max-width: 460px;
+  width: 100%;
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 2rem;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.yho-error-icon {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.yho-error-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #1a202c;
+  margin-bottom: 0.5rem;
+}
+
+.yho-error-desc {
+  font-size: 0.95rem;
+  color: #64748b;
+  line-height: 1.5;
+  margin-bottom: 1.5rem;
+}
+
+.yho-error-actions {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: center;
+}
+
+.yho-error-btn {
+  padding: 0.65rem 1.4rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: none;
+}
+
+.yho-error-btn.primary {
+  background: #117864;
+  color: #ffffff;
+}
+
+.yho-error-btn.primary:hover {
+  background: #0e6251;
+}
+
+.yho-error-btn.secondary {
+  background: #f1f5f9;
+  color: #334155;
+}
+
+.yho-error-btn.secondary:hover {
+  background: #e2e8f0;
+}

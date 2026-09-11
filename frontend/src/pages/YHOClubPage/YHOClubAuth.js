@@ -2,15 +2,17 @@ import React, { useState, useEffect, useRef } from 'react';
 import './YHOClubAuth.css';
 import { useApp } from '../../hooks/useApp';
 import { searchInstitutionsAPI } from '../../api/institutions';
+import yhoClubLogo from '../../assets/yho_club/logo.png';
 
 export default function YHOClubAuth() {
   const { 
     handleSocialAuth, 
     handleLogin, 
-    handleSignup 
+    handleSignup,
+    setView
   } = useApp();
 
-  const [isLogin, setIsLogin] = useState(true);
+  const [isLogin, setIsLogin] = useState(false);
   const [studentStep, setStudentStep] = useState(1); // 1: Personal Info, 2: Credentials, 3: Search Institute
 
   // Step 1: Name, Student ID / Roll No, Phone
@@ -258,18 +260,24 @@ export default function YHOClubAuth() {
 
       {/* Main Card Content Container */}
       <div className="yho-club-card">
+        {/* Top Close / Return to Home Button */}
+        <button 
+          type="button" 
+          className="yho-close-top-btn" 
+          onClick={() => setView('home')} 
+          title="Return to Main Site"
+          aria-label="Return to Main Site"
+        >
+          ✕
+        </button>
+
         {/* Brand Logo Header */}
         <div className="yho-logo-brand-block">
-          <div className="yho-brand-top">
-            <span className="yho-brand-text">YH</span>
-            <span className="yho-brand-target-o">
-              <span className="target-outer-ring"></span>
-              <span className="target-inner-dot"></span>
-            </span>
-          </div>
-          <div className="yho-brand-bottom">
-            CLUB
-          </div>
+          <img 
+            src={yhoClubLogo} 
+            alt="YHO Club" 
+            className="yho-club-brand-logo-img" 
+          />
         </div>
 
         {/* Main Body Content Container */}

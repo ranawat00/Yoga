@@ -46,7 +46,7 @@ export default function Navbar() {
   }, [view]);
 
   const handlePreloadContact = () => {
-    import('../../pages/ContactPage/ContactPage');
+    import('../../pages/ContactPage/ContactPage').catch(() => {});
   };
 
   const handleLinkClick = (id, e) => {

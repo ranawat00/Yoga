@@ -41,6 +41,13 @@
   transition: transform 0.2s ease;
 }
 
+.yhon-brand-logo-img {
+  height: 48px;
+  width: 48px;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.4));
+}
+
 .yhon-brand:hover {
   transform: scale(1.04);
 }

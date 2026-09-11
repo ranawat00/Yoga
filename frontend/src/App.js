@@ -1,8 +1,11 @@
-import React, { lazy, Suspense, useEffect } from 'react';
+import React, { Suspense, useEffect } from 'react';
 import { AppProvider } from './redux/AppProvider';
 import { useApp } from './hooks/useApp';
 import { VIEW_TO_PATH, PATH_TO_VIEW } from './redux/slices/uiSlice';
 import { useTrafficTracker } from './hooks/useTrafficTracker';
+
+import { lazyRetry } from './common/lazyRetry';
+import ErrorBoundary from './common/ErrorBoundary/ErrorBoundary';
 
 // Layout Components
 import Navbar from './layout/Navbar/Navbar';
@@ -21,32 +24,32 @@ import OAuthCallbackHandler from './components/OAuthCallback/OAuthCallbackHandle
 import './App.css';
 
 // Lazy load non-critical sections below the fold
-const DailyYogaBanner = lazy(() => import('./components/DailyYogaBanner/DailyYogaBanner'));
-const Workshops = lazy(() => import('./components/Workshops/Workshops'));
-const DailyYogaTogether = lazy(() => import('./components/DailyYogaTogether/DailyYogaTogether'));
-const BlogSection = lazy(() => import('./components/BlogSection/BlogSection'));
-const ScienceBackedBenefits = lazy(() => import('./components/ScienceBackedBenefits/ScienceBackedBenefits'));
-const RunningTicker = lazy(() => import('./components/RunningTicker/RunningTicker'));
-const HomeVideoSlider = lazy(() => import('./components/HomeVideoSlider/HomeVideoSlider'));
-const HomeFAQ = lazy(() => import('./components/HomeFAQ/HomeFAQ'));
+const DailyYogaBanner = lazyRetry(() => import('./components/DailyYogaBanner/DailyYogaBanner'), 'DailyYogaBanner');
+const Workshops = lazyRetry(() => import('./components/Workshops/Workshops'), 'Workshops');
+const DailyYogaTogether = lazyRetry(() => import('./components/DailyYogaTogether/DailyYogaTogether'), 'DailyYogaTogether');
+const BlogSection = lazyRetry(() => import('./components/BlogSection/BlogSection'), 'BlogSection');
+const ScienceBackedBenefits = lazyRetry(() => import('./components/ScienceBackedBenefits/ScienceBackedBenefits'), 'ScienceBackedBenefits');
+const RunningTicker = lazyRetry(() => import('./components/RunningTicker/RunningTicker'), 'RunningTicker');
+const HomeVideoSlider = lazyRetry(() => import('./components/HomeVideoSlider/HomeVideoSlider'), 'HomeVideoSlider');
+const HomeFAQ = lazyRetry(() => import('./components/HomeFAQ/HomeFAQ'), 'HomeFAQ');
 
 // Lazy load full page views
-const AboutUs = lazy(() => import('./pages/AboutUsPage/AboutUsPage'));
-const Contact = lazy(() => import('./pages/ContactPage/ContactPage'));
-const Internship = lazy(() => import('./pages/InternshipPage/InternshipPage'));
-const OrdersPage = lazy(() => import('./pages/OrdersPage/OrdersPage'));
+const AboutUs = lazyRetry(() => import('./pages/AboutUsPage/AboutUsPage'), 'AboutUsPage');
+const Contact = lazyRetry(() => import('./pages/ContactPage/ContactPage'), 'ContactPage');
+const Internship = lazyRetry(() => import('./pages/InternshipPage/InternshipPage'), 'InternshipPage');
+const OrdersPage = lazyRetry(() => import('./pages/OrdersPage/OrdersPage'), 'OrdersPage');
 // eslint-disable-next-line no-unused-vars
-const RegisterFreePage = lazy(() => import('./pages/RegisterFreePage/RegisterFreePage'));
-const DailyYogaTogetherDetails = lazy(() => import('./components/DailyYogaTogether/DailyYogaTogetherDetails'));
-const BlogPage = lazy(() => import('./pages/BlogPage/BlogPage'));
-const RegistrationsPage = lazy(() => import('./pages/RegistrationsPage/RegistrationsPage'));
-const YHOClubPage = lazy(() => import('./pages/YHOClubPage/YHOClubPage'));
+const RegisterFreePage = lazyRetry(() => import('./pages/RegisterFreePage/RegisterFreePage'), 'RegisterFreePage');
+const DailyYogaTogetherDetails = lazyRetry(() => import('./components/DailyYogaTogether/DailyYogaTogetherDetails'), 'DailyYogaTogetherDetails');
+const BlogPage = lazyRetry(() => import('./pages/BlogPage/BlogPage'), 'BlogPage');
+const RegistrationsPage = lazyRetry(() => import('./pages/RegistrationsPage/RegistrationsPage'), 'RegistrationsPage');
+const YHOClubPage = lazyRetry(() => import('./pages/YHOClubPage/YHOClubPage'), 'YHOClubPage');
 
 // Lazy load modals/drawers
-const CheckoutModal = lazy(() => import('./layout/CheckoutModal/CheckoutModal'));
-const AuthPage = lazy(() => import('./pages/AuthPage/AuthPage'));
-const ProfileDrawer = lazy(() => import('./layout/ProfileDrawer/ProfileDrawer'));
-const RegisterModal = lazy(() => import('./layout/RegisterModal/RegisterModal'));
+const CheckoutModal = lazyRetry(() => import('./layout/CheckoutModal/CheckoutModal'), 'CheckoutModal');
+const AuthPage = lazyRetry(() => import('./pages/AuthPage/AuthPage'), 'AuthPage');
+const ProfileDrawer = lazyRetry(() => import('./layout/ProfileDrawer/ProfileDrawer'), 'ProfileDrawer');
+const RegisterModal = lazyRetry(() => import('./layout/RegisterModal/RegisterModal'), 'RegisterModal');
 
 const VIEW_TITLES = {
   home: 'Yoga Healers | Holistic Health & Satvic Wellness',
@@ -89,9 +92,9 @@ function AppContent() {
   // Background chunk preloading for instant 0ms page navigation
   useEffect(() => {
     const timer = setTimeout(() => {
-      import('./pages/ContactPage/ContactPage');
-      import('./pages/AboutUsPage/AboutUsPage');
-    }, 1000);
+      import('./pages/ContactPage/ContactPage').catch(() => {});
+      import('./pages/AboutUsPage/AboutUsPage').catch(() => {});
+    }, 1500);
     return () => clearTimeout(timer);
   }, []);
 
@@ -188,66 +191,74 @@ function AppContent() {
       {view !== 'yho-club' && <Navbar />}
 
       {/* Conditionally Render Views with Smooth Transitions */}
-      <main key={view} className="page-transition-container">
-        {view === 'about' ? (
-          <Suspense fallback={<Loader />}><AboutUs /></Suspense>
-        ) : view === 'contact' ? (
-          <Suspense fallback={<Loader />}><Contact /></Suspense>
-        ) : (view === 'internship' || view === 'careers') ? (
-          <Suspense fallback={<Loader />}><Internship /></Suspense>
-        ) : view === 'workshops' ? (
-          <Suspense fallback={<Loader />}><Workshops isStandalone={true} /></Suspense>
-        ) : view === 'orders' ? (
-          <Suspense fallback={<Loader />}><OrdersPage /></Suspense>
-        ) : view === 'register-free' ? (
-          <Suspense fallback={<Loader />}><RegisterFreePage /></Suspense>
-        ) : view === 'daily-yoga-together-details' ? (
-          <Suspense fallback={<Loader />}><DailyYogaTogetherDetails /></Suspense>
-        ) : view === 'blog' ? (
-          <Suspense fallback={<Loader />}><BlogPage /></Suspense>
-        ) : view === 'registrations' ? (
-          <Suspense fallback={<Loader />}><RegistrationsPage /></Suspense>
-        ) : view === 'yho-club' ? (
-          <Suspense fallback={<Loader />}><YHOClubPage /></Suspense>
-        ) : (view === 'login' || view === 'signup') ? (
-          <Suspense fallback={<Loader />}><AuthPage /></Suspense>
-        ) : (
-          <>
-            {/* Main Page Sections */}
-            <Hero />
+      <ErrorBoundary>
+        <main key={view} className="page-transition-container">
+          {view === 'about' ? (
+            <Suspense fallback={<Loader />}><AboutUs /></Suspense>
+          ) : view === 'contact' ? (
+            <Suspense fallback={<Loader />}><Contact /></Suspense>
+          ) : (view === 'internship' || view === 'careers') ? (
+            <Suspense fallback={<Loader />}><Internship /></Suspense>
+          ) : view === 'workshops' ? (
+            <Suspense fallback={<Loader />}><Workshops isStandalone={true} /></Suspense>
+          ) : view === 'orders' ? (
+            <Suspense fallback={<Loader />}><OrdersPage /></Suspense>
+          ) : view === 'register-free' ? (
+            <Suspense fallback={<Loader />}><RegisterFreePage /></Suspense>
+          ) : view === 'daily-yoga-together-details' ? (
+            <Suspense fallback={<Loader />}><DailyYogaTogetherDetails /></Suspense>
+          ) : view === 'blog' ? (
+            <Suspense fallback={<Loader />}><BlogPage /></Suspense>
+          ) : view === 'registrations' ? (
+            <Suspense fallback={<Loader />}><RegistrationsPage /></Suspense>
+          ) : view === 'yho-club' ? (
+            <Suspense fallback={<Loader />}><YHOClubPage /></Suspense>
+          ) : (view === 'login' || view === 'signup') ? (
+            <Suspense fallback={<Loader />}><AuthPage /></Suspense>
+          ) : (
+            <>
+              {/* Main Page Sections */}
+              <Hero />
 
-            {/* Featured In: Newspaper Logos Marquee */}
-            <MediaLogos />
+              {/* Featured In: Newspaper Logos Marquee */}
+              <MediaLogos />
 
-            <Suspense fallback={null}><DailyYogaBanner /></Suspense>
+              <Suspense fallback={null}><DailyYogaBanner /></Suspense>
 
-            <Suspense fallback={null}><Workshops /></Suspense>
-            <Suspense fallback={null}><DailyYogaTogether /></Suspense>
-            <Suspense fallback={null}><RunningTicker /></Suspense>
-            <Suspense fallback={null}><BlogSection /></Suspense>
-            <Suspense fallback={null}><ScienceBackedBenefits /></Suspense>
-            <Suspense fallback={null}><HomeVideoSlider /></Suspense>
-            <Suspense fallback={null}><HomeFAQ /></Suspense>
-          </>
-        )}
-      </main>
+              <Suspense fallback={null}><Workshops /></Suspense>
+              <Suspense fallback={null}><DailyYogaTogether /></Suspense>
+              <Suspense fallback={null}><RunningTicker /></Suspense>
+              <Suspense fallback={null}><BlogSection /></Suspense>
+              <Suspense fallback={null}><ScienceBackedBenefits /></Suspense>
+              <Suspense fallback={null}><HomeVideoSlider /></Suspense>
+              <Suspense fallback={null}><HomeFAQ /></Suspense>
+            </>
+          )}
+        </main>
+      </ErrorBoundary>
       {/* Footer (Dark Navy) */}
       {view !== 'yho-club' && <Footer />}
 
       {/* Checkout Steps Modal */}
-      <Suspense fallback={null}>
-        {isCheckoutOpen && <CheckoutModal />}
-      </Suspense>
+      <ErrorBoundary>
+        <Suspense fallback={null}>
+          {isCheckoutOpen && <CheckoutModal />}
+        </Suspense>
+      </ErrorBoundary>
 
       {/* User Profile Drawer */}
-      <Suspense fallback={null}>
-        <ProfileDrawer />
-      </Suspense>
+      <ErrorBoundary>
+        <Suspense fallback={null}>
+          <ProfileDrawer />
+        </Suspense>
+      </ErrorBoundary>
 
       {/* Free Registration Modal */}
-      <Suspense fallback={null}>
-        <RegisterModal />
-      </Suspense>
+      <ErrorBoundary>
+        <Suspense fallback={null}>
+          <RegisterModal />
+        </Suspense>
+      </ErrorBoundary>
     </div>
   );
 }
