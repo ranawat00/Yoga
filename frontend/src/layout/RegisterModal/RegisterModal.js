@@ -17,7 +17,8 @@ export default function RegisterModal() {
     if (!couponCode) return;
     setIsValidatingCoupon(true);
     try {
-      const response = await fetch('http://localhost:5000/api/coupons/validate', {
+      const apiBase = process.env.REACT_APP_API_URL ? `${process.env.REACT_APP_API_URL}/api` : 'http://localhost:5000/api';
+      const response = await fetch(`${apiBase}/coupons/validate`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ code: couponCode, amount: 499, workshopTitle: '5 Days Online Live Yoga Workshop' })

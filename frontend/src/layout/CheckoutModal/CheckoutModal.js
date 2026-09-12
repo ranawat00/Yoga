@@ -68,7 +68,8 @@ export default function CheckoutModal() {
   const handleApplyCoupon = async () => {
     if (!couponCodeInput) return;
     try {
-      const res = await fetch('http://localhost:5000/api/coupons/validate', {
+      const apiBase = process.env.REACT_APP_API_URL ? `${process.env.REACT_APP_API_URL}/api` : 'http://localhost:5000/api';
+      const res = await fetch(`${apiBase}/coupons/validate`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ code: couponCodeInput, amount: rawTotal })

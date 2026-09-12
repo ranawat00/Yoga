@@ -2,7 +2,7 @@ import { store } from '../redux/store';
 import { logoutUser } from '../redux/slices/authSlice';
 import { addNotification } from '../redux/slices/uiSlice';
 
-const BASE_URL = 'http://localhost:5000/api';
+const BASE_URL = process.env.REACT_APP_API_URL ? `${process.env.REACT_APP_API_URL}/api` : 'http://localhost:5000/api';
 
 let isRefreshing = false;
 
