@@ -21,7 +21,7 @@
 .navbar.not-home {
   position: fixed;
   top: 0;
-  background-color: #0b09b5;
+  background-color: #000000;
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   padding: 0.45rem 2rem;
@@ -203,34 +203,43 @@
     top: 0 !important;
     left: 0 !important;
     width: 100% !important;
+    height: 52px !important;
     z-index: 1000 !important;
-    padding: 0.4rem 1.25rem !important;
-    background-color: transparent !important;
+    padding: 0 1rem !important;
+    background: #000000 !important;
+    background-color: #000000 !important;
     border: none !important;
-    border-bottom: none !important;
-    box-shadow: none !important;
-    transition: background-color 0.3s ease, box-shadow 0.3s ease, padding 0.3s ease;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5) !important;
+    display: flex !important;
+    align-items: center !important;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
   }
 
   .navbar.scrolled,
   .navbar.not-home {
     position: fixed !important;
     top: 0 !important;
-    background: #0b09b5 !important;
-    backdrop-filter: blur(12px) !important;
-    -webkit-backdrop-filter: blur(12px) !important;
+    height: 52px !important;
+    padding: 0 1rem !important;
+    background: #000000 !important;
+    background-color: #000000 !important;
     border: none !important;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25) !important;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5) !important;
   }
 
   .logo-container {
     color: #FFFFFF !important;
+    display: flex !important;
+    align-items: center !important;
   }
 
-  .logo-container .brand-logo-svg {
-    width: 68px !important;
-    height: 68px !important;
+  .logo-container .brand-logo-svg,
+  .logo-container .brand-logo-img {
+    width: 36px !important;
+    height: 36px !important;
+    object-fit: contain !important;
   }
 
   .nav-actions {
@@ -494,21 +503,31 @@
 
 @media (max-width: 576px) {
   .navbar {
-    padding: 0.25rem 0.85rem !important;
+    height: 50px !important;
+    padding: 0 0.85rem !important;
+    background: #000000 !important;
+    background-color: #000000 !important;
+    border: none !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5) !important;
   }
 
   .navbar.scrolled,
   .navbar.not-home {
-    padding: 0.35rem 0.85rem !important;
-    background: #0b09b5 !important;
-    backdrop-filter: blur(12px) !important;
-    -webkit-backdrop-filter: blur(12px) !important;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25) !important;
+    height: 50px !important;
+    padding: 0 0.85rem !important;
+    background: #000000 !important;
+    background-color: #000000 !important;
+    border: none !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5) !important;
   }
 
-  .logo-container .brand-logo-svg {
-    width: 58px !important;
-    height: 58px !important;
+  .logo-container .brand-logo-svg,
+  .logo-container .brand-logo-img {
+    width: 34px !important;
+    height: 34px !important;
+    object-fit: contain !important;
   }
 
   .nav-actions {
