@@ -843,6 +843,12 @@
   }
 }
 
+.hero-sage-phone-workshop-title,
+.hero-sage-phone-text-block,
+.hero-phone-slider-dots {
+  display: none;
+}
+
 /* ==========================================================================
    DESKTOP RESPONSIVE STYLING (>= 993PX)
    ========================================================================== */
@@ -851,7 +857,10 @@
 
   .hero-sage-top-header,
   .hero-sage-highlight-banner,
-  .hero-sage-video-container {
+  .hero-sage-video-container,
+  .hero-phone-slider,
+  .hero-sage-phone-text-block,
+  .hero-sage-phone-workshop-title {
     display: none !important;
   }
 
@@ -900,10 +909,80 @@
 
 @media (max-width: 992px) {
   .hero-sage {
-    padding: 5rem 1.2rem 3.5rem 1.2rem;
+    padding: 4rem 1rem 3rem 1rem;
     aspect-ratio: auto;
     min-height: auto;
-    background: var(--hero-mobile-bg, url('../../assets/hero/hero_banner.jpg')) no-repeat center top / cover;
+    background: #000000;
+  }
+
+  /* Phone View Automatic Image Slider */
+  .hero-phone-slider {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 1;
+    pointer-events: auto;
+  }
+
+  .hero-phone-slider-track {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.65s cubic-bezier(0.25, 1, 0.5, 1);
+    will-change: transform;
+  }
+
+  .hero-phone-slide {
+    min-width: 100%;
+    width: 100%;
+    height: 100%;
+    flex-shrink: 0;
+    position: relative;
+    background-color: #000000;
+  }
+
+  .hero-phone-slide-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+    user-select: none;
+    -webkit-user-drag: none;
+  }
+
+  /* Slider Dot Indicators */
+  .hero-phone-slider-dots {
+    position: absolute;
+    bottom: 18px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    z-index: 5;
+  }
+
+  .hero-phone-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(255, 255, 255, 0.45);
+    cursor: pointer;
+    padding: 0;
+    transition: all 0.3s ease;
+  }
+
+  .hero-phone-dot.active {
+    width: 22px;
+    border-radius: 10px;
+    background: #ffffff;
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
   }
 
   .hero-liquid-wave-bg {
@@ -915,11 +994,11 @@
     flex-direction: column;
     align-items: center;
     text-align: center;
-    gap: 2.2rem;
-    padding-top: 0;
-    padding-left: 0;
-    padding-right: 0;
+    gap: 1.4rem;
+    padding: 0;
     max-width: 100%;
+    position: relative;
+    z-index: 2;
   }
 
   .hero-sage-header-block {
@@ -929,11 +1008,89 @@
     max-width: 100%;
     margin-left: auto;
     margin-right: auto;
-    gap: 0.5rem;
-    padding-top: clamp(17.5rem, 78vw, 28.5rem);
+    gap: 0.6rem;
+    padding-top: clamp(28rem, 110vw, 42rem);
+    position: relative;
+    z-index: 2;
   }
 
-  /* Hide manual HTML text elements on mobile because hero_banner.jpg already has baked-in text */
+  /* Phone-only Subtitle and Tagline below cursive text */
+  .hero-sage-phone-text-block {
+    display: flex !important;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 0.2rem;
+    width: 100%;
+    margin-bottom: 0.2rem;
+  }
+
+  .hero-sage-subtitle-phone {
+    font-family: var(--font-body, system-ui, sans-serif);
+    font-size: clamp(0.88rem, 3.7vw, 1.05rem);
+    font-weight: 500;
+    color: #FFFFFF;
+    margin: 0;
+    line-height: 1.35;
+    text-align: center;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
+  }
+
+  .hero-sage-tagline-phone {
+    font-family: var(--font-body, system-ui, sans-serif);
+    font-size: clamp(0.82rem, 3.2vw, 0.95rem);
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.9);
+    margin: 0.15rem 0 0.3rem 0;
+    text-align: center;
+    letter-spacing: 0.03em;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
+  }
+
+  /* Metric Chips Marquee Slider (White rounded rectangular cards) */
+  .hero-sage-metrics-marquee-wrapper {
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+    position: relative;
+    margin: 0.3rem 0 0.6rem 0;
+    mask-image: linear-gradient(to right, transparent 0%, #000 4%, #000 96%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 4%, #000 96%, transparent 100%);
+  }
+
+  .hero-sage-metric-pill {
+    background-color: #ffffff !important;
+    color: #111111 !important;
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+    font-size: 0.88rem;
+    font-weight: 700;
+    padding: 7px 16px;
+    border-radius: 8px !important;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.35);
+    border: none !important;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .hero-sage-metric-pill strong {
+    font-weight: 800;
+    color: #111111;
+  }
+
+  /* Workshop Title on Phone: "5 Days Free Online Wellness workshop" */
+  .hero-sage-phone-workshop-title {
+    display: block !important;
+    color: #ffffff !important;
+    font-family: var(--font-heading, system-ui, sans-serif);
+    font-size: clamp(1.05rem, 4.4vw, 1.25rem);
+    font-weight: 800;
+    text-align: center;
+    margin: 0.4rem auto 0.2rem auto;
+    letter-spacing: 0.02em;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
+  }
+
+  /* Hide default desktop header elements on mobile */
   .hero-sage-top-header,
   .hero-sage-title,
   .hero-sage-subtitle,
@@ -942,37 +1099,110 @@
     display: none !important;
   }
 
+  /* Explore More Button - Premium Pill Style matching site-wide buttons, Purple color */
   .hero-sage-register-btn {
     margin-left: auto;
     margin-right: auto;
-    margin-top: 0.3rem;
-    width: 90%;
+    margin-top: 0.4rem;
+    width: 88%;
     max-width: 340px;
     min-width: unset;
+    background: linear-gradient(135deg, #5b21b6 0%, #7c3aed 30%, #8b5cf6 55%, #6d28d9 80%, #a78bfa 100%) !important;
+    background-size: 300% 300% !important;
+    color: #ffffff !important;
+    text-shadow: 0 2px 8px rgba(91, 33, 182, 0.8), 0 0 12px rgba(255, 255, 255, 0.6);
+    border: 2px solid rgba(255, 255, 255, 0.95) !important;
+    border-radius: 50px !important;
+    padding: 0.7rem 2.8rem !important;
+    font-size: 1.05rem !important;
+    font-weight: 800 !important;
+    text-align: center !important;
+    justify-content: center !important;
+    box-shadow: 0 10px 32px rgba(91, 33, 182, 0.55), inset 0 2px 4px rgba(255, 255, 255, 0.7), inset 0 -2px 6px rgba(0, 0, 0, 0.3) !important;
+    animation: heroLiquidGradient 5s ease infinite, heroPeriodicShake 4s ease-in-out infinite !important;
+    transform: none !important;
+    position: relative;
+    overflow: hidden;
   }
 
-  .hero-sage-metrics-marquee-wrapper {
-    max-width: 100%;
+  .hero-sage-register-btn:hover,
+  .hero-sage-register-btn:focus,
+  .hero-sage-register-btn:active {
+    background: linear-gradient(135deg, #6d28d9 0%, #8b5cf6 30%, #a78bfa 60%, #7c3aed 100%) !important;
+    background-size: 300% 300% !important;
+    animation: heroLiquidGradient 2.5s ease infinite, heroPeriodicShake 4s ease-in-out infinite !important;
+    color: #ffffff !important;
+    transform: translateY(-3px) scale(1.02) !important;
+    box-shadow: 0 14px 40px rgba(109, 40, 217, 0.7), inset 0 2px 6px rgba(255, 255, 255, 0.9), inset 0 -2px 8px rgba(0, 0, 0, 0.3) !important;
   }
 
+  .hero-sage-register-btn::before {
+    content: '' !important;
+    display: block !important;
+    position: absolute !important;
+    top: -50% !important;
+    left: -75% !important;
+    width: 50% !important;
+    height: 200% !important;
+    background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0) 20%, rgba(255,255,255,0.6) 50%, rgba(255,255,255,0) 80%, transparent 100%) !important;
+    transform: rotate(25deg) !important;
+    animation: buttonShimmerSweep 3.5s ease-in-out infinite !important;
+    pointer-events: none !important;
+  }
+
+  .hero-sage-arrow-circle {
+    display: flex !important;
+    position: absolute;
+    right: 0.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background-color: #ffffff;
+    color: #7c3aed;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3), inset 0 1px 2px rgba(255, 255, 255, 0.8);
+  }
+
+  .hero-sage-btn-text {
+    width: 100%;
+    text-align: center;
+  }
+
+  /* Video Container & Purple Aura Frame */
   .hero-sage-video-container {
     justify-content: center;
     margin-right: 0;
     width: 100%;
     max-width: 100%;
+    margin-top: 0.4rem;
   }
 
   .hero-video-aura-wrapper {
     width: 100%;
-    max-width: 520px;
+    max-width: 480px;
     margin-left: auto;
     margin-right: auto;
   }
 
+  .hero-video-aura-halo {
+    position: absolute;
+    inset: -6px !important;
+    border-radius: 20px !important;
+    background: linear-gradient(135deg, rgba(62, 0, 174, 0.75), rgba(130, 0, 220, 0.6), rgba(30, 0, 90, 0.5)) !important;
+    filter: blur(14px) !important;
+    opacity: 0.95 !important;
+  }
+
   .hero-sage-video-card {
     width: 100%;
-    border-radius: 20px;
-    padding: 8px;
+    border-radius: 16px;
+    padding: 5px;
+    background-color: #f5f0e8;
+    border: 2px solid #f5f0e8;
+    box-shadow: 0 12px 36px rgba(0, 0, 0, 0.6);
   }
 
   .hero-sage-video-el {
@@ -981,43 +1211,17 @@
     aspect-ratio: 16 / 9;
     min-height: unset;
     max-height: unset;
-    border-radius: 14px;
+    border-radius: 12px;
     object-fit: cover;
   }
 }
 
 @media (max-width: 576px) {
-  .hero-sage-title {
-    font-size: clamp(1.15rem, 5vw, 1.7rem);
-    white-space: nowrap;
-  }
-
   .hero-sage-register-btn {
-    width: 96%;
-    max-width: 320px;
-    padding: 0.45rem 2.4rem 0.45rem 2.4rem;
-    font-size: 0.95rem;
-  }
-
-  .hero-sage-arrow-circle {
-    width: 28px;
-    height: 28px;
-    right: 0.4rem;
-  }
-
-  .hero-sage-search-pill {
-    max-width: 100%;
-    padding: 4px 6px 4px 20px;
-  }
-
-  .hero-sage-search-input {
-    font-size: 0.95rem;
-  }
-
-  .hero-sage-search-btn {
-    width: 40px;
-    height: 40px;
-    min-width: 40px;
+    width: 90%;
+    max-width: 300px;
+    padding: 0.7rem 1.2rem !important;
+    font-size: 0.98rem !important;
   }
 
   .hero-video-aura-wrapper {
@@ -1025,14 +1229,11 @@
   }
 
   .hero-sage-video-card {
-    padding: 6px;
-    border-radius: 16px;
+    padding: 4px;
+    border-radius: 14px;
   }
 
   .hero-sage-video-el {
-    aspect-ratio: 16 / 9;
-    min-height: unset;
-    max-height: unset;
-    border-radius: 12px;
+    border-radius: 10px;
   }
 }
